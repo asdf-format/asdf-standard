@@ -1,0 +1,128 @@
+%YAML 1.1
+---
+$schema: "http://www.stsci.edu/schemas/yaml-schema/draft-01"
+id: "http://www.stsci.edu/schemas/finf/0.1.0/ndarray"
+title: >
+  An *n*-dimensional homogenous array.
+description: >
+  The data itself is not stored in the tree, but comes from some other
+  source, either a :ref:`block` within the same FINF file, or an external
+  file or URI.
+examples:
+  -
+    - A simple double-precision image, in contiguous memory
+    - |
+        !ndarray
+          source: 0
+          shape: [1024, 1024]
+          dtype: float64
+
+  -
+    - A view of a tile in that image
+    - |
+        !ndarray
+          source: 0
+          shape: [256, 256]
+          dtype: float64
+          strides: [8192, 8]
+          offset: 2099200
+
+  -
+    - An array in Fortran order
+    - |
+        !ndarray
+          source: 0
+          shape: [1024, 1024]
+          dtype: float64
+          strides: [8192, 8]
+
+  -
+    - An array where values of -999 are treated as missing
+    - |
+        !ndarray
+          source: 0
+          shape: [256, 256]
+          dtype: float64
+          mask: -999
+
+  -
+    - An array where another array is used as a mask
+    - |
+        !ndarray
+          source: 0
+          shape: [256, 256]
+          dtype: float64
+          mask: !ndarray
+            source: 1
+            shape: [256, 256]
+            dtype: uint8
+
+tag: "tag:stsci.edu:finf/0.1.0/ndarray"
+type: object
+properties:
+  source:
+    description: >
+      The source of the data.  If an integer, the block number within
+      the same file.  If a string, a URI to the block data.  Relative URIs,
+      with the file: and http: URIs are supported.
+    anyOf:
+      - type: integer
+      - type: string
+        format: uri
+
+  shape:
+    description: >
+      The shape of the array.
+    type: array
+    items:
+      type: integer
+      minimum: 0
+
+  dtype:
+    description: >
+      The data format of the array elements.
+    type: string
+    enum: [int8, uint8, int16, uint16, int32, uint32, int64, uint64, float32,
+           float64, float128, complex64, complex128, complex256]
+
+  byteorder:
+    description: >
+      The byte order (big- or little-endian) of the array data.
+    type: string
+    enum: [big, little]
+    default: big
+
+  offset:
+    description: >
+      The offset, in bytes, within the data for this start of this
+      view.
+    type: integer
+    minimum: 0
+
+  strides:
+    description: >
+      The number of bytes to skip in each dimension.  If not provided,
+      the array is assumed by be contiguous and in C order.  If
+      provided, must be the same length as the shape property.
+    type: array
+    items:
+      anyOf:
+        - type: integer
+          minimum: 1
+        - type: integer
+          maximum: -1
+
+  mask:
+    description: >
+      Describes how missing values in the array are stored.  If a
+      scalar number, that number is used to represent missing values.
+      If an ndarray, the given array provides a mask, where non-zero
+      values represent missing values in this array.  The mask array
+      must be broadcastable to the dimensions of this array.
+    anyOf:
+      - type: number
+      - $ref: http://www.stsci.edu/schemas/finf/0.1.0/complex
+      - $ref: http://www.stsci.edu/schemas/finf/0.1.0/ndarray
+
+required: [shape, source, dtype]
+additionalProperties: false

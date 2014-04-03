@@ -1,0 +1,42 @@
+%YAML 1.2
+---
+$schema: "http://www.stsci.edu/schemas/yaml-schema/draft-01"
+id: "http://www.stsci.edu/schemas/yaml-schema/draft-01"
+description: |
+  A metaschema extending JSON Schema's metaschema to add support for
+  some YAML-specific constructions.
+allOf:
+  - $ref: "http://json-schema.org/draft-04/schema"
+  - type: object
+    properties:
+      tag:
+        description:
+          A fully-qualfied YAML tag name that should be associated with the
+          object type returned by the YAML parser; for example, the object must
+          be an instance of the class registered with the parser to create
+          instances of objects with this tag. Implementation of this validator
+          is optional and depends on details of the YAML parser.
+        type: string
+        minLength: 6
+      propertyOrder:
+        description:
+          Objects with a defined propertyOrder must be treated as an ordered
+          mapping, and its keys must be in the same relative order they are
+          listed in this validator. Keys listed in propertyOrder are not
+          required to be present in the object, and any keys not specified by
+          propertyOrder may come in arbitrary order so long as they follow any
+          keys listed here.
+        type: array
+        items: { type: string }
+      examples:
+        description:
+          A list of examples to help document the schema.  Each pair
+          is a prose description followed by a string containing YAML
+          content.
+        type: array
+        items:
+          type: array
+          items:
+            - type: string
+            - type: string
+...

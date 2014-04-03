@@ -1,0 +1,37 @@
+%YAML 1.1
+---
+$schema: "http://www.stsci.edu/schemas/yaml-schema/draft-01"
+id: "http://www.stsci.edu/schemas/finf/0.1.0/complex"
+title: Complex number value.
+description: |
+  Represents a complex number in the form::
+
+    (<REAL>)? (<PLUS-OR-MINUS> <IMAGINARY> <J>)?
+
+  Where:
+
+    - ``<REAL>`` is the real part of the complex number, in IEEE 754
+      format.
+
+    - ``<PLUS-OR-MINUS>`` is ``+`` or ``-``, indicating the sign of
+      the imaginary part.
+
+    - ``<IMAGINARY>`` is the imaginary part of the complex number, in
+      IEEE 754 format.
+
+    - ``<J>`` is the literal ``J`` or ``j``.
+
+examples:
+  -
+    - 1 real, -1 imaginary
+    - "!complex 1-1j"
+  -
+    - 0 real, 1 imaginary
+    - "!complex 1J"
+  -
+    - -1 real, 0 imaginary
+    - "!complex -1"
+
+tag: "tag:stsci.edu:finf/0.1.0/complex"
+type: string
+pattern: "([-+]?[0-9]*\\.?[0-9]+([eE][-+]?[0-9]+)?)?([-+][0-9]*\\.?[0-9]+([eE][-+]?[0-9]+)?[Jj])?"

@@ -1,0 +1,20 @@
+%YAML 1.1
+---
+$schema: "http://www.stsci.edu/schemas/yaml-schema/draft-01"
+id: "http://www.stsci.edu/schemas/finf/0.1.0/defunit"
+title: Define a new physical unit.
+description: >
+  Create a new unit with a given name equivalent to the given unit.
+  The new unit must be defined before any unit tags that use it.
+tag: "tag:stsci.edu:finf/0.1.0/defunit"
+type: object
+properties:
+  name:
+    title: The name of the new unit.
+    type: string
+    pattern: "[A-Za-z_][A-Za-z0-9_]+"
+
+  unit:
+    $ref: "http://www.stsci.edu/schemas/finf/0.1.0/unit"
+
+required: [name, unit]
