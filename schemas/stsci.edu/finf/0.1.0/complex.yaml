@@ -6,7 +6,7 @@ title: Complex number value.
 description: |
   Represents a complex number in the form::
 
-    (<REAL>)? (<PLUS-OR-MINUS> <IMAGINARY> <J>)?
+    (<REAL>)? (<PLUS-OR-MINUS> <IMAGINARY> <SUFFIX>)?
 
   Where:
 
@@ -19,7 +19,7 @@ description: |
     - ``<IMAGINARY>`` is the imaginary part of the complex number, in
       IEEE 754 format.
 
-    - ``<J>`` is the literal ``J`` or ``j``.
+    - ``<SUFFIX>`` is any of the literals ``J``, ``j``, ``I`` or ``i``.
 
 examples:
   -
@@ -34,4 +34,4 @@ examples:
 
 tag: "tag:stsci.edu:finf/0.1.0/complex"
 type: string
-pattern: "([-+]?[0-9]*\\.?[0-9]+([eE][-+]?[0-9]+)?)?([-+][0-9]*\\.?[0-9]+([eE][-+]?[0-9]+)?[Jj])?"
+pattern: "([-+]?[0-9]*\\.?[0-9]+([eE][-+]?[0-9]+)?)?([-+][0-9]*\\.?[0-9]+([eE][-+]?[0-9]+)?[JjIi])?"
