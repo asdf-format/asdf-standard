@@ -10,6 +10,13 @@ FINF is not FITS.
 .. toctree::
    :maxdepth: 1
 
+   intro.rst
+   file_layout.rst
+   tree.rst
+   schema.rst
+   extending.rst
+   known_limits.rst
+   changes.rst
 
 .. only:: html
 

@@ -1,0 +1,54 @@
+%YAML 1.1
+---
+$schema: "http://www.stsci.edu/schemas/yaml-schema/draft-01"
+id: "http://www.stsci.edu/schemas/finf/0.1.0/fits"
+title: >
+  A standard way to serialize a FITS file inside of a FINF file.
+description: |
+  A way to serialize a FITS file inside of a FINF file.
+
+  This schema is useful for distributing FINF files that can be easily
+  converted to FITS files by specifying the exact content of the
+  resulting FITS file.
+
+  Not all kinds of data in FITS are directly representable in FINF.
+  For example, applying an implicit offset and scale to the data using
+  the ``BZERO`` and ``BSCALE`` keywords.  In these cases, the data
+  should be converted to a format that FINF does support before
+  storing it in a FINF file.
+tag: "tag:stsci.edu:finf/0.1.0/fits"
+type: array
+items:
+  description: >
+    Each item represents a single header/data unit (HDU).
+  type: object
+  properties:
+    header:
+      description: >
+        A list of the keyword/value/comment triples from the header,
+        in the order they appear in the FITS file.
+      type: array
+      items:
+        type: array
+        items:
+          - description: "The keyword."
+            type: string
+            maxLength: 8
+            pattern: "[A-Z0-9]*"
+          - description: "The value."
+            anyOf:
+              - type: string
+                maxLength: 60
+              - type: number
+              - type: boolean
+          - description: "The comment."
+            type: string
+            maxLength: 60
+    data:
+      description: "The data part of the HDU."
+      anyOf:
+        - $ref: "http://www.stsci.edu/schemas/finf/0.1.0/ndarray"
+        - type: "null"
+      default: null
+  required: [header]
+  additionalProperties: false
