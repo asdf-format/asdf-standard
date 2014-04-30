@@ -220,7 +220,7 @@ Exploded form is useful in the following scenarios:
   each block to be requested directly by a specific URI.
 
 - A FINF writer may stream a table to disk, when the size of the table
-  is not known at the outset.  Using exploded for simplifies this,
+  is not known at the outset.  Using exploded form simplifies this,
   since a standalone file containing a single table can be iteratively
   appended to without worrying about any blocks that may follow it.
 
