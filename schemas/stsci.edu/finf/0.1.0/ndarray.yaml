@@ -66,15 +66,6 @@ examples:
           shape: [256, 256]
           dtype: float64
 
-  -
-    - An array where where the data is stored in the second block in
-      another FINF file.
-    - |
-        !ndarray
-          source: external.finf#1
-          shape: [256, 256]
-          dtype: float64
-
 tag: "tag:stsci.edu:finf/0.1.0/ndarray"
 type: object
 properties:
