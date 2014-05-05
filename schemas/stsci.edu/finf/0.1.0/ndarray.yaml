@@ -85,13 +85,16 @@ properties:
       - If an integer, the zero-based index of the block within the
         same file.
 
-      - If a string, a URI to the block data.  Relative URIs and
-        ``file:`` and ``http:`` protocols must be supported.  Other
-        protocols may be supported by specific library
-        implementations.  The "fragment" or "anchor" part of the URI,
-        if any, must be an integer, indicating a the zero-based index
-        of the block within the file.  If no fragment is present, the
-        first block (``0``) is assumed.
+      - If a string, a URI to an external FINF file containing the
+        block data.  Relative URIs and ``file:`` and ``http:``
+        protocols must be supported.  Other protocols may be supported
+        by specific library implementations.
+
+        The ability to reference block data in an external FINF file
+        is intentionally limited to the first block in the external
+        FINF file, and is intended only to support the needs of
+        :ref:`exploded`.  For the more general case of referencing
+        data in an external FINF file, use tree :ref:`references`.
 
     anyOf:
       - type: integer
