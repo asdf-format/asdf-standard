@@ -57,14 +57,36 @@ examples:
             shape: [256, 256]
             dtype: uint8
 
+  -
+    - An array where where the data is stored in the first block in
+      another FINF file.
+    - |
+        !ndarray
+          source: external.finf
+          shape: [256, 256]
+          dtype: float64
+
 tag: "tag:stsci.edu:finf/0.1.0/ndarray"
 type: object
 properties:
   source:
-    description: >
-      The source of the data.  If an integer, the block number within
-      the same file.  If a string, a URI to the block data.  Relative URIs,
-      with the file: and http: URIs are supported.
+    description: |
+      The source of the data.
+
+      - If an integer, the zero-based index of the block within the
+        same file.
+
+      - If a string, a URI to an external FINF file containing the
+        block data.  Relative URIs and ``file:`` and ``http:``
+        protocols must be supported.  Other protocols may be supported
+        by specific library implementations.
+
+        The ability to reference block data in an external FINF file
+        is intentionally limited to the first block in the external
+        FINF file, and is intended only to support the needs of
+        :ref:`exploded`.  For the more general case of referencing
+        data in an external FINF file, use tree :ref:`references`.
+
     anyOf:
       - type: integer
       - type: string
@@ -98,6 +120,7 @@ properties:
       view.
     type: integer
     minimum: 0
+    default: 0
 
   strides:
     description: >

@@ -21,7 +21,7 @@ this comes "for free" by using `YAML <http://yaml.org/spec/1.1/>`__.
     serve well for this purpose, it remains to be seen whether support
     for this concept is good enough in other languages to be relied
     upon, or whether OrderedMappings should remain an optional
-    convenience feature of FITS to maintain ordering, but not to
+    convenience feature of FINF to maintain ordering, but not to
     convey any meaning.
 
 Since these core data structures on their own are so flexible, the
@@ -54,13 +54,13 @@ user.
 
 For example::
 
-      %YAML 1.1
-      --- !<tag:stsci.edu:finf/0.1.0/finf>
-      data: !<tag:stsci.edu:finf/0.1.0/ndarray>
-        source: 0
-        dtype: float64
-        shape: [1024, 1024]
-      ...
+     %YAML 1.1
+     --- !<tag:stsci.edu:finf/0.1.0/finf>
+     data: !<tag:stsci.edu:finf/0.1.0/ndarray>
+       source: 0
+       dtype: float64
+       shape: [1024, 1024]
+     ...
 
 All tags defined in the FINF standard itself begin with the prefix
 ``tag:stsci.edu:finf/0.1.0/``.  This can be broken down as:
@@ -145,3 +145,70 @@ YAML Schema adds two new keywords to JSON Schema.
 - ``propertyOrder``, which applies only to objects, declares that the
   object must have its properties presented in the given order.  For
   example, TODO
+
+.. _references:
+
+References
+----------
+
+It is possible to directly reference other items within the same tree
+or within the tree of another FINF file.  This functionality is based
+on two IETF standards: `JSON Pointer (IETF RFC 6901)
+<http://tools.ietf.org/html/rfc6901>`__ and `JSON Reference (Draft 3)
+<http://tools.ietf.org/html/draft-pbryan-zyp-json-ref-03>`__.
+
+A reference is represented as a mapping with a single key/value pair
+where the key is the special keyword ``$ref`` and the value is a URI.
+The URI may be absolute or relative.  The URI may contain a fragment
+(the part following the ``#`` character) in JSON Pointer syntax that
+references a specific element within the external file.  This is a
+``/``-delimited path where each element is a mapping key or an array
+index.
+
+.. TODO: We should include more details about JSON Pointer.
+
+When these references are resolved, this mapping should be treated as
+having the same logical content as the target of the URI, though the
+exact details of how this is performed is dependent on the
+implementation, i.e., a library may copy the target data into the
+source tree, or it may insert a proxy object.
+
+For example, suppose we had a given FINF file containing some shared
+reference data, available on a public webserver at the URI
+``http://www.nowhere.com/reference.finf``::
+
+    data: !array
+      source: 0
+      shape: [256, 256]
+      dtype: float
+
+Another file may reference this data directly::
+
+    reference_data:
+      $ref: "http://www.nowhere.com/reference.finf#data"
+
+It is also possible to use reference files within the same file::
+
+    data: !array
+      source: 0
+      shape: [256, 256]
+      dtype: float
+      mask:
+        $ref: "#my_mask"
+
+    my_mask: !array
+      source: 0
+      shape: [256, 256]
+      dtype: uint8
+
+Reference resolution should be performed after the entire tree is
+read, therefore forward references within the same file are explicitly
+allowed.
+
+.. note::
+    The YAML standard itself also provides a method for internal
+    references called "anchors" and "aliases".  It does not, however,
+    support external references.  While FINF does not explicitly
+    disallow anchors and aliases, since it explicitly supports all of
+    YAML 1.1, their use is discouraged in favor of the more flexible
+    JSON Pointer/JSON Reference standard described above.
