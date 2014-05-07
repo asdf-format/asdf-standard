@@ -48,7 +48,7 @@ items:
     data:
       description: "The data part of the HDU."
       anyOf:
-        - $ref: "http://www.stsci.edu/schemas/finf/0.1.0/core/ndarray"
+        - $ref: "../core/ndarray"
         - type: "null"
       default: null
   required: [header]

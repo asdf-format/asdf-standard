@@ -144,8 +144,8 @@ properties:
       must be broadcastable to the dimensions of this array.
     anyOf:
       - type: number
-      - $ref: http://www.stsci.edu/schemas/finf/0.1.0/core/complex
-      - $ref: http://www.stsci.edu/schemas/finf/0.1.0/core/ndarray
+      - $ref: complex
+      - $ref: ndarray
 
 required: [shape, source, dtype]
 additionalProperties: false

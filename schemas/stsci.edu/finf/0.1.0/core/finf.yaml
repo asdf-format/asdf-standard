@@ -17,12 +17,12 @@ properties:
       a single array, but this model will be used by applications that
       just want to convert to a displayable image or preview of the
       file.
-    $ref: "http://www.stsci.edu/schemas/finf/0.1.0/core/ndarray"
+    $ref: "ndarray"
 
   fits:
     description: |
       A way to specify exactly how this FINF file should be converted
       to FITS.
-    $ref: "http://www.stsci.edu/schemas/finf/0.1.0/fits/fits"
+    $ref: "../fits/fits"
 
 additionalProperties: true

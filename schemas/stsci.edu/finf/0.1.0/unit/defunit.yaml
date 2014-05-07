@@ -27,7 +27,7 @@ properties:
       base unit.
 
     anyOf:
-      - $ref: "http://www.stsci.edu/schemas/finf/0.1.0/unit/unit"
+      - $ref: "unit"
       - type: "null"
 
 required: [name]
