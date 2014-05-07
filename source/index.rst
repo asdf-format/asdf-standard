@@ -13,7 +13,7 @@ FINF is not FITS.
    intro.rst
    file_layout.rst
    tree.rst
-   schema.rst
+   schemas/index.rst
    extending.rst
    known_limits.rst
    changes.rst

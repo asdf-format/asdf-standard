@@ -108,7 +108,9 @@ def format_type(schema):
             if range is not None:
                 parts.append(range)
             if 'pattern' in schema:
-                parts.append('(:soft:`regex` :regexp:`{0}`)'.format(schema['pattern']))
+                parts.append('(:soft:`regex` :regexp:`{0}`)'.format(
+                    schema['pattern'].encode('unicode_escape').replace(
+                        '\\', '\\\\')))
             if 'format' in schema:
                 parts.append('({0})'.format(schema['format']))
         elif schema['type'] in ('integer', 'number'):

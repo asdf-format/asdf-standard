@@ -1,13 +1,13 @@
 %YAML 1.1
 ---
 $schema: "http://www.stsci.edu/schemas/yaml-schema/draft-01"
-id: "http://www.stsci.edu/schemas/finf/0.1.0/finf"
+id: "http://www.stsci.edu/schemas/finf/0.1.0/core/finf"
 title: |
   Top-level schema for a FINF file
 description: |
   This schema contains the top-level attributes for every FINF file.
 
-tag: "tag:stsci.edu:finf/0.1.0/finf"
+tag: "tag:stsci.edu:finf/0.1.0/core/finf"
 type: object
 properties:
   data:
@@ -17,12 +17,12 @@ properties:
       a single array, but this model will be used by applications that
       just want to convert to a displayable image or preview of the
       file.
-    $ref: "http://www.stsci.edu/schemas/finf/0.1.0/ndarray"
+    $ref: "http://www.stsci.edu/schemas/finf/0.1.0/core/ndarray"
 
   fits:
     description: |
       A way to specify exactly how this FINF file should be converted
-      to FITS.  See the FITS schema for more information.
-    $ref: "http://www.stsci.edu/schemas/finf/0.1.0/fits"
+      to FITS.
+    $ref: "http://www.stsci.edu/schemas/finf/0.1.0/fits/fits"
 
 additionalProperties: true

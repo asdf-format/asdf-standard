@@ -1,7 +1,7 @@
 %YAML 1.1
 ---
 $schema: "http://www.stsci.edu/schemas/yaml-schema/draft-01"
-id: "http://www.stsci.edu/schemas/finf/0.1.0/ndarray"
+id: "http://www.stsci.edu/schemas/finf/0.1.0/core/ndarray"
 title: >
   An *n*-dimensional homogenous array.
 description: >
@@ -66,7 +66,7 @@ examples:
           shape: [256, 256]
           dtype: float64
 
-tag: "tag:stsci.edu:finf/0.1.0/ndarray"
+tag: "tag:stsci.edu:finf/0.1.0/core/ndarray"
 type: object
 properties:
   source:
@@ -144,8 +144,8 @@ properties:
       must be broadcastable to the dimensions of this array.
     anyOf:
       - type: number
-      - $ref: http://www.stsci.edu/schemas/finf/0.1.0/complex
-      - $ref: http://www.stsci.edu/schemas/finf/0.1.0/ndarray
+      - $ref: http://www.stsci.edu/schemas/finf/0.1.0/core/complex
+      - $ref: http://www.stsci.edu/schemas/finf/0.1.0/core/ndarray
 
 required: [shape, source, dtype]
 additionalProperties: false

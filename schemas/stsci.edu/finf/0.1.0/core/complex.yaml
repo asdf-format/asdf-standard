@@ -1,0 +1,29 @@
+%YAML 1.1
+---
+$schema: "http://www.stsci.edu/schemas/yaml-schema/draft-01"
+id: "http://www.stsci.edu/schemas/finf/0.1.0/core/complex"
+title: Complex number value.
+description: |
+  Represents a complex number matching the following EBNF grammar::
+
+    plus-or-minus = "+" | "-"
+    suffix        = "J" | "j" | "I" | "i"
+    complex       = [ieee754] [plus-or-minus ieee754 suffix]
+
+  Where ``ieee754`` is a floating point number in IEEE 754 decimal
+  format.
+
+examples:
+  -
+    - 1 real, -1 imaginary
+    - "!complex 1-1j"
+  -
+    - 0 real, 1 imaginary
+    - "!complex 1J"
+  -
+    - -1 real, 0 imaginary
+    - "!complex -1"
+
+tag: "tag:stsci.edu:finf/0.1.0/core/complex"
+type: string
+pattern: "([-+]?[0-9]*\\.?[0-9]+([eE][-+]?[0-9]+)?)?([-+][0-9]*\\.?[0-9]+([eE][-+]?[0-9]+)?[JjIi])?"
