@@ -1,4 +1,4 @@
 build
 *.pyc
 
-source/schemas
+source/schemas/stsci.edu

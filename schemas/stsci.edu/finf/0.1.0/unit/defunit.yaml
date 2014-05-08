@@ -1,0 +1,33 @@
+%YAML 1.1
+---
+$schema: "http://www.stsci.edu/schemas/yaml-schema/draft-01"
+id: "http://www.stsci.edu/schemas/finf/0.1.0/unit/defunit"
+title: Define a new physical unit.
+description: |
+  Defines a new unit.  It can be used to either:
+
+  - Define a new base unit.
+
+  - Create a new unit name that is a equivalent to a given unit.
+
+  The new unit must be defined before any unit tags that use it.
+
+tag: "tag:stsci.edu:finf/0.1.0/unit/defunit"
+type: object
+properties:
+  name:
+    description: The name of the new unit.
+    type: string
+    pattern: "[A-Za-z_][A-Za-z0-9_]+"
+
+  unit:
+    description: |
+      The unit that the new name is equivalent to.  It is optional,
+      and if not provided, or ``null``, this ``defunit`` defines a new
+      base unit.
+
+    anyOf:
+      - $ref: "unit"
+      - type: "null"
+
+required: [name]

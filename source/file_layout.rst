@@ -90,8 +90,8 @@ YAML content.  For example::
 
       %YAML 1.1
       %TAG ! tag:stsci.edu:finf/0.1.0/
-      --- !finf
-      data: !ndarray
+      --- !core/finf
+      data: !core/ndarray
         source: 0
         dtype: float64
         shape: [1024, 1024]
@@ -126,7 +126,7 @@ Blocks represent a contiguous chunk of binary data and nothing more.
 Information about how to interpret the block, such as the data type or
 array shape, is stored entirely in ``ndarray`` structures in the tree,
 as described in :ref:`ndarray
-<http://www.stsci.edu/schemas/finf/0.1.0/ndarray>`.  This allows for a
+<http://www.stsci.edu/schemas/finf/0.1.0/core/ndarray>`.  This allows for a
 very flexible type system on top of a very simple approach to memory
 management within the file.  It also allows for new extensions to FINF
 that might interpret the raw binary data in ways that have not yet
@@ -231,7 +231,7 @@ form, other than the fact that some or all of its block references
 refer to external files.  The exact way in which a file is exploded is
 up to the library and tools implementing the standard.  In the most
 common scenario, to explode a file, each :ref:`ndarray source property
-<http://www.stsci.edu/schemas/finf/0.1.0/ndarray/source>` in the tree
+<http://www.stsci.edu/schemas/finf/0.1.0/core/ndarray/source>` in the tree
 is converted from a local block reference into a relative URI.  Each
 FINF file has exactly the same content as the :ref:`block` in the
 original file (including the block header), but without the

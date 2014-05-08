@@ -40,7 +40,7 @@ object in the tree.  This is an important feature that sets it apart
 from other data representation languages, such as JSON.  FINF defines
 a number of custom tags, each of which has a corresponding schema.
 The tag of the root element of the tree must always be
-``tag:stsci.edu:finf/0.1.0/finf``.
+``tag:stsci.edu:finf/0.1.0/core/finf``.
 
 .. _tags:
 
@@ -55,8 +55,8 @@ user.
 For example::
 
      %YAML 1.1
-     --- !<tag:stsci.edu:finf/0.1.0/finf>
-     data: !<tag:stsci.edu:finf/0.1.0/ndarray>
+     --- !<tag:stsci.edu:finf/0.1.0/core/finf>
+     data: !<tag:stsci.edu:finf/0.1.0/core/ndarray>
        source: 0
        dtype: float64
        shape: [1024, 1024]
@@ -85,8 +85,8 @@ point (``!``) will be replaced with the prefix
 
       %YAML 1.1
       %TAG ! tag:stsci.edu:finf/0.1.0/
-      --- !finf
-      data: !ndarray
+      --- !core/finf
+      data: !core/ndarray
         source: 0
         dtype: float64
         shape: [1024, 1024]
@@ -101,7 +101,7 @@ schema in the FINF standard and validate the element.
 
 A FINF parser may use the tag information to convert the element to a
 native data type.  For example, in Python, a FINF parser may convert a
-:ref:`ndarray <http://www.stsci.edu/schemas/finf/0.1.0/ndarray>` tag
+:ref:`ndarray <http://www.stsci.edu/schemas/finf/0.1.0/core/ndarray>` tag
 to a `Numpy <http://www.numpy.org>`__ array, providing a convenient
 and familiar interface to the user to access *n*-dimensional data.
 
