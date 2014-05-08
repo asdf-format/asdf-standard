@@ -29,7 +29,7 @@ items:
       type: array
       items:
         type: array
-        minItems: 2
+        minItems: 0
         maxItems: 3
         items:
           - description: "The keyword."
