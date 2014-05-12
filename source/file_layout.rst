@@ -160,6 +160,9 @@ Each block begins with the following header:
   40, but may be larger, for example to align the beginning of the
   block content with a file system block boundary.
 
+- ``flags`` (32-bit unsigned integer, big-endian): A bit field
+  containing flags (described below).
+
 - ``allocated_size`` (64-bit unsigned integer, big-endian): The amount
   of space allocated for the block (not including the header), in
   bytes.
@@ -173,6 +176,16 @@ Each block begins with the following header:
 
 - ``encoding`` (16-byte character string): A way to indicate how the
   buffer is compressed or encoded.  *TBD*.
+
+Flags
+^^^^^
+
+The following bit flags are understood in the ``flags`` field:
+
+- ``STREAMED`` (0x1): When set, the block is in streaming mode, and it
+  extends to the end of the file.  When set, the ``allocated_size``
+  and ``used_size`` fields are ignored.  By necessity, any block with
+  the ``STREAMED`` bit set must be the last block in the file.
 
 Block content
 ^^^^^^^^^^^^^
