@@ -73,8 +73,13 @@ properties:
     description: |
       The source of the data.
 
-      - If an integer, the zero-based index of the block within the
-        same file.
+      - If an integer:
+          - If positive, the zero-based index of the block within the
+            same file.
+
+          - If negative, the index from the last block within the same
+            file.  For example, a source of ``-1`` corresponds to the
+            last block in the same file.
 
       - If a string, a URI to an external FINF file containing the
         block data.  Relative URIs and ``file:`` and ``http:``
