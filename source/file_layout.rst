@@ -224,5 +224,6 @@ exploded form, other than the fact that some or all of its blocks come
 from external files.  The exact way in which a file is exploded is up
 to the library and tools implementing the standard.  In the most
 common scenario, to explode a file, each :ref:`ndarray source property
-<http://www.stsci.edu/schemas/finf/0.1.0/core/ndarray/source>` in the
-tree is converted from a local block reference into a relative URI.
+<http://www.stsci.edu/schemas/finf/0.1.0/core/ndarray/properties/source>`
+in the tree is converted from a local block reference into a relative
+URI.
