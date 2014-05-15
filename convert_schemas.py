@@ -89,14 +89,18 @@ def format_range(var_middle, var_end, minimum, maximum,
     return part
 
 
-def format_type(schema):
+def format_type(schema, root):
     if 'anyOf' in schema:
-        return ' :soft:`or` '.join(format_type(x) for x in schema['anyOf'])
+        return ' :soft:`or` '.join(format_type(x, root) for x in schema['anyOf'])
     elif 'allOf' in schema:
-        return ' :soft:`and` '.join(format_type(x) for x in schema['allOf'])
+        return ' :soft:`and` '.join(format_type(x, root) for x in schema['allOf'])
     elif '$ref' in schema:
-        basename = os.path.basename(schema['$ref'])
-        return ':ref:`{0} <{1}>`'.format(basename, schema['$ref'])
+        ref = schema['$ref']
+        if ref.startswith('#/'):
+            return ':ref:`{0} <{1}/{2}>`'.format(ref[2:], root, ref[2:])
+        else:
+            basename = os.path.basename(schema['$ref'])
+            return ':doc:`{0} <{1}>`'.format(basename, schema['$ref'])
     elif 'type' in schema:
         if isinstance(schema['type'], list):
             parts = [' or '.join(schema['type'])]
@@ -135,7 +139,7 @@ def format_type(schema):
                     parts.append(':soft:`of unique`')
                 else:
                     parts.append(':soft:`of`')
-                parts.append(format_type(items))
+                parts.append(format_type(items, root))
             range = format_range('*len*', '*len*', schema.get('minItems'),
                                  schema.get('maxItems'), False, False)
             if range is not None:
@@ -169,11 +173,11 @@ def recurse(o, name, schema, path, level, required=False):
     else:
         if name != 'items':
             o.write(indent)
-            o.write(':category:`{0}`\n\n'.format(name))
+            o.write(':entry:`{0}`\n\n'.format(name))
 
     o.write(indent)
     o.write(":soft:`Type:` ")
-    o.write(format_type(schema))
+    o.write(format_type(schema, path[0]))
     o.write('.')
     if required:
         o.write(' Required.')
@@ -191,24 +195,36 @@ def recurse(o, name, schema, path, level, required=False):
             json.dumps(schema['default'])))
         o.write('\n\n')
 
-    if schema.get('type') == 'object':
+    if 'definitions' in schema:
         o.write(indent)
-        o.write(':category:`Properties:`\n\n')
-        for key, val in schema.get('properties', {}).items():
-            recurse(o, key, val, path + [key], level + 1,
-                    key in schema.get('required', []))
-    elif schema.get('type') == 'array':
-        o.write(indent)
-        o.write(':category:`Items:`\n\n')
-        items = schema.get('items')
-        if isinstance(items, dict):
-            recurse(o, 'items', items, path + ['items'], level + 1)
-        elif isinstance(items, list):
-            for i, val in enumerate(items):
-                name = 'index[{0}]'.format(i)
-                recurse(o, name, val, path + [name], level + 1)
+        o.write(":category:`Definitions:`\n\n")
+        for key, val in schema['definitions'].items():
+            recurse(o, key, val, path + ['definitions', key], level + 1)
+
+    if 'anyOf' in schema:
+        schemas = schema['anyOf']
+    else:
+        schemas = [schema]
+    for subschema in schemas:
+        if subschema.get('type') == 'object':
+            o.write(indent)
+            o.write(':category:`Properties:`\n\n')
+            for key, val in subschema.get('properties', {}).items():
+                recurse(o, key, val, path + ['properties', key], level + 1,
+                        key in schema.get('required', []))
+        elif subschema.get('type') == 'array':
+            o.write(indent)
+            o.write(':category:`Items:`\n\n')
+            items = subschema.get('items')
+            if isinstance(items, dict):
+                recurse(o, 'items', items, path + ['items'], level + 1)
+            elif isinstance(items, list):
+                for i, val in enumerate(items):
+                    name = 'index[{0}]'.format(i)
+                    recurse(o, name, val, path + [name], level + 1)
 
     if 'examples' in schema:
+        o.write(indent)
         o.write(":category:`Examples:`\n\n")
         for description, example in schema['examples']:
             o.write(reindent(description + "::\n\n", indent))

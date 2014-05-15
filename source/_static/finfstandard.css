@@ -21,6 +21,13 @@ blockquote {
 .category {
     font-family: "Cabin","Helvetica Neue",Helvetica,Arial,sans-serif;
     color: #112;
+    font-size: 120%;
+    font-variant:small-caps;
+}
+
+.entry {
+    font-family: Inconsolata,Monaco,Menlo,Consolas,"Courier New",monospace;
+    color: #112;
     font-size: 120%
 }
 

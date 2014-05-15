@@ -3,6 +3,9 @@ FINF Standard
 
 FINF is not FITS.
 
+**This document is a work in progress and does not represent a
+released version of the FINF standard.**
+
 .. only:: html
 
     Contents:

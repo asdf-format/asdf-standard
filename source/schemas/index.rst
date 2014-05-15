@@ -3,8 +3,8 @@
 FINF schema definitions
 =======================
 
-This reference section describes the schemas for the built-in tags in
-FINF.
+This reference section describes the schema files for the built-in
+tags in FINF.
 
 FINF schemas are arranged into "modules".  All FINF implementations
 must support the "core" module, but the other modules are optional.

@@ -18,7 +18,7 @@ requiring changes in other parts of the file.  The same is not true
 for resizing a block, which has an explicit size stored in the file.
 
 Note also that, by design, a FINF file containing no binary blocks is
-also a completely valid YAML file.
+also a completely standard and valid YAML file.
 
 .. _header:
 
@@ -29,49 +29,43 @@ All FINF files must start with a short one-line header.  For example::
 
   %FINF 0.1.0
 
-It is made up of the following parts::
+It is made up of the following parts (described in EBNF form)::
 
-  <FINF_TOKEN> <SPACE> major <DOT> minor <DOT> micro <NEWLINE>
+  finf_token = "%FINF"
+  major      = integer
+  minor      = integer
+  micro      = integer
+  header     = finf_token " " major "." minor "." micro ["\r"] "\n"
 
-- ``<FINF_TOKEN>``: The constant string ``%FINF``.  This can be used
+- ``finf_token``: The constant string ``%FINF``.  This can be used
   to quickly identify the file as a FINF file by reading the first 5
   bytes.  It begins with a ``%`` so it will be treated as a YAML
   comment such that the :ref:`header` and the :ref:`tree` together
   form a valid YAML file.
 
-- ``<SPACE>``: The constant string ``␣`` (ASCII 0x20).
+- ``major``: The major version.
 
-- ``<DOT>``: The constant string ``.`` (ASCII 0x2e).
+- ``minor``: The minor version.
 
-- ``major``: The major version.  Must be a non-negative integer
-  matching the regular expression :regexp:`[0-9]+`.
-
-- ``minor``: The minor version.  Must be a non-negative integer
-  matching the regular expression :regexp:`[0-9]+`.
-
-- ``micro``: The bugfix release version.  Must be a non-negative
-  integer matching the regular expression :regexp:`[0-9]+`.
-
-- ``<NEWLINE>``: A UNIX (``\n``) or DOS (``\r\n``) line ending.
+- ``micro``: The bugfix release version.
 
 .. _tree:
 
 Tree
 ----
 
-The tree stores structured information using YAML Ain’t Markup
-Language (YAML™) syntax.  While it is the main part of most FINF
-files, it is entirely optional, and a FINF file may skip it
-completely.  This is useful for sharing files in :ref:`exploded`.
-Interpreting the contents of this section is described in greater
-detail in :ref:`tree-in-depth`.  This section below only deals with
-the serialized representation of the tree, not its logical contents.
+The tree stores structured information using `YAML Ain’t Markup
+Language (YAML™) <http://yaml.org/spec/1.1/>`__ syntax.  While it is
+the main part of most FINF files, it is entirely optional, and a FINF
+file may skip it completely.  This is useful for creating files in
+:ref:`exploded`.  Interpreting the contents of this section is
+described in greater detail in :ref:`tree-in-depth`.  This section
+only deals with the serialized representation of the tree, not its
+logical contents.
 
 The tree is always encoded in UTF-8, without an explicit byteorder
-marker (BOM).
-
-Newlines in the tree may be either DOS (``\r\n``) or UNIX (``\n``)
-format.
+marker (BOM). Newlines in the tree may be either DOS (``"\r\n"``) or
+UNIX (``"\n"``) format.
 
 In FINF |version|, the tree must be encoded in `YAML version 1.1
 <http://yaml.org/spec/1.1/>`__.  At the time of this writing, the
@@ -100,8 +94,8 @@ YAML content.  For example::
 The size of the tree is not explicitly specified in the file, so that
 it can easily be edited by hand.  Therefore, FINF parsers must search
 for the end of the tree by looking for the end-of-document marker
-(``...``) on its own line.  The following regular expression may be
-used to find the end of the tree::
+(``...``) on its own line.  For example, the following regular
+expression may be used to find the end of the tree::
 
    \r?\n...\r?\n
 
@@ -110,9 +104,10 @@ to allow for the tree to be updated and increased in size without
 performing an insertion operation in the file.  It also may be
 desirable to align the start of the first block to a filesystem block
 boundary.  This empty space may be filled with any content (as long as
-it doesn't contain the block magic token described below), but it is
-recommended to be space characters (``0x20``) so it appears as empty
-space when viewing the file.
+it doesn't contain the ``block_magic_token`` described in
+:ref:`block`).  It is recommended that the content is made up of space
+characters (``0x20``) so it appears as empty space when viewing the
+file.
 
 .. _block:
 
@@ -126,11 +121,11 @@ Blocks represent a contiguous chunk of binary data and nothing more.
 Information about how to interpret the block, such as the data type or
 array shape, is stored entirely in ``ndarray`` structures in the tree,
 as described in :ref:`ndarray
-<http://www.stsci.edu/schemas/finf/0.1.0/core/ndarray>`.  This allows for a
-very flexible type system on top of a very simple approach to memory
-management within the file.  It also allows for new extensions to FINF
-that might interpret the raw binary data in ways that have not yet
-been devised.
+<http://www.stsci.edu/schemas/finf/0.1.0/core/ndarray>`.  This allows
+for a very flexible type system on top of a very simple approach to
+memory management within the file.  It also allows for new extensions
+to FINF that might interpret the raw binary data in ways that are yet
+to be defined.
 
 There may be an arbitrary amount of unused space between the end of
 the tree and the first block.  To find the beginning of the first
@@ -148,24 +143,22 @@ Each block begins with the following header:
 
 - ``block_magic_token`` (4 bytes): Indicates the start of the block.
   This allows the file to contain some unused space in which to grow
-  the tree, and to perform sanity checks when jumping from one block
-  to the next.
+  the tree, and to perform consistency checks when jumping from one
+  block to the next.  It is make up of the following 4 8-bit characters:
 
-  +---------+--------+------+------+------+
-  |**Hex**  |``89``  |``42``|``4c``|``4b``|
-  +---------+--------+------+------+------+
-  |**ASCII**|``\211``|``B`` |``L`` |``K`` |
-  +---------+--------+------+------+------+
+  - in hexadecimal: 89, 42, 4c, 4b
+  - in ascii: ``"\211BLK"``
 
 - ``header_size`` (16-bit unsigned integer, big endian): Indicates the
   size of the remainder of the header (not including the length of the
   ``header_size`` entry itself or the ``block_magic_token``).  It is
   stored explicitly in the header itself so that the header may be
   enlarged in a future version of the FINF standard while retaining
-  backward compatibility.  Parsers should not assume a fixed size of
-  the header.  In FINF version 0.1, this should be at least 29, but
-  may be larger, for example to align the beginning of the block
-  content with a file system block boundary.
+  backward compatibility.  Importantly, FINF parsers should not assume
+  a fixed size of the header, but should obey the ``header_size``
+  defined in the file.  In FINF version 0.1, this should be at least
+  40, but may be larger, for example to align the beginning of the
+  block content with a file system block boundary.
 
 - ``allocated_size`` (64-bit unsigned integer, big-endian): The amount
   of space allocated for the block (not including the header), in
@@ -189,7 +182,7 @@ Immediately following the block header, there are exactly
 ``allocated_space - used_space`` bytes of unused data.  The exact
 content of the unused data is not enforced.  The ability to have gaps
 of unused space allows a FINF writer to reduce the number of disk
-operations necessary to update the file.
+operations when updating the file.
 
 .. _exploded:
 
@@ -205,11 +198,11 @@ Exploded form expands a self-contained FINF file into multiple files:
 
 Exploded form is useful in the following scenarios:
 
-- A given text editor does not handle the "hybrid" nature of the FINF
-  file, and therefore either can't open a FINF file or breaks FINF
-  files upon saving.  In this scenario, a user may explode the FINF
-  file, edit the YAML portion as a pure YAML file, and implode the
-  parts back together.
+- Not all text editors may handle the hybrid text and binary nature of
+  the FINF file, and therefore either can't open a FINF file or would
+  break a FINF file upon saving.  In this scenario, a user may explode
+  the FINF file, edit the YAML portion as a pure YAML file, and
+  implode the parts back together.
 
 - Over a network protocol, such as HTTP, a client may only need to
   access some of the blocks.  While reading a subset of the file can
@@ -225,14 +218,11 @@ Exploded form is useful in the following scenarios:
   appended to without worrying about any blocks that may follow it.
 
 Exploded form describes a convention for storing FINF file content in
-multiple files, but it does not define any changes to the file format
-itself.  There is nothing indicating that a FINF file is in exploded
-form, other than the fact that some or all of its block references
-refer to external files.  The exact way in which a file is exploded is
-up to the library and tools implementing the standard.  In the most
+multiple files, but it does not require any additions to the file
+format itself.  There is nothing indicating that a FINF file is in
+exploded form, other than the fact that some or all of its blocks come
+from external files.  The exact way in which a file is exploded is up
+to the library and tools implementing the standard.  In the most
 common scenario, to explode a file, each :ref:`ndarray source property
-<http://www.stsci.edu/schemas/finf/0.1.0/core/ndarray/source>` in the tree
-is converted from a local block reference into a relative URI.  Each
-FINF file has exactly the same content as the :ref:`block` in the
-original file (including the block header), but without the
-unallocated space.
+<http://www.stsci.edu/schemas/finf/0.1.0/core/ndarray/source>` in the
+tree is converted from a local block reference into a relative URI.
