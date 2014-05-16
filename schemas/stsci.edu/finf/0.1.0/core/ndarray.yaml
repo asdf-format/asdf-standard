@@ -4,13 +4,41 @@ $schema: "http://www.stsci.edu/schemas/yaml-schema/draft-01"
 id: "http://www.stsci.edu/schemas/finf/0.1.0/core/ndarray"
 title: >
   An *n*-dimensional homogenous array.
-description: >
-  The data itself is not stored in the tree, but comes from some other
-  source, either a :ref:`block` within the same FINF file, or an external
-  file or URI.
+description: |
+  There are two ways to store the data in an ndarray.
+
+  - Inline in the tree: This is recommended only for small arrays.  In
+    this case, the entire ``ndarray`` tag may be a nested list, in
+    which case the type of the array is inferred from the content.
+    (TODO: At present these rules are just "what Numpy does", but we
+    need to document that).  The inline data may also be given in the
+    ``data`` property, in which case it is possible to explicitly
+    specify the ``dtype`` and other properties.
+
+  - External to the tree: The data comes from a :ref:`block` within
+    the same FINF file or an external FINF file referenced by a URI.
 examples:
   -
-    - A simple double-precision image, in contiguous memory
+    - An inline array, with implicit data type
+    - |
+        !ndarray
+          [[1, 0, 0],
+           [0, 1, 0],
+           [0, 0, 1]]
+
+  -
+    - An inline array, with an explicity data type
+    - |
+        !ndarray
+          dtype: float64
+          data:
+            [[1, 0, 0],
+             [0, 1, 0],
+             [0, 0, 1]]
+
+  -
+    - A double-precision array, in contiguous memory in a block within
+      the same file
     - |
         !ndarray
           source: 0
@@ -58,7 +86,7 @@ examples:
             dtype: uint8
 
   -
-    - An array where where the data is stored in the first block in
+    - An array where the data is stored in the first block in
       another FINF file.
     - |
         !ndarray
@@ -67,97 +95,124 @@ examples:
           dtype: float64
 
 tag: "tag:stsci.edu:finf/0.1.0/core/ndarray"
-type: object
-properties:
-  source:
+
+definitions:
+  inline-data:
     description: |
-      The source of the data.
-
-      - If an integer:
-          - If positive, the zero-based index of the block within the
-            same file.
-
-          - If negative, the index from the last block within the same
-            file.  For example, a source of ``-1`` corresponds to the
-            last block in the same file.
-
-      - If a string, a URI to an external FINF file containing the
-        block data.  Relative URIs and ``file:`` and ``http:``
-        protocols must be supported.  Other protocols may be supported
-        by specific library implementations.
-
-        The ability to reference block data in an external FINF file
-        is intentionally limited to the first block in the external
-        FINF file, and is intended only to support the needs of
-        :ref:`exploded`.  For the more general case of referencing
-        data in an external FINF file, use tree :ref:`references`.
-
-    anyOf:
-      - type: integer
-      - type: string
-        format: uri
-
-  shape:
-    description: |
-      The shape of the array.
-
-      The first entry may be the string ``*``, indicating that the
-      length of the first index of the array will be automatically
-      determined from the size of the block.  This is used for
-      streaming support.
+      Inline data is stored in YAML format directly in the tree, rather than
+      referencing a binary block.  It is made out of nested lists.
     type: array
     items:
       anyOf:
-        - type: integer
-          minimum: 0
-        - enum: ['*']
+        - type: number
+        - type: string
+        - $ref: complex
+        - $ref: "#/definitions/inline-data"
 
-  dtype:
-    description: >
-      The data format of the array elements.
-    type: string
-    enum: [int8, uint8, int16, uint16, int32, uint32, int64, uint64, float32,
-           float64, float128, complex64, complex128, complex256]
+anyOf:
+  - $ref: "#/definitions/inline-data"
+  - type: object
+    properties:
+      source:
+        description: |
+          The source of the data.
 
-  byteorder:
-    description: >
-      The byte order (big- or little-endian) of the array data.
-    type: string
-    enum: [big, little]
-    default: big
+          - If an integer:
+              - If positive, the zero-based index of the block within the
+                same file.
 
-  offset:
-    description: >
-      The offset, in bytes, within the data for this start of this
-      view.
-    type: integer
-    minimum: 0
-    default: 0
+              - If negative, the index from the last block within the same
+                file.  For example, a source of ``-1`` corresponds to the
+                last block in the same file.
 
-  strides:
-    description: >
-      The number of bytes to skip in each dimension.  If not provided,
-      the array is assumed by be contiguous and in C order.  If
-      provided, must be the same length as the shape property.
-    type: array
-    items:
-      anyOf:
-        - type: integer
-          minimum: 1
-        - type: integer
-          maximum: -1
+          - If a string, a URI to an external FINF file containing the
+            block data.  Relative URIs and ``file:`` and ``http:``
+            protocols must be supported.  Other protocols may be supported
+            by specific library implementations.
 
-  mask:
-    description: >
-      Describes how missing values in the array are stored.  If a
-      scalar number, that number is used to represent missing values.
-      If an ndarray, the given array provides a mask, where non-zero
-      values represent missing values in this array.  The mask array
-      must be broadcastable to the dimensions of this array.
-    anyOf:
-      - type: number
-      - $ref: complex
-      - $ref: ndarray
+            The ability to reference block data in an external FINF file
+            is intentionally limited to the first block in the external
+            FINF file, and is intended only to support the needs of
+            :ref:`exploded`.  For the more general case of referencing
+            data in an external FINF file, use tree :ref:`references`.
 
-required: [shape, source, dtype]
-additionalProperties: false
+        anyOf:
+          - type: integer
+          - type: string
+            format: uri
+
+      data:
+        description: |
+          The data for the array inline.
+
+          If ``dtype`` and/or ``shape`` are also provided, they must
+          match the data here and can be used as a consistency check.
+          ``strides``, ``offset`` and ``byteorder`` are meaningless
+          when ``data`` is provided.
+        $ref: "#/definitions/inline-data"
+
+      shape:
+        description: |
+          The shape of the array.
+
+          The first entry may be the string ``*``, indicating that the
+          length of the first index of the array will be automatically
+          determined from the size of the block.  This is used for
+          streaming support.
+        type: array
+        items:
+          anyOf:
+            - type: integer
+              minimum: 0
+            - enum: ['*']
+
+      dtype:
+        description: >
+          The data format of the array elements.
+        type: string
+        enum: [int8, uint8, int16, uint16, int32, uint32, int64, uint64, float32,
+               float64, float128, complex64, complex128, complex256]
+
+      byteorder:
+        description: >
+          The byte order (big- or little-endian) of the array data.
+        type: string
+        enum: [big, little]
+        default: big
+
+      offset:
+        description: >
+          The offset, in bytes, within the data for this start of this
+          view.
+        type: integer
+        minimum: 0
+        default: 0
+
+      strides:
+        description: >
+          The number of bytes to skip in each dimension.  If not provided,
+          the array is assumed by be contiguous and in C order.  If
+          provided, must be the same length as the shape property.
+        type: array
+        items:
+          anyOf:
+            - type: integer
+              minimum: 1
+            - type: integer
+              maximum: -1
+
+      mask:
+        description: >
+          Describes how missing values in the array are stored.  If a
+          scalar number, that number is used to represent missing values.
+          If an ndarray, the given array provides a mask, where non-zero
+          values represent missing values in this array.  The mask array
+          must be broadcastable to the dimensions of this array.
+        anyOf:
+          - type: number
+          - $ref: complex
+          - $ref: ndarray
+
+    dependencies:
+      source: [shape, dtype]
+    additionalProperties: false
