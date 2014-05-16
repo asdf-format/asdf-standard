@@ -98,12 +98,19 @@ properties:
         format: uri
 
   shape:
-    description: >
+    description: |
       The shape of the array.
+
+      The first entry may be the string ``*``, indicating that the
+      length of the first index of the array will be automatically
+      determined from the size of the block.  This is used for
+      streaming support.
     type: array
     items:
-      type: integer
-      minimum: 0
+      anyOf:
+        - type: integer
+          minimum: 0
+        - enum: ['*']
 
   dtype:
     description: >
