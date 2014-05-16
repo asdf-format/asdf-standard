@@ -1,0 +1,23 @@
+%YAML 1.1
+---
+$schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
+id: "http://stsci.edu/schemas/asdf/0.1.0/wcs/affine"
+tag: "tag:stsci.edu:asdf/0.1.0/wcs/affine"
+title: >
+  An affine transform.
+description: >
+
+type: object
+properties:
+  matrix:
+    description: |
+      A affine transformation matrix of the size (*n* + 1) × (*n* +
+      1), where *n* is the number of axes in the transformation.
+    allOf:
+      - $ref: ../core/ndarray
+      - type: object
+        properties:
+          shape:
+            type: array
+            minItems: 2
+            maxItems: 2

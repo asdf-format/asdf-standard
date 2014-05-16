@@ -26,4 +26,9 @@ properties:
       to FITS.
     $ref: "../fits/fits"
 
+  wcs:
+    description: |
+      The location of the main WCS for the main data.
+    $ref: "../wcs/wcs"
+
 additionalProperties: true

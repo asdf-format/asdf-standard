@@ -1,0 +1,10 @@
+%YAML 1.1
+---
+$schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
+id: "http://stsci.edu/schemas/asdf/0.1.0/transform/transform"
+title: >
+  A generic type used to mark where other transforms are accepted.
+
+description: >
+  These objects are designed to be nested in arbitrary ways to build up
+  transformation pipelines out of a number of low-level pieces.

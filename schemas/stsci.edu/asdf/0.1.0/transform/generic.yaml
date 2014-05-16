@@ -1,0 +1,19 @@
+%YAML 1.1
+---
+$schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
+id: "http://stsci.edu/schemas/asdf/0.1.0/wcs/generic"
+tag: "tag:stsci.edu:asdf/0.1.0/wcs/generic"
+title: >
+  A generic transform.
+description: >
+  This is used **entirely** for bootstrapping purposes so one can
+  create composite models including transforms that haven't yet been
+  written.  **IT WILL NOT BE IN THE FINAL VERSION OF THE SPEC**.
+
+type: object
+properties:
+  n_inputs:
+    type: integer
+  n_outputs:
+    type: integer
+requiredProperties: [n_inputs, n_outputs]

@@ -1,0 +1,96 @@
+%YAML 1.1
+---
+$schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
+id: "http://stsci.edu/schemas/asdf/0.1.0/wcs/wcs"
+tag: "tag:stsci.edu:asdf/0.1.0/wcs/wcs"
+title: >
+  A system for describing generalized world coordinate transformations.
+description: >
+  ASDF WCS is a way of specifying transformations (usually from
+  detector space to world coordinate space and back) by using the
+  transformations in the `transform-schema` module.
+examples:
+  -
+    - A complex example where...
+    - |
+      !wcs/wcs
+        forward: !wcs/steps
+          - !wcs/step
+            # Name is the name for the step.  This will allow for an
+            # API to say "transform from pixel to focal_plane".  These
+            # names are completely arbitrary and do not come from a
+            # controlled vocabulary.
+            name: pixel
+
+            # Frames is a list of the coordinate frames for each of
+            # the axes.  These names come from a controlled vocabulary
+            # of standard frame names (see `wcs/frame`), though we
+            # should probably also allow custom frame names.
+            frames: [detector_y, detector_x, detector_lambda, order]
+
+            # Units are the optional units of the axes.  This is really
+            # just for documentation, but could also be used by a unit-aware
+            # library to return values with associated units.
+            units: [pixel, pixel, nm, null]
+
+            transform: !transform/series
+              - !transform/remap_axes [1, 0, 2, 3]
+              - !transform/separable
+                - !transform/generic
+                  n_inputs: 3
+                  n_outputs: 3
+                - !transform/identity
+                  n_dims: 1
+
+          - !wcs/step
+            # At this step, the wavelength is now independent of the spatial
+            # dimensions.  So we proceed with separate transformations
+            # for the two separable parts from here on out.
+            name: intermediate
+
+            frames: [focal_plane_x, focal_plane_y, lambda, order]
+
+            transform: !transform/separable  # in 4 --> out 3
+            - !transform/rotate2d
+              angle: 0.3
+            # spectral_with_order takes (order, lambda) as inputs, so
+            # we swap them first
+            - !transform/series  # in 2 --> out 1
+              - !transform/remap_axes [1, 0]
+              - !transform/generic
+                n_inputs: 2
+                n_outputs: 1
+
+          - !wcs/step
+            # The last step has no transform, but is used to
+            # specify the frames and units of the resulting axes.
+            name: world
+
+            frames: [celestial_ra, celestial_dec, spectral_freq]
+            units: [rad, rad, Hz]
+
+allOf:
+  - type: object
+    properties:
+      forward:
+        description: |
+          The forward transformation, usually from detector to world
+          coordinates.
+
+          If not provided, a ASDF tool may automatically determine it
+          by inverting the backward tranformation, if possible.
+        $ref: steps
+
+      backward:
+        description: |
+          The transformation from world to pixel coordinates.
+
+          If not provided, a ASDF tool may automatically determine it
+          by inverting the forward transformation, if possible.
+        $ref: steps
+
+    minProperties: 1
+    additionalProperties: false
+
+  - type: object
+    additionalProperties: true

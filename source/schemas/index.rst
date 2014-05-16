@@ -15,3 +15,5 @@ must support the "core" module, but the other modules are optional.
    core.rst
    fits.rst
    unit.rst
+   transform.rst
+   wcs.rst

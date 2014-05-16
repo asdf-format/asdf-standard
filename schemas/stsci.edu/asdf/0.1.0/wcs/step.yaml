@@ -1,0 +1,48 @@
+%YAML 1.1
+---
+$schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
+id: "http://stsci.edu/schemas/asdf/0.1.0/wcs/step"
+tag: "tag:stsci.edu:asdf/0.1.0/wcs/step"
+title: >
+  Describes a single step of a WCS transform pipeline.
+description: >
+
+examples: []
+
+type: object
+properties:
+  name:
+    description: |
+      The name of this step on the WCS transform pipeline.  This name
+      may be used by a library to allow the user to say "transform
+      from pixel space to the focal plane" without performing the
+      entire WCS pipeline.
+    type: string
+
+  frames:
+    description: |
+      The frame for each input axis to this step.
+    type: array
+    items:
+      anyOf:
+        - $ref: frame
+        - type: 'null'
+
+  units:
+    description: |
+      The units for each input axis to this step.
+    type: array
+    items:
+      anyOf:
+        - $ref: ../unit/unit
+        - type: 'null'
+
+  transform:
+    description: |
+      The transform from this step to the next one.  The
+      last step in a WCS should not have a transform, but
+      exists only to describe the frames and units of the
+      final output axes.
+    $ref: ../transform/transform
+
+requiredProperties: [name]
