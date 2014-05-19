@@ -3,7 +3,7 @@
 $schema: "http://www.stsci.edu/schemas/yaml-schema/draft-01"
 id: "http://www.stsci.edu/schemas/finf/0.1.0/core/ndarray"
 title: >
-  An *n*-dimensional homogenous array.
+  An *n*-dimensional array or table.
 description: >
   The data itself is not stored in the tree, but comes from some other
   source, either a :ref:`block` within the same FINF file, or an external
@@ -26,6 +26,24 @@ examples:
           dtype: float64
           strides: [8192, 8]
           offset: 2099200
+
+  -
+    - A table dtype, with nested columns for a coordinate in (ra,
+      dec), and a 3x3 convolution kernel
+    - |
+        !ndarray
+          source: 0
+          shape: [64]
+          dtype:
+            - name: coordinate
+              dtype:
+                - name: ra
+                  dtype: float64
+                - name: dec
+                  dtype: float64
+            - name: kernel
+              dtype: float32
+              shape: [3, 3]
 
   -
     - An array in Fortran order
@@ -146,26 +164,6 @@ properties:
                     type: integer
                     minimum: 0
               required: [dtype]
-    examples:
-      -
-        - A simple scalar dtype
-        - |
-            float64
-
-      -
-        - A table dtype, with nested columns for a coordinate in (ra,
-          dec), and a 3x3 convolution kernel
-        - |
-            !array
-              - name: coordinate
-                dtype:
-                  - name: ra
-                    dtype: float64
-                  - name: dec
-                    dtype: float64
-              - name: kernel
-                dtype: float32
-                shape: [3, 3]
 
   byteorder:
     description: >
