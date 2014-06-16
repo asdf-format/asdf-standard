@@ -101,12 +101,15 @@ def format_type(schema, root):
         else:
             basename = os.path.basename(schema['$ref'])
             return ':doc:`{0} <{1}>`'.format(basename, schema['$ref'])
-    elif 'type' in schema:
-        if isinstance(schema['type'], list):
-            parts = [' or '.join(schema['type'])]
+    else:
+        type = schema.get('type')
+        if isinstance(type, list):
+            parts = [' or '.join(type)]
+        elif type is None:
+            parts = ['any']
         else:
-            parts = [schema['type']]
-        if schema['type'] == 'string':
+            parts = [type]
+        if type == 'string':
             range = format_range('*len*', '*len*', schema.get('minLength'),
                                  schema.get('maxLength'), False, False)
             if range is not None:
@@ -117,7 +120,7 @@ def format_type(schema, root):
                         '\\', '\\\\')))
             if 'format' in schema:
                 parts.append('({0})'.format(schema['format']))
-        elif schema['type'] in ('integer', 'number'):
+        elif type in ('integer', 'number'):
             range = format_range('*x*', '', schema.get('minimum'),
                                  schema.get('maximum'),
                                  schema.get('exclusiveMinimum'),
@@ -125,14 +128,14 @@ def format_type(schema, root):
             if range is not None:
                 parts.append(range)
             # TODO: multipleOf
-        elif schema['type'] == 'object':
+        elif type == 'object':
             range = format_range('*len*', '*len*', schema.get('minProperties'),
                                  schema.get('maxProperties'), False, False)
             if range is not None:
                 parts.append(range)
             # TODO: Dependencies
             # TODO: Pattern properties
-        elif schema['type'] == 'array':
+        elif type == 'array':
             items = schema.get('items')
             if schema.get('items') and isinstance(items, dict):
                 if schema.get('uniqueItems'):
@@ -150,8 +153,6 @@ def format_type(schema, root):
             parts.append(json.dumps(schema['enum']))
 
         return ' '.join(parts)
-    else:
-        return ''
 
 
 def reindent(content, indent):
@@ -205,7 +206,7 @@ def recurse(o, name, schema, path, level, required=False):
         o.write(indent)
         o.write(':category:`Any of:`\n\n')
         for i, subschema in enumerate(schema['anyOf']):
-            recurse(o, i, subschema, path + ['anyOf', str(i)], level + 1)
+            recurse(o, '—', subschema, path + ['anyOf', str(i)], level + 1)
 
     elif 'allOf' in schema and len(schema['allOf']) > 1:
         o.write(indent)
