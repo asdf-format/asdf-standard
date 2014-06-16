@@ -4,19 +4,22 @@ $schema: "http://www.stsci.edu/schemas/yaml-schema/draft-01"
 id: "http://www.stsci.edu/schemas/finf/0.1.0/core/ndarray"
 title: >
   An *n*-dimensional array or table.
+
 description: |
   There are two ways to store the data in an ndarray.
 
   - Inline in the tree: This is recommended only for small arrays.  In
     this case, the entire ``ndarray`` tag may be a nested list, in
     which case the type of the array is inferred from the content.
-    (TODO: At present these rules are just "what Numpy does", but we
-    need to document that).  The inline data may also be given in the
+    (See the rules for type inference in the ``inline-data``
+    definition below.)  The inline data may also be given in the
     ``data`` property, in which case it is possible to explicitly
     specify the ``dtype`` and other properties.
 
-  - External to the tree: The data comes from a :ref:`block` within
-    the same FINF file or an external FINF file referenced by a URI.
+  - External to the tree: The data comes from a :ref:`block <block>`
+    within the same FINF file or an external FINF file referenced by a
+    URI.
+
 examples:
   -
     - An inline array, with implicit data type
@@ -42,8 +45,8 @@ examples:
     - |
         !ndarray
           [[M110, 110, 205, And],
-           [ M31, 031, 224, And],
-           [ M32, 032, 221, And],
+           [ M31,  31, 224, And],
+           [ M32,  32, 221, And],
            [M103, 103, 581, Cas]]
 
   -
@@ -54,8 +57,8 @@ examples:
           dtype: [['ascii', 4], uint16, uint16, ['ascii', 4]]
           data:
             [[M110, 110, 205, And],
-             [ M31, 031, 224, And],
-             [ M32, 032, 221, And],
+             [ M31,  31, 224, And],
+             [ M32,  32, 221, And],
              [M103, 103, 581, Cas]]
 
   -
@@ -141,16 +144,27 @@ definitions:
     description: |
       Describes the type of a single element.
 
-      There is a set of numeric types, indicated with a single
-      string identifier:
+      There is a set of numeric types, each with a single identifier:
 
-      - ``int8``, ``uint8``, ``int16``, ``uint16``, ``int32``,
-        ``uint32``, ``int64``, ``uint64``, ``float32``, ``float64``,
-        ``float128``, ``complex64``, ``complex128``, ``complex256``.
+      - ``int8``, ``int16``, ``int32``, ``int64``: Signed integer
+        types, with the given bit size.
 
-      There is a single boolean type, taking a single byte for each entry:
+      - ``uint8``, ``uint16``, ``uint32``, ``uint64``: Unsigned
+        integer types, with the given bit size.
 
-      - ``bool8``
+      - ``float32``: Single-precision floating-point type or
+        "binary32", as defined in IEEE 754.
+
+      - ``float64``: Double-precision floating-point type or
+        "binary64", as defined in IEEE 754.
+
+      - ``complex64``: Complex number where the real and imaginary
+        parts are each single-precision floating-point ("binary32")
+        numbers, as defined in IEEE 754.
+
+      - ``complex128``: Complex number where the real and imaginary
+        parts are each double-precision floating-point ("binary64")
+        numbers, as defined in IEEE 754.
 
       There are two distinct fixed-length string types, which must
       be indicated with a 2-element array where the first element is an
@@ -159,15 +173,14 @@ definitions:
       - ``ascii``: A string containing ASCII text (all codepoints < 128),
         where each character is 1 byte.
 
-      - ``ucs4``: A string containing UCS4 unicode text, where each
-        character is 4 bytes long.  Here the number of bytes used is 4
-        times the given length.
+      - ``ucs4``: A string containing unicode text in the UCS-4
+        encoding, where each character is always 4 bytes long.  Here
+        the number of bytes used is 4 times the given length.
 
     anyOf:
       - type: string
         enum: [int8, uint8, int16, uint16, int32, uint32, int64, uint64,
-               float32, float64, float128, complex64, complex128, complex256,
-               bool8]
+               float32, float64, complex64, complex128, bool8]
       - type: array
         items:
           - type: string
@@ -182,6 +195,26 @@ definitions:
       Inline data is stored in YAML format directly in the tree, rather than
       referencing a binary block.  It is made out of nested lists.
 
+      If the dtype of the array is not specified, it is inferred from
+      the array contents.  Type inference is supported only for
+      homogeneous arrays, not tables.
+
+      - If any of the elements in the array are YAML strings, the
+        ``dtype`` of the dtype of the entire array is ``ucs4``, with
+        the width of the largest string in the column, otherwise...
+
+      - If any of the elements in the array are complex numbers, the
+        ``dtype`` of the entire column is ``complex128``, otherwise...
+
+      - If any of the types in the column are numbers with a decimal
+        point, the ``dtype`` of the entire column is ``float64``,
+        otherwise..
+
+      - If any of the types in the column are integers, the ``dtype``
+        of the entire column is ``int64``, otherwise...
+
+      - The ``dtype`` of the entire column is ``bool8``.
+
     type: array
     items:
       anyOf:
@@ -190,6 +223,7 @@ definitions:
         - type: "null"
         - $ref: complex
         - $ref: "#/definitions/inline-data"
+        - type: boolean
 
 anyOf:
   - $ref: "#/definitions/inline-data"
