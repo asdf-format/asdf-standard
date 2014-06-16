@@ -38,13 +38,25 @@ examples:
 
   -
     - An inline table, where the types of each column are
-      automatically detected.
+      automatically detected
     - |
         !ndarray
           [[M110, 110, 205, And],
            [ M31, 031, 224, And],
            [ M32, 032, 221, And],
            [M103, 103, 581, Cas]]
+
+  -
+    - An inline table, where the types of each column are
+      explicitly specified
+    - |
+        !ndarray
+          dtype: [['ascii', 4], uint16, uint16, ['ascii', 4]]
+          data:
+            [[M110, 110, 205, And],
+             [ M31, 031, 224, And],
+             [ M32, 032, 221, And],
+             [M103, 103, 581, Cas]]
 
   -
     - A double-precision array, in contiguous memory in a block within
@@ -126,9 +138,44 @@ tag: "tag:stsci.edu:finf/0.1.0/core/ndarray"
 
 definitions:
   scalar_dtype:
-    type: string
-    enum: [int8, uint8, int16, uint16, int32, uint32, int64, uint64, float32,
-           float64, float128, complex64, complex128, complex256, bool8]
+    description: |
+      Describes the type of a single element.
+
+      There is a set of numeric types, indicated with a single
+      string identifier:
+
+      - ``int8``, ``uint8``, ``int16``, ``uint16``, ``int32``,
+        ``uint32``, ``int64``, ``uint64``, ``float32``, ``float64``,
+        ``float128``, ``complex64``, ``complex128``, ``complex256``.
+
+      There is a single boolean type, taking a single byte for each entry:
+
+      - ``bool8``
+
+      There are two distinct fixed-length string types, which must
+      be indicated with a 2-element array where the first element is an
+      identifier for the string type, and the second is a length:
+
+      - ``ascii``: A string containing ASCII text (all codepoints < 128),
+        where each character is 1 byte.
+
+      - ``ucs4``: A string containing UCS4 unicode text, where each
+        character is 4 bytes long.  Here the number of bytes used is 4
+        times the given length.
+
+    anyOf:
+      - type: string
+        enum: [int8, uint8, int16, uint16, int32, uint32, int64, uint64,
+               float32, float64, float128, complex64, complex128, complex256,
+               bool8]
+      - type: array
+        items:
+          - type: string
+            enum: [ascii, ucs4]
+          - type: integer
+            minimum: 1
+        minLength: 2
+        maxLength: 2
 
   inline-data:
     description: |
