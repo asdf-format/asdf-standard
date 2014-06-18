@@ -1,0 +1,140 @@
+# This example is based on the ImagingWCS model in jwst_lib.wcs, but
+# it's been extended with a third spectral dimension which, for sake
+# of argument here, is separable from the other two spatial
+# dimensions.  The spatial dimension goes from pixel to ra, dec, and
+# the spectral dimension goes from wavelength in nm to frequency.
+# Also, to illustrate the flexibility available, I broke up some
+# things that are a single class in jwst_lib.wcs (WCSLinearTransform)
+# into its respective pieces just to show how that can be done.
+
+# This adds a concept of named steps in the top-level transformation
+# between different named coordinate spaces.
+
+wcs: !wcs/wcs
+
+  # WCS may provide a forward or backward transformation, or both.  If
+  # either is missing, and it can be computed unabiguously, that will
+  # be used, otherwise the explicitly specified one is used.
+
+  # In an earlier iteration of the proposal, these were `pix_to_world`
+  # and `world_to_pix`, but now this uses the more generic terms
+  # "forward" and "backward".
+
+  # "forward" and "backward" are always lists of wcs steps, each of
+  # which describes an input frame/coordinate space and the
+  # transformation to the next frame.
+
+  forward: !wcs/steps
+    - !wcs/step
+      # This is the name of the frame of the inputs of the step.  I
+      # don't think this is a controlled vocabulary of things...  It's
+      # just an identifier so that a system could say "transform from
+      # pixel to focal_plane space".  That said, there is probably
+      # some usefulness to defining a common set of terms for the
+      # common case.
+      name: pixel
+
+      # The units of each of the dimensions in the frame.  Units are
+      # optional for each step, but would be highly encouraged for the
+      # outer steps.
+      units: [pixel, pixel, nm]
+
+      # These are the names of each dimension.  They are probably
+      # useful for displaying data, but also may be useful for
+      # plugging wcses and transformations together.
+      dimensions: [x, y, lambda]
+
+      # Below is the transform (possibly nested) that transforms from
+      # this frame to the one below.  The format will allow the
+      # transformation to be included inline right here, but in
+      # practice, it likely improves readability to include the
+      # transforms with all of their parameters in the definitions
+      # section below.  In fact, a useful way to organize them might
+      # be to include the transforms that define the overall structure
+      # of the pipeline that doesn't change for a given instrument
+      # configuration, and the transforms that change between
+      # exposures separately.
+
+      # The transform here is a separable transform, since we know the
+      # first two dimensions are separable from the last one.  We pass
+      # the spatial dimensions through the focal plane distortion
+      # transform, and pass the spectral dimension along through
+      # untouched.  The names of the input dimensions come from this
+      # wcs step, and the names of the output dimensions come from the
+      # next step.
+      transform: !wcs/separable
+        - in_map: [x, y]
+          out_map: [x, y]
+          transform: *distortion
+        - in_map: [lambda]
+          out_map: [lambda]
+          transform: !wcs/identity
+
+      # It should be possible to provide a default behavior that passes
+      # through any dimensions that aren't "mentioned", thus the following
+      # would be shorthand for the above.
+      transform: !wcs/separable
+        - in_map: [x, y]
+          transform: *distortion
+
+    - !wcs/step
+      name: focal_plane
+      dimensions: [x, y, lambda]
+
+      transform: !wcs/separable
+        - in_map: [x, y]
+          transform: *linear
+        - in_map: [lambda]
+          transform: *spectral
+
+    - !wcs/step
+      name: intermediate  # There no good name for this, but this is
+                          # what FITS WCS calls it
+      dimensions: [x, y, freq]
+
+      transform: !wcs/separable
+        - in_map: [x, y]
+          transform: !wcs/serial
+            - *projection
+            - *sky_rotation
+
+    - !wcs/step
+      name: world
+      units: [rad, rad, Hz]
+      dimensions: [ra, dec, freq]
+      # The last step doesn't have a transform, since we're done
+
+  # Definitions is a catch-all for transforms that are defined here
+  # but used in other places.  The word "definitions" here is a common
+  # JSON schema convention.
+  definitions:
+
+    # The &xxx syntax here is YAML notation for defining an anchor that
+    # is referencable elsewhere as *xxx.
+
+    # This is a lookup table distortion from pixels to focal plane.
+    - &distortion !wcs/lookup_table
+       table: ... # Reference an array of data for the lookup table...
+
+    # This is the linear transformation from focal plane to
+    # pre-spherical (is that the correct name) coordinates.  It is a
+    # serial composite transformation made out of three
+    # transformations for translation, rotation and scale.
+    - &linear !wcs/serial
+      - !wcs/translate
+        translation: [1024, 1024]  # Equivalent to CRPIX
+      - !wcs/rotate2d
+        angle: 5                   # Equivalent to PC matrix
+      - !wcs/scale
+        scale: [5, 5]              # Equivalent to CDELT
+
+    # This is the spectral transformation from wavelength to frequency
+    - &spectral !wcs/scale
+      scale: [3e17]
+
+    # This is the projection from intermediate coordinates to world coordinates
+    - &projection !wcs/tangent
+
+    # This is the sky rotation that happens post-projection
+    - &sky-rotation !wcs/rotate2d
+      angle: 2.5
