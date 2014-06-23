@@ -201,23 +201,22 @@ latex_elements = {
     \usepackage{fixltx2e}
     \usepackage{microtype}
     \usepackage{changepage}
+    \usepackage{enumitem}
     \MakeRobust\marginpar
 
     \DeclareUnicodeCharacter{2264}{$\leq$}
     \DeclareUnicodeCharacter{2265}{$\geq$}
+    \DeclareUnicodeCharacter{2014}{$\textemdash\textemdash\textemdash$}
+
+    \setlistdepth{10}
 
     \makeatletter
         \def\marginparright{\@mparswitchfalse}
         \def\marginparoutside{\@mparswitchtrue}
     \makeatother
 
-    \renewenvironment{quote}{%
-    \def\FrameCommand{\vrule width 0.5pt \hspace{10pt}}%
-    \MakeFramed {\advance\hsize-\width \FrameRestore}}%
-    {\endMakeFramed}
+    \renewenvironment{quote}{\begin{adjustwidth}{15pt}{}}{\end{adjustwidth}}
 
-
-    % \renewenvironment{quote}{\begin{leftbar}}{\end{leftbar}}
     ''',
     'fontpkg': '',
     'fncychap': '\\usepackage[Conny]{fncychap}'
