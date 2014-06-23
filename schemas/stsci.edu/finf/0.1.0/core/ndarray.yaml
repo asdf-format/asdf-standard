@@ -140,7 +140,7 @@ examples:
 tag: "tag:stsci.edu:finf/0.1.0/core/ndarray"
 
 definitions:
-  scalar_dtype:
+  scalar-dtype:
     description: |
       Describes the type of a single element.
 
@@ -286,11 +286,11 @@ anyOf:
         description: |
           The data format of the array elements.
         anyOf:
-          - $ref: "#/definitions/scalar_dtype"
+          - $ref: "#/definitions/scalar-dtype"
           - type: array
             items:
               anyOf:
-                - $ref: "#/definitions/scalar_dtype"
+                - $ref: "#/definitions/scalar-dtype"
                 - type: object
                   properties:
                     name:
