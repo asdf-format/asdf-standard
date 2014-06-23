@@ -1,11 +1,20 @@
-# This example is based on the ImagingWCS model in jwst_lib.wcs, but
-# it's been extended with a third spectral dimension which, for sake
-# of argument here, is separable from the other two spatial
-# dimensions.  The spatial dimension goes from pixel to ra, dec, and
-# the spectral dimension goes from wavelength in nm to frequency.
-# Also, to illustrate the flexibility available, I broke up some
-# things that are a single class in jwst_lib.wcs (WCSLinearTransform)
-# into its respective pieces just to show how that can be done.
+# This example is chosen to demonstrate how the separability of the
+# transformations changes through the pipeline.  There are three input
+# coordinates: (x, y, lambda), none of which are separable.  The
+# wavelength depends on where on the detector is is sampled.  The
+# first step of the transform is thus to separate the spatial and
+# wavelength dimensions, after which they are dealt with separately.
+
+#                 x     y    lambda
+#                 |     |       |
+#              +--------------------+
+#              |                    |
+#              +--------------------+
+#               x |  y  |  lambda |
+#              +----------+    +----+
+#              |          |    |    |
+#              +----------+    +----+
+#              ra | dec |  lambda |
 
 # This adds a concept of named steps in the top-level transformation
 # between different named coordinate spaces.
@@ -26,83 +35,60 @@ wcs: !wcs/wcs
 
   forward: !wcs/steps
     - !wcs/step
-      # This is the name of the frame of the inputs of the step.  I
-      # don't think this is a controlled vocabulary of things...  It's
-      # just an identifier so that a system could say "transform from
-      # pixel to focal_plane space".  That said, there is probably
-      # some usefulness to defining a common set of terms for the
-      # common case.
-      name: pixel
+      # This is the name of the frame of the inputs of the step.  It's
+      # not from a controlled vocabulary: It's just an identifier so
+      # that a system could say "transform from detector to focal_plane
+      # space".
+      name: detector
 
-      # The units of each of the dimensions in the frame.  Units are
-      # optional for each step, but would be highly encouraged for the
-      # outer steps.
-      units: [pixel, pixel, nm]
-
-      # These are the names of each dimension.  They are probably
-      # useful for displaying data, but also may be useful for
-      # plugging wcses and transformations together.
-      dimensions: [x, y, lambda]
-
-      # Below is the transform (possibly nested) that transforms from
-      # this frame to the one below.  The format will allow the
-      # transformation to be included inline right here, but in
-      # practice, it likely improves readability to include the
-      # transforms with all of their parameters in the definitions
-      # section below.  In fact, a useful way to organize them might
-      # be to include the transforms that define the overall structure
-      # of the pipeline that doesn't change for a given instrument
-      # configuration, and the transforms that change between
-      # exposures separately.
-
-      # The transform here is a separable transform, since we know the
-      # first two dimensions are separable from the last one.  We pass
-      # the spatial dimensions through the focal plane distortion
-      # transform, and pass the spectral dimension along through
-      # untouched.  The names of the input dimensions come from this
-      # wcs step, and the names of the output dimensions come from the
-      # next step.
-      transform: !wcs/separable
-        - in_map: [x, y]
-          out_map: [x, y]
-          transform: *distortion
-        - in_map: [lambda]
-          out_map: [lambda]
-          transform: !wcs/identity
-
-      # It should be possible to provide a default behavior that passes
-      # through any dimensions that aren't "mentioned", thus the following
-      # would be shorthand for the above.
-      transform: !wcs/separable
-        - in_map: [x, y]
-          transform: *distortion
+      # Frames is a dictionary.  The keys are frame names, which
+      # often come from, but are not limited to, a standard
+      # vocabulary (see below).  The values are lists of dimension names.
+      # Each key/value is independent and separable.  In the case
+      # of this example, in the first step, none of the dimensions
+      # are separable, so we have a single entry
+      frames:
+        detector:
+          axes: [x, y, lambda]
+          units: [pixel, pixel, nm]
+          # Below is the transform (possibly nested) that transforms from
+          # this frame to the one below.  The format will allow the
+          # transformation to be included inline right here, but in
+          # practice, it likely improves readability to include the
+          # transforms with all of their parameters in the definitions
+          # section below.  In fact, a useful way to organize them might
+          # be to include the transforms that define the overall structure
+          # of the pipeline that doesn't change for a given instrument
+          # configuration, and the transforms that change between
+          # exposures separately.
+          transform: *separate
 
     - !wcs/step
-      name: focal_plane
-      dimensions: [x, y, lambda]
-
-      transform: !wcs/separable
-        - in_map: [x, y]
-          transform: *linear
-        - in_map: [lambda]
+      # At this step, the wavelength is now independent of the spatial
+      # dimensions.  So we proceed with separate transformations
+      # for the two separable parts from here on out.
+      name: intermediate
+      frames:
+        detector:
+          axes: [x, y]
+          units: [pixel, pixel]
+          transform: !wcs/serial
+            - *linear
+            - *projection
+            - *sky_rotation
+        spectral:
+          axes: [lambda]
           transform: *spectral
 
     - !wcs/step
-      name: intermediate  # There no good name for this, but this is
-                          # what FITS WCS calls it
-      dimensions: [x, y, freq]
-
-      transform: !wcs/separable
-        - in_map: [x, y]
-          transform: !wcs/serial
-            - *projection
-            - *sky_rotation
-
-    - !wcs/step
       name: world
-      units: [rad, rad, Hz]
-      dimensions: [ra, dec, freq]
-      # The last step doesn't have a transform, since we're done
+      frames:
+        celestial:
+          axes: [ra, dec]
+          units: [radian, radian]
+        spectral:
+          axes: [lambda]
+          units: [Hz]
 
   # Definitions is a catch-all for transforms that are defined here
   # but used in other places.  The word "definitions" here is a common
@@ -113,8 +99,13 @@ wcs: !wcs/wcs
     # is referencable elsewhere as *xxx.
 
     # This is a lookup table distortion from pixels to focal plane.
-    - &distortion !wcs/lookup_table
-       table: ... # Reference an array of data for the lookup table...
+    - &separate
+       # I'm not entirely clear on what this transformation does, but
+       # lets say for sake of argument that it takes the three input
+       # dimensions (x, y, lambda) and produces a wavelength that is
+       # no longer dependent on the spatial dimensions.  I guess
+       # the spatial dimensions were never dependent on wavelength
+       # to begin with, so they pass through unaltered...???
 
     # This is the linear transformation from focal plane to
     # pre-spherical (is that the correct name) coordinates.  It is a
@@ -124,7 +115,8 @@ wcs: !wcs/wcs
       - !wcs/translate
         translation: [1024, 1024]  # Equivalent to CRPIX
       - !wcs/rotate2d
-        angle: 5                   # Equivalent to PC matrix
+        angle: 5                   # Equivalent to PC matrix (though doesn't
+                                   # handle skew etc.)
       - !wcs/scale
         scale: [5, 5]              # Equivalent to CDELT
 
@@ -138,3 +130,13 @@ wcs: !wcs/wcs
     # This is the sky rotation that happens post-projection
     - &sky-rotation !wcs/rotate2d
       angle: 2.5
+
+#
+# Standard frame names:
+#
+# - time
+# - celestial
+# - spectral
+# - cartesian
+# - detector
+# - image
