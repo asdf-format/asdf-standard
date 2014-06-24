@@ -55,10 +55,10 @@ Tree
 ----
 
 The tree stores structured information using `YAML Ain’t Markup
-Language (YAML™) <http://yaml.org/spec/1.1/>`__ syntax.  While it is
-the main part of most FINF files, it is entirely optional, and a FINF
-file may skip it completely.  This is useful for creating files in
-:ref:`exploded`.  Interpreting the contents of this section is
+Language (YAML™) 1.1 <http://yaml.org/spec/1.1/>`__ syntax.  While it
+is the main part of most FINF files, it is entirely optional, and a
+FINF file may skip it completely.  This is useful for creating files
+in :ref:`exploded`.  Interpreting the contents of this section is
 described in greater detail in :ref:`tree-in-depth`.  This section
 only deals with the serialized representation of the tree, not its
 logical contents.

@@ -79,6 +79,29 @@ The FINF standard is being developed concurrently with a `reference
 implementation written in Python
 <http://github.com/spacetelescope/pyfinf>`__.
 
+
+Incorporated standards
+----------------------
+
+The FINF format is built out of a number of existing standards:
+
+- `YAML 1.1 <http://yaml.org/spec/1.1/>`__
+
+- JSON Schema Draft 4:
+
+  - `Core <http://tools.ietf.org/html/draft-zyp-json-schema-04>`__
+
+  - `Validation
+    <http://tools.ietf.org/html/draft-fge-json-schema-validation-00>`__
+
+  - `Hyper-Schema
+    <http://tools.ietf.org/html/draft-luff-json-hyper-schema-00>`__
+
+- `JSON Pointer <http://tools.ietf.org/html/rfc6901>`__
+
+- `VOUnits (Units in the VO)
+  <http://www.ivoa.net/documents/VOUnits/index.html>`__
+
 .. [Thomas2014] Thomas, B., Jenness. T. et al.  "The Future of
                 Astronomical Data Formats I. Learning from FITS".
                 Preprint submitted to Astronomy & Computing.
