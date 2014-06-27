@@ -131,11 +131,15 @@ wcs: !wcs/wcs
   # as a constant.  Here, remap_axes is used to expect three input
   # dimensions, rather than four, treating the last one as a constant
   # (rather than an axis index).
-  first_order_wcs: !transform/remap_axes
-    [0, 1, 2, !transform/constant 0]
+  first_order_wcs: !transform/serial
+    - !transform/remap_axes
+      [0, 1, 2, !transform/constant 0]
+    - *forward_wcs
 
-  second_order_wcs: !transform/remap_axes
-    [0, 1, 2, !transform/constant 1]
+  second_order_wcs: !transform/serial
+    - !transform/remap_axes
+      [0, 1, 2, !transform/constant 1]
+    - *forward_wcs
 
 #
 # Standard frame names:
