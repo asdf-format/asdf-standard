@@ -26,4 +26,4 @@ install:
   - make html latexpdf
 
 script:
-  - # bash -x ./travis_deploy.sh
+  - bash -x ./travis_deploy.sh

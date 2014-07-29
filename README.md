@@ -1,5 +1,5 @@
-FINF standard
+ASDF standard
 =============
 
-The specification for FINF (FINF is not FITS), the next-generation
-interchange format for astronomical data.
+This document describes the Advanced Scientific Data Format (ASDF),
+pronounced *AZ*-diff.

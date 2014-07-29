@@ -42,7 +42,7 @@ source_encoding = 'utf-8'
 master_doc = 'index'
 
 # General information about the project.
-project = u'FINF Standard'
+project = u'ASDF Standard'
 copyright = u'2014, Erik Bray, Michael Droettboom, Space Telescope Science Institute'
 
 # The version info for the project you're documenting, acts as replacement for
@@ -179,7 +179,7 @@ html_show_copyright = True
 #html_file_suffix = None
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'FINFStandard'
+htmlhelp_basename = 'ASDFStandard'
 
 
 # -- Options for LaTeX output --------------------------------------------------
@@ -225,7 +225,7 @@ latex_elements = {
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, documentclass [howto/manual]).
 latex_documents = [
-  ('index', 'FINFStandard-{0}.tex'.format(version), u'FINF Standard v{0}'.format(version),
+  ('index', 'ASDFStandard-{0}.tex'.format(version), u'ASDF Standard v{0}'.format(version),
    u'Erik Bray, Michael Droettboom, et al\\\\Space Telescope Science Institute',
    'manual'),
 ]
@@ -256,7 +256,7 @@ latex_domain_indices = False
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    ('index', 'finfstandard', u'FINF Standard',
+    ('index', 'asdf-standard', u'ASDF Standard',
      [u'Erik Bray, Michael Droettboom, et al'], 1)
 ]
 
@@ -270,9 +270,9 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-  ('index', 'FINFStandard', u'FINF Standard',
-   u'Erik Bray, Michael Droettboom, et al', 'FINFStandard',
-   u'FINF is not FITS',
+  ('index', 'ASDFStandard', u'ASDF Standard',
+   u'Erik Bray, Michael Droettboom, et al', 'ASDFStandard',
+   u'Advanced Scientific Data Format',
    'Miscellaneous'),
 ]
 
@@ -292,7 +292,7 @@ texinfo_documents = [
 # -- Options for Epub output ---------------------------------------------------
 
 # Bibliographic Dublin Core info.
-epub_title = u'FINF Standard'
+epub_title = u'ASDF Standard'
 epub_author = u'Erik Bray, Michael Droettboom'
 epub_publisher = u'Space Telescope Science Institute'
 epub_copyright = u'2014, Space Telescope Science Institute'

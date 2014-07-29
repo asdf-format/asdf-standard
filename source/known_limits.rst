@@ -3,7 +3,7 @@
 Known limits
 ============
 
-The following is a catalogue of known limits in FINF |version|.
+The following is a catalogue of known limits in ASDF |version|.
 
 Tree
 ----

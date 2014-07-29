@@ -1,7 +1,7 @@
 %YAML 1.1
 ---
 $schema: "http://www.stsci.edu/schemas/yaml-schema/draft-01"
-id: "http://www.stsci.edu/schemas/finf/0.1.0/core/ndarray"
+id: "http://www.stsci.edu/schemas/asdf/0.1.0/core/ndarray"
 title: >
   An *n*-dimensional array or table.
 
@@ -17,7 +17,7 @@ description: |
     specify the ``dtype`` and other properties.
 
   - External to the tree: The data comes from a :ref:`block <block>`
-    within the same FINF file or an external FINF file referenced by a
+    within the same ASDF file or an external ASDF file referenced by a
     URI.
 
 examples:
@@ -130,14 +130,14 @@ examples:
 
   -
     - An array where the data is stored in the first block in
-      another FINF file.
+      another ASDF file.
     - |
         !ndarray
-          source: external.finf
+          source: external.asdf
           shape: [256, 256]
           dtype: float64
 
-tag: "tag:stsci.edu:finf/0.1.0/core/ndarray"
+tag: "tag:stsci.edu:asdf/0.1.0/core/ndarray"
 
 definitions:
   scalar-dtype:
@@ -241,16 +241,16 @@ anyOf:
                 file.  For example, a source of ``-1`` corresponds to the
                 last block in the same file.
 
-          - If a string, a URI to an external FINF file containing the
+          - If a string, a URI to an external ASDF file containing the
             block data.  Relative URIs and ``file:`` and ``http:``
             protocols must be supported.  Other protocols may be supported
             by specific library implementations.
 
-            The ability to reference block data in an external FINF file
+            The ability to reference block data in an external ASDF file
             is intentionally limited to the first block in the external
-            FINF file, and is intended only to support the needs of
+            ASDF file, and is intended only to support the needs of
             :ref:`exploded`.  For the more general case of referencing
-            data in an external FINF file, use tree :ref:`references`.
+            data in an external ASDF file, use tree :ref:`references`.
 
         anyOf:
           - type: integer

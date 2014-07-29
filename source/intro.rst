@@ -20,14 +20,14 @@ data.  On the other end of the spectrum, formats such as `HDF5
 <http://www.hdfgroup.org/HDF5/>`__ and `BLZ
 <http://blaze.pydata.org/docs/persistence.html>`__ address problems
 with large data sets and distributed computing, but don't really
-address the metadata needs of an interchange format.  FINF aims to
+address the metadata needs of an interchange format.  ASDF aims to
 exist in the same middle ground that made FITS so successful, by being
 a hybrid text and binary format: containing human editable metadata
 for interchange, and raw binary data that is fast to load and use.
 Unlike FITS, the metadata is highly structured and is designed
 up-front for extensibility.
 
-FINF has the following explicit goals:
+ASDF has the following explicit goals:
 
 - It has a hierarchical metadata structure, made up of basic dynamic
   data types such as strings, numbers, lists and mappings.
@@ -54,36 +54,36 @@ FINF has the following explicit goals:
   <http://www.yaml.org>`__ and `JSON Schema
   <http://www.json-schema.org>`__ to take advantage of a larger
   community working on the core problems of data exchange.  This also
-  makes it easier to support FINF in new programming languages and
+  makes it easier to support ASDF in new programming languages and
   environments by building on top of existing libraries.
 
-- Since every FINF file has the version of the specification to which
+- Since every ASDF file has the version of the specification to which
   it is written, it will be possible, through careful planning, to
-  evolve the FINF format over time, allowing for files that use new
+  evolve the ASDF format over time, allowing for files that use new
   features while retaining backward compatibility with older tools.
 
-FINF is primarily intended as an interchange format for delivering
+ASDF is primarily intended as an interchange format for delivering
 products from instruments to scientists or between scientists.  While
 it is reasonably efficient to work with and transfer, it may not be
 optimal for direct use on large data sets in distributed and high
 performance computing environments.  That is explicitly not a goal of
-FINF, as it can sometimes be at odds with the needs of an interchange
-format.  FINF still has a place in those environments as a delivery
-mechanism, even if it is not the actual format on which the computing
-is performed.
+the ASDF standard, as it can sometimes be at odds with the needs of an
+interchange format.  ASDF still has a place in those environments as a
+delivery mechanism, even if it is not the actual format on which the
+computing is performed.
 
 Implementations
 ---------------
 
-The FINF standard is being developed concurrently with a `reference
+The ASDF standard is being developed concurrently with a `reference
 implementation written in Python
-<http://github.com/spacetelescope/pyfinf>`__.
+<http://github.com/spacetelescope/pyasdf>`__.
 
 
 Incorporated standards
 ----------------------
 
-The FINF format is built out of a number of existing standards:
+The ASDF format is built out of a number of existing standards:
 
 - `YAML 1.1 <http://yaml.org/spec/1.1/>`__
 
