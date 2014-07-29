@@ -1,0 +1,156 @@
+# This example is chosen to demonstrate how the separability of the
+# transformations changes through the pipeline.  There are three input
+# coordinates: (y, x, lambda), none of which are separable.  The
+# wavelength depends on where on the detector is is sampled.  The
+# first step of the transform is thus to separate the spatial and
+# wavelength dimensions, after which they are dealt with separately.
+
+#                 y     x    lambda      order
+#                 |     |       |          |
+#              +--------------------+      |
+#              |                    |      |
+#              +--------------------+      |
+#               x |  y  |  lambda |        |
+#              +----------+    +---------------+
+#              |          |    |               |
+#              +----------+    +---------------+
+#              ra | dec |  lambda |
+
+wcs: !wcs/wcs
+
+  # WCS may provide either a forward or backward transformation, or
+  # both.  If either is missing, and the inverse transform can be
+  # computed unabiguously, that will be used, otherwise the explicitly
+  # specified one is used and always takes precedence.
+
+  # In an earlier iteration of the proposal, these were `pix_to_world`
+  # and `world_to_pix`, but now this uses the more generic terms
+  # "forward" and "backward".
+
+  # "forward" and "backward" are `wcs/steps`, which is a list of
+  # `wcs/step`, each of which describes an input frame/coordinate
+  # space and the transformation to the next frame.  They are not just
+  # raw transforms because transforms don't specify the coordinate
+  # frames of their inputs and outputs because they are designed to
+  # operate at a lower, more purely mathematical, level.
+
+  # Importantly, however, `wcs/steps` is a logical subclass of
+  # `transform/serial`, just with more information attached.  This
+  # allows us to treat the entire "forward" or "backward" transform
+  # as a transform itself and apply currying to its inputs, include
+  # as part of an even larger transform etc.
+
+  forward: &forward_wcs !wcs/steps
+    - !wcs/step
+      # Name is the name for the step.  This will allow for an API to
+      # say "transform from pixel to focal_plane".  These names are
+      # completely arbitrary and do not come from a controlled
+      # vocabulary.
+      name: pixel
+
+      # Frames is a list of the coordinate frames for each of the
+      # axes.  These names come from a controlled vocabulary of
+      # standard frame names (see below), though we should probably
+      # also allow custom frame names.
+      frames: [detector_y, detector_x, detector_lambda, order]
+
+      # Units are the optional units of the axes.  This is really
+      # just for documentation, but could also be used by a unit-aware
+      # library to return values with associated units.
+      units: [pixel, pixel, nm, null]
+
+      # Each WCS step has a single transform, but it may be a compound
+      # transform made up of multiple transforms.  In this case, the
+      # transform is a serial transform that performs a few other
+      # transformations in series
+      transform: !transform/serial
+
+          # The remap_axes reorders the axes.  Here, we swap the (y, x) axes
+          # to (x, y)
+        - !transform/remap_axes
+          [1, 0, 2, 3]
+          # The separable transform applies multiple transforms to the
+          # axes.  In this case, we apply a transform to the first
+          # three axes and then pass through the 4th axis verbatim.
+        - !transform/separable  # in 4 --> out 4
+            # The "interdependent" transform here is a hypothetical
+            # transform that depends in (x, y, lambda) and returns
+            # (x, y), (lambda) such that the spatial and spectral
+            # axes are separable
+          - !transform/interdependent  # in 3 --> out 3
+          - !transform/identity        # in 1 --> out 1
+            dims: 1
+
+    - !wcs/step
+      # At this step, the wavelength is now independent of the spatial
+      # dimensions.  So we proceed with separate transformations
+      # for the two separable parts from here on out.
+      name: intermediate
+
+      frames: [focal_plane_x, focal_plane_y, lambda, order]
+
+      transform: !transform/separable  # in 4 --> out 3
+        - *linear    # in 2 --> out 2
+          # spectral_with_order takes (order, lambda) as inputs, so we swap them first
+        - !transform/serial  # in 2 --> out 1
+          - !transform/remap_axes
+            [1, 0]
+          - !transform/spectral_with_order
+
+    - !wcs/step
+      # The last step has no transform, but can be used to
+      # specify the frames and units of the resulting axes.
+      name: world
+
+      frames: [celestial_ra, celestial_dec, spectral_freq]
+      units: [radian, radian, Hz]
+
+  # Definitions is a catch-all for transforms that are defined here
+  # but used in other places.  The word "definitions" here is a common
+  # JSON schema convention.
+  definitions:
+
+    # The &xxx syntax here is YAML notation for defining an anchor that
+    # is referencable elsewhere as *xxx.
+
+    # This is the linear transformation from focal plane to
+    # pre-spherical (is that the correct name) coordinates.  It is a
+    # serial composite transformation made out of three
+    # transformations for translation, rotation and scale.
+    - &linear !transform/serial
+      - !transform/translate
+        translation: [1024, 1024]  # Equivalent to CRPIX
+      - !transform/rotate2d
+        angle: 5                   # Equivalent to PC matrix (though doesn't
+                                   # handle skew etc.)
+      - !transform/scale
+        scale: [5, 5]              # Equivalent to CDELT
+
+  # It's anticipated that we may want to provide transformations that
+  # are the same as other transformations, but treat one of the axes
+  # as a constant.  Here, remap_axes is used to expect three input
+  # dimensions, rather than four, treating the last one as a constant
+  # (rather than an axis index).
+  first_order_wcs: !transform/serial
+    - !transform/remap_axes
+      [0, 1, 2, !transform/constant 0]
+    - *forward_wcs
+
+  second_order_wcs: !transform/serial
+    - !transform/remap_axes
+      [0, 1, 2, !transform/constant 1]
+    - *forward_wcs
+
+#
+# Standard frame names:
+#
+# - time
+# - celestial
+#   - celestial_ra
+#   - celestial_dec
+# - spectral
+# - cartesian
+# - detector:
+#   - detector_x
+#   - detector_y
+# - image
