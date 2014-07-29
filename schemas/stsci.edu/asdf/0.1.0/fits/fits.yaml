@@ -1,19 +1,19 @@
 %YAML 1.1
 ---
 $schema: "http://www.stsci.edu/schemas/yaml-schema/draft-01"
-id: "http://www.stsci.edu/schemas/finf/0.1.0/fits/fits"
+id: "http://www.stsci.edu/schemas/asdf/0.1.0/fits/fits"
 title: >
-  A standard way to serialize a FITS file inside of a FINF file.
+  A standard way to serialize a FITS file inside of an ASDF file.
 description: |
-  This schema is useful for distributing FINF files that can
+  This schema is useful for distributing ASDF files that can
   automatically converted to FITS files by specifying the exact
   content of the resulting FITS file.
 
-  Not all kinds of data in FITS are directly representable in FINF.
+  Not all kinds of data in FITS are directly representable in ASDF.
   For example, applying an offset and scale to the data using the
   ``BZERO`` and ``BSCALE`` keywords.  In these cases, it will not be
   possible to store the data in the native format from FITS and also
-  be accessible in its proper form in the FINF file.
+  be accessible in its proper form in the ASDF file.
 examples:
   -
     - A simple FITS file with a primary header and two extensions
@@ -67,7 +67,7 @@ examples:
               - [EXTNAME, ERR, extension name]
               - [BUNIT, DN, Units of the error array]
 
-tag: "tag:stsci.edu:finf/0.1.0/fits/fits"
+tag: "tag:stsci.edu:asdf/0.1.0/fits/fits"
 type: array
 items:
   description: >

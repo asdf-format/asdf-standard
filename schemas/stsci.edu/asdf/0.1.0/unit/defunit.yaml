@@ -1,7 +1,7 @@
 %YAML 1.1
 ---
 $schema: "http://www.stsci.edu/schemas/yaml-schema/draft-01"
-id: "http://www.stsci.edu/schemas/finf/0.1.0/unit/defunit"
+id: "http://www.stsci.edu/schemas/asdf/0.1.0/unit/defunit"
 title: Define a new physical unit.
 description: |
   Defines a new unit.  It can be used to either:
@@ -12,7 +12,7 @@ description: |
 
   The new unit must be defined before any unit tags that use it.
 
-tag: "tag:stsci.edu:finf/0.1.0/unit/defunit"
+tag: "tag:stsci.edu:asdf/0.1.0/unit/defunit"
 type: object
 properties:
   name:

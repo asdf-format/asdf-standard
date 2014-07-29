@@ -1,13 +1,13 @@
-.. _extending-finf:
+.. _extending-asdf:
 
-Extending FINF
+Extending ASDF
 ==============
 
-FINF is designed to be extensible so outside teams can add their own
+ASDF is designed to be extensible so outside teams can add their own
 types and structures while retaining compatibility with tools that
 don't understand those conventions.
 
-TODO: This section will describe making a custom tag type for FINF.
+TODO: This section will describe making a custom tag type for ASDF.
 
 .. _yaml-schema:
 
@@ -16,15 +16,15 @@ YAML Schema
 
 YAML Schema is a small extension to `JSON Schema Draft 4
 <http://json-schema.org/latest/json-schema-validation.html>`__ created
-specifically for FINF.  `Understanding JSON Schema
+specifically for ASDF.  `Understanding JSON Schema
 <http://spacetelescope.github.io/understanding-json-schema/>`__
 provides a good resource for understanding how to use JSON Schema, and
 further resources are available at `json-schema.org
 <http://json-schema.org>`__.  This section describes what makes YAML
 Schema different from JSON Schema, and provides some examples in the
-context of FINF.
+context of ASDF.
 
-Writing a new schema is described in :ref:`extending-finf`.
+Writing a new schema is described in :ref:`extending-asdf`.
 
 New keywords
 ^^^^^^^^^^^^

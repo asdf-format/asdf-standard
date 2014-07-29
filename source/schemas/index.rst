@@ -1,12 +1,12 @@
 .. _schema:
 
-FINF schema definitions
+ASDF schema definitions
 =======================
 
 This reference section describes the schema files for the built-in
-tags in FINF.
+tags in ASDF.
 
-FINF schemas are arranged into "modules".  All FINF implementations
+ASDF schemas are arranged into "modules".  All ASDF implementations
 must support the "core" module, but the other modules are optional.
 
 .. toctree::

@@ -1,13 +1,13 @@
 %YAML 1.1
 ---
 $schema: "http://www.stsci.edu/schemas/yaml-schema/draft-01"
-id: "http://www.stsci.edu/schemas/finf/0.1.0/core/finf"
+id: "http://www.stsci.edu/schemas/asdf/0.1.0/core/asdf"
 title: |
-  Top-level schema for a FINF file
+  Top-level schema for an ASDF file
 description: |
-  This schema contains the top-level attributes for every FINF file.
+  This schema contains the top-level attributes for every ASDF file.
 
-tag: "tag:stsci.edu:finf/0.1.0/core/finf"
+tag: "tag:stsci.edu:asdf/0.1.0/core/asdf"
 type: object
 properties:
   data:
@@ -21,7 +21,7 @@ properties:
 
   fits:
     description: |
-      A way to specify exactly how this FINF file should be converted
+      A way to specify exactly how this ASDF file should be converted
       to FITS.
     $ref: "../fits/fits"
 

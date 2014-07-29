@@ -1,10 +1,11 @@
-FINF Standard
+ASDF Standard
 =============
 
-FINF is not FITS.
+This document describes the Advanced Scientific Data Format (ASDF),
+pronounced *AZ*-diff.
 
 **This document is a work in progress and does not represent a
-released version of the FINF standard.**
+released version of the ASDF standard.**
 
 .. only:: html
 
@@ -24,7 +25,7 @@ released version of the FINF standard.**
 .. only:: html
 
    There is also a `print version of this document
-   <http://spacetelescope.github.io/finf-standard/FINFStandard.pdf>`__.
+   <http://spacetelescope.github.io/asdf-standard/ASDFStandard.pdf>`__.
 
 .. only:: html
 

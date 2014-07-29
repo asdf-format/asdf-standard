@@ -9,7 +9,7 @@ The overall structure of a file is as follows (in order):
 
 - Zero or more :ref:`block`
 
-FINF is a hybrid text and binary format.  The header and tree are
+ASDF is a hybrid text and binary format.  The header and tree are
 text, (specifically, in UTF-8), while the blocks are raw binary.
 
 The low-level file layout is designed in such a way that the tree
@@ -17,7 +17,7 @@ section can be edited by hand, possibly changing its size, without
 requiring changes in other parts of the file.  The same is not true
 for resizing a block, which has an explicit size stored in the file.
 
-Note also that, by design, a FINF file containing no binary blocks is
+Note also that, by design, a ASDF file containing no binary blocks is
 also a completely standard and valid YAML file.
 
 .. _header:
@@ -25,20 +25,20 @@ also a completely standard and valid YAML file.
 Header
 ------
 
-All FINF files must start with a short one-line header.  For example::
+All ASDF files must start with a short one-line header.  For example::
 
-  %FINF 0.1.0
+  %ASDF 0.1.0
 
 It is made up of the following parts (described in EBNF form)::
 
-  finf_token = "%FINF"
+  asdf_token = "%ASDF"
   major      = integer
   minor      = integer
   micro      = integer
-  header     = finf_token " " major "." minor "." micro ["\r"] "\n"
+  header     = asdf_token " " major "." minor "." micro ["\r"] "\n"
 
-- ``finf_token``: The constant string ``%FINF``.  This can be used
-  to quickly identify the file as a FINF file by reading the first 5
+- ``asdf_token``: The constant string ``%ASDF``.  This can be used
+  to quickly identify the file as a ASDF file by reading the first 5
   bytes.  It begins with a ``%`` so it will be treated as a YAML
   comment such that the :ref:`header` and the :ref:`tree` together
   form a valid YAML file.
@@ -56,8 +56,8 @@ Tree
 
 The tree stores structured information using `YAML Ain’t Markup
 Language (YAML™) 1.1 <http://yaml.org/spec/1.1/>`__ syntax.  While it
-is the main part of most FINF files, it is entirely optional, and a
-FINF file may skip it completely.  This is useful for creating files
+is the main part of most ASDF files, it is entirely optional, and a
+ASDF file may skip it completely.  This is useful for creating files
 in :ref:`exploded`.  Interpreting the contents of this section is
 described in greater detail in :ref:`tree-in-depth`.  This section
 only deals with the serialized representation of the tree, not its
@@ -67,11 +67,11 @@ The tree is always encoded in UTF-8, without an explicit byteorder
 marker (BOM). Newlines in the tree may be either DOS (``"\r\n"``) or
 UNIX (``"\n"``) format.
 
-In FINF |version|, the tree must be encoded in `YAML version 1.1
+In ASDF |version|, the tree must be encoded in `YAML version 1.1
 <http://yaml.org/spec/1.1/>`__.  At the time of this writing, the
 latest version of the YAML specification is 1.2, however most YAML
 parsers only support YAML 1.1, and the benefits of YAML 1.2 are minor.
-Therefore, for maximum portability, FINF requires that the YAML is
+Therefore, for maximum portability, ASDF requires that the YAML is
 encoded in YAML 1.1.  To declare that YAML 1.1 is being used, the tree
 must begin with the following line::
 
@@ -83,8 +83,8 @@ end marker), each on their own line.  Between these two markers is the
 YAML content.  For example::
 
       %YAML 1.1
-      %TAG ! tag:stsci.edu:finf/0.1.0/
-      --- !core/finf
+      %TAG ! tag:stsci.edu:asdf/0.1.0/
+      --- !core/asdf
       data: !core/ndarray
         source: 0
         dtype: float64
@@ -92,7 +92,7 @@ YAML content.  For example::
       ...
 
 The size of the tree is not explicitly specified in the file, so that
-it can easily be edited by hand.  Therefore, FINF parsers must search
+it can easily be edited by hand.  Therefore, ASDF parsers must search
 for the end of the tree by looking for the end-of-document marker
 (``...``) on its own line.  For example, the following regular
 expression may be used to find the end of the tree::
@@ -121,15 +121,15 @@ Blocks represent a contiguous chunk of binary data and nothing more.
 Information about how to interpret the block, such as the data type or
 array shape, is stored entirely in ``ndarray`` structures in the tree,
 as described in :ref:`ndarray
-<http://www.stsci.edu/schemas/finf/0.1.0/core/ndarray>`.  This allows
+<http://www.stsci.edu/schemas/asdf/0.1.0/core/ndarray>`.  This allows
 for a very flexible type system on top of a very simple approach to
 memory management within the file.  It also allows for new extensions
-to FINF that might interpret the raw binary data in ways that are yet
+to ASDF that might interpret the raw binary data in ways that are yet
 to be defined.
 
 There may be an arbitrary amount of unused space between the end of
 the tree and the first block.  To find the beginning of the first
-block, FINF parsers should search from the end of the tree for the
+block, ASDF parsers should search from the end of the tree for the
 first occurrence of the ``block_magic_token``.  If the file contains
 no tree, the first block must begin immediately after the header with
 no padding.
@@ -153,10 +153,10 @@ Each block begins with the following header:
   size of the remainder of the header (not including the length of the
   ``header_size`` entry itself or the ``block_magic_token``).  It is
   stored explicitly in the header itself so that the header may be
-  enlarged in a future version of the FINF standard while retaining
-  backward compatibility.  Importantly, FINF parsers should not assume
+  enlarged in a future version of the ASDF standard while retaining
+  backward compatibility.  Importantly, ASDF parsers should not assume
   a fixed size of the header, but should obey the ``header_size``
-  defined in the file.  In FINF version 0.1, this should be at least
+  defined in the file.  In ASDF version 0.1, this should be at least
   40, but may be larger, for example to align the beginning of the
   block content with a file system block boundary.
 
@@ -194,7 +194,7 @@ Immediately following the block header, there are exactly
 ``used_space`` bytes of meaningful data, followed by
 ``allocated_space - used_space`` bytes of unused data.  The exact
 content of the unused data is not enforced.  The ability to have gaps
-of unused space allows a FINF writer to reduce the number of disk
+of unused space allows a ASDF writer to reduce the number of disk
 operations when updating the file.
 
 .. _exploded:
@@ -202,19 +202,19 @@ operations when updating the file.
 Exploded form
 -------------
 
-Exploded form expands a self-contained FINF file into multiple files:
+Exploded form expands a self-contained ASDF file into multiple files:
 
-- A FINF file containing only the header and tree, which by design is
+- An ASDF file containing only the header and tree, which by design is
   also a valid YAML file.
 
-- *n* FINF files, each containing a single block.
+- *n* ASDF files, each containing a single block.
 
 Exploded form is useful in the following scenarios:
 
 - Not all text editors may handle the hybrid text and binary nature of
-  the FINF file, and therefore either can't open a FINF file or would
-  break a FINF file upon saving.  In this scenario, a user may explode
-  the FINF file, edit the YAML portion as a pure YAML file, and
+  the ASDF file, and therefore either can't open a ASDF file or would
+  break a ASDF file upon saving.  In this scenario, a user may explode
+  the ASDF file, edit the YAML portion as a pure YAML file, and
   implode the parts back together.
 
 - Over a network protocol, such as HTTP, a client may only need to
@@ -225,18 +225,18 @@ Exploded form is useful in the following scenarios:
   high-latency network if there are many blocks.  Exploded form allows
   each block to be requested directly by a specific URI.
 
-- A FINF writer may stream a table to disk, when the size of the table
+- An ASDF writer may stream a table to disk, when the size of the table
   is not known at the outset.  Using exploded form simplifies this,
   since a standalone file containing a single table can be iteratively
   appended to without worrying about any blocks that may follow it.
 
-Exploded form describes a convention for storing FINF file content in
+Exploded form describes a convention for storing ASDF file content in
 multiple files, but it does not require any additions to the file
-format itself.  There is nothing indicating that a FINF file is in
+format itself.  There is nothing indicating that a ASDF file is in
 exploded form, other than the fact that some or all of its blocks come
 from external files.  The exact way in which a file is exploded is up
 to the library and tools implementing the standard.  In the most
 common scenario, to explode a file, each :ref:`ndarray source property
-<http://www.stsci.edu/schemas/finf/0.1.0/core/ndarray/anyOf/1/properties/source>`
+<http://www.stsci.edu/schemas/asdf/0.1.0/core/ndarray/anyOf/1/properties/source>`
 in the tree is converted from a local block reference into a relative
 URI.
