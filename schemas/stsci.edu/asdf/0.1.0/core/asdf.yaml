@@ -3,7 +3,7 @@
 $schema: "http://www.stsci.edu/schemas/yaml-schema/draft-01"
 id: "http://www.stsci.edu/schemas/asdf/0.1.0/core/asdf"
 title: |
-  Top-level schema for an ASDF file
+
 description: |
   This schema contains the top-level attributes for every ASDF file.
 
@@ -14,9 +14,10 @@ properties:
     description: |
       The data array corresponds to the main science data array in the
       file.  Oftentimes, the data model will be much more complex than
-      a single array, but this model will be used by applications that
-      just want to convert to a displayable image or preview of the
-      file.
+      a single array, but this array will be used by applications that
+      just want to convert to a display an image or preview of the
+      file.  It is recommended, but not required, that it is a
+      2-dimensional image array.
     $ref: "ndarray"
 
   fits:

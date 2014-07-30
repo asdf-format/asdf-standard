@@ -2,6 +2,8 @@
 ---
 $schema: "http://www.stsci.edu/schemas/yaml-schema/draft-01"
 id: "http://www.stsci.edu/schemas/asdf/0.1.0/core/ndarray"
+tag: "tag:stsci.edu:asdf/0.1.0/core/ndarray"
+
 title: >
   An *n*-dimensional array or table.
 
@@ -137,8 +139,6 @@ examples:
           shape: [256, 256]
           dtype: float64
 
-tag: "tag:stsci.edu:asdf/0.1.0/core/ndarray"
-
 definitions:
   scalar-dtype:
     description: |
@@ -186,9 +186,41 @@ definitions:
           - type: string
             enum: [ascii, ucs4]
           - type: integer
-            minimum: 1
+            minimum: 0
         minLength: 2
         maxLength: 2
+
+  dtype:
+    description: |
+      The data format of the array elements.  May be a single scalar
+      dtype, or may be a nested list of dtypes.  When a list, each field
+      may have a name.
+    anyOf:
+      - $ref: "#/definitions/scalar-dtype"
+      - type: array
+        items:
+          anyOf:
+            - $ref: "#/definitions/scalar-dtype"
+            - type: object
+              properties:
+                name:
+                  type: string
+                  pattern: "[A-Za-z_][A-Za-z0-9_]*"
+                  description: The name of the field
+                dtype:
+                  $ref: "#/definitions/dtype"
+                byteorder:
+                  type: string
+                  enum: [big, little]
+                  description: |
+                    The byteorder for the field.  If not provided, the
+                    byteorder of the dtype as a whole will be used.
+                shape:
+                  type: array
+                  items:
+                    type: integer
+                    minimum: 0
+              required: [dtype]
 
   inline-data:
     description: |
@@ -234,6 +266,7 @@ anyOf:
           The source of the data.
 
           - If an integer:
+
               - If positive, the zero-based index of the block within the
                 same file.
 
@@ -285,30 +318,7 @@ anyOf:
       dtype:
         description: |
           The data format of the array elements.
-        anyOf:
-          - $ref: "#/definitions/scalar-dtype"
-          - type: array
-            items:
-              anyOf:
-                - $ref: "#/definitions/scalar-dtype"
-                - type: object
-                  properties:
-                    name:
-                      type: string
-                      pattern: "[A-Za-z_][A-Za-z0-9_]*"
-                      description: The name of the field
-                    dtype:
-                      $ref: "#/anyOf/1/properties/dtype"
-                    byteorder:
-                      type: string
-                      enum: [big, little]
-                      default: big
-                    shape:
-                      type: array
-                      items:
-                        type: integer
-                        minimum: 0
-                  required: [dtype]
+        $ref: "#/definitions/dtype"
 
       byteorder:
         description: >
@@ -352,4 +362,3 @@ anyOf:
 
     dependencies:
       source: [shape, dtype]
-    additionalProperties: false

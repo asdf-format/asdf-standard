@@ -22,6 +22,11 @@ Draft 4
 :ref:`extending-asdf` describes how to use YAML schema to define new
 schema.
 
+.. _tags:
+
+Tags
+----
+
 YAML includes the ability to assign :ref:`tags` (or types) to any
 object in the tree.  This is an important feature that sets it apart
 from other data representation languages, such as JSON.  ASDF defines
@@ -29,17 +34,11 @@ a number of custom tags, each of which has a corresponding schema.
 For example the tag of the root element of the tree must always be
 ``tag:stsci.edu:asdf/0.1.0/core/asdf``, which corresponds to the
 :ref:`asdf schema <http://www.stsci.edu/schemas/asdf/0.1.0/core/asdf>`
-schema.
-
-.. _tags:
-
-Tags
-----
-
-Tags declare the data type of an element in the tree.  A ASDF parser
-may, for example, use this information for schema validation or use it
-to convert to a native data type that presents a more convenient
-interface to the user.
+schema.  A validating ASDF reader would encounter the tag when reading
+in the file, load the corresponding schema, and validate the content
+against it.  An ASDF library may also use this information to convert
+to a native data type that presents a more convenient interface to the
+user than the structure of basic types stored in the YAML content.
 
 For example::
 
@@ -82,8 +81,8 @@ will be replaced with the prefix ``tag:stsci.edu:asdf/0.1.0/``::
         shape: [1024, 1024]
 
 An ASDF parser may use the tag to look up the corresponding schema in
-the ASDF standard and validate the element.  The schema ship as part
-of the ASDF standard.
+the ASDF standard and validate the element.  The schema definitions
+ship as part of the ASDF standard.
 
 An ASDF parser may also use the tag information to convert the element
 to a native data type.  For example, in Python, an ASDF parser may
@@ -96,8 +95,8 @@ convenient and familiar interface to the user to access
 The ASDF standard does not require parser implementations to validate
 or perform native type conversion, however.  A parser may simply leave
 the tree represented in the low-level basic data structures.  When
-writing an ASDF file, the elements in the tree must be appropriately
-tagged for other tools to make use of them.
+writing an ASDF file, however, the elements in the tree must be
+appropriately tagged for other tools to make use of them.
 
 ASDF parsers must not fail when encountering an unknown tag, but must
 simply retain the low-level data structure and the presence of the
@@ -125,18 +124,27 @@ element within the external file.  This is a ``/``-delimited path
 where each element is a mapping key or an array index.  If no fragment
 is present, the reference refers to the top of the tree.
 
+.. note::
+
+   JSON Pointer is a very simple convention.  The only wrinkle is that
+   because the characters ``'~'`` (x7E) and ``'/'`` (%x2F) have
+   special meanings, ``'~'`` needs to be encoded as ``'~0'`` and
+   ``'/'`` needs to be encoded as ``'~1'`` when these characters
+   appear in a reference token.
+
 When these references are resolved, this mapping should be treated as
 having the same logical content as the target of the URI, though the
 exact details of how this is performed is dependent on the
 implementation, i.e., a library may copy the target data into the
-source tree, or it may insert a proxy object.
+source tree, or it may insert a proxy object that is lazily loaded at
+a later time.
 
 For example, suppose we had a given ASDF file containing some shared
 reference data, available on a public webserver at the URI
 ``http://www.nowhere.com/reference.asdf``::
 
     wavelengths:
-      - !array
+      - !ndarray
         source: 0
         shape: [256, 256]
         dtype: float
@@ -148,19 +156,19 @@ Another file may reference this data directly::
 
 It is also possible to use references within the same file::
 
-    data: !array
+    data: !ndarray
       source: 0
       shape: [256, 256]
       dtype: float
       mask:
-        $ref: "#my_mask"
+        $ref: "#/my_mask"
 
-    my_mask: !array
+    my_mask: !ndarray
       source: 0
       shape: [256, 256]
       dtype: uint8
 
-Reference resolution should be performed after the entire tree is
+Reference resolution should be performed *after* the entire tree is
 read, therefore forward references within the same file are explicitly
 allowed.
 

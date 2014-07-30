@@ -40,22 +40,22 @@ ASDF has the following explicit goals:
 
 - It's designed for extensibility: new conventions may be used without
   breaking backward compatibility with tools that do not understand
-  those conventions.  Usage standards are provided to prevent
+  those conventions.  Versioning systems are used to prevent
   conflicting with alternative conventions.
 
 - The binary array data (when compression is not used) is a raw memory
   dump, and techniques such as memory mapping can be used to
   efficiently access it.
 
-- It is possible to read and write the file in a streaming fashion,
-  without requiring random access.
+- It is possible to read and write the file in as a stream, without
+  requiring random access.
 
 - It's built on top of industry standards, such as `YAML
   <http://www.yaml.org>`__ and `JSON Schema
   <http://www.json-schema.org>`__ to take advantage of a larger
-  community working on the core problems of data exchange.  This also
-  makes it easier to support ASDF in new programming languages and
-  environments by building on top of existing libraries.
+  community working on the core problems of data representation.  This
+  also makes it easier to support ASDF in new programming languages
+  and environments by building on top of existing libraries.
 
 - Since every ASDF file has the version of the specification to which
   it is written, it will be possible, through careful planning, to
@@ -67,10 +67,10 @@ products from instruments to scientists or between scientists.  While
 it is reasonably efficient to work with and transfer, it may not be
 optimal for direct use on large data sets in distributed and high
 performance computing environments.  That is explicitly not a goal of
-the ASDF standard, as it can sometimes be at odds with the needs of an
-interchange format.  ASDF still has a place in those environments as a
-delivery mechanism, even if it is not the actual format on which the
-computing is performed.
+the ASDF standard, as those requirements can sometimes be at odds with
+the needs of an interchange format.  ASDF still has a place in those
+environments as a delivery mechanism, even if it ultimately is not the
+actual format on which the computing is performed.
 
 Implementations
 ---------------
@@ -83,7 +83,7 @@ implementation written in Python
 Incorporated standards
 ----------------------
 
-The ASDF format is built out of a number of existing standards:
+The ASDF format is built on top of a number of existing standards:
 
 - `YAML 1.1 <http://yaml.org/spec/1.1/>`__
 

@@ -42,6 +42,19 @@ def write_if_different(filename, data):
 
 
 def write_header(o, content, level):
+    """
+    Write a reStructuredText header to the file.
+
+    Parameters
+    ----------
+    o : output stream
+
+    content : str
+        The content of the header
+
+    level : int
+        The level of the header
+    """
     levels = '=-~^.'
     if level >= len(levels):
         o.write('**{0}**\n\n'.format(content))
@@ -54,6 +67,37 @@ def write_header(o, content, level):
 
 def format_range(var_middle, var_end, minimum, maximum,
                  exclusiveMinimum, exclusiveMaximum):
+    """
+    Formats an mathematical description of a range, for example, ``0 ≤
+    x ≤ 2``.
+
+    Parameters
+    ----------
+    var_middle : str or None
+        The string to put in the middle of an expression, such as
+        the ``x`` in ``0 ≤ x ≤ 2``.
+
+    var_end : str or None
+        The string to put at one end of a single comparision, such as
+        the ``x`` in ``x ≤ 0``.
+
+    minimum : number
+        The minimum value.
+
+    maximum : number
+        The maximum value.
+
+    exclusiveMinimum : bool
+        If `True`, the range excludes the minimum value.
+
+    exclusiveMaximum : bool
+        If `True`, the range excludes the maximum value
+
+    Returns
+    -------
+    expr : str
+        The formatted range expression
+    """
     if minimum is not None and maximum is not None:
         part = '{0} '.format(minimum)
         if exclusiveMinimum:
@@ -90,10 +134,24 @@ def format_range(var_middle, var_end, minimum, maximum,
 
 
 def format_type(schema, root):
+    """
+    Creates an English/mathematical description of a schema fragment.
+
+    Parameters
+    ----------
+    schema : JSON schema fragment
+
+    root : str
+        The JSON path to the schema fragment.
+    """
     if 'anyOf' in schema:
-        return ' :soft:`or` '.join(format_type(x, root) for x in schema['anyOf'])
+        return ' :soft:`or` '.join(
+            format_type(x, root) for x in schema['anyOf'])
+
     elif 'allOf' in schema:
-        return ' :soft:`and` '.join(format_type(x, root) for x in schema['allOf'])
+        return ' :soft:`and` '.join(
+            format_type(x, root) for x in schema['allOf'])
+
     elif '$ref' in schema:
         ref = schema['$ref']
         if ref.startswith('#/'):
@@ -101,25 +159,33 @@ def format_type(schema, root):
         else:
             basename = os.path.basename(schema['$ref'])
             return ':doc:`{0} <{1}>`'.format(basename, schema['$ref'])
+
     else:
         type = schema.get('type')
         if isinstance(type, list):
             parts = [' or '.join(type)]
+
         elif type is None:
             parts = ['any']
+
         else:
             parts = [type]
+
         if type == 'string':
             range = format_range('*len*', '*len*', schema.get('minLength'),
                                  schema.get('maxLength'), False, False)
-            if range is not None:
-                parts.append(range)
-            if 'pattern' in schema:
-                parts.append('(:soft:`regex` :regexp:`{0}`)'.format(
-                    schema['pattern'].encode('unicode_escape').replace(
-                        '\\', '\\\\')))
-            if 'format' in schema:
-                parts.append('({0})'.format(schema['format']))
+            if range is not None or 'pattern' in schema or 'format' in schema:
+                parts.append('(')
+                if range is not None:
+                    parts.append(range)
+                if 'pattern' in schema:
+                    parts.append(':soft:`regex` :regexp:`{0}`'.format(
+                        schema['pattern'].encode('unicode_escape').replace(
+                            '\\', '\\\\')))
+                if 'format' in schema:
+                    parts.append(':soft:`format` {0}'.format(schema['format']))
+                parts.append(')')
+
         elif type in ('integer', 'number'):
             range = format_range('*x*', '', schema.get('minimum'),
                                  schema.get('maximum'),
@@ -128,6 +194,7 @@ def format_type(schema, root):
             if range is not None:
                 parts.append(range)
             # TODO: multipleOf
+
         elif type == 'object':
             range = format_range('*len*', '*len*', schema.get('minProperties'),
                                  schema.get('maxProperties'), False, False)
@@ -135,6 +202,7 @@ def format_type(schema, root):
                 parts.append(range)
             # TODO: Dependencies
             # TODO: Pattern properties
+
         elif type == 'array':
             items = schema.get('items')
             if schema.get('items') and isinstance(items, dict):
@@ -142,7 +210,9 @@ def format_type(schema, root):
                     parts.append(':soft:`of unique`')
                 else:
                     parts.append(':soft:`of`')
+                parts.append('(')
                 parts.append(format_type(items, root))
+                parts.append(')')
             range = format_range('*len*', '*len*', schema.get('minItems'),
                                  schema.get('maxItems'), False, False)
             if range is not None:
@@ -156,6 +226,9 @@ def format_type(schema, root):
 
 
 def reindent(content, indent):
+    """
+    Reindent a string to the given number of spaces.
+    """
     content = textwrap.dedent(content)
     lines = []
     for line in content.split('\n'):
@@ -164,6 +237,28 @@ def reindent(content, indent):
 
 
 def recurse(o, name, schema, path, level, required=False):
+    """
+    Convert a schema fragment to reStructuredText.
+
+    Parameters
+    ----------
+    o : output stream
+
+    name : str
+        Name of the entry
+
+    schema : schema fragment
+
+    path : list of str
+        Path to schema fragment
+
+    level : int
+        Indentation level
+
+    required : bool
+        If `True` the entry is required by the schema and will be
+        documented as such.
+    """
     indent = '  ' * max(level, 0)
 
     o.write('\n\n')
@@ -242,6 +337,9 @@ def recurse(o, name, schema, path, level, required=False):
 
 
 def convert_schema_to_rst(src, dst):
+    """
+    Convert a YAML schema to reStructuredText.
+    """
     with open(src, 'rb') as fd:
         schema = yaml.safe_load(fd)
     with open(src, 'rb') as fd:
@@ -263,6 +361,10 @@ def convert_schema_to_rst(src, dst):
 
 
 def construct_mapping(self, node, deep=False):
+    """
+    Make sure the properties are written out in the same order as the
+    original file.
+    """
     if not isinstance(node, yaml.MappingNode):
         raise yaml.constructor.ConstructorError(None, None,
                 "expected a mapping node, but found %s" % node.id,
@@ -285,13 +387,7 @@ yaml.SafeLoader.add_constructor(
     'tag:yaml.org,2002:map', construct_mapping)
 
 
-# TODO: Preserve ordering of dictionaries from original file
-
-
-if __name__ == '__main__':
-    src = sys.argv[-2].decode(sys.getfilesystemencoding())
-    dst = sys.argv[-1].decode(sys.getfilesystemencoding())
-
+def main(src, dst):
     for root, dirs, files in os.walk(src):
         for fname in files:
             if not fname.endswith(".yaml"):
@@ -301,3 +397,10 @@ if __name__ == '__main__':
                 dst, os.path.relpath(src_path, src))
 
             convert_schema_to_rst(src_path, dst_path)
+
+
+if __name__ == '__main__':
+    src = sys.argv[-2].decode(sys.getfilesystemencoding())
+    dst = sys.argv[-1].decode(sys.getfilesystemencoding())
+
+    sys.exit(main(src, dst))
