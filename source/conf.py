@@ -181,6 +181,9 @@ html_show_copyright = True
 # Output file base name for HTML help builder.
 htmlhelp_basename = 'ASDFStandard'
 
+html_context = {
+    'bootswatch_css_custom': ['_static/asdfstandard.css']
+}
 
 # -- Options for LaTeX output --------------------------------------------------
 
