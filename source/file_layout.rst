@@ -15,7 +15,8 @@ text, (specifically, in UTF-8), while the blocks are raw binary.
 The low-level file layout is designed in such a way that the tree
 section can be edited by hand, possibly changing its size, without
 requiring changes in other parts of the file.  The same is not true
-for resizing a block, which has an explicit size stored in the file.
+for resizing a block, which has an explicit size stored in the file
+(except for, optionally, the last block).
 
 Note also that, by design, a ASDF file containing no binary blocks is
 also a completely standard and valid YAML file.
@@ -235,8 +236,8 @@ multiple files, but it does not require any additions to the file
 format itself.  There is nothing indicating that a ASDF file is in
 exploded form, other than the fact that some or all of its blocks come
 from external files.  The exact way in which a file is exploded is up
-to the library and tools implementing the standard.  In the most
-common scenario, to explode a file, each :ref:`ndarray source property
+to the library and tools implementing the standard.  In the simplest
+scenario, to explode a file, each :ref:`ndarray source property
 <http://www.stsci.edu/schemas/asdf/0.1.0/core/ndarray/anyOf/1/properties/source>`
 in the tree is converted from a local block reference into a relative
 URI.

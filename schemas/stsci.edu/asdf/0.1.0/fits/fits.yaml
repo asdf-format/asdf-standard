@@ -3,10 +3,10 @@
 $schema: "http://www.stsci.edu/schemas/yaml-schema/draft-01"
 id: "http://www.stsci.edu/schemas/asdf/0.1.0/fits/fits"
 title: >
-  A standard way to serialize a FITS file inside of an ASDF file.
+  A FITS file inside of an ASDF file.
 description: |
   This schema is useful for distributing ASDF files that can
-  automatically converted to FITS files by specifying the exact
+  automatically be converted to FITS files by specifying the exact
   content of the resulting FITS file.
 
   Not all kinds of data in FITS are directly representable in ASDF.
