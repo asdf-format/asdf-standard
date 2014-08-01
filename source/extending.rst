@@ -33,9 +33,9 @@ YAML Schema adds three new keywords to JSON Schema.
 element must have the given YAML tag.
 
 For example, the root :ref:`ASDF schema
-<http://www.stsci.edu/schemas/asdf/0.1.0/core/asdf>` declares that
+<http://stsci.edu/schemas/asdf/0.1.0/core/asdf>` declares that
 the ``data`` property must be an :ref:`ndarray
-<http://www.stsci.edu/schemas/asdf/0.1.0/core/ndarray>`.  It does
+<http://stsci.edu/schemas/asdf/0.1.0/core/ndarray>`.  It does
 this not by using the ``tag`` keyword directly, but by referencing the
 ``ndarray`` schema, which in turn has the ``tag`` keyword.  The `ASDF
 schema` includes::
@@ -99,7 +99,7 @@ Every ASDF schema should begin with the following header::
 
   %YAML 1.1
   ---
-  $schema: "http://www.stsci.edu/schemas/yaml-schema/draft-01"
+  $schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
 
 This declares that the file is ``YAML 1.1`` format, and that the
 structure of the content conforms to ``YAML Schema`` defined above.
@@ -128,7 +128,7 @@ from tag name to schema URI is quite simple::
 
 maps to::
 
-  http://www.stsci.edu/schemas/XXX
+  http://stsci.edu/schemas/XXX
 
 Note that this URI doesn't actually have to resolve to anything.  In
 fact, visiting that URL in your web browser is likely to bring up a
@@ -208,7 +208,7 @@ elements in your schema that are based on the custom types defined in
 the ASDF standard::
 
     exposure_time_units:
-      $ref: "http://www.stsci.edu/schemas/asdf/0.1.0/unit/unit"
+      $ref: "http://stsci.edu/schemas/asdf/0.1.0/unit/unit"
       description: |
         The unit of the exposure time.
       default:
@@ -227,7 +227,7 @@ Here is our complete schema example::
 
   %YAML 1.1
   ---
-  $schema: "http://www.stsci.edu/schemas/yaml-schema/draft-01"
+  $schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
   tag: "tag:science.edu:FOO/0.1.0/metadata"
   id: "http://science.edu/schemas/FOO/0.1.0/metadata"
 
@@ -256,7 +256,7 @@ Here is our complete schema example::
         The time of the exposure, in nanoseconds.
 
     exposure_time_units:
-      $ref: "http://www.stsci.edu/schemas/asdf/0.1.0/unit/unit"
+      $ref: "http://stsci.edu/schemas/asdf/0.1.0/unit/unit"
       description: |
         The unit of the exposure time.
       default:

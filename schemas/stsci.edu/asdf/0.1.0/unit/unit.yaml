@@ -1,7 +1,7 @@
 %YAML 1.1
 ---
-$schema: "http://www.stsci.edu/schemas/yaml-schema/draft-01"
-id: "http://www.stsci.edu/schemas/asdf/0.1.0/unit/unit"
+$schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
+id: "http://stsci.edu/schemas/asdf/0.1.0/unit/unit"
 title: Physical unit.
 description: >
   This represents a physical unit, in  `VOUnit syntax, Version 1.0
@@ -10,7 +10,7 @@ examples:
   -
     - Example units
     - |
-      !unit "2.1798721 10-18kg m2 s-2"
+      !unit/unit "2.1798721 10-18kg m2 s-2"
 
 tag: "tag:stsci.edu:asdf/0.1.0/unit/unit"
 type: string

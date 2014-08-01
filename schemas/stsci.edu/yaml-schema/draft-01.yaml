@@ -1,7 +1,7 @@
 %YAML 1.1
 ---
-$schema: "http://www.stsci.edu/schemas/yaml-schema/draft-01"
-id: "http://www.stsci.edu/schemas/yaml-schema/draft-01"
+$schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
+id: "http://stsci.edu/schemas/yaml-schema/draft-01"
 description: |
   A metaschema extending JSON Schema's metaschema to add support for
   some YAML-specific constructions.

@@ -1,7 +1,7 @@
 %YAML 1.1
 ---
-$schema: "http://www.stsci.edu/schemas/yaml-schema/draft-01"
-id: "http://www.stsci.edu/schemas/asdf/0.1.0/core/ndarray"
+$schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
+id: "http://stsci.edu/schemas/asdf/0.1.0/core/ndarray"
 tag: "tag:stsci.edu:asdf/0.1.0/core/ndarray"
 
 title: >
@@ -26,7 +26,7 @@ examples:
   -
     - An inline array, with implicit data type
     - |
-        !ndarray
+        !core/ndarray
           [[1, 0, 0],
            [0, 1, 0],
            [0, 0, 1]]
@@ -34,7 +34,7 @@ examples:
   -
     - An inline array, with an explicit data type
     - |
-        !ndarray
+        !core/ndarray
           dtype: float64
           data:
             [[1, 0, 0],
@@ -45,7 +45,7 @@ examples:
     - An inline table, where the types of each column are
       automatically detected
     - |
-        !ndarray
+        !core/ndarray
           [[M110, 110, 205, And],
            [ M31,  31, 224, And],
            [ M32,  32, 221, And],
@@ -55,7 +55,7 @@ examples:
     - An inline table, where the types of each column are
       explicitly specified
     - |
-        !ndarray
+        !core/ndarray
           dtype: [['ascii', 4], uint16, uint16, ['ascii', 4]]
           data:
             [[M110, 110, 205, And],
@@ -67,7 +67,7 @@ examples:
     - A double-precision array, in contiguous memory in a block within
       the same file
     - |
-        !ndarray
+        !core/ndarray
           source: 0
           shape: [1024, 1024]
           dtype: float64
@@ -75,7 +75,7 @@ examples:
   -
     - A view of a tile in that image
     - |
-        !ndarray
+        !core/ndarray
           source: 0
           shape: [256, 256]
           dtype: float64
@@ -86,7 +86,7 @@ examples:
     - A table dtype, with nested columns for a coordinate in (ra,
       dec), and a 3x3 convolution kernel
     - |
-        !ndarray
+        !core/ndarray
           source: 0
           shape: [64]
           dtype:
@@ -103,7 +103,7 @@ examples:
   -
     - An array in Fortran order
     - |
-        !ndarray
+        !core/ndarray
           source: 0
           shape: [1024, 1024]
           dtype: float64
@@ -112,7 +112,7 @@ examples:
   -
     - An array where values of -999 are treated as missing
     - |
-        !ndarray
+        !core/ndarray
           source: 0
           shape: [256, 256]
           dtype: float64
@@ -121,11 +121,11 @@ examples:
   -
     - An array where another array is used as a mask
     - |
-        !ndarray
+        !core/ndarray
           source: 0
           shape: [256, 256]
           dtype: float64
-          mask: !ndarray
+          mask: !core/ndarray
             source: 1
             shape: [256, 256]
             dtype: bool8
@@ -134,7 +134,7 @@ examples:
     - An array where the data is stored in the first block in
       another ASDF file.
     - |
-        !ndarray
+        !core/ndarray
           source: external.asdf
           shape: [256, 256]
           dtype: float64
