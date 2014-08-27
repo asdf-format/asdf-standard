@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# Understanding JSON Schema documentation build configuration file, created by
+# ASDF Standard documentation build configuration file, created by
 # sphinx-quickstart on Thu Sep  5 10:09:57 2013.
 #
 # This file is execfile()d with the current directory set to its containing dir.

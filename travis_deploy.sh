@@ -4,7 +4,7 @@
 set -e
 
 GH_ACCOUNT=spacetelescope
-GH_REPOSITORY=understanding-json-schema
+GH_REPOSITORY=asdf-standard
 GH_REMOTE=live
 GH_PAGESBRANCH=gh-pages
 
