@@ -1,4 +1,4 @@
 Prerequisites
 =============
 
-> pip install sphinx sphinx-bootstrap-theme jsonschema
+> pip install sphinx sphinx-bootstrap-theme jsonschema six
