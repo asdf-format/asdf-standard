@@ -9,6 +9,7 @@ import json
 import os
 import sys
 import textwrap
+import six
 
 import yaml
 
@@ -23,7 +24,8 @@ def write_if_different(filename, data):
     data : bytes
         The data to be written to `filename`.
     """
-    data = data.encode('utf-8')
+    if six.PY2 or isinstance(data, str):
+        data = data.encode('utf-8')
 
     if not os.path.exists(os.path.dirname(filename)):
         os.makedirs(os.path.dirname(filename))
@@ -180,8 +182,7 @@ def format_type(schema, root):
                     parts.append(range)
                 if 'pattern' in schema:
                     parts.append(':soft:`regex` :regexp:`{0}`'.format(
-                        schema['pattern'].encode('unicode_escape').replace(
-                            '\\', '\\\\')))
+                        six.u(schema['pattern']).replace('\\', '\\\\')))
                 if 'format' in schema:
                     parts.append(':soft:`format` {0}'.format(schema['format']))
                 parts.append(')')
