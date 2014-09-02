@@ -3,6 +3,8 @@
 
 from __future__ import absolute_import, division, unicode_literals, print_function
 
+import six
+
 from collections import OrderedDict
 import io
 import json
@@ -23,8 +25,6 @@ def write_if_different(filename, data):
     data : bytes
         The data to be written to `filename`.
     """
-    data = data.encode('utf-8')
-
     if not os.path.exists(os.path.dirname(filename)):
         os.makedirs(os.path.dirname(filename))
 
@@ -179,9 +179,10 @@ def format_type(schema, root):
                 if range is not None:
                     parts.append(range)
                 if 'pattern' in schema:
-                    parts.append(':soft:`regex` :regexp:`{0}`'.format(
-                        schema['pattern'].encode('unicode_escape').replace(
-                            '\\', '\\\\')))
+                    pattern = schema['pattern'].encode('unicode_escape')
+                    if six.PY3:
+                        pattern = pattern.decode('ascii')
+                    parts.append(':soft:`regex` :regexp:`{0}`'.format(pattern))
                 if 'format' in schema:
                     parts.append(':soft:`format` {0}'.format(schema['format']))
                 parts.append(')')
@@ -357,7 +358,7 @@ def convert_schema_to_rst(src, dst):
         os.path.basename(src)))
 
     write_if_different(dst, yaml_content)
-    write_if_different(dst[:-5] + ".rst", o.getvalue())
+    write_if_different(dst[:-5] + ".rst", o.getvalue().encode('utf-8'))
 
 
 def construct_mapping(self, node, deep=False):
@@ -399,8 +400,15 @@ def main(src, dst):
             convert_schema_to_rst(src_path, dst_path)
 
 
+def decode_filename(fname):
+    if six.PY3:
+        return fname
+    else:
+        return fname.decode(sys.getfilesystemencoding())
+
+
 if __name__ == '__main__':
-    src = sys.argv[-2].decode(sys.getfilesystemencoding())
-    dst = sys.argv[-1].decode(sys.getfilesystemencoding())
+    src = decode_filename(sys.argv[-2])
+    dst = decode_filename(sys.argv[-1])
 
     sys.exit(main(src, dst))
