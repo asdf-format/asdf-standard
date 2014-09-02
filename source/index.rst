@@ -25,7 +25,7 @@ released version of the ASDF standard.**
 .. only:: html
 
    There is also a `print version of this document
-   <http://spacetelescope.github.io/asdf-standard/ASDFStandard.pdf>`__.
+   <http://spacetelescope.github.io/asdf-standard/ASDFStandard-0.1.0dev.pdf>`__.
 
 .. only:: html
 
