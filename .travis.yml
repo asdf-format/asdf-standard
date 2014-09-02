@@ -9,10 +9,7 @@ branches:
     - master
 
 before_install:
-  - pip install sphinx
-  - pip install sphinx_bootstrap_theme
-  - pip install jsonschema
-  - pip install pyyaml
+  - pip install six sphinx sphinx_bootstrap_theme jsonschema pyyaml
   - bash -x ./install-texlive.sh
   - export PATH=$PWD/texlive/bin/x86_64-linux:$PATH
 
