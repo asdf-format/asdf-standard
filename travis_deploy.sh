@@ -27,12 +27,16 @@ if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then
         # This will delete all of the git-managed files here, but not
         # the results of the build
         git rm -rf .
+        rm -rf texlive
+        rm -rf install-tl*
+
         # Copy the built files to the root
         cp -r build/html/* .
         cp -r build/latex/*.pdf .
 
         # Delete the original location of the built files
         rm -rf build
+
         # We need to tell github this is not a Jekyll document
         touch .nojekyll
         git add .nojekyll
