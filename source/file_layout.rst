@@ -18,7 +18,7 @@ requiring changes in other parts of the file.  The same is not true
 for resizing a block, which has an explicit size stored in the file
 (except for, optionally, the last block).
 
-Note also that, by design, a ASDF file containing no binary blocks is
+Note also that, by design, an ASDF file containing no binary blocks is
 also a completely standard and valid YAML file.
 
 .. _header:
@@ -39,7 +39,7 @@ It is made up of the following parts (described in EBNF form)::
   header     = asdf_token " " major "." minor "." micro ["\r"] "\n"
 
 - ``asdf_token``: The constant string ``%ASDF``.  This can be used
-  to quickly identify the file as a ASDF file by reading the first 5
+  to quickly identify the file as an ASDF file by reading the first 5
   bytes.  It begins with a ``%`` so it will be treated as a YAML
   comment such that the :ref:`header` and the :ref:`tree` together
   form a valid YAML file.
@@ -152,8 +152,8 @@ Each block begins with the following header:
 
 - ``header_size`` (16-bit unsigned integer, big endian): Indicates the
   size of the remainder of the header (not including the length of the
-  ``header_size`` entry itself or the ``block_magic_token``).  It is
-  stored explicitly in the header itself so that the header may be
+  ``header_size`` entry itself or the ``block_magic_token``), in bytes.
+  It is stored explicitly in the header itself so that the header may be
   enlarged in a future version of the ASDF standard while retaining
   backward compatibility.  Importantly, ASDF parsers should not assume
   a fixed size of the header, but should obey the ``header_size``
@@ -195,7 +195,7 @@ Immediately following the block header, there are exactly
 ``used_space`` bytes of meaningful data, followed by
 ``allocated_space - used_space`` bytes of unused data.  The exact
 content of the unused data is not enforced.  The ability to have gaps
-of unused space allows a ASDF writer to reduce the number of disk
+of unused space allows an ASDF writer to reduce the number of disk
 operations when updating the file.
 
 .. _exploded:
@@ -213,8 +213,8 @@ Exploded form expands a self-contained ASDF file into multiple files:
 Exploded form is useful in the following scenarios:
 
 - Not all text editors may handle the hybrid text and binary nature of
-  the ASDF file, and therefore either can't open a ASDF file or would
-  break a ASDF file upon saving.  In this scenario, a user may explode
+  the ASDF file, and therefore either can't open an ASDF file or would
+  break an ASDF file upon saving.  In this scenario, a user may explode
   the ASDF file, edit the YAML portion as a pure YAML file, and
   implode the parts back together.
 
@@ -233,7 +233,7 @@ Exploded form is useful in the following scenarios:
 
 Exploded form describes a convention for storing ASDF file content in
 multiple files, but it does not require any additions to the file
-format itself.  There is nothing indicating that a ASDF file is in
+format itself.  There is nothing indicating that an ASDF file is in
 exploded form, other than the fact that some or all of its blocks come
 from external files.  The exact way in which a file is exploded is up
 to the library and tools implementing the standard.  In the simplest
