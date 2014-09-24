@@ -1,8 +1,8 @@
 %YAML 1.1
 ---
 $schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
-id: "http://stsci.edu/schemas/asdf/0.1.0/transform/separable"
-tag: "tag:stsci.edu:asdf/0.1.0/transform/separable"
+id: "http://stsci.edu/schemas/asdf/0.1.0/transform/join"
+tag: "tag:stsci.edu:asdf/0.1.0/transform/join"
 title: >
   Send axes to different subtransforms.
 
@@ -40,9 +40,9 @@ description: |
 
 examples:
   -
-    - The example in the description.
+    - The example in the description
     - |
-      !transform/separable
+      !transform/join
       - !transform/generic
         n_inputs: 2
         n_outputs: 2

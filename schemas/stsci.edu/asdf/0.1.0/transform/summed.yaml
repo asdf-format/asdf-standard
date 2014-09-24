@@ -1,11 +1,11 @@
 %YAML 1.1
 ---
 $schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
-id: "http://stsci.edu/schemas/asdf/0.1.0/transform/summed"
+id: "http://stsciu.edu/schemas/asdf/0.1.0/transform/summed"
 tag: "tag:stsci.edu:asdf/0.1.0/transform/summed"
 title: >
   Perform a list of subtransforms in parallel and then
-  sums their results together.
+  sum their results together.
 
 description: |
   Each of the subtransforms must have the same number of inputs and
