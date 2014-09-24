@@ -33,7 +33,7 @@ examples:
             # library to return values with associated units.
             units: [pixel, pixel, nm, null]
 
-            transform: !transform/series
+            transform: !transform/concatenate
               - !transform/remap_axes [1, 0, 2, 3]
               - !transform/join
                 - !transform/generic
@@ -55,7 +55,7 @@ examples:
               angle: 0.3
             # spectral_with_order takes (order, lambda) as inputs, so
             # we swap them first
-            - !transform/series  # in 2 --> out 1
+            - !transform/concatenate  # in 2 --> out 1
               - !transform/remap_axes [1, 0]
               - !transform/generic
                 n_inputs: 2
