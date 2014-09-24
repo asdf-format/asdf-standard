@@ -35,7 +35,7 @@ examples:
 
             transform: !transform/series
               - !transform/remap_axes [1, 0, 2, 3]
-              - !transform/separable
+              - !transform/join
                 - !transform/generic
                   n_inputs: 3
                   n_outputs: 3
@@ -50,7 +50,7 @@ examples:
 
             frames: [focal_plane_x, focal_plane_y, lambda, order]
 
-            transform: !transform/separable  # in 4 --> out 3
+            transform: !transform/join  # in 4 --> out 3
             - !transform/rotate2d
               angle: 0.3
             # spectral_with_order takes (order, lambda) as inputs, so
