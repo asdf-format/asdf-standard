@@ -18,7 +18,11 @@ The ``transform`` module contains schema used to describe transformations.
    stsci.edu/asdf/0.1.0/transform/remap_axes.rst
    stsci.edu/asdf/0.1.0/transform/join.rst
    stsci.edu/asdf/0.1.0/transform/series.rst
-   stsci.edu/asdf/0.1.0/transform/summed.rst
+   stsci.edu/asdf/0.1.0/transform/add.rst
+   stsci.edu/asdf/0.1.0/transform/subtract.rst
+   stsci.edu/asdf/0.1.0/transform/multiply.rst
+   stsci.edu/asdf/0.1.0/transform/divide.rst
+   stsci.edu/asdf/0.1.0/transform/power.rst
    stsci.edu/asdf/0.1.0/transform/affine.rst
    stsci.edu/asdf/0.1.0/transform/rotate2d.rst
    stsci.edu/asdf/0.1.0/transform/tangent.rst

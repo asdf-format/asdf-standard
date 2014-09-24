@@ -1,0 +1,27 @@
+%YAML 1.1
+---
+$schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
+id: "http://stsciu.edu/schemas/asdf/0.1.0/transform/power"
+tag: "tag:stsci.edu:asdf/0.1.0/transform/power"
+title: >
+  Perform a list of subtransforms in parallel and then raise each
+  result to the power of the next.
+
+description: |
+  Each of the subtransforms must have the same number of inputs and
+  outputs.
+
+examples:
+  -
+    - Take the square root of the result of a given transform.
+    - |
+      !transform/divide
+      - !transform/generic
+        n_inputs: 1
+        n_outputs: 1
+      - !core/constant
+        -2
+
+type: array
+items:
+  $ref: transform

@@ -1,0 +1,29 @@
+%YAML 1.1
+---
+$schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
+id: "http://stsciu.edu/schemas/asdf/0.1.0/transform/divide"
+tag: "tag:stsci.edu:asdf/0.1.0/transform/divide"
+title: >
+  Perform a list of subtransforms in parallel and then
+  divide their results.
+
+description: |
+  Each of the subtransforms must have the same number of inputs and
+  outputs.
+
+examples:
+  -
+    - A list of transforms, performed in parallel, and then combined
+      through division.
+    - |
+      !transform/divide
+      - !transform/generic
+        n_inputs: 1
+        n_outputs: 2
+      - !transform/generic
+        n_inputs: 2
+        n_outputs: 1
+
+type: array
+items:
+  $ref: transform
