@@ -19,23 +19,12 @@ properties:
       entire WCS pipeline.
     type: string
 
-  frames:
+  axes:
     description: |
-      The frame for each input axis to this step.
+      A description of each of the input axes for this step.
     type: array
     items:
-      anyOf:
-        - $ref: frame
-        - type: 'null'
-
-  units:
-    description: |
-      The units for each input axis to this step.
-    type: array
-    items:
-      anyOf:
-        - $ref: ../unit/unit
-        - type: 'null'
+      $ref: axis
 
   transform:
     description: |

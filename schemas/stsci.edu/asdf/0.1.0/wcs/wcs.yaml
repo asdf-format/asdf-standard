@@ -22,16 +22,24 @@ examples:
             # controlled vocabulary.
             name: pixel
 
-            # Frames is a list of the coordinate frames for each of
-            # the axes.  These names come from a controlled vocabulary
-            # of standard frame names (see `wcs/frame`), though we
-            # should probably also allow custom frame names.
-            frames: [detector_y, detector_x, detector_lambda, order]
-
-            # Units are the optional units of the axes.  This is really
-            # just for documentation, but could also be used by a unit-aware
-            # library to return values with associated units.
-            units: [pixel, pixel, nm, null]
+            # axes is a list describing the coordinate frame and other
+            # information for each axis.
+            axes:
+              - !wcs/axis
+                type: detector
+                name: y
+                unit: !unit/unit pixel
+              - !wcs/axis
+                type: detector
+                name: x
+                unit: !unit/unit pixel
+              - !wcs/axis
+                type: detector
+                name: lambda
+                unit: !unit/unit nm
+              - !wcs/axis
+                type: custom
+                name: order
 
             transform: !transform/concatenate
               - !transform/remap_axes [1, 0, 2, 3]
@@ -48,7 +56,19 @@ examples:
             # for the two separable parts from here on out.
             name: intermediate
 
-            frames: [focal_plane_x, focal_plane_y, lambda, order]
+            axes:
+              - !wcs/axis
+                type: focal_plane
+                name: x
+              - !wcs/axis
+                type: focal_plane
+                name: y
+              - !wcs/axis
+                type: spectral
+                name: lambda
+              - !wcs/axis
+                type: custom
+                name: order
 
             transform: !transform/join  # in 4 --> out 3
             - !transform/rotate2d
@@ -66,8 +86,21 @@ examples:
             # specify the frames and units of the resulting axes.
             name: world
 
-            frames: [celestial_ra, celestial_dec, spectral_freq]
-            units: [rad, rad, Hz]
+            axes:
+              - !wcs/axis
+                type: celestial
+                celestial_type: icrs
+                name: ra
+                unit: !unit/unit degree
+              - !wcs/axis
+                type: celestial
+                celestial_type: icrs
+                name: dec
+                unit: !unit/unit degree
+              - !wcs/axis
+                type: spectral
+                name: lambda
+                unit: !unit/unit Hz
 
 allOf:
   - type: object

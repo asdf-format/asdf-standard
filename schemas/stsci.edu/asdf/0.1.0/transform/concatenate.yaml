@@ -1,0 +1,32 @@
+%YAML 1.1
+---
+$schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
+id: "http://stsci.edu/schemas/asdf/0.1.0/transform/concatenate"
+tag: "tag:stsci.edu:asdf/0.1.0/transform/concatenate"
+title: >
+  Perform a list of subtransforms in series.
+
+description: |
+  The output of each subtransform is fed into the input of the next
+  subtransform.
+
+  The number of output dimensions of each subtransform must be equal
+  to the number of input dimensions of the next subtransform in list.
+  To reorder or add/drop axes, insert ``remap_axes`` transforms in the
+  subtransform list.
+
+examples:
+  -
+    - A series of transforms
+    - |
+      !transform/concatenate
+      - !transform/generic
+        n_inputs: 1
+        n_outputs: 2
+      - !transform/generic
+        n_inputs: 2
+        n_outputs: 1
+
+type: array
+items:
+  $ref: transform
