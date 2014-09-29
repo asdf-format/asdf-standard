@@ -20,8 +20,8 @@ examples:
         n_inputs: 1
         n_outputs: 2
       - !transform/generic
-        n_inputs: 2
-        n_outputs: 1
+        n_inputs: 1
+        n_outputs: 2
 
 type: array
 items:

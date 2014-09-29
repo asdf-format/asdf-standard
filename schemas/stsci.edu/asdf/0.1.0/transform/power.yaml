@@ -15,12 +15,12 @@ examples:
   -
     - Take the square root of the result of a given transform.
     - |
-      !transform/divide
+      !transform/power
       - !transform/generic
         n_inputs: 1
         n_outputs: 1
       - !core/constant
-        -2
+        0.5
 
 type: array
 items:
