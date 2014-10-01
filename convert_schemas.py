@@ -99,17 +99,20 @@ def format_range(var_middle, var_end, minimum, maximum,
         The formatted range expression
     """
     if minimum is not None and maximum is not None:
-        part = '{0} '.format(minimum)
-        if exclusiveMinimum:
-            part += '<'
+        if minimum == maximum:
+            part = '{0} = {1}'.format(var_middle, minimum)
         else:
-            part += '≤'
-        part += ' {0} '.format(var_middle)
-        if exclusiveMaximum:
-            part += '<'
-        else:
-            part += '≤'
-        part += ' {0}'.format(maximum)
+            part = '{0} '.format(minimum)
+            if exclusiveMinimum:
+                part += '<'
+            else:
+                part += '≤'
+            part += ' {0} '.format(var_middle)
+            if exclusiveMaximum:
+                part += '<'
+            else:
+                part += '≤'
+            part += ' {0}'.format(maximum)
     elif minimum is not None:
         if var_end is not None:
             part = '{0} '.format(var_end)
@@ -219,6 +222,9 @@ def format_type(schema, root):
             if range is not None:
                 parts.append(range)
 
+        if parts == []:
+            parts = 'any'
+
         if 'enum' in schema:
             parts.append(':soft:`from`')
             parts.append(json.dumps(schema['enum']))
@@ -235,6 +241,11 @@ def reindent(content, indent):
     for line in content.split('\n'):
         lines.append(indent + line)
     return '\n'.join(lines)
+
+
+def write_subschemas(o, name, schema, path, level, schemas):
+    indent = '  ' * max(level, 0)
+
 
 
 def recurse(o, name, schema, path, level, required=False):
@@ -311,11 +322,12 @@ def recurse(o, name, schema, path, level, required=False):
             recurse(o, i, subschema, path + ['allOf', str(i)], level + 1)
 
     if schema.get('type') == 'object':
-        o.write(indent)
-        o.write(':category:`Properties:`\n\n')
-        for key, val in schema.get('properties', {}).items():
-            recurse(o, key, val, path + ['properties', key], level + 1,
-                    key in schema.get('required', []))
+        if len(schema.get('properties', {})):
+            o.write(indent)
+            o.write(':category:`Properties:`\n\n')
+            for key, val in schema.get('properties', {}).items():
+                recurse(o, key, val, path + ['properties', key], level + 1,
+                        key in schema.get('required', []))
 
     elif schema.get('type') == 'array':
         o.write(indent)
@@ -328,7 +340,7 @@ def recurse(o, name, schema, path, level, required=False):
                 name = 'index[{0}]'.format(i)
                 recurse(o, name, val, path + [str(i)], level + 1)
 
-    if 'examples' in schema:
+    if schema.get('examples'):
         o.write(indent)
         o.write(":category:`Examples:`\n\n")
         for description, example in schema['examples']:

@@ -1,0 +1,18 @@
+%YAML 1.1
+---
+$schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
+id: "http://stsci.edu/schemas/asdf/0.1.0/transform/tangent"
+tag: "tag:stsci.edu:asdf/0.1.0/transform/tangent"
+title: |
+  A tangent (gnomonic) projection.
+
+description: |
+  Corresponds to the ``TAN`` projection in the FITS WCS standard.
+
+  TODO: Include description of math here.
+
+type: object
+properties:
+  direction:
+    enum: [forward, backward]
+    default: forward

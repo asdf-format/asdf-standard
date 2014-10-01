@@ -1,0 +1,16 @@
+%YAML 1.1
+---
+$schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
+id: "http://stsci.edu/schemas/asdf/0.1.0/wcs/rotate2d"
+tag: "tag:stsci.edu:asdf/0.1.0/wcs/rotate2d"
+title: >
+  A 2D rotation.
+description: >
+  A 2D rotation around the origin, in degrees.
+
+type: object
+properties:
+  angle:
+    type: number
+    description: Angle, in degrees.
+requiredProperties: [angle]

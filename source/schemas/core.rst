@@ -12,3 +12,4 @@ asdf library.
    stsci.edu/asdf/0.1.0/core/asdf.rst
    stsci.edu/asdf/0.1.0/core/complex.rst
    stsci.edu/asdf/0.1.0/core/ndarray.rst
+   stsci.edu/asdf/0.1.0/core/constant.rst

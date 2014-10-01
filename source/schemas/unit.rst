@@ -5,6 +5,10 @@ Unit
 
 The ``unit`` module contains schema to support the units of physical quantities.
 
+:category:`Requires:`
+
+:doc:`core`
+
 .. toctree::
    :maxdepth: 1
 
