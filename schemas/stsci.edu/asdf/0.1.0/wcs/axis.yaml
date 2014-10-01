@@ -42,6 +42,7 @@ properties:
       - spectral
       - cartesian
       - detector
+      - focal_plane
       - custom
 
   celestial_type:
