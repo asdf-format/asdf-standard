@@ -48,6 +48,7 @@ For example::
        source: 0
        dtype: float64
        shape: [1024, 1024]
+       byteorder: little
      ...
 
 All tags defined in the ASDF standard itself begin with the prefix
@@ -79,6 +80,7 @@ will be replaced with the prefix ``tag:stsci.edu:asdf/0.1.0/``::
         source: 0
         dtype: float64
         shape: [1024, 1024]
+        byteorder: little
 
 An ASDF parser may use the tag to look up the corresponding schema in
 the ASDF standard and validate the element.  The schema definitions
@@ -148,6 +150,7 @@ reference data, available on a public webserver at the URI
         source: 0
         shape: [256, 256]
         dtype: float
+        byteorder: little
 
 Another file may reference this data directly::
 
@@ -160,6 +163,7 @@ It is also possible to use references within the same file::
       source: 0
       shape: [256, 256]
       dtype: float
+      byteorder: little
       mask:
         $ref: "#/my_mask"
 
@@ -167,6 +171,7 @@ It is also possible to use references within the same file::
       source: 0
       shape: [256, 256]
       dtype: uint8
+      byteorder: little
 
 Reference resolution should be performed *after* the entire tree is
 read, therefore forward references within the same file are explicitly

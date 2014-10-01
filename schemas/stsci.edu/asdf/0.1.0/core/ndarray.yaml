@@ -135,6 +135,7 @@ examples:
             source: 1
             shape: [256, 256]
             dtype: bool8
+            byteorder: little
 
   -
     - An array where the data is stored in the first block in
