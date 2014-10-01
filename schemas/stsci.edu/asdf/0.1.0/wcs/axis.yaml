@@ -75,7 +75,7 @@ properties:
     description: |
       The observation time of the celestial frame, if different from
       ``equinox``.
-    type: ../time/time
+    type: string # ../time/time
 
   time_scale:
     description: |
