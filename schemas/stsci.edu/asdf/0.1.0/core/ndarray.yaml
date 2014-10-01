@@ -71,6 +71,7 @@ examples:
           source: 0
           shape: [1024, 1024]
           dtype: float64
+          byteorder: little
 
   -
     - A view of a tile in that image
@@ -79,6 +80,7 @@ examples:
           source: 0
           shape: [256, 256]
           dtype: float64
+          byteorder: little
           strides: [8192, 8]
           offset: 2099200
 
@@ -99,6 +101,7 @@ examples:
             - name: kernel
               dtype: float32
               shape: [3, 3]
+          byteorder: little
 
   -
     - An array in Fortran order
@@ -107,6 +110,7 @@ examples:
           source: 0
           shape: [1024, 1024]
           dtype: float64
+          byteorder: little
           strides: [8192, 8]
 
   -
@@ -116,6 +120,7 @@ examples:
           source: 0
           shape: [256, 256]
           dtype: float64
+          byteorder: little
           mask: -999
 
   -
@@ -125,10 +130,12 @@ examples:
           source: 0
           shape: [256, 256]
           dtype: float64
+          byteorder: little
           mask: !core/ndarray
             source: 1
             shape: [256, 256]
             dtype: bool8
+            byteorder: little
 
   -
     - An array where the data is stored in the first block in
@@ -138,6 +145,7 @@ examples:
           source: external.asdf
           shape: [256, 256]
           dtype: float64
+          byteorder: little
 
 definitions:
   scalar-dtype:
@@ -325,7 +333,6 @@ anyOf:
           The byte order (big- or little-endian) of the array data.
         type: string
         enum: [big, little]
-        default: big
 
       offset:
         description: >
@@ -361,4 +368,4 @@ anyOf:
           - $ref: ndarray
 
     dependencies:
-      source: [shape, dtype]
+      source: [shape, dtype, byteorder]

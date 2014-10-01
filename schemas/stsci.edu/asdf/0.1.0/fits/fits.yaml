@@ -38,6 +38,7 @@ examples:
                 dtype: float32
                 shape: [2, 3, 3, 4]
                 source: 0
+                byteorder: big
               header:
               - [XTENSION, IMAGE, Image extension]
               - [BITPIX, -32, array data type]
@@ -54,6 +55,7 @@ examples:
                 dtype: float32
                 shape: [2, 3, 3, 4]
                 source: 1
+                byteorder: big
               header:
               - [XTENSION, IMAGE, Image extension]
               - [BITPIX, -32, array data type]
