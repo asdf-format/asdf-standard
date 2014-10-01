@@ -1,7 +1,7 @@
 %YAML 1.1
 ---
 $schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
-id: "http://stsciu.edu/schemas/asdf/0.1.0/transform/power"
+id: "http://stsci.edu/schemas/asdf/0.1.0/transform/power"
 tag: "tag:stsci.edu:asdf/0.1.0/transform/power"
 title: >
   Perform a list of subtransforms in parallel and then raise each
