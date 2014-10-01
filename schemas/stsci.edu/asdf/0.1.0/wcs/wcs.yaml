@@ -111,7 +111,7 @@ allOf:
           coordinates.
 
           If not provided, a ASDF tool may automatically determine it
-          by inverting the backward tranformation, if possible.
+          by inverting the backward transformation, if possible.
         $ref: steps
 
       backward:
