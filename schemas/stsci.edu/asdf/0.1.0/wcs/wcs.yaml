@@ -89,12 +89,12 @@ examples:
             axes:
               - !wcs/axis
                 type: celestial
-                celestial_type: icrs
+                celestial_type: ICRS
                 name: ra
                 unit: !unit/unit degree
               - !wcs/axis
                 type: celestial
-                celestial_type: icrs
+                celestial_type: ICRS
                 name: dec
                 unit: !unit/unit degree
               - !wcs/axis
