@@ -1,0 +1,53 @@
+#ASDF 0.1.0
+%YAML 1.1
+%TAG ! tag:stsci.edu:asdf/0.1.0/
+--- !core/asdf
+dtype<i1: !core/ndarray
+  data: [127, -128, 0]
+  dtype: int8
+dtype<i2: !core/ndarray
+  data: [32767, -32768, 0]
+  dtype: int16
+dtype<i4: !core/ndarray
+  data: [2147483647, -2147483648, 0]
+  dtype: int32
+dtype<i8: !core/ndarray
+  data: [9223372036854775807, -9223372036854775808, 0]
+  dtype: int64
+dtype<u1: !core/ndarray
+  data: [255, 0]
+  dtype: uint8
+dtype<u2: !core/ndarray
+  data: [65535, 0]
+  dtype: uint16
+dtype<u4: !core/ndarray
+  data: [4294967295, 0]
+  dtype: uint32
+dtype<u8: !core/ndarray
+  data: [18446744073709551615, 0]
+  dtype: uint64
+dtype>i1: !core/ndarray
+  data: [127, -128, 0]
+  dtype: int8
+dtype>i2: !core/ndarray
+  data: [32767, -32768, 0]
+  dtype: int16
+dtype>i4: !core/ndarray
+  data: [2147483647, -2147483648, 0]
+  dtype: int32
+dtype>i8: !core/ndarray
+  data: [9223372036854775807, -9223372036854775808, 0]
+  dtype: int64
+dtype>u1: !core/ndarray
+  data: [255, 0]
+  dtype: uint8
+dtype>u2: !core/ndarray
+  data: [65535, 0]
+  dtype: uint16
+dtype>u4: !core/ndarray
+  data: [4294967295, 0]
+  dtype: uint32
+dtype>u8: !core/ndarray
+  data: [18446744073709551615, 0]
+  dtype: uint64
+...

@@ -24,7 +24,7 @@ def ref_basic(fd):
         pass
 
 
-def ref_datatypes(fd):
+def ref_int(fd):
     tree = {}
 
     for size in (1, 2, 4, 8):
@@ -40,6 +40,13 @@ def ref_datatypes(fd):
             arr = np.array(values, dtype)
             tree['dtype' + dtype] = arr
 
+    with pyasdf.AsdfFile(tree).write_to(fd):
+        pass
+
+
+def ref_float(fd):
+    tree = {}
+
     for size in (4, 8):
         for endian in ['>', '<']:
             dtype = '%sf%d' % (endian, size)
@@ -49,6 +56,20 @@ def ref_datatypes(fd):
             arr = np.array(values, dtype)
             tree['dtype' + dtype] = arr
 
+    with pyasdf.AsdfFile(tree).write_to(fd):
+        pass
+
+
+def ref_complex(fd):
+    tree = {}
+
+    for size in (4, 8):
+        for endian in ['>', '<']:
+            dtype = '%sf%d' % (endian, size)
+            finfo = np.finfo(np.dtype(dtype))
+            values = [0.0, -0.0, np.nan, np.inf, -np.inf,
+                      finfo.min, finfo.max, finfo.eps, finfo.epsneg, finfo.tiny]
+
             complex_values = []
             for x in values:
                 for y in values:
@@ -57,11 +78,31 @@ def ref_datatypes(fd):
             arr = np.array(complex_values, dtype)
             tree['dtype' + dtype] = arr
 
-    arr = np.array([b'', b'ascii'], dtype='S')
-    tree['dtypeS'] = arr
+    with pyasdf.AsdfFile(tree).write_to(fd):
+        pass
 
+
+def ref_ascii(fd):
+    arr = np.array([b'', b'ascii'], dtype='S')
+    tree = {'data': arr}
+    with pyasdf.AsdfFile(tree).write_to(fd):
+        pass
+
+
+def ref_unicode_bmp(fd):
+    tree = {}
     for endian in ['>', '<']:
-        arr = np.array(['', 'Æ𐀠ʩ'], dtype=endian + 'U')
+        arr = np.array(['', 'Æʩ'], dtype=endian + 'U')
+        tree['dtype' + endian + 'U'] = arr
+
+    with pyasdf.AsdfFile(tree).write_to(fd):
+        pass
+
+
+def ref_unicode_spp(fd):
+    tree = {}
+    for endian in ['>', '<']:
+        arr = np.array(['', '𐀠'], dtype=endian + 'U')
         tree['dtype' + endian + 'U'] = arr
 
     with pyasdf.AsdfFile(tree).write_to(fd):

@@ -1,0 +1,8 @@
+#ASDF 0.1.0
+%YAML 1.1
+%TAG ! tag:stsci.edu:asdf/0.1.0/
+--- !core/asdf
+data: !core/ndarray
+  data: ['', ascii]
+  dtype: [ascii, 5]
+...
