@@ -28,19 +28,19 @@ Header
 
 All ASDF files must start with a short one-line header.  For example::
 
-  %ASDF 0.1.0
+  #ASDF 0.1.0
 
 It is made up of the following parts (described in EBNF form)::
 
-  asdf_token = "%ASDF"
+  asdf_token = "#ASDF"
   major      = integer
   minor      = integer
   micro      = integer
   header     = asdf_token " " major "." minor "." micro ["\r"] "\n"
 
-- ``asdf_token``: The constant string ``%ASDF``.  This can be used
+- ``asdf_token``: The constant string ``#ASDF``.  This can be used
   to quickly identify the file as an ASDF file by reading the first 5
-  bytes.  It begins with a ``%`` so it will be treated as a YAML
+  bytes.  It begins with a ``#`` so it will be treated as a YAML
   comment such that the :ref:`header` and the :ref:`tree` together
   form a valid YAML file.
 
