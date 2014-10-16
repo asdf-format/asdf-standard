@@ -86,11 +86,11 @@ a specific purpose.  It is also possible to extend and specialize an
 existing schema (described in :ref:`extending-a-schema`).
 
 This section will walk through the development of a new tag and
-schema.  In the example, suppose we work at the institution "SCIENCE"
-which can be found on the world wide web at ``science.edu``.  We're
-developing a new instrument, ``FOO``, and we need a way to define the
-specialized metadata to describe the exposures that it will be
-generating.
+schema.  In the example, suppose we work the Space Telescope Science
+Institute, which can be found on the world wide web at ``stsci.edu``.
+We're developing a new instrument, ``FOO``, and we need a way to
+define the specialized metadata to describe the exposures that it will
+be generating.
 
 Header
 ^^^^^^
@@ -117,7 +117,7 @@ standard itself.  ASDF can, of course, include any tags, as long as
 the tag names are globally unique.  So, for our example instrument,
 we'll declare the tag to be::
 
-  tag:science.edu:FOO/0.1.0/metadata
+  tag:stsci.edu:FOO/0.1.0/metadata
 
 Each tag should be associated with a schema in order to validate
 it. Each schema must also have a universally unique ``id``, which is
@@ -139,14 +139,14 @@ to a schema URI, and then load the associated schema.
 Again following with our example, we will assign the following URI to
 refer to our schema::
 
-  http://science.edu/schemas/FOO/0.1.0/metadata
+  http://stsci.edu/schemas/FOO/0.1.0/metadata
 
 Therefore, in our schema file, we have the following keys, one
 declaring the name of the YAML ``tag``, and one defining the ``id`` of
 the schema::
 
-  tag: "tag:science.edu:FOO/0.1.0/metadata"
-  id: "http://science.edu/schemas/FOO/0.1.0/metadata"
+  tag: "tag:stsci.edu:FOO/0.1.0/metadata"
+  id: "http://stsci.edu/schemas/FOO/0.1.0/metadata"
 
 Descriptive information
 ^^^^^^^^^^^^^^^^^^^^^^^
@@ -228,8 +228,8 @@ Here is our complete schema example::
   %YAML 1.1
   ---
   $schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
-  tag: "tag:science.edu:FOO/0.1.0/metadata"
-  id: "http://science.edu/schemas/FOO/0.1.0/metadata"
+  tag: "tag:stsci.edu:FOO/0.1.0/metadata"
+  id: "http://stsci.edu/schemas/FOO/0.1.0/metadata"
 
   title: |
     Metadata for the FOO instrument.
