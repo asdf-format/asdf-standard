@@ -34,11 +34,12 @@ a number of custom tags, each of which has a corresponding schema.
 For example the tag of the root element of the tree must always be
 ``tag:stsci.edu:asdf/0.1.0/core/asdf``, which corresponds to the
 :ref:`asdf schema <http://stsci.edu/schemas/asdf/0.1.0/core/asdf>`
-schema.  A validating ASDF reader would encounter the tag when reading
-in the file, load the corresponding schema, and validate the content
-against it.  An ASDF library may also use this information to convert
-to a native data type that presents a more convenient interface to the
-user than the structure of basic types stored in the YAML content.
+--in other words, the top level schema for ASDF trees.  A validating ASDF reader would 
+encounter the tag when reading in the file, load the corresponding schema,
+and validate the content against it.  An ASDF library may also use this
+information to convert to a native data type that presents a more convenient
+interface to the user than the structure of basic types stored in the YAML
+content.
 
 For example::
 
