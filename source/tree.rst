@@ -17,10 +17,12 @@ how :ref:`n-dimensional array data
 described.  These schema are written in a language called
 :ref:`yaml-schema` which is just a thin extension of `JSON Schema,
 Draft 4
-<http://json-schema.org/latest/json-schema-validation.html>`__.
-:ref:`schema`, provides a reference to all of these schema in detail.
-:ref:`extending-asdf` describes how to use YAML schema to define new
-schema.
+<http://json-schema.org/latest/json-schema-validation.html>`__.  (Such
+extensions are allowed and even encouraged by the JSON Schema
+standard, which defines the ``$schema`` attribute as a place to
+specify which extension is being used.)  :ref:`schema`, provides a
+reference to all of these schema in detail.  :ref:`extending-asdf`
+describes how to use YAML schema to define new schema.
 
 .. _tags:
 
