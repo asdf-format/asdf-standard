@@ -1,0 +1,131 @@
+#!/usr/bin/env python
+#-*- coding: utf-8 -*-
+
+from __future__ import unicode_literals
+
+import copy
+import os
+
+try:
+    import pyasdf
+except ImportError:
+    raise ImportError(
+        "pyasdf must be installed to regenerate the reference files.")
+
+import numpy as np
+
+
+def ref_basic(fd):
+    tree = {
+        'data': np.arange(8)
+        }
+
+    with pyasdf.AsdfFile(tree).write_to(fd):
+        pass
+
+
+def ref_datatypes(fd):
+    tree = {}
+
+    for size in (1, 2, 4, 8):
+        bits = size * 8
+        for endian in ['>', '<']:
+            values = [(1 << (bits - 1)) - 1, -(1 << (bits - 1)), 0]
+            dtype = '%si%d' % (endian, size)
+            arr = np.array(values, dtype)
+            tree['dtype' + dtype] = arr
+
+            values = [(1 << bits) - 1, 0]
+            dtype = '%su%d' % (endian, size)
+            arr = np.array(values, dtype)
+            tree['dtype' + dtype] = arr
+
+    for size in (4, 8):
+        for endian in ['>', '<']:
+            dtype = '%sf%d' % (endian, size)
+            finfo = np.finfo(np.dtype(dtype))
+            values = [0.0, -0.0, np.nan, np.inf, -np.inf,
+                      finfo.min, finfo.max, finfo.eps, finfo.epsneg, finfo.tiny]
+            arr = np.array(values, dtype)
+            tree['dtype' + dtype] = arr
+
+            complex_values = []
+            for x in values:
+                for y in values:
+                    complex_values.append(x + 1j * y)
+            dtype = '%sc%d' % (endian, size * 2)
+            arr = np.array(complex_values, dtype)
+            tree['dtype' + dtype] = arr
+
+    arr = np.array([b'', b'ascii'], dtype='S')
+    tree['dtypeS'] = arr
+
+    for endian in ['>', '<']:
+        arr = np.array(['', 'Æ𐀠ʩ'], dtype=endian + 'U')
+        tree['dtype' + endian + 'U'] = arr
+
+    with pyasdf.AsdfFile(tree).write_to(fd):
+        pass
+
+
+def ref_shared(fd):
+    data = np.arange(8)
+    tree = {
+        'data': data,
+        'subset': data[1::2]
+        }
+
+    with pyasdf.AsdfFile(tree).write_to(fd):
+        pass
+
+
+def ref_stream(fd):
+    tree = {
+        # Each "row" of data will have 128 entries.
+        'my_stream': pyasdf.Stream([8], np.float64)
+    }
+
+    ff = pyasdf.AsdfFile(tree)
+    with ff.write_to(fd):
+        # Write 100 rows of data, one row at a time.  ``write_to_stream``
+        # expects the raw binary bytes, not an array, so we use
+        # ``tostring()``.
+        for i in range(8):
+            ff.write_to_stream(np.array([i] * 8, np.float64).tostring())
+
+
+def ref_exploded(fd):
+    tree = {
+        'data': np.arange(8)
+    }
+
+    with pyasdf.AsdfFile(tree).write_to(fd, exploded=True):
+        pass
+
+
+def generate(version):
+    outdir = os.path.join(os.path.dirname(__file__), '..', version)
+
+    for name, func in globals().items():
+        if not name.startswith("ref_"):
+            continue
+
+        name = name[4:]
+        filename = os.path.join(outdir, name)
+        func(filename + ".asdf")
+        with pyasdf.open(filename + ".asdf") as asdf:
+            asdf.resolve_and_inline()
+            with asdf.write_to(filename + ".yaml"):
+                pass
+
+
+if __name__ == '__main__':
+    import argparse
+    parser = argparse.ArgumentParser(
+        "generate",
+        description="Regenerate the ASDF reference files")
+    parser.add_argument(
+        "version", type=str, nargs=1, help="The ASDF version")
+    args = parser.parse_args()
+
+    generate(args.version[0])

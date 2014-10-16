@@ -1,0 +1,250 @@
+#ASDF 0.1.0
+%YAML 1.1
+%TAG ! tag:stsci.edu:asdf/0.1.0/
+--- !core/asdf
+dtype<U: !core/ndarray
+  data: ['', "Æ\U00010020ʩ"]
+  dtype: [ucs4, 3]
+dtype<c16: !core/ndarray
+  data: [!core/complex '0j', !core/complex '0j', !core/complex '(nan+nanj)', !core/complex '(nan+infj)',
+    !core/complex '(nan-infj)', !core/complex '-1.79769313486e+308j', !core/complex '1.79769313486e+308j',
+    !core/complex '2.22044604925e-16j', !core/complex '1.11022302463e-16j', !core/complex '2.22507385851e-308j',
+    !core/complex '0j', !core/complex '(-0+0j)', !core/complex '(nan+nanj)', !core/complex '(nan+infj)',
+    !core/complex '(nan-infj)', !core/complex '(-0-1.79769313486e+308j)', !core/complex '1.79769313486e+308j',
+    !core/complex '2.22044604925e-16j', !core/complex '1.11022302463e-16j', !core/complex '2.22507385851e-308j',
+    !core/complex '(nan+0j)', !core/complex '(nan+0j)', !core/complex '(nan+nanj)',
+    !core/complex '(nan+infj)', !core/complex '(nan-infj)', !core/complex '(nan-1.79769313486e+308j)',
+    !core/complex '(nan+1.79769313486e+308j)', !core/complex '(nan+2.22044604925e-16j)',
+    !core/complex '(nan+1.11022302463e-16j)', !core/complex '(nan+2.22507385851e-308j)',
+    !core/complex '(inf+0j)', !core/complex '(inf+0j)', !core/complex '(nan+nanj)',
+    !core/complex '(nan+infj)', !core/complex '(nan-infj)', !core/complex '(inf-1.79769313486e+308j)',
+    !core/complex '(inf+1.79769313486e+308j)', !core/complex '(inf+2.22044604925e-16j)',
+    !core/complex '(inf+1.11022302463e-16j)', !core/complex '(inf+2.22507385851e-308j)',
+    !core/complex '(-inf+0j)', !core/complex '(-inf+0j)', !core/complex '(nan+nanj)',
+    !core/complex '(nan+infj)', !core/complex '(nan-infj)', !core/complex '(-inf-1.79769313486e+308j)',
+    !core/complex '(-inf+1.79769313486e+308j)', !core/complex '(-inf+2.22044604925e-16j)',
+    !core/complex '(-inf+1.11022302463e-16j)', !core/complex '(-inf+2.22507385851e-308j)',
+    !core/complex '(-1.79769313486e+308+0j)', !core/complex '(-1.79769313486e+308+0j)',
+    !core/complex '(nan+nanj)', !core/complex '(nan+infj)', !core/complex '(nan-infj)',
+    !core/complex '(-1.79769313486e+308-1.79769313486e+308j)', !core/complex '(-1.79769313486e+308+1.79769313486e+308j)',
+    !core/complex '(-1.79769313486e+308+2.22044604925e-16j)', !core/complex '(-1.79769313486e+308+1.11022302463e-16j)',
+    !core/complex '(-1.79769313486e+308+2.22507385851e-308j)', !core/complex '(1.79769313486e+308+0j)',
+    !core/complex '(1.79769313486e+308+0j)', !core/complex '(nan+nanj)', !core/complex '(nan+infj)',
+    !core/complex '(nan-infj)', !core/complex '(1.79769313486e+308-1.79769313486e+308j)',
+    !core/complex '(1.79769313486e+308+1.79769313486e+308j)', !core/complex '(1.79769313486e+308+2.22044604925e-16j)',
+    !core/complex '(1.79769313486e+308+1.11022302463e-16j)', !core/complex '(1.79769313486e+308+2.22507385851e-308j)',
+    !core/complex '(2.22044604925e-16+0j)', !core/complex '(2.22044604925e-16+0j)',
+    !core/complex '(nan+nanj)', !core/complex '(nan+infj)', !core/complex '(nan-infj)',
+    !core/complex '(2.22044604925e-16-1.79769313486e+308j)', !core/complex '(2.22044604925e-16+1.79769313486e+308j)',
+    !core/complex '(2.22044604925e-16+2.22044604925e-16j)', !core/complex '(2.22044604925e-16+1.11022302463e-16j)',
+    !core/complex '(2.22044604925e-16+2.22507385851e-308j)', !core/complex '(1.11022302463e-16+0j)',
+    !core/complex '(1.11022302463e-16+0j)', !core/complex '(nan+nanj)', !core/complex '(nan+infj)',
+    !core/complex '(nan-infj)', !core/complex '(1.11022302463e-16-1.79769313486e+308j)',
+    !core/complex '(1.11022302463e-16+1.79769313486e+308j)', !core/complex '(1.11022302463e-16+2.22044604925e-16j)',
+    !core/complex '(1.11022302463e-16+1.11022302463e-16j)', !core/complex '(1.11022302463e-16+2.22507385851e-308j)',
+    !core/complex '(2.22507385851e-308+0j)', !core/complex '(2.22507385851e-308+0j)',
+    !core/complex '(nan+nanj)', !core/complex '(nan+infj)', !core/complex '(nan-infj)',
+    !core/complex '(2.22507385851e-308-1.79769313486e+308j)', !core/complex '(2.22507385851e-308+1.79769313486e+308j)',
+    !core/complex '(2.22507385851e-308+2.22044604925e-16j)', !core/complex '(2.22507385851e-308+1.11022302463e-16j)',
+    !core/complex '(2.22507385851e-308+2.22507385851e-308j)']
+  dtype: complex128
+dtype<c8: !core/ndarray
+  data: [!core/complex '0j', !core/complex '0j', !core/complex '(nan+nanj)', !core/complex '(nan+infj)',
+    !core/complex '(nan-infj)', !core/complex '-3.40282346639e+38j', !core/complex '3.40282346639e+38j',
+    !core/complex '1.19209289551e-07j', !core/complex '5.96046447754e-08j', !core/complex '1.17549435082e-38j',
+    !core/complex '0j', !core/complex '(-0+0j)', !core/complex '(nan+nanj)', !core/complex '(nan+infj)',
+    !core/complex '(nan-infj)', !core/complex '(-0-3.40282346639e+38j)', !core/complex '3.40282346639e+38j',
+    !core/complex '1.19209289551e-07j', !core/complex '5.96046447754e-08j', !core/complex '1.17549435082e-38j',
+    !core/complex '(nan+0j)', !core/complex '(nan+0j)', !core/complex '(nan+nanj)',
+    !core/complex '(nan+infj)', !core/complex '(nan-infj)', !core/complex '(nan-3.40282346639e+38j)',
+    !core/complex '(nan+3.40282346639e+38j)', !core/complex '(nan+1.19209289551e-07j)',
+    !core/complex '(nan+5.96046447754e-08j)', !core/complex '(nan+1.17549435082e-38j)',
+    !core/complex '(inf+0j)', !core/complex '(inf+0j)', !core/complex '(nan+nanj)',
+    !core/complex '(nan+infj)', !core/complex '(nan-infj)', !core/complex '(inf-3.40282346639e+38j)',
+    !core/complex '(inf+3.40282346639e+38j)', !core/complex '(inf+1.19209289551e-07j)',
+    !core/complex '(inf+5.96046447754e-08j)', !core/complex '(inf+1.17549435082e-38j)',
+    !core/complex '(-inf+0j)', !core/complex '(-inf+0j)', !core/complex '(nan+nanj)',
+    !core/complex '(nan+infj)', !core/complex '(nan-infj)', !core/complex '(-inf-3.40282346639e+38j)',
+    !core/complex '(-inf+3.40282346639e+38j)', !core/complex '(-inf+1.19209289551e-07j)',
+    !core/complex '(-inf+5.96046447754e-08j)', !core/complex '(-inf+1.17549435082e-38j)',
+    !core/complex '(-3.40282346639e+38+0j)', !core/complex '(-3.40282346639e+38+0j)',
+    !core/complex '(nan+nanj)', !core/complex '(nan+infj)', !core/complex '(nan-infj)',
+    !core/complex '(-3.40282346639e+38-3.40282346639e+38j)', !core/complex '(-3.40282346639e+38+3.40282346639e+38j)',
+    !core/complex '(-3.40282346639e+38+1.19209289551e-07j)', !core/complex '(-3.40282346639e+38+5.96046447754e-08j)',
+    !core/complex '(-3.40282346639e+38+1.17549435082e-38j)', !core/complex '(3.40282346639e+38+0j)',
+    !core/complex '(3.40282346639e+38+0j)', !core/complex '(nan+nanj)', !core/complex '(nan+infj)',
+    !core/complex '(nan-infj)', !core/complex '(3.40282346639e+38-3.40282346639e+38j)',
+    !core/complex '(3.40282346639e+38+3.40282346639e+38j)', !core/complex '(3.40282346639e+38+1.19209289551e-07j)',
+    !core/complex '(3.40282346639e+38+5.96046447754e-08j)', !core/complex '(3.40282346639e+38+1.17549435082e-38j)',
+    !core/complex '(1.19209289551e-07+0j)', !core/complex '(1.19209289551e-07+0j)',
+    !core/complex '(nan+nanj)', !core/complex '(nan+infj)', !core/complex '(nan-infj)',
+    !core/complex '(1.19209289551e-07-3.40282346639e+38j)', !core/complex '(1.19209289551e-07+3.40282346639e+38j)',
+    !core/complex '(1.19209289551e-07+1.19209289551e-07j)', !core/complex '(1.19209289551e-07+5.96046447754e-08j)',
+    !core/complex '(1.19209289551e-07+1.17549435082e-38j)', !core/complex '(5.96046447754e-08+0j)',
+    !core/complex '(5.96046447754e-08+0j)', !core/complex '(nan+nanj)', !core/complex '(nan+infj)',
+    !core/complex '(nan-infj)', !core/complex '(5.96046447754e-08-3.40282346639e+38j)',
+    !core/complex '(5.96046447754e-08+3.40282346639e+38j)', !core/complex '(5.96046447754e-08+1.19209289551e-07j)',
+    !core/complex '(5.96046447754e-08+5.96046447754e-08j)', !core/complex '(5.96046447754e-08+1.17549435082e-38j)',
+    !core/complex '(1.17549435082e-38+0j)', !core/complex '(1.17549435082e-38+0j)',
+    !core/complex '(nan+nanj)', !core/complex '(nan+infj)', !core/complex '(nan-infj)',
+    !core/complex '(1.17549435082e-38-3.40282346639e+38j)', !core/complex '(1.17549435082e-38+3.40282346639e+38j)',
+    !core/complex '(1.17549435082e-38+1.19209289551e-07j)', !core/complex '(1.17549435082e-38+5.96046447754e-08j)',
+    !core/complex '(1.17549435082e-38+1.17549435082e-38j)']
+  dtype: complex64
+dtype<f4: !core/ndarray
+  data: [0.0, -0.0, .nan, .inf, -.inf, -3.4028234663852886e+38, 3.4028234663852886e+38,
+    1.1920928955078125e-07, 5.960464477539063e-08, 1.1754943508222875e-38]
+  dtype: float32
+dtype<f8: !core/ndarray
+  data: [0.0, -0.0, .nan, .inf, -.inf, -1.7976931348623157e+308, 1.7976931348623157e+308,
+    2.220446049250313e-16, 1.1102230246251565e-16, 2.2250738585072014e-308]
+  dtype: float64
+dtype<i1: !core/ndarray
+  data: [127, -128, 0]
+  dtype: int8
+dtype<i2: !core/ndarray
+  data: [32767, -32768, 0]
+  dtype: int16
+dtype<i4: !core/ndarray
+  data: [2147483647, -2147483648, 0]
+  dtype: int32
+dtype<i8: !core/ndarray
+  data: [9223372036854775807, -9223372036854775808, 0]
+  dtype: int64
+dtype<u1: !core/ndarray
+  data: [255, 0]
+  dtype: uint8
+dtype<u2: !core/ndarray
+  data: [65535, 0]
+  dtype: uint16
+dtype<u4: !core/ndarray
+  data: [4294967295, 0]
+  dtype: uint32
+dtype<u8: !core/ndarray
+  data: [18446744073709551615, 0]
+  dtype: uint64
+dtype>U: !core/ndarray
+  data: ['', "Æ\U00010020ʩ"]
+  dtype: [ucs4, 3]
+dtype>c16: !core/ndarray
+  data: [!core/complex '0j', !core/complex '0j', !core/complex '(nan+nanj)', !core/complex '(nan+infj)',
+    !core/complex '(nan-infj)', !core/complex '-1.79769313486e+308j', !core/complex '1.79769313486e+308j',
+    !core/complex '2.22044604925e-16j', !core/complex '1.11022302463e-16j', !core/complex '2.22507385851e-308j',
+    !core/complex '0j', !core/complex '(-0+0j)', !core/complex '(nan+nanj)', !core/complex '(nan+infj)',
+    !core/complex '(nan-infj)', !core/complex '(-0-1.79769313486e+308j)', !core/complex '1.79769313486e+308j',
+    !core/complex '2.22044604925e-16j', !core/complex '1.11022302463e-16j', !core/complex '2.22507385851e-308j',
+    !core/complex '(nan+0j)', !core/complex '(nan+0j)', !core/complex '(nan+nanj)',
+    !core/complex '(nan+infj)', !core/complex '(nan-infj)', !core/complex '(nan-1.79769313486e+308j)',
+    !core/complex '(nan+1.79769313486e+308j)', !core/complex '(nan+2.22044604925e-16j)',
+    !core/complex '(nan+1.11022302463e-16j)', !core/complex '(nan+2.22507385851e-308j)',
+    !core/complex '(inf+0j)', !core/complex '(inf+0j)', !core/complex '(nan+nanj)',
+    !core/complex '(nan+infj)', !core/complex '(nan-infj)', !core/complex '(inf-1.79769313486e+308j)',
+    !core/complex '(inf+1.79769313486e+308j)', !core/complex '(inf+2.22044604925e-16j)',
+    !core/complex '(inf+1.11022302463e-16j)', !core/complex '(inf+2.22507385851e-308j)',
+    !core/complex '(-inf+0j)', !core/complex '(-inf+0j)', !core/complex '(nan+nanj)',
+    !core/complex '(nan+infj)', !core/complex '(nan-infj)', !core/complex '(-inf-1.79769313486e+308j)',
+    !core/complex '(-inf+1.79769313486e+308j)', !core/complex '(-inf+2.22044604925e-16j)',
+    !core/complex '(-inf+1.11022302463e-16j)', !core/complex '(-inf+2.22507385851e-308j)',
+    !core/complex '(-1.79769313486e+308+0j)', !core/complex '(-1.79769313486e+308+0j)',
+    !core/complex '(nan+nanj)', !core/complex '(nan+infj)', !core/complex '(nan-infj)',
+    !core/complex '(-1.79769313486e+308-1.79769313486e+308j)', !core/complex '(-1.79769313486e+308+1.79769313486e+308j)',
+    !core/complex '(-1.79769313486e+308+2.22044604925e-16j)', !core/complex '(-1.79769313486e+308+1.11022302463e-16j)',
+    !core/complex '(-1.79769313486e+308+2.22507385851e-308j)', !core/complex '(1.79769313486e+308+0j)',
+    !core/complex '(1.79769313486e+308+0j)', !core/complex '(nan+nanj)', !core/complex '(nan+infj)',
+    !core/complex '(nan-infj)', !core/complex '(1.79769313486e+308-1.79769313486e+308j)',
+    !core/complex '(1.79769313486e+308+1.79769313486e+308j)', !core/complex '(1.79769313486e+308+2.22044604925e-16j)',
+    !core/complex '(1.79769313486e+308+1.11022302463e-16j)', !core/complex '(1.79769313486e+308+2.22507385851e-308j)',
+    !core/complex '(2.22044604925e-16+0j)', !core/complex '(2.22044604925e-16+0j)',
+    !core/complex '(nan+nanj)', !core/complex '(nan+infj)', !core/complex '(nan-infj)',
+    !core/complex '(2.22044604925e-16-1.79769313486e+308j)', !core/complex '(2.22044604925e-16+1.79769313486e+308j)',
+    !core/complex '(2.22044604925e-16+2.22044604925e-16j)', !core/complex '(2.22044604925e-16+1.11022302463e-16j)',
+    !core/complex '(2.22044604925e-16+2.22507385851e-308j)', !core/complex '(1.11022302463e-16+0j)',
+    !core/complex '(1.11022302463e-16+0j)', !core/complex '(nan+nanj)', !core/complex '(nan+infj)',
+    !core/complex '(nan-infj)', !core/complex '(1.11022302463e-16-1.79769313486e+308j)',
+    !core/complex '(1.11022302463e-16+1.79769313486e+308j)', !core/complex '(1.11022302463e-16+2.22044604925e-16j)',
+    !core/complex '(1.11022302463e-16+1.11022302463e-16j)', !core/complex '(1.11022302463e-16+2.22507385851e-308j)',
+    !core/complex '(2.22507385851e-308+0j)', !core/complex '(2.22507385851e-308+0j)',
+    !core/complex '(nan+nanj)', !core/complex '(nan+infj)', !core/complex '(nan-infj)',
+    !core/complex '(2.22507385851e-308-1.79769313486e+308j)', !core/complex '(2.22507385851e-308+1.79769313486e+308j)',
+    !core/complex '(2.22507385851e-308+2.22044604925e-16j)', !core/complex '(2.22507385851e-308+1.11022302463e-16j)',
+    !core/complex '(2.22507385851e-308+2.22507385851e-308j)']
+  dtype: complex128
+dtype>c8: !core/ndarray
+  data: [!core/complex '0j', !core/complex '0j', !core/complex '(nan+nanj)', !core/complex '(nan+infj)',
+    !core/complex '(nan-infj)', !core/complex '-3.40282346639e+38j', !core/complex '3.40282346639e+38j',
+    !core/complex '1.19209289551e-07j', !core/complex '5.96046447754e-08j', !core/complex '1.17549435082e-38j',
+    !core/complex '0j', !core/complex '(-0+0j)', !core/complex '(nan+nanj)', !core/complex '(nan+infj)',
+    !core/complex '(nan-infj)', !core/complex '(-0-3.40282346639e+38j)', !core/complex '3.40282346639e+38j',
+    !core/complex '1.19209289551e-07j', !core/complex '5.96046447754e-08j', !core/complex '1.17549435082e-38j',
+    !core/complex '(nan+0j)', !core/complex '(nan+0j)', !core/complex '(nan+nanj)',
+    !core/complex '(nan+infj)', !core/complex '(nan-infj)', !core/complex '(nan-3.40282346639e+38j)',
+    !core/complex '(nan+3.40282346639e+38j)', !core/complex '(nan+1.19209289551e-07j)',
+    !core/complex '(nan+5.96046447754e-08j)', !core/complex '(nan+1.17549435082e-38j)',
+    !core/complex '(inf+0j)', !core/complex '(inf+0j)', !core/complex '(nan+nanj)',
+    !core/complex '(nan+infj)', !core/complex '(nan-infj)', !core/complex '(inf-3.40282346639e+38j)',
+    !core/complex '(inf+3.40282346639e+38j)', !core/complex '(inf+1.19209289551e-07j)',
+    !core/complex '(inf+5.96046447754e-08j)', !core/complex '(inf+1.17549435082e-38j)',
+    !core/complex '(-inf+0j)', !core/complex '(-inf+0j)', !core/complex '(nan+nanj)',
+    !core/complex '(nan+infj)', !core/complex '(nan-infj)', !core/complex '(-inf-3.40282346639e+38j)',
+    !core/complex '(-inf+3.40282346639e+38j)', !core/complex '(-inf+1.19209289551e-07j)',
+    !core/complex '(-inf+5.96046447754e-08j)', !core/complex '(-inf+1.17549435082e-38j)',
+    !core/complex '(-3.40282346639e+38+0j)', !core/complex '(-3.40282346639e+38+0j)',
+    !core/complex '(nan+nanj)', !core/complex '(nan+infj)', !core/complex '(nan-infj)',
+    !core/complex '(-3.40282346639e+38-3.40282346639e+38j)', !core/complex '(-3.40282346639e+38+3.40282346639e+38j)',
+    !core/complex '(-3.40282346639e+38+1.19209289551e-07j)', !core/complex '(-3.40282346639e+38+5.96046447754e-08j)',
+    !core/complex '(-3.40282346639e+38+1.17549435082e-38j)', !core/complex '(3.40282346639e+38+0j)',
+    !core/complex '(3.40282346639e+38+0j)', !core/complex '(nan+nanj)', !core/complex '(nan+infj)',
+    !core/complex '(nan-infj)', !core/complex '(3.40282346639e+38-3.40282346639e+38j)',
+    !core/complex '(3.40282346639e+38+3.40282346639e+38j)', !core/complex '(3.40282346639e+38+1.19209289551e-07j)',
+    !core/complex '(3.40282346639e+38+5.96046447754e-08j)', !core/complex '(3.40282346639e+38+1.17549435082e-38j)',
+    !core/complex '(1.19209289551e-07+0j)', !core/complex '(1.19209289551e-07+0j)',
+    !core/complex '(nan+nanj)', !core/complex '(nan+infj)', !core/complex '(nan-infj)',
+    !core/complex '(1.19209289551e-07-3.40282346639e+38j)', !core/complex '(1.19209289551e-07+3.40282346639e+38j)',
+    !core/complex '(1.19209289551e-07+1.19209289551e-07j)', !core/complex '(1.19209289551e-07+5.96046447754e-08j)',
+    !core/complex '(1.19209289551e-07+1.17549435082e-38j)', !core/complex '(5.96046447754e-08+0j)',
+    !core/complex '(5.96046447754e-08+0j)', !core/complex '(nan+nanj)', !core/complex '(nan+infj)',
+    !core/complex '(nan-infj)', !core/complex '(5.96046447754e-08-3.40282346639e+38j)',
+    !core/complex '(5.96046447754e-08+3.40282346639e+38j)', !core/complex '(5.96046447754e-08+1.19209289551e-07j)',
+    !core/complex '(5.96046447754e-08+5.96046447754e-08j)', !core/complex '(5.96046447754e-08+1.17549435082e-38j)',
+    !core/complex '(1.17549435082e-38+0j)', !core/complex '(1.17549435082e-38+0j)',
+    !core/complex '(nan+nanj)', !core/complex '(nan+infj)', !core/complex '(nan-infj)',
+    !core/complex '(1.17549435082e-38-3.40282346639e+38j)', !core/complex '(1.17549435082e-38+3.40282346639e+38j)',
+    !core/complex '(1.17549435082e-38+1.19209289551e-07j)', !core/complex '(1.17549435082e-38+5.96046447754e-08j)',
+    !core/complex '(1.17549435082e-38+1.17549435082e-38j)']
+  dtype: complex64
+dtype>f4: !core/ndarray
+  data: [0.0, -0.0, .nan, .inf, -.inf, -3.4028234663852886e+38, 3.4028234663852886e+38,
+    1.1920928955078125e-07, 5.960464477539063e-08, 1.1754943508222875e-38]
+  dtype: float32
+dtype>f8: !core/ndarray
+  data: [0.0, -0.0, .nan, .inf, -.inf, -1.7976931348623157e+308, 1.7976931348623157e+308,
+    2.220446049250313e-16, 1.1102230246251565e-16, 2.2250738585072014e-308]
+  dtype: float64
+dtype>i1: !core/ndarray
+  data: [127, -128, 0]
+  dtype: int8
+dtype>i2: !core/ndarray
+  data: [32767, -32768, 0]
+  dtype: int16
+dtype>i4: !core/ndarray
+  data: [2147483647, -2147483648, 0]
+  dtype: int32
+dtype>i8: !core/ndarray
+  data: [9223372036854775807, -9223372036854775808, 0]
+  dtype: int64
+dtype>u1: !core/ndarray
+  data: [255, 0]
+  dtype: uint8
+dtype>u2: !core/ndarray
+  data: [65535, 0]
+  dtype: uint16
+dtype>u4: !core/ndarray
+  data: [4294967295, 0]
+  dtype: uint32
+dtype>u8: !core/ndarray
+  data: [18446744073709551615, 0]
+  dtype: uint64
+dtypeS: !core/ndarray
+  data: ['', ascii]
+  dtype: [ascii, 5]
+...
