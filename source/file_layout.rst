@@ -145,7 +145,7 @@ Each block begins with the following header:
 - ``block_magic_token`` (4 bytes): Indicates the start of the block.
   This allows the file to contain some unused space in which to grow
   the tree, and to perform consistency checks when jumping from one
-  block to the next.  It is make up of the following 4 8-bit characters:
+  block to the next.  It is made up of the following 4 8-bit characters:
 
   - in hexadecimal: 89, 42, 4c, 4b
   - in ascii: ``"\211BLK"``
