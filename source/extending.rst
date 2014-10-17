@@ -86,11 +86,11 @@ a specific purpose.  It is also possible to extend and specialize an
 existing schema (described in :ref:`extending-a-schema`).
 
 This section will walk through the development of a new tag and
-schema.  In the example, suppose we work the Space Telescope Science
-Institute, which can be found on the world wide web at ``stsci.edu``.
-We're developing a new instrument, ``FOO``, and we need a way to
-define the specialized metadata to describe the exposures that it will
-be generating.
+schema.  In the example, suppose we work at the Space Telescope
+Science Institute, which can be found on the world wide web at
+``stsci.edu``.  We're developing a new instrument, ``FOO``, and we
+need a way to define the specialized metadata to describe the
+exposures that it will be generating.
 
 Header
 ^^^^^^
