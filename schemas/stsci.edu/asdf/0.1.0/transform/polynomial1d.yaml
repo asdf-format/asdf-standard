@@ -1,0 +1,29 @@
+%YAML 1.1
+---
+$schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
+id: "http://stsci.edu/schemas/asdf/0.1.0/transform/polynomial1d"
+tag: "tag:stsci.edu:asdf/0.1.0/transform/polynomial1d"
+title: >
+  A 1D polynomial transform.
+description: >
+  1D polynomial
+
+type: object
+properties:
+  degree:
+    type: integer
+    description: Degree of polynomial.
+  param_dim:
+    type: integer
+  coeffs:
+    description: |
+      An array with coefficients (optional)
+    anyOf:
+      - $ref: ../core/ndarray
+      - type: array
+        items:
+          type: object
+        minLength: 1
+  inverse:
+    $ref: transform
+requiredProperties: [degree]
