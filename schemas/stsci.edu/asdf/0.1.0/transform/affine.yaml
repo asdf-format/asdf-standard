@@ -1,23 +1,26 @@
 %YAML 1.1
 ---
 $schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
-id: "http://stsci.edu/schemas/asdf/0.1.0/wcs/affine"
-tag: "tag:stsci.edu:asdf/0.1.0/wcs/affine"
+id: "http://stsci.edu/schemas/asdf/0.1.0/transform/affine"
+tag: "tag:stsci.edu:asdf/0.1.0/transform/affine"
 title: >
   An affine transform.
-description: >
-
-type: object
-properties:
-  matrix:
-    description: |
-      An affine transformation matrix of the size (*n* + 1) × (*n* +
-      1), where *n* is the number of axes in the transformation.
-    allOf:
-      - $ref: ../core/ndarray
-      - type: object
-        properties:
-          shape:
-            type: array
-            minItems: 2
-            maxItems: 2
+description: |
+  Invertability: All ASDF tools are required to be able to compute the
+  analytic inverse of this transform.
+allOf:
+  - $ref: transform
+  - type: object
+    properties:
+      matrix:
+        description: |
+          An affine transformation matrix of the size (*n* + 1) × (*n*
+          + 1), where *n* is the number of axes in the transformation.
+        allOf:
+          - $ref: ../core/ndarray
+          - type: object
+            properties:
+              shape:
+                type: array
+                minItems: 2
+                maxItems: 2

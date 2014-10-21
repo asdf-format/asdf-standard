@@ -38,21 +38,28 @@ description: |
   If reordering of the input or output axes is required, use in series
   with the ``remap_axes`` transform.
 
+  Invertability: All ASDF tools are required to be able to compute the
+  analytic inverse of this transform.
 examples:
   -
     - The example in the description
     - |
       !transform/join
-      - !transform/generic
-        n_inputs: 2
-        n_outputs: 2
-      - !transform/generic
-        n_inputs: 1
-        n_outputs: 2
-      - !transform/generic
-        n_inputs: 2
-        n_outputs: 1
+        forward:
+          - !transform/generic
+            n_inputs: 2
+            n_outputs: 2
+          - !transform/generic
+            n_inputs: 1
+            n_outputs: 2
+          - !transform/generic
+            n_inputs: 2
+            n_outputs: 1
 
-type: array
-items:
-  $ref: transform
+allOf:
+  - $ref: transform
+  - properties:
+      forward:
+        type: array
+        items:
+          $ref: transform

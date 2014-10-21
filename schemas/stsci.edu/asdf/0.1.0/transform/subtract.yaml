@@ -11,19 +11,25 @@ description: |
   Each of the subtransforms must have the same number of inputs and
   outputs.
 
+  Invertability: This transform is not automatically invertible.
 examples:
   -
     - A list of transforms, performed in parallel, and then combined
       through subtraction.
     - |
       !transform/subtract
-      - !transform/generic
-        n_inputs: 1
-        n_outputs: 2
-      - !transform/generic
-        n_inputs: 1
-        n_outputs: 2
+        forward:
+          - !transform/generic
+            n_inputs: 1
+            n_outputs: 2
+          - !transform/generic
+            n_inputs: 1
+            n_outputs: 2
 
-type: array
-items:
-  $ref: transform
+allOf:
+  - $ref: transform
+  - properties:
+      forward:
+        type: array
+        items:
+          $ref: transform
