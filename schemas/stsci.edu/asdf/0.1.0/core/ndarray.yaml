@@ -369,3 +369,5 @@ anyOf:
 
     dependencies:
       source: [shape, dtype, byteorder]
+
+    propertyOrder: [source, data, mask, dtype, byteorder, shape, offset, strides]

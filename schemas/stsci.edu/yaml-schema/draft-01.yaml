@@ -22,14 +22,60 @@ allOf:
 
       propertyOrder:
         description: |
-          Objects with a defined propertyOrder must be treated as an
-          ordered mapping, and its keys must be in the same relative
-          order they are listed in this validator. Keys listed in
-          propertyOrder are not required to be present in the object,
-          and any keys not specified by propertyOrder may come in
-          arbitrary order so long as they follow any keys listed here.
+          Specifies the default order of the properties when writing
+          out.  Any keys not listed in propertyOrder will be in
+          arbitrary order at the end.
         type: array
-        items: { type: string }
+        items:
+          type: string
+
+      flow_style:
+        description: |
+          Specifies the default serialization style to use for an
+          array or object.  YAML supports multiple styles for
+          arrays/sequences and objects/maps, called "block style" and
+          "flow style".  For example::
+
+            Block style: !!map
+              Clark : Evans
+              Ingy  : döt Net
+              Oren  : Ben-Kiki
+
+            Flow style: !!map { Clark: Evans, Ingy: döt Net, Oren: Ben-Kiki }
+
+          This property gives a hint to the tool outputting the YAML
+          which style to use.  If not provided, the library is free to
+          use whatever heuristics it wishes to determine the output
+          style.  This property does not enforce any particular style
+          on YAML being parsed.
+        type: string
+        enum: [block, flow]
+
+      style:
+        description: |
+          Specifies the default serialization style to use for a string.
+          YAML supports multiple styles for strings::
+
+            Inline style: "First line\nSecond line"
+
+            Literal style: |
+              First line
+              Second line
+
+            Folded style: >
+              First
+              line
+
+              Second
+              line
+
+          This property gives a hint to the tool outputting the YAML
+          which style to use.  If not provided, the library is free to
+          use whatever heuristics it wishes to determine the output
+          style.  This property does not enforce any particular style
+          on YAML being parsed.
+        type: string
+        enum: [inline, literal, folded]
 
       examples:
         description: |
