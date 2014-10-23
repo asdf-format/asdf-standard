@@ -14,7 +14,7 @@ examples:
     - A complex example where...
     - |
       !wcs/wcs
-        forward: !wcs/steps
+        transform: !wcs/steps
           - !wcs/step
             # Name is the name for the step.  This will allow for an
             # API to say "transform from pixel to focal_plane".  These
@@ -42,8 +42,10 @@ examples:
                 name: order
 
             transform: !transform/concatenate
-              - !transform/remap_axes [1, 0, 2, 3]
+              - !transform/remap_axes
+                mapping: [1, 0, 2, 3]
               - !transform/join
+                forward:
                 - !transform/generic
                   n_inputs: 3
                   n_outputs: 3
@@ -76,7 +78,8 @@ examples:
             # spectral_with_order takes (order, lambda) as inputs, so
             # we swap them first
             - !transform/concatenate  # in 2 --> out 1
-              - !transform/remap_axes [1, 0]
+              - !transform/remap_axes
+                mapping: [1, 0]
               - !transform/generic
                 n_inputs: 2
                 n_outputs: 1
@@ -102,28 +105,19 @@ examples:
                 name: lambda
                 unit: !unit/unit Hz
 
-allOf:
-  - type: object
-    properties:
-      forward:
-        description: |
-          The forward transformation, usually from detector to world
-          coordinates.
+type: object
+properties:
+  transform:
+    description: |
+      A list of steps in the forward transformation from detector to
+      world coordinates.
 
-          If not provided, a ASDF tool may automatically determine it
-          by inverting the backward transformation, if possible.
-        $ref: steps
+      The inverse transformation is determined automatically by
+      reversing this list, and inverting each of the individual
+      transforms according to the rules described in :ref:`inverse
+      <http://stsci.edu/schemas/asdf/0.1.0/transform/transform/anyOf/0/properties/inverse>`.
 
-      backward:
-        description: |
-          The transformation from world to pixel coordinates.
+    $ref: steps
 
-          If not provided, a ASDF tool may automatically determine it
-          by inverting the forward transformation, if possible.
-        $ref: steps
-
-    minProperties: 1
-    additionalProperties: false
-
-  - type: object
-    additionalProperties: true
+required: [transform]
+additionalProperties: false

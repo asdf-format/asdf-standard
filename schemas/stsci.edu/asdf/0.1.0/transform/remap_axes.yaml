@@ -24,29 +24,30 @@ description: |
   object with ``mapping`` and ``n_inputs`` properties is provided, the
   number of input axes is explicitly set by the ``n_inputs`` value.
 
+  Invertibility: TBD
 examples:
   -
     - For 2 input axes, swap the axes
     - |
         !transform/remap_axes
-          [1, 0]
+          mapping: [1, 0]
   -
     - For 2 input axes, return the second axis and drop the first
     - |
         !transform/remap_axes
-          [1]
+          mapping: [1]
 
   -
     - For 2 input axes, return the first axis twice, followed by the second
     - |
         !transform/remap_axes
-          [0, 0, 1]
+          mapping: [0, 0, 1]
 
   -
     - For 2 input axes, add a third axis which is a constant
     - |
         !transform/remap_axes
-          [0, 1, !core/constant 42]
+          mapping: [0, 1, !core/constant 42]
 
   -
     - Here we have 3 input axes, but we are explicitly dropping the last one
@@ -63,15 +64,14 @@ definitions:
         - type: integer
         - $ref: ../core/constant
 
-anyOf:
-  - $ref: "#/definitions/mapping"
-  - type: object
-    properties:
+allOf:
+  - $ref: transform
+  - properties:
       n_inputs:
         description: |
           Explicitly set the number of input axes.  If not provided,
-          it is determined from the maximum index value in the mapping
-          list.
+          it is determined from the maximum index value in the
+          mapping list.
         type: integer
       mapping:
         $ref: "#/definitions/mapping"

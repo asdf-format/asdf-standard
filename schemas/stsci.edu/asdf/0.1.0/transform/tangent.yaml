@@ -9,10 +9,12 @@ title: |
 description: |
   Corresponds to the ``TAN`` projection in the FITS WCS standard.
 
-  TODO: Include description of math here.
+  Invertability: All ASDF tools are required to be able to compute the
+  analytic inverse of this transform.
 
-type: object
-properties:
-  direction:
-    enum: [forward, backward]
-    default: forward
+allOf:
+  - $ref: transform
+  - properties:
+      direction:
+        enum: [forward, backward]
+        default: forward

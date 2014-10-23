@@ -16,13 +16,18 @@ examples:
     - A list of transforms, performed in parallel and added together
     - |
       !transform/add
-      - !transform/generic
-        n_inputs: 1
-        n_outputs: 2
-      - !transform/generic
-        n_inputs: 1
-        n_outputs: 2
+        forward:
+          - !transform/generic
+            n_inputs: 1
+            n_outputs: 2
+          - !transform/generic
+            n_inputs: 1
+            n_outputs: 2
 
-type: array
-items:
-  $ref: transform
+allOf:
+  - $ref: transform
+  - properties:
+      forward:
+        type: array
+        items:
+          $ref: transform

@@ -44,7 +44,8 @@ schema` includes::
       data:
         $ref: "ndarray"
 
-And the `ndarray` schema includes::
+And the :ref:`ndarray
+<http://stsci.edu/schemas/asdf/0.1.0/core/ndarray>` schema includes::
 
     tag: "tag:stsci.edu:asdf/0.1.0/core/ndarray"
 

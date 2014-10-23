@@ -11,17 +11,23 @@ description: |
   Each of the subtransforms must have the same number of inputs and
   outputs.
 
+  Invertability: This transform is not automatically invertible.
 examples:
   -
     - Take the square root of the result of a given transform.
     - |
       !transform/power
-      - !transform/generic
-        n_inputs: 1
-        n_outputs: 1
-      - !core/constant
-        0.5
+        forward:
+          - !transform/generic
+            n_inputs: 1
+            n_outputs: 1
+          - !core/constant
+            0.5
 
-type: array
-items:
-  $ref: transform
+allOf:
+  - $ref: transform
+  - properties:
+      forward:
+        type: array
+        items:
+          $ref: transform
