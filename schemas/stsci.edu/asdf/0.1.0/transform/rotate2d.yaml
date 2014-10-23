@@ -17,4 +17,4 @@ allOf:
       angle:
         type: number
         description: Angle, in degrees.
-    requiredProperties: [angle]
+    required: [angle]

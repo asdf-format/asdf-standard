@@ -14,7 +14,7 @@ examples:
     - A complex example where...
     - |
       !wcs/wcs
-        transform: !wcs/steps
+        steps: !wcs/steps
           - !wcs/step
             # Name is the name for the step.  This will allow for an
             # API to say "transform from pixel to focal_plane".  These
@@ -42,15 +42,17 @@ examples:
                 name: order
 
             transform: !transform/concatenate
-              - !transform/remap_axes
-                mapping: [1, 0, 2, 3]
-              - !transform/join
-                forward:
+              forward:
                 - !transform/generic
-                  n_inputs: 3
-                  n_outputs: 3
-                - !transform/identity
-                  n_dims: 1
+                  n_inputs: 4
+                  n_outputs: 4
+                - !transform/join
+                  forward:
+                  - !transform/generic
+                    n_inputs: 3
+                    n_outputs: 3
+                  - !transform/identity
+                    n_dims: 1
 
           - !wcs/step
             # At this step, the wavelength is now independent of the spatial
@@ -73,16 +75,19 @@ examples:
                 name: order
 
             transform: !transform/join  # in 4 --> out 3
-            - !transform/rotate2d
-              angle: 0.3
-            # spectral_with_order takes (order, lambda) as inputs, so
-            # we swap them first
-            - !transform/concatenate  # in 2 --> out 1
-              - !transform/remap_axes
-                mapping: [1, 0]
-              - !transform/generic
-                n_inputs: 2
-                n_outputs: 1
+              forward:
+              - !transform/rotate2d
+                angle: 0.3
+              # spectral_with_order takes (order, lambda) as inputs, so
+              # we swap them first
+              - !transform/concatenate  # in 2 --> out 1
+                forward:
+                - !transform/generic
+                  n_inputs: 2
+                  n_outputs: 2
+                - !transform/generic
+                  n_inputs: 2
+                  n_outputs: 1
 
           - !wcs/step
             # The last step has no transform, but is used to
@@ -107,7 +112,7 @@ examples:
 
 type: object
 properties:
-  transform:
+  steps:
     description: |
       A list of steps in the forward transformation from detector to
       world coordinates.
@@ -119,5 +124,5 @@ properties:
 
     $ref: steps
 
-required: [transform]
+required: [steps]
 additionalProperties: false

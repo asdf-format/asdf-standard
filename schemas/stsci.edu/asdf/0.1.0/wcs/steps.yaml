@@ -6,7 +6,7 @@ tag: "tag:stsci.edu:asdf/0.1.0/wcs/steps"
 title: >
   A list of WCS steps performed in series that make up a WCS pipeline.
 description: >
-  Inherits from ``transform/series``.
+
 examples: []
 
 type: array

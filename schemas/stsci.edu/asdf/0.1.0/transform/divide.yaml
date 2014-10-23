@@ -33,3 +33,4 @@ allOf:
         type: array
         items:
           $ref: transform
+    required: [forward]
