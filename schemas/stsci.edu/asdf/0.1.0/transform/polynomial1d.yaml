@@ -1,29 +1,44 @@
 %YAML 1.1
 ---
 $schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
-id: "http://stsci.edu/schemas/asdf/0.1.0/transform/polynomial1d"
-tag: "tag:stsci.edu:asdf/0.1.0/transform/polynomial1d"
+id: "http://stsci.edu/schemas/asdf/0.1.0/transform/polynomial"
+tag: "tag:stsci.edu:asdf/0.1.0/transform/polynomial"
 title: >
-  A 1D polynomial transform.
+  A Polynomial model.
+
 description: >
-  1D polynomial
+  A polynomial model represented by its coefficients stored in an
+  (n+1) x (n+1) ndarray, where n is the degree of the polynomial,
+  i.e. the highest total degree of the polynomial.
+
+examples:
+  -
+    - 1D polynomial 1.2 + 0.3*x + 56.1*x**2
+    - |
+        transform: !transform/polynomial
+          coefficients: !core/ndarray
+            data: [1.2, 3.0, 2.0]
+            shape: [3]
+
+!transform/polynomial
+          !core/ndarray
+            [1.2, 0.3, 56.1]
+  -
+    - A 2D polynomial P = 1.2 + 0.3*x + 3* x*y + 2.1 * y**2
+    - |
+        !transform/polynomial
+          !core/ndarray
+            data: [[1.2, 0.0, 2.1],
+                   [0.3, 3.0, 0.0],
+                   [0.0, 0.0, 0.0]]
+            shape: [3, 3]
+
 
 type: object
 properties:
-  degree:
-    type: integer
-    description: Degree of polynomial.
-  param_dim:
-    type: integer
-  coeffs:
+  coefficients:
     description: |
-      An array with coefficients (optional)
-    anyOf:
-      - $ref: ../core/ndarray
-      - type: array
-        items:
-          type: object
-        minLength: 1
-  inverse:
-    $ref: transform
-requiredProperties: [degree]
+      An array with coefficients.
+    $ref: ../core/ndarray
+
+
