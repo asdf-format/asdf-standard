@@ -12,17 +12,6 @@ description: |
   outputs.
 
   Invertability: This transform is not automatically invertible.
-examples:
-  -
-    - Take the square root of the result of a given transform.
-    - |
-      !transform/power
-        forward:
-          - !transform/generic
-            n_inputs: 1
-            n_outputs: 1
-          - !core/constant
-            0.5
 
 allOf:
   - $ref: transform
@@ -31,3 +20,4 @@ allOf:
         type: array
         items:
           $ref: transform
+    required: [forward]

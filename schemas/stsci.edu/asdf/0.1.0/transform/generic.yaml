@@ -18,4 +18,4 @@ allOf:
         type: integer
       n_outputs:
         type: integer
-    requiredProperties: [n_inputs, n_outputs]
+    required: [n_inputs, n_outputs]
