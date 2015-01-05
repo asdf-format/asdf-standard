@@ -176,7 +176,9 @@ Each block begins with the following header:
   indicates that no checksum verification should be performed.  *TBD*.
 
 - ``encoding`` (16-byte character string): A way to indicate how the
-  buffer is compressed or encoded.  *TBD*.
+  buffer is compressed or encoded.  See :ref:`block-encoding` for more
+  information.  It must be set to all zeros to indicate no compression
+  or encoding.
 
 Flags
 ^^^^^
@@ -197,6 +199,25 @@ Immediately following the block header, there are exactly
 content of the unused data is not enforced.  The ability to have gaps
 of unused space allows an ASDF writer to reduce the number of disk
 operations when updating the file.
+
+.. _block-encoding:
+
+Block encoding
+--------------
+
+By default, blocks are stored as contiguous arrays, so they can be
+easily memory mapped.  However, ASDF also supports "encoded" blocks in
+order to support compression or other transformations from on-disk to
+in-memory representations.
+
+The ``encoding`` field in the block header is a 16-character string,
+where each character specifies an encoding or compression algorithm
+that is applied in sequence.  Normally, this string contains all null
+characters, indicating no encoding.
+
+The currently supported encodings are:
+
+- ``z``: `zlib compression <http://http://www.zlib.net/>`.
 
 .. _exploded:
 
