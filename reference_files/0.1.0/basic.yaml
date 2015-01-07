@@ -5,4 +5,5 @@
 data: !core/ndarray
   data: [0, 1, 2, 3, 4, 5, 6, 7]
   dtype: int64
+  shape: [8]
 ...

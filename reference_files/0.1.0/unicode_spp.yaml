@@ -5,7 +5,9 @@
 dtype<U: !core/ndarray
   data: ['', "\U00010020"]
   dtype: [ucs4, 1]
+  shape: [2]
 dtype>U: !core/ndarray
   data: ['', "\U00010020"]
   dtype: [ucs4, 1]
+  shape: [2]
 ...

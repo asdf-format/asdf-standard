@@ -5,4 +5,5 @@
 data: !core/ndarray
   data: ['', ascii]
   dtype: [ascii, 5]
+  shape: [2]
 ...

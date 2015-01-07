@@ -3,8 +3,8 @@
 %TAG ! tag:stsci.edu:asdf/0.1.0/
 --- !core/asdf
 data: !core/ndarray
-  byteorder: little
-  dtype: int64
-  shape: [8]
   source: exploded0000.asdf
+  dtype: int64
+  byteorder: little
+  shape: [8]
 ...

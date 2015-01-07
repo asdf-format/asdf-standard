@@ -144,6 +144,17 @@ def ref_exploded(fd):
         pass
 
 
+def ref_compressed(fd):
+    tree = {
+        'data': np.arange(128)
+    }
+
+    ff = pyasdf.AsdfFile(tree)
+    ff.set_array_encoding(tree['data'], 'zlib')
+    with ff.write_to(fd):
+        pass
+
+
 def generate(version):
     outdir = os.path.join(os.path.dirname(__file__), '..', version)
 

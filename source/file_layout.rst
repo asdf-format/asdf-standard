@@ -158,7 +158,7 @@ Each block begins with the following header:
   backward compatibility.  Importantly, ASDF parsers should not assume
   a fixed size of the header, but should obey the ``header_size``
   defined in the file.  In ASDF version 0.1, this should be at least
-  40, but may be larger, for example to align the beginning of the
+  36, but may be larger, for example to align the beginning of the
   block content with a file system block boundary.
 
 - ``flags`` (32-bit unsigned integer, big-endian): A bit field
@@ -169,16 +169,19 @@ Each block begins with the following header:
   bytes.
 
 - ``used_size`` (64-bit unsigned integer, big-endian): The amount of
-  used space for the block (not including the header), in bytes.
+  used space for the block on disk (not including the header), in
+  bytes.
+
+- ``memory_size`` (64-bit unsigned integer, big-endian): The size of
+  the block when decoded, in bytes.  If ``encoding`` is all zeros
+  (indicating no encoding), it **must** be equal to ``used_size``.  If
+  there is an encoding, this is the size of the decoded block data,
+  which **may** be different from the size of the encoded block in the
+  ASDF file.
 
 - ``checksum`` (64-bit unsigned integer, big-endian): An optional MD5
   checksum of the used data in the block.  The special value of 0
   indicates that no checksum verification should be performed.  *TBD*.
-
-- ``encoding`` (16-byte character string): A way to indicate how the
-  buffer is compressed or encoded.  See :ref:`block-encoding` for more
-  information.  It must be set to all zeros to indicate no compression
-  or encoding.
 
 Flags
 ^^^^^
@@ -186,9 +189,19 @@ Flags
 The following bit flags are understood in the ``flags`` field:
 
 - ``STREAMED`` (0x1): When set, the block is in streaming mode, and it
-  extends to the end of the file.  When set, the ``allocated_size``
-  and ``used_size`` fields are ignored.  By necessity, any block with
-  the ``STREAMED`` bit set must be the last block in the file.
+  extends to the end of the file.  When set, the ``allocated_size``,
+  ``used_size`` and ``memory_size`` fields are ignored.  By necessity,
+  any block with the ``STREAMED`` bit set must be the last block in
+  the file.
+
+- ``ENCODED`` (0x2): When set, the block has an explicit encoding (or
+  compression) applied.  In this case, ``used_size`` indicates the
+  number of bytes in the block on disk, and ``mem_size`` indicates the
+  number of bytes in the block in memory.  See :ref:`block-encoding`
+  for more information.
+
+The ``STREAMED`` and ``ENCODED`` flags are mutually exclusive and may
+not both be set.
 
 Block content
 ^^^^^^^^^^^^^
@@ -205,19 +218,147 @@ operations when updating the file.
 Block encoding
 --------------
 
-By default, blocks are stored as contiguous arrays, so they can be
-easily memory mapped.  However, ASDF also supports "encoded" blocks in
-order to support compression or other transformations from on-disk to
-in-memory representations.
+By default, blocks are stored on disk as contiguous arrays, so they
+can be easily memory-mapped.  However, ASDF also supports "encoded"
+blocks in order to support compression or other transformations from
+on-disk to in-memory representations.
 
-The ``encoding`` field in the block header is a 16-character string,
-where each character specifies an encoding or compression algorithm
-that is applied in sequence.  Normally, this string contains all null
-characters, indicating no encoding.
+When the ``ENCODED`` flag is ``True``, the block data begins with a
+chunk of YAML describing the encoding chain.  This YAML may have any
+length, and ends with the standard YAML end marker::
 
-The currently supported encodings are:
+  \r?\n...\r?\n
 
-- ``z``: `zlib compression <http://http://www.zlib.net/>`.
+Following this YAML chunk is the arbitrary encoded binary data.  In
+this case, the ``used_size`` value of the block header includes the
+size of this YAML encoding chain specifier and the following binary
+blob.
+
+.. note::
+
+    YAML is used here so that encoding specifiers can be as flexible
+    as possible.  However, unlike the YAML tree at the beginning of
+    the file, this YAML chunk is not designed to be "user editable".
+
+This YAML chunk represents an encoding chain, which is a list of
+encodings, applied in the given order to encode and the reverse order
+to decode.  Each entry is a single string ``name`` or a pair of the
+form ``(name, args)``, where ``name`` is a the name of the encoding
+and ``args`` is an optional dictionary of arguments for the encoding.
+
+For example, the following means that ``zlib`` compression is be
+applied to the block::
+
+    [zlib]
+
+The following example reorders the given array into tiles of size (32
+x 32) before applying ``zlib`` compression, which may give better
+compression for typical astronomy images::
+
+    [[tile, {shape: [32, 32]}], zlib]
+
+The following example is very similar to the compression scheme in
+CFITSIO, where the image is tiled, and then each tile is lossily
+quantized before being run through a standard lossless compression
+scheme::
+
+    [[tile, {shape: [32, 32]}], [quantize, {quality: 4}], zlib]
+
+At each step of an encoding chain, the data can either be represented
+as an array, meaning it still includes basic metadata such as the the
+shape and datatype, or as binary, which is just a stream of bytes.
+With this in mind, ASDF encodings fall into three categories:
+
+  - array-to-array encodings transform an array into another array
+  - array-to-binary encodings transform an array into a binary
+    representation.
+  - binary-to-binary encodings transform a stream of binary input into
+    binary output.
+
+Encoding chains must be ordered such that the output of one encoding
+matches the input of the next.  If the chain consists only of
+"binary-to-binary" encodings, an implicit "null" array-to-binary
+encoding is inserted at the front that is simply the in-memory
+representation of the array.
+
+The ASDF standard defines a number of built-in encodings below.  Other
+encodings may be used for application-specific purposes, and ASDF
+parsers must handle such unknown encodings gracefully.  If an ASDF
+parser encounters an unknown encoding name, it should report back that
+it can not decode the block.  It should not, however, consider the
+YAML tree and other blocks in the file to be invalid or inaccessible.
+
+Built-in array-to-array encodings
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+- ``tile``: This rearranges the ordering of the elements in an
+  *n*-dimensional array into *n*-dimensional tiles of the given shape.
+  It has the following required arguments:
+
+  - ``shape``: The shape of each tile.  It is a list of integers of
+    length *N*, where *N* is the number of dimensions in the input
+    array.
+
+  - ``original_shape``: The original shape of the input array, so it
+    can be correctly reconstituted upon decoding.
+
+  - ``item_size``: The size of each item of the array, in bytes.
+
+  If any of the dimensions ``original_shape`` are not an exact
+  multiple of the corresponding dimension in ``shape``, the tiles in
+  the non-zero edge of each dimension are padded so each tile is
+  exactly of size ``shape``.  These extra values are discarded upon
+  decoding.
+
+Built-in array-to-binary encodings
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+- ``quantize``: A lossy compression algorithm that converts floating
+  point values to integers with a global scale and offset.  The ASDF
+  standard does not define the algorithm used to perform the
+  quantization and dithering of the data, only the
+  on-disk-representation and the decoding.
+
+  The following arguments are required in the YAML encoding descriptor:
+
+  - ``dtype``: Must be 32 or 64, representing the bits in the original
+    floating-point values.
+
+  - ``original_shape``: A list of integers representing the shape of
+    the original array.
+
+  A quantized data stream consists of *N* chunks, each with the
+  following binary header:
+
+  - ``encoded_bits`` (unsigned 8-bit integer): The number of bits for
+    each encoded value.
+  - ``offset`` (64-bit double-precision float, big-endian): The offset
+    value of each item.
+  - ``scale`` (64-bit double-precision float, big-endian): The scale
+    value of each item.
+  - ``nvalues`` (64-bit unsigned integer, big-endian): The number of
+    values in the chunk.
+
+  The header is then followed by ``encoded_bits * nvalues`` bits of
+  data, zero-padded to the nearest byte.  Each value is a
+  twos-complement signed integer, ``encoded_bits`` long and
+  big-endian.  The bits are packed closely together, i.e. if
+  ``encoded_bits`` is not a multiple of 8, the values do not begin on
+  byte boundaries.  Each value is decoded using the following
+  calculation::
+
+    ``decoded = (encoded * scale) + offset``
+
+  Immediately following each chunk may either be another chunk or the
+  end of the binary data.
+
+Built-in binary-to-binary encodings
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+- ``zlib``: A lossless compression algorithm.  It is widely used,
+  patent-unencumbered, and has an implementation released under a
+  permissive license in `zlib <http://www.zlib.net/>`__.  This
+  encoding takes no arguments.
 
 .. _exploded:
 
