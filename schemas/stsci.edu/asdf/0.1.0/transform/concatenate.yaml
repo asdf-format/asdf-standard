@@ -1,8 +1,8 @@
 %YAML 1.1
 ---
 $schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
-id: "http://stsci.edu/schemas/asdf/0.1.0/transform/join"
-tag: "tag:stsci.edu:asdf/0.1.0/transform/join"
+id: "http://stsci.edu/schemas/asdf/0.1.0/transform/concatenate"
+tag: "tag:stsci.edu:asdf/0.1.0/transform/concatenate"
 title: >
   Send axes to different subtransforms.
 
@@ -44,7 +44,7 @@ examples:
   -
     - The example in the description
     - |
-      !transform/join
+      !transform/concatenate
         forward:
           - !transform/generic
             n_inputs: 2
