@@ -25,9 +25,9 @@ Compound transformations
 .. toctree::
    :maxdepth: 1
 
-   stsci.edu/asdf/0.1.0/transform/remap_axes.rst
-   stsci.edu/asdf/0.1.0/transform/join.rst
+   stsci.edu/asdf/0.1.0/transform/compose.rst
    stsci.edu/asdf/0.1.0/transform/concatenate.rst
+   stsci.edu/asdf/0.1.0/transform/remap_axes.rst
 
 Arithmetic operations
 ---------------------
