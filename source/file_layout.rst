@@ -147,8 +147,8 @@ Each block begins with the following header:
   the tree, and to perform consistency checks when jumping from one
   block to the next.  It is made up of the following 4 8-bit characters:
 
-  - in hexadecimal: 89, 42, 4c, 4b
-  - in ascii: ``"\211BLK"``
+  - in hexadecimal: d3, 42, 4c, 4b
+  - in ascii: ``"\323BLK"``
 
 - ``header_size`` (16-bit unsigned integer, big endian): Indicates the
   size of the remainder of the header (not including the length of the
