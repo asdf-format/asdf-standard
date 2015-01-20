@@ -31,14 +31,14 @@ def ref_int(fd):
         bits = size * 8
         for endian in ['>', '<']:
             values = [(1 << (bits - 1)) - 1, -(1 << (bits - 1)), 0]
-            dtype = '%si%d' % (endian, size)
-            arr = np.array(values, dtype)
-            tree['dtype' + dtype] = arr
+            datatype = '%si%d' % (endian, size)
+            arr = np.array(values, datatype)
+            tree['datatype' + datatype] = arr
 
             values = [(1 << bits) - 1, 0]
-            dtype = '%su%d' % (endian, size)
-            arr = np.array(values, dtype)
-            tree['dtype' + dtype] = arr
+            datatype = '%su%d' % (endian, size)
+            arr = np.array(values, datatype)
+            tree['datatype' + datatype] = arr
 
     with pyasdf.AsdfFile(tree).write_to(fd):
         pass
@@ -49,12 +49,12 @@ def ref_float(fd):
 
     for size in (4, 8):
         for endian in ['>', '<']:
-            dtype = '%sf%d' % (endian, size)
-            finfo = np.finfo(np.dtype(dtype))
+            datatype = '%sf%d' % (endian, size)
+            finfo = np.finfo(np.dtype(datatype))
             values = [0.0, -0.0, np.nan, np.inf, -np.inf,
                       finfo.min, finfo.max, finfo.eps, finfo.epsneg, finfo.tiny]
-            arr = np.array(values, dtype)
-            tree['dtype' + dtype] = arr
+            arr = np.array(values, datatype)
+            tree['datatype' + datatype] = arr
 
     with pyasdf.AsdfFile(tree).write_to(fd):
         pass
@@ -65,8 +65,8 @@ def ref_complex(fd):
 
     for size in (4, 8):
         for endian in ['>', '<']:
-            dtype = '%sf%d' % (endian, size)
-            finfo = np.finfo(np.dtype(dtype))
+            datatype = '%sf%d' % (endian, size)
+            finfo = np.finfo(np.dtype(datatype))
             values = [0.0, -0.0, np.nan, np.inf, -np.inf,
                       finfo.min, finfo.max, finfo.eps, finfo.epsneg, finfo.tiny]
 
@@ -74,9 +74,9 @@ def ref_complex(fd):
             for x in values:
                 for y in values:
                     complex_values.append(x + 1j * y)
-            dtype = '%sc%d' % (endian, size * 2)
-            arr = np.array(complex_values, dtype)
-            tree['dtype' + dtype] = arr
+            datatype = '%sc%d' % (endian, size * 2)
+            arr = np.array(complex_values, datatype)
+            tree['datatype' + datatype] = arr
 
     with pyasdf.AsdfFile(tree).write_to(fd):
         pass
@@ -93,7 +93,7 @@ def ref_unicode_bmp(fd):
     tree = {}
     for endian in ['>', '<']:
         arr = np.array(['', 'Æʩ'], dtype=endian + 'U')
-        tree['dtype' + endian + 'U'] = arr
+        tree['datatype' + endian + 'U'] = arr
 
     with pyasdf.AsdfFile(tree).write_to(fd):
         pass
@@ -103,7 +103,7 @@ def ref_unicode_spp(fd):
     tree = {}
     for endian in ['>', '<']:
         arr = np.array(['', '𐀠'], dtype=endian + 'U')
-        tree['dtype' + endian + 'U'] = arr
+        tree['datatype' + endian + 'U'] = arr
 
     with pyasdf.AsdfFile(tree).write_to(fd):
         pass

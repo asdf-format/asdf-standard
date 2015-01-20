@@ -36,7 +36,7 @@ a number of custom tags, each of which has a corresponding schema.
 For example the tag of the root element of the tree must always be
 ``tag:stsci.edu:asdf/0.1.0/core/asdf``, which corresponds to the
 :ref:`asdf schema <http://stsci.edu/schemas/asdf/0.1.0/core/asdf>`
---in other words, the top level schema for ASDF trees.  A validating ASDF reader would 
+--in other words, the top level schema for ASDF trees.  A validating ASDF reader would
 encounter the tag when reading in the file, load the corresponding schema,
 and validate the content against it.  An ASDF library may also use this
 information to convert to a native data type that presents a more convenient
@@ -49,7 +49,7 @@ For example::
      --- !<tag:stsci.edu:asdf/0.1.0/core/asdf>
      data: !<tag:stsci.edu:asdf/0.1.0/core/ndarray>
        source: 0
-       dtype: float64
+       datatype: float64
        shape: [1024, 1024]
        byteorder: little
      ...
@@ -81,7 +81,7 @@ will be replaced with the prefix ``tag:stsci.edu:asdf/0.1.0/``::
       --- !core/asdf
       data: !core/ndarray
         source: 0
-        dtype: float64
+        datatype: float64
         shape: [1024, 1024]
         byteorder: little
 
@@ -152,7 +152,7 @@ reference data, available on a public webserver at the URI
       - !ndarray
         source: 0
         shape: [256, 256]
-        dtype: float
+        datatype: float
         byteorder: little
 
 Another file may reference this data directly::
@@ -165,7 +165,7 @@ It is also possible to use references within the same file::
     data: !ndarray
       source: 0
       shape: [256, 256]
-      dtype: float
+      datatype: float
       byteorder: little
       mask:
         $ref: "#/my_mask"
@@ -173,7 +173,7 @@ It is also possible to use references within the same file::
     my_mask: !ndarray
       source: 0
       shape: [256, 256]
-      dtype: uint8
+      datatype: uint8
       byteorder: little
 
 Reference resolution should be performed *after* the entire tree is

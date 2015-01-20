@@ -2,7 +2,7 @@
 %YAML 1.1
 %TAG ! tag:stsci.edu:asdf/0.1.0/
 --- !core/asdf
-dtype<c16: !core/ndarray
+datatype<c16: !core/ndarray
   data: [!core/complex '0j', !core/complex '0j', !core/complex '(nan+nanj)', !core/complex '(nan+infj)',
     !core/complex '(nan-infj)', !core/complex '-1.79769313486e+308j', !core/complex '1.79769313486e+308j',
     !core/complex '2.22044604925e-16j', !core/complex '1.11022302463e-16j', !core/complex '2.22507385851e-308j',
@@ -44,8 +44,9 @@ dtype<c16: !core/ndarray
     !core/complex '(2.22507385851e-308-1.79769313486e+308j)', !core/complex '(2.22507385851e-308+1.79769313486e+308j)',
     !core/complex '(2.22507385851e-308+2.22044604925e-16j)', !core/complex '(2.22507385851e-308+1.11022302463e-16j)',
     !core/complex '(2.22507385851e-308+2.22507385851e-308j)']
-  dtype: complex128
-dtype<c8: !core/ndarray
+  datatype: complex128
+  shape: [100]
+datatype<c8: !core/ndarray
   data: [!core/complex '0j', !core/complex '0j', !core/complex '(nan+nanj)', !core/complex '(nan+infj)',
     !core/complex '(nan-infj)', !core/complex '-3.40282346639e+38j', !core/complex '3.40282346639e+38j',
     !core/complex '1.19209289551e-07j', !core/complex '5.96046447754e-08j', !core/complex '1.17549435082e-38j',
@@ -87,8 +88,9 @@ dtype<c8: !core/ndarray
     !core/complex '(1.17549435082e-38-3.40282346639e+38j)', !core/complex '(1.17549435082e-38+3.40282346639e+38j)',
     !core/complex '(1.17549435082e-38+1.19209289551e-07j)', !core/complex '(1.17549435082e-38+5.96046447754e-08j)',
     !core/complex '(1.17549435082e-38+1.17549435082e-38j)']
-  dtype: complex64
-dtype>c16: !core/ndarray
+  datatype: complex64
+  shape: [100]
+datatype>c16: !core/ndarray
   data: [!core/complex '0j', !core/complex '0j', !core/complex '(nan+nanj)', !core/complex '(nan+infj)',
     !core/complex '(nan-infj)', !core/complex '-1.79769313486e+308j', !core/complex '1.79769313486e+308j',
     !core/complex '2.22044604925e-16j', !core/complex '1.11022302463e-16j', !core/complex '2.22507385851e-308j',
@@ -130,8 +132,9 @@ dtype>c16: !core/ndarray
     !core/complex '(2.22507385851e-308-1.79769313486e+308j)', !core/complex '(2.22507385851e-308+1.79769313486e+308j)',
     !core/complex '(2.22507385851e-308+2.22044604925e-16j)', !core/complex '(2.22507385851e-308+1.11022302463e-16j)',
     !core/complex '(2.22507385851e-308+2.22507385851e-308j)']
-  dtype: complex128
-dtype>c8: !core/ndarray
+  datatype: complex128
+  shape: [100]
+datatype>c8: !core/ndarray
   data: [!core/complex '0j', !core/complex '0j', !core/complex '(nan+nanj)', !core/complex '(nan+infj)',
     !core/complex '(nan-infj)', !core/complex '-3.40282346639e+38j', !core/complex '3.40282346639e+38j',
     !core/complex '1.19209289551e-07j', !core/complex '5.96046447754e-08j', !core/complex '1.17549435082e-38j',
@@ -173,5 +176,6 @@ dtype>c8: !core/ndarray
     !core/complex '(1.17549435082e-38-3.40282346639e+38j)', !core/complex '(1.17549435082e-38+3.40282346639e+38j)',
     !core/complex '(1.17549435082e-38+1.19209289551e-07j)', !core/complex '(1.17549435082e-38+5.96046447754e-08j)',
     !core/complex '(1.17549435082e-38+1.17549435082e-38j)']
-  dtype: complex64
+  datatype: complex64
+  shape: [100]
 ...

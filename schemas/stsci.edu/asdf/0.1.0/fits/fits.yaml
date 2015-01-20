@@ -35,7 +35,7 @@ examples:
               - []
               - [DATE-OBS, '2013-08-30T10:49:55.000000', The date the observation was made (UTC)]
             - data: !core/ndarray
-                dtype: float32
+                datatype: float32
                 shape: [2, 3, 3, 4]
                 source: 0
                 byteorder: big
@@ -52,7 +52,7 @@ examples:
               - [EXTNAME, SCI, extension name]
               - [BUNIT, DN, Units of the data array]
             - data: !core/ndarray
-                dtype: float32
+                datatype: float32
                 shape: [2, 3, 3, 4]
                 source: 1
                 byteorder: big

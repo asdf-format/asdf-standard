@@ -2,10 +2,12 @@
 %YAML 1.1
 %TAG ! tag:stsci.edu:asdf/0.1.0/
 --- !core/asdf
-dtype<U: !core/ndarray
+datatype<U: !core/ndarray
   data: ['', "\U00010020"]
-  dtype: [ucs4, 1]
-dtype>U: !core/ndarray
+  datatype: [ucs4, 1]
+  shape: [2]
+datatype>U: !core/ndarray
   data: ['', "\U00010020"]
-  dtype: [ucs4, 1]
+  datatype: [ucs4, 1]
+  shape: [2]
 ...
