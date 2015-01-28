@@ -4,5 +4,6 @@
 --- !core/asdf
 data: !core/ndarray
   data: ['', ascii]
-  dtype: [ascii, 5]
+  datatype: [ascii, 5]
+  shape: [2]
 ...

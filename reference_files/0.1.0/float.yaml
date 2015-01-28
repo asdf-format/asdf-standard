@@ -2,20 +2,24 @@
 %YAML 1.1
 %TAG ! tag:stsci.edu:asdf/0.1.0/
 --- !core/asdf
-dtype<f4: !core/ndarray
+datatype<f4: !core/ndarray
   data: [0.0, -0.0, .nan, .inf, -.inf, -3.4028234663852886e+38, 3.4028234663852886e+38,
     1.1920928955078125e-07, 5.960464477539063e-08, 1.1754943508222875e-38]
-  dtype: float32
-dtype<f8: !core/ndarray
+  datatype: float32
+  shape: [10]
+datatype<f8: !core/ndarray
   data: [0.0, -0.0, .nan, .inf, -.inf, -1.7976931348623157e+308, 1.7976931348623157e+308,
     2.220446049250313e-16, 1.1102230246251565e-16, 2.2250738585072014e-308]
-  dtype: float64
-dtype>f4: !core/ndarray
+  datatype: float64
+  shape: [10]
+datatype>f4: !core/ndarray
   data: [0.0, -0.0, .nan, .inf, -.inf, -3.4028234663852886e+38, 3.4028234663852886e+38,
     1.1920928955078125e-07, 5.960464477539063e-08, 1.1754943508222875e-38]
-  dtype: float32
-dtype>f8: !core/ndarray
+  datatype: float32
+  shape: [10]
+datatype>f8: !core/ndarray
   data: [0.0, -0.0, .nan, .inf, -.inf, -1.7976931348623157e+308, 1.7976931348623157e+308,
     2.220446049250313e-16, 1.1102230246251565e-16, 2.2250738585072014e-308]
-  dtype: float64
+  datatype: float64
+  shape: [10]
 ...

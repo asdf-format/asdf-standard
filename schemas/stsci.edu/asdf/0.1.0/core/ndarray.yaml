@@ -16,7 +16,7 @@ description: |
     (See the rules for type inference in the ``inline-data``
     definition below.)  The inline data may also be given in the
     ``data`` property, in which case it is possible to explicitly
-    specify the ``dtype`` and other properties.
+    specify the ``datatype`` and other properties.
 
   - External to the tree: The data comes from a :ref:`block <block>`
     within the same ASDF file or an external ASDF file referenced by a
@@ -35,7 +35,7 @@ examples:
     - An inline array, with an explicit data type
     - |
         !core/ndarray
-          dtype: float64
+          datatype: float64
           data:
             [[1, 0, 0],
              [0, 1, 0],
@@ -56,7 +56,7 @@ examples:
       explicitly specified
     - |
         !core/ndarray
-          dtype: [['ascii', 4], uint16, uint16, ['ascii', 4]]
+          datatype: [['ascii', 4], uint16, uint16, ['ascii', 4]]
           data:
             [[M110, 110, 205, And],
              [ M31,  31, 224, And],
@@ -70,7 +70,7 @@ examples:
         !core/ndarray
           source: 0
           shape: [1024, 1024]
-          dtype: float64
+          datatype: float64
           byteorder: little
 
   -
@@ -79,27 +79,27 @@ examples:
         !core/ndarray
           source: 0
           shape: [256, 256]
-          dtype: float64
+          datatype: float64
           byteorder: little
           strides: [8192, 8]
           offset: 2099200
 
   -
-    - A table dtype, with nested columns for a coordinate in (ra,
+    - A table datatype, with nested columns for a coordinate in (ra,
       dec), and a 3x3 convolution kernel
     - |
         !core/ndarray
           source: 0
           shape: [64]
-          dtype:
+          datatype:
             - name: coordinate
-              dtype:
+              datatype:
                 - name: ra
-                  dtype: float64
+                  datatype: float64
                 - name: dec
-                  dtype: float64
+                  datatype: float64
             - name: kernel
-              dtype: float32
+              datatype: float32
               shape: [3, 3]
           byteorder: little
 
@@ -109,7 +109,7 @@ examples:
         !core/ndarray
           source: 0
           shape: [1024, 1024]
-          dtype: float64
+          datatype: float64
           byteorder: little
           strides: [8192, 8]
 
@@ -119,7 +119,7 @@ examples:
         !core/ndarray
           source: 0
           shape: [256, 256]
-          dtype: float64
+          datatype: float64
           byteorder: little
           mask: -999
 
@@ -129,12 +129,12 @@ examples:
         !core/ndarray
           source: 0
           shape: [256, 256]
-          dtype: float64
+          datatype: float64
           byteorder: little
           mask: !core/ndarray
             source: 1
             shape: [256, 256]
-            dtype: bool8
+            datatype: bool8
             byteorder: little
 
   -
@@ -144,11 +144,11 @@ examples:
         !core/ndarray
           source: external.asdf
           shape: [256, 256]
-          dtype: float64
+          datatype: float64
           byteorder: little
 
 definitions:
-  scalar-dtype:
+  scalar-datatype:
     description: |
       Describes the type of a single element.
 
@@ -198,62 +198,62 @@ definitions:
         minLength: 2
         maxLength: 2
 
-  dtype:
+  datatype:
     description: |
       The data format of the array elements.  May be a single scalar
-      dtype, or may be a nested list of dtypes.  When a list, each field
+      datatype, or may be a nested list of datatypes.  When a list, each field
       may have a name.
     anyOf:
-      - $ref: "#/definitions/scalar-dtype"
+      - $ref: "#/definitions/scalar-datatype"
       - type: array
         items:
           anyOf:
-            - $ref: "#/definitions/scalar-dtype"
+            - $ref: "#/definitions/scalar-datatype"
             - type: object
               properties:
                 name:
                   type: string
                   pattern: "[A-Za-z_][A-Za-z0-9_]*"
                   description: The name of the field
-                dtype:
-                  $ref: "#/definitions/dtype"
+                datatype:
+                  $ref: "#/definitions/datatype"
                 byteorder:
                   type: string
                   enum: [big, little]
                   description: |
                     The byteorder for the field.  If not provided, the
-                    byteorder of the dtype as a whole will be used.
+                    byteorder of the datatype as a whole will be used.
                 shape:
                   type: array
                   items:
                     type: integer
                     minimum: 0
-              required: [dtype]
+              required: [datatype]
 
   inline-data:
     description: |
       Inline data is stored in YAML format directly in the tree, rather than
       referencing a binary block.  It is made out of nested lists.
 
-      If the dtype of the array is not specified, it is inferred from
+      If the datatype of the array is not specified, it is inferred from
       the array contents.  Type inference is supported only for
       homogeneous arrays, not tables.
 
       - If any of the elements in the array are YAML strings, the
-        ``dtype`` of the dtype of the entire array is ``ucs4``, with
-        the width of the largest string in the column, otherwise...
+        ``datatype`` of the entire array is ``ucs4``, with the width
+        of the largest string in the column, otherwise...
 
       - If any of the elements in the array are complex numbers, the
-        ``dtype`` of the entire column is ``complex128``, otherwise...
+        ``datatype`` of the entire column is ``complex128``, otherwise...
 
       - If any of the types in the column are numbers with a decimal
-        point, the ``dtype`` of the entire column is ``float64``,
+        point, the ``datatype`` of the entire column is ``float64``,
         otherwise..
 
-      - If any of the types in the column are integers, the ``dtype``
+      - If any of the types in the column are integers, the ``datatype``
         of the entire column is ``int64``, otherwise...
 
-      - The ``dtype`` of the entire column is ``bool8``.
+      - The ``datatype`` of the entire column is ``bool8``.
 
     type: array
     items:
@@ -302,7 +302,7 @@ anyOf:
         description: |
           The data for the array inline.
 
-          If ``dtype`` and/or ``shape`` are also provided, they must
+          If ``datatype`` and/or ``shape`` are also provided, they must
           match the data here and can be used as a consistency check.
           ``strides``, ``offset`` and ``byteorder`` are meaningless
           when ``data`` is provided.
@@ -323,10 +323,10 @@ anyOf:
               minimum: 0
             - enum: ['*']
 
-      dtype:
+      datatype:
         description: |
           The data format of the array elements.
-        $ref: "#/definitions/dtype"
+        $ref: "#/definitions/datatype"
 
       byteorder:
         description: >
@@ -368,6 +368,6 @@ anyOf:
           - $ref: ndarray
 
     dependencies:
-      source: [shape, dtype, byteorder]
+      source: [shape, datatype, byteorder]
 
-    propertyOrder: [source, data, mask, dtype, byteorder, shape, offset, strides]
+    propertyOrder: [source, data, mask, datatype, byteorder, shape, offset, strides]

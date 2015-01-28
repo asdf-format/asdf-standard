@@ -88,7 +88,7 @@ YAML content.  For example::
       --- !core/asdf
       data: !core/ndarray
         source: 0
-        dtype: float64
+        datatype: float64
         shape: [1024, 1024]
       ...
 
