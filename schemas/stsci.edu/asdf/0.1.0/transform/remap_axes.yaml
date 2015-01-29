@@ -50,6 +50,20 @@ examples:
           mapping: [0, 1, !core/constant 42]
 
   -
+    - |
+        The above example is equivalent to the following, and ASDF
+        implementations are free to normalize it thusly:
+    - |
+        !transform/concatenate
+          forward:
+            - !transform/remap_axes
+              mapping: [0]
+            - !transform/remap_axes
+              mapping: [1]
+            - !transform/constant
+              value: 42
+
+  -
     - Here we have 3 input axes, but we are explicitly dropping the last one
     - |
         !transform/remap_axes
