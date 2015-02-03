@@ -41,6 +41,15 @@ Arithmetic operations
    stsci.edu/asdf/0.1.0/transform/divide.rst
    stsci.edu/asdf/0.1.0/transform/power.rst
 
+Simple Transforms
+-----------------
+
+.. toctree::
+   :maxdepth: 1
+
+   stsci.edu/asdf/0.1.0/transform/shift.rst
+   stsci.edu/asdf/0.1.0/transform/scale.rst
+
 Projections
 -----------
 
@@ -58,5 +67,4 @@ Polynomials
    :maxdepth: 1
 
    stsci.edu/asdf/0.1.0/transform/polynomial.rst
-   stsci.edu/asdf/0.1.0/transform/shift.rst
-   stsci.edu/asdf/0.1.0/transform/scale.rst
+
