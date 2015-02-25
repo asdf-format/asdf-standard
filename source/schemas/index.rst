@@ -17,3 +17,13 @@ must support the "core" module, but the other modules are optional.
    unit.rst
    transform.rst
    wcs.rst
+
+The following graph shows the dependencies between modules:
+
+.. digraph:: modules
+
+   "fits" -> "core"
+   "unit" -> "core"
+   "transform" -> "core"
+   "wcs" -> "transform"
+   "wcs" -> "unit"

@@ -3,6 +3,7 @@
 $schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
 id: "http://stsci.edu/schemas/asdf/0.1.0/core/asdf"
 title: |
+  Top-level schema for every ASDF file.
 
 description: |
   This schema contains the top-level attributes for every ASDF file.
