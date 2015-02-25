@@ -164,19 +164,27 @@ Each block begins with the following header:
 - ``flags`` (32-bit unsigned integer, big-endian): A bit field
   containing flags (described below).
 
+- ``compression`` (4-byte byte string): The name of the compression
+  algorithm, if any.  Should be ``\0\0\0\0`` to indicate no
+  compression.  See :ref:`compression` for valid values.
+
 - ``allocated_size`` (64-bit unsigned integer, big-endian): The amount
   of space allocated for the block (not including the header), in
   bytes.
 
 - ``used_size`` (64-bit unsigned integer, big-endian): The amount of
-  used space for the block (not including the header), in bytes.
+  used space for the block on disk (not including the header), in
+  bytes.
+
+- ``data_size`` (64-bit unsigned integer, big-endian): The size of the
+  block when decoded, in bytes.  If ``compression`` is all zeros
+  (indicating no compression), it **must** be equal to ``used_size``.
+  If compression is being used, this is the size of the decoded block
+  data.
 
 - ``checksum`` (64-bit unsigned integer, big-endian): An optional MD5
   checksum of the used data in the block.  The special value of 0
   indicates that no checksum verification should be performed.  *TBD*.
-
-- ``encoding`` (16-byte character string): A way to indicate how the
-  buffer is compressed or encoded.  *TBD*.
 
 Flags
 ^^^^^
@@ -184,9 +192,21 @@ Flags
 The following bit flags are understood in the ``flags`` field:
 
 - ``STREAMED`` (0x1): When set, the block is in streaming mode, and it
-  extends to the end of the file.  When set, the ``allocated_size``
-  and ``used_size`` fields are ignored.  By necessity, any block with
-  the ``STREAMED`` bit set must be the last block in the file.
+  extends to the end of the file.  When set, the ``allocated_size``,
+  ``used_size`` and ``data_size`` fields are ignored.  By necessity,
+  any block with the ``STREAMED`` bit set must be the last block in
+  the file.
+
+.. _compression:
+
+Compression
+^^^^^^^^^^^
+
+Currently, only one block compression type is supported:
+
+- ``zlib``: The zlib lossless compression algorithm.  It is widely
+  used, patent-unencumbered, and has an implementation released under
+  a permissive license in `zlib <http://www.zlib.net/>`__.
 
 Block content
 ^^^^^^^^^^^^^

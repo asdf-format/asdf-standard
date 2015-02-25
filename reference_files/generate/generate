@@ -140,7 +140,18 @@ def ref_exploded(fd):
         'data': np.arange(8)
     }
 
-    with pyasdf.AsdfFile(tree).write_to(fd, exploded=True):
+    with pyasdf.AsdfFile(tree).write_to(fd, all_array_storage='external'):
+        pass
+
+
+def ref_compressed(fd):
+    tree = {
+        'data': np.arange(128)
+    }
+
+    ff = pyasdf.AsdfFile(tree)
+    ff.set_array_compression(tree['data'], 'zlib')
+    with ff.write_to(fd):
         pass
 
 
