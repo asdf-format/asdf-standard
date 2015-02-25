@@ -16,6 +16,15 @@ anyOf:
         description: |
           A user-friendly name for the transform, to give it extra
           meaning.
+
+      domain:
+        description: |
+          The domain (range of valid inputs) to the transform.
+          Each entry in the list corresponds to an input dimension.
+        type: array
+        items:
+          $ref: domain
+
       inverse:
         description: |
           Explicitly sets the inverse transform of this transform.

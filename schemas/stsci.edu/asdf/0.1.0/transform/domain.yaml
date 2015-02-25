@@ -1,0 +1,39 @@
+%YAML 1.1
+---
+$schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
+id: "http://stsci.edu/schemas/asdf/0.1.0/transform/domain"
+tag: "tag:stsci.edu:asdf/0.1.0/transform/add"
+title: >
+  Defines the domain of an input axis.
+
+description: >
+  Describes the range of acceptable input values to a particular
+  axis of a transform.
+
+examples:
+  -
+    - The domain ``[0, 1)``.
+    - |
+      !transform/domain
+        lower: 0
+        upper: 1
+        includes_lower: true
+
+properties:
+  lower:
+    description: The lower value of the domain.
+    type: number
+
+  upper:
+    description: The upper value of the domain.
+    type: number
+
+  includes_lower:
+    description: If `true`, the domain includes `lower`.
+    type: boolean
+    default: false
+
+  includes_upper:
+    description: If `true`, the domain includes `upper`.
+    type: boolean
+    default: false
