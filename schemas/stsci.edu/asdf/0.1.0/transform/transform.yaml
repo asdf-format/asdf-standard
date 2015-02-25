@@ -16,6 +16,7 @@ anyOf:
         description: |
           A user-friendly name for the transform, to give it extra
           meaning.
+        type: string
 
       domain:
         description: |
