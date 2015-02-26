@@ -1,0 +1,36 @@
+%YAML 1.1
+---
+$schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
+id: "http://stsci.edu/schemas/asdf/0.1.0/transform/rotate3d"
+tag: "tag:stsci.edu:asdf/0.1.0/transform/rotate3d"
+title: >
+  Rotation in 3D space.
+description: |
+  Rotation by 3 Euler angles.
+
+  Invertability: All ASDF tools are required to be able to compute the
+  analytic inverse of this transform.
+
+examples:
+  -
+    - The three Euler angles are 12.3, 34 and -1.2 in degrees.
+    - |
+      !transform/rotate3d
+        phi: 12.3
+        theta: 34
+        psi: -1.2
+
+allOf:
+  - $ref: transform
+  - type: object
+    properties:
+      phi:
+        type: number
+        description: Angle, in degrees.
+      theta:
+        type: number
+        description: Angle, in degrees.
+      psi:
+        type: number
+        description: Angle, in degrees.
+    required: [phi, theta, psi]
