@@ -33,4 +33,7 @@ allOf:
       psi:
         type: number
         description: Angle, in degrees.
+      direction:
+        enum: [native2celestial, celestial2native]
+        default: native2celestial
     required: [phi, theta, psi]
