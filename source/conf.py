@@ -230,7 +230,7 @@ latex_elements = {
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, documentclass [howto/manual]).
 latex_documents = [
-  ('index', 'ASDFStandard-{0}.tex'.format(version), u'ASDF Standard v{0}'.format(version),
+  ('index', 'ASDFStandard-{0}.tex'.format(version), u'ASDF Standard',
    u'Michael Droettboom, Erik Bray, et al\\\\Space Telescope Science Institute',
    'manual'),
 ]
