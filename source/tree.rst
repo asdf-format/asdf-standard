@@ -187,3 +187,67 @@ allowed.
     disallow YAML anchors and aliases, since it explicitly supports
     all of YAML 1.1, their use is discouraged in favor of the more
     flexible JSON Pointer/JSON Reference standard described above.
+
+.. _comments:
+
+Comments
+--------
+
+It is quite common in FITS files to see comments that describe the
+purpose of the key/value pair.  For example::
+
+  DATE    = '2015-02-12T23:08:51.191614' / Date this file was created (UTC)
+  TACID   = 'NOAO    '           / Time granting institution
+
+Bringing this convention over to ASDF, one could imagine::
+
+  # Date this file was created (UTC)
+  creation_date: !time/utc
+    2015-02-12T23:08:51.191614
+  # Time granting institution
+  time_granting_institution: NOAO
+
+It should be obvious from the examples that these kinds of comments,
+describing the global meaning of a key, are much less necessary in
+ASDF.  Since ASDF is not limited to 8-character keywords, the keywords
+themselves can be much more descriptive.  But more importantly, the
+schema for a given key/value pair describes its purpose in detail.
+(It would be quite straightforward to build a tool that, given an
+entry in a YAML tree, looks up the schema's description associated
+with that entry.)  Therefore, the use of comments to describe the
+global meaning of a value are strongly discouraged.
+
+However, there still may be cases where a comment may be desired in
+ASDF, such as when a particular value is unusual or unexpected.  The
+YAML standard includes a convention for comments, providing a handy
+way to include annotations in the ASDF file::
+
+  # We set this to filter B here, even though C is the more obvious
+  # choice, because B is handled with more accuracy by our software.
+  filter:
+    type: B
+
+Unfortunately, most YAML parsers will simply throw these comments out
+and do not provide any mechanism to retain them, so reading in an ASDF
+file, making some changes, and writing it out will remove all
+comments.  Even if the YAML parser could be improved or extended to
+retain comments, the YAML standard does not define which values the
+comments are associated with.  In the above example, it is only by
+standard reading conventions that we assume the comment is associated
+with the content following it.  If we were to move the content, where
+should the comment go?
+
+To provide a mechanism to add user comments without swimming upstream
+against the YAML standard, we recommend a convention for associating
+comments with objects (mappings) by using the reserved key name
+``//``.  In this case, the above example would be rewritten as::
+
+  filter:
+    //: |
+      We set this to filter B here, even though C was used, because B
+      is handled with more accuracy by our software.
+    type: B
+
+ASDF parsers must not interpret or react programmatically to these
+comment values: they are for human reference only.  No schema may
+use ``//`` as a meaningful key.
