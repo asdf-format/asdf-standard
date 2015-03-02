@@ -28,7 +28,8 @@ import sphinx_bootstrap_theme
 # Add any Sphinx extension module names here, as strings. They can be extensions
 # coming with Sphinx (named 'sphinx.ext.*') or your custom ones.
 mathjax_path="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
-extensions = ['sphinx.ext.mathjax', 'sphinx.ext.ifconfig', 'sphinxext.category']
+extensions = ['sphinx.ext.mathjax', 'sphinx.ext.ifconfig',
+              'sphinx.ext.graphviz', 'sphinxext.category']
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -229,7 +230,7 @@ latex_elements = {
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, documentclass [howto/manual]).
 latex_documents = [
-  ('index', 'ASDFStandard-{0}.tex'.format(version), u'ASDF Standard v{0}'.format(version),
+  ('index', 'ASDFStandard-{0}.tex'.format(version), u'ASDF Standard',
    u'Michael Droettboom, Erik Bray, et al\\\\Space Telescope Science Institute',
    'manual'),
 ]
