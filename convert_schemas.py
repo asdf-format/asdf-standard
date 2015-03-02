@@ -14,6 +14,8 @@ import textwrap
 
 import yaml
 
+from md2rst import md2rst
+
 
 def write_if_different(filename, data):
     """ Write `data` to `filename`, if the content of the file is different.
@@ -243,11 +245,6 @@ def reindent(content, indent):
     return '\n'.join(lines)
 
 
-def write_subschemas(o, name, schema, path, level, schemas):
-    indent = '  ' * max(level, 0)
-
-
-
 def recurse(o, name, schema, path, level, required=False):
     """
     Convert a schema fragment to reStructuredText.
@@ -291,10 +288,10 @@ def recurse(o, name, schema, path, level, required=False):
         o.write(' Required.')
     o.write('\n\n')
 
-    o.write(reindent(schema.get('title', ''), indent))
+    o.write(reindent(md2rst(schema.get('title', '')), indent))
     o.write('\n\n')
 
-    o.write(reindent(schema.get('description', ''), indent))
+    o.write(reindent(md2rst(schema.get('description', '')), indent))
     o.write('\n\n')
 
     if 'default' in schema:
@@ -344,7 +341,7 @@ def recurse(o, name, schema, path, level, required=False):
         o.write(indent)
         o.write(":category:`Examples:`\n\n")
         for description, example in schema['examples']:
-            o.write(reindent(description + "::\n\n", indent))
+            o.write(reindent(md2rst(description + "::\n\n"), indent))
             o.write(reindent(example, indent + '  '))
             o.write('\n\n')
 
