@@ -12,7 +12,7 @@ description: >
 
 examples:
   -
-    - The domain ``[0, 1)``.
+    - The domain `[0, 1)`.
     - |
       !transform/domain
         lower: 0

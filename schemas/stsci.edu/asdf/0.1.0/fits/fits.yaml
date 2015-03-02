@@ -11,7 +11,7 @@ description: |
 
   Not all kinds of data in FITS are directly representable in ASDF.
   For example, applying an offset and scale to the data using the
-  ``BZERO`` and ``BSCALE`` keywords.  In these cases, it will not be
+  `BZERO` and `BSCALE` keywords.  In these cases, it will not be
   possible to store the data in the native format from FITS and also
   be accessible in its proper form in the ASDF file.
 examples:
