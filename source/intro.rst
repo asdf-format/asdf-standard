@@ -102,7 +102,7 @@ The ASDF format is built on top of a number of existing standards:
 - `VOUnits (Units in the VO)
   <http://www.ivoa.net/documents/VOUnits/index.html>`__
 
-.. [Thomas2014] Thomas, B., Jenness. T. et al.  "The Future of
+.. [Thomas2014] Thomas, B., Jenness. T. et al. 2015, "The Future of
                 Astronomical Data Formats I. Learning from FITS".
-                Preprint submitted to Astronomy & Computing.
+                Astronomy & Computing, in press, arXiv e-print: 1502.00996.
                 ``https://github.com/timj/aandc-fits``.

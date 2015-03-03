@@ -11,7 +11,7 @@ allOf:
     properties:
       tag:
         description: |
-          A fully-qualfied YAML tag name that should be associated
+          A fully-qualified YAML tag name that should be associated
           with the object type returned by the YAML parser; for
           example, the object must be an instance of the class
           registered with the parser to create instances of objects
