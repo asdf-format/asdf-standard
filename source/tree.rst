@@ -149,7 +149,7 @@ reference data, available on a public webserver at the URI
 ``http://www.nowhere.com/reference.asdf``::
 
     wavelengths:
-      - !ndarray
+      - !core/ndarray
         source: 0
         shape: [256, 256]
         datatype: float
@@ -162,7 +162,7 @@ Another file may reference this data directly::
 
 It is also possible to use references within the same file::
 
-    data: !ndarray
+    data: !core/ndarray
       source: 0
       shape: [256, 256]
       datatype: float
@@ -170,7 +170,7 @@ It is also possible to use references within the same file::
       mask:
         $ref: "#/my_mask"
 
-    my_mask: !ndarray
+    my_mask: !core/ndarray
       source: 0
       shape: [256, 256]
       datatype: uint8
