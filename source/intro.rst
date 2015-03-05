@@ -9,7 +9,7 @@ common at the time, are now seen to limit its utility for the needs of
 modern science.  As astronomy moves into a more varied set of data
 product types (data models) with richer and more complex metadata,
 FITS is being pushed to its breaking point.  The issues with FITS are
-outlined in great detail in [Thomas2014]_.
+outlined in great detail in [Thomas2015]_.
 
 Newer formats, such as `VOTable
 <http://www.ivoa.net/documents/VOTable/>`__ have partially addressed
@@ -102,7 +102,7 @@ The ASDF format is built on top of a number of existing standards:
 - `VOUnits (Units in the VO)
   <http://www.ivoa.net/documents/VOUnits/index.html>`__
 
-.. [Thomas2014] Thomas, B., Jenness. T. et al. 2015, "The Future of
+.. [Thomas2015] Thomas, B., Jenness. T. et al. 2015, "The Future of
                 Astronomical Data Formats I. Learning from FITS".
                 Astronomy & Computing, in press, arXiv e-print: 1502.00996.
                 ``https://github.com/timj/aandc-fits``.
