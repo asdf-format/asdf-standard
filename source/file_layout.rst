@@ -150,7 +150,7 @@ Each block begins with the following header:
   - in hexadecimal: d3, 42, 4c, 4b
   - in ascii: ``"\323BLK"``
 
-- ``header_size`` (16-bit unsigned integer, big endian): Indicates the
+- ``header_size`` (16-bit unsigned integer, big-endian): Indicates the
   size of the remainder of the header (not including the length of the
   ``header_size`` entry itself or the ``block_magic_token``), in bytes.
   It is stored explicitly in the header itself so that the header may be
