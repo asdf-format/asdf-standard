@@ -102,6 +102,8 @@ The ASDF format is built on top of a number of existing standards:
 - `VOUnits (Units in the VO)
   <http://www.ivoa.net/documents/VOUnits/index.html>`__
 
+- `Zlib Deflate compression <http://www.zlib.net/feldspar.html>`__
+
 .. [Thomas2015] Thomas, B., Jenness. T. et al. 2015, "The Future of
                 Astronomical Data Formats I. Learning from FITS".
                 Astronomy & Computing, in press, arXiv e-print: 1502.00996.
