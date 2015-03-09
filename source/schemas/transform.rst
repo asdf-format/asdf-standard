@@ -58,6 +58,7 @@ Projections
 
    stsci.edu/asdf/0.1.0/transform/affine.rst
    stsci.edu/asdf/0.1.0/transform/rotate2d.rst
+   stsci.edu/asdf/0.1.0/transform/rotate3d.rst
    stsci.edu/asdf/0.1.0/transform/tangent.rst
 
 Polynomials
