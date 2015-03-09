@@ -159,7 +159,7 @@ Descriptive information
 ^^^^^^^^^^^^^^^^^^^^^^^
 
 Each schema has some descriptive fields: ``title``, ``description``
-and ``examples``.
+and ``examples``.  These fields may contain core markdown syntax.
 
 - ``title``: A one-line summary of what the schema is for.
 
