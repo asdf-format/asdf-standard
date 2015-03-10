@@ -38,8 +38,8 @@ YAML Schema adds three new keywords to JSON Schema.
 ``tag``, which may be attached to any data type, declares that the
 element must have the given YAML tag.
 
-For example, the root :ref:`ASDF schema
-<http://stsci.edu/schemas/asdf/0.1.0/core/asdf>` declares that
+For example, the root :ref:`asdf
+<http://stsci.edu/schemas/asdf/0.1.0/core/asdf>` schema declares that
 the ``data`` property must be an :ref:`ndarray
 <http://stsci.edu/schemas/asdf/0.1.0/core/ndarray>`.  It does
 this not by using the ``tag`` keyword directly, but by referencing the
@@ -159,7 +159,7 @@ Descriptive information
 ^^^^^^^^^^^^^^^^^^^^^^^
 
 Each schema has some descriptive fields: ``title``, ``description``
-and ``examples``.
+and ``examples``.  These fields may contain core markdown syntax.
 
 - ``title``: A one-line summary of what the schema is for.
 

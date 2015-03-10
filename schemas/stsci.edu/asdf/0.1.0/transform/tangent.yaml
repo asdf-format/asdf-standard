@@ -7,7 +7,7 @@ title: |
   A tangent (gnomonic) projection.
 
 description: |
-  Corresponds to the ``TAN`` projection in the FITS WCS standard.
+  Corresponds to the `TAN` projection in the FITS WCS standard.
 
   Invertability: All ASDF tools are required to be able to compute the
   analytic inverse of this transform.

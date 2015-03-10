@@ -21,12 +21,13 @@ description: |
   For example, given 5 input axes, and 3 subtransforms with the
   following orders:
 
-  - transform A: 2 in -> 2 out
-  - transform B: 1 in -> 2 out
-  - transform C: 2 in -> 1 out
+  1. transform A: 2 in -> 2 out
+  1. transform B: 1 in -> 2 out
+  1. transform C: 2 in -> 1 out
 
-  The transform is performed as follows::
+  The transform is performed as follows:
 
+  ```
     :    i0    i1       i2       i3    i4
     :    |     |        |        |     |
     :  +---------+ +---------+ +----------+
@@ -34,9 +35,10 @@ description: |
     :  +---------+ +---------+ +----------+
     :    |     |     |     |        |
     :    o0    o1    o2    o3       o4
+  ```
 
   If reordering of the input or output axes is required, use in series
-  with the ``remap_axes`` transform.
+  with the `remap_axes` transform.
 
   Invertability: All ASDF tools are required to be able to compute the
   analytic inverse of this transform.

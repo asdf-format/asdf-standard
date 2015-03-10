@@ -18,7 +18,7 @@ description: |
     ``data`` property, in which case it is possible to explicitly
     specify the ``datatype`` and other properties.
 
-  - External to the tree: The data comes from a :ref:`block <block>`
+  - External to the tree: The data comes from a [block](ref:block)
     within the same ASDF file or an external ASDF file referenced by a
     URI.
 
@@ -85,8 +85,8 @@ examples:
           offset: 2099200
 
   -
-    - A table datatype, with nested columns for a coordinate in (ra,
-      dec), and a 3x3 convolution kernel
+    - A table datatype, with nested columns for a coordinate in (*ra*,
+      *dec*), and a 3x3 convolution kernel
     - |
         !core/ndarray
           source: 0
@@ -154,23 +154,23 @@ definitions:
 
       There is a set of numeric types, each with a single identifier:
 
-      - ``int8``, ``int16``, ``int32``, ``int64``: Signed integer
-        types, with the given bit size.
+      - `int8`, `int16`, `int32`, `int64`: Signed integer types, with
+        the given bit size.
 
-      - ``uint8``, ``uint16``, ``uint32``, ``uint64``: Unsigned
-        integer types, with the given bit size.
+      - `uint8`, `uint16`, `uint32`, `uint64`: Unsigned integer types,
+        with the given bit size.
 
-      - ``float32``: Single-precision floating-point type or
-        "binary32", as defined in IEEE 754.
+      - `float32`: Single-precision floating-point type or "binary32",
+        as defined in IEEE 754.
 
-      - ``float64``: Double-precision floating-point type or
-        "binary64", as defined in IEEE 754.
+      - `float64`: Double-precision floating-point type or "binary64",
+        as defined in IEEE 754.
 
-      - ``complex64``: Complex number where the real and imaginary
-        parts are each single-precision floating-point ("binary32")
-        numbers, as defined in IEEE 754.
+      - `complex64`: Complex number where the real and imaginary parts
+        are each single-precision floating-point ("binary32") numbers,
+        as defined in IEEE 754.
 
-      - ``complex128``: Complex number where the real and imaginary
+      - `complex128`: Complex number where the real and imaginary
         parts are each double-precision floating-point ("binary64")
         numbers, as defined in IEEE 754.
 
@@ -178,10 +178,10 @@ definitions:
       be indicated with a 2-element array where the first element is an
       identifier for the string type, and the second is a length:
 
-      - ``ascii``: A string containing ASCII text (all codepoints < 128),
-        where each character is 1 byte.
+      - `ascii`: A string containing ASCII text (all codepoints <
+        128), where each character is 1 byte.
 
-      - ``ucs4``: A string containing unicode text in the UCS-4
+      - `ucs4`: A string containing unicode text in the UCS-4
         encoding, where each character is always 4 bytes long.  Here
         the number of bytes used is 4 times the given length.
 
@@ -240,20 +240,20 @@ definitions:
       homogeneous arrays, not tables.
 
       - If any of the elements in the array are YAML strings, the
-        ``datatype`` of the entire array is ``ucs4``, with the width
-        of the largest string in the column, otherwise...
+        `datatype` of the entire array is `ucs4`, with the width of
+        the largest string in the column, otherwise...
 
       - If any of the elements in the array are complex numbers, the
-        ``datatype`` of the entire column is ``complex128``, otherwise...
+        `datatype` of the entire column is `complex128`, otherwise...
 
       - If any of the types in the column are numbers with a decimal
-        point, the ``datatype`` of the entire column is ``float64``,
+        point, the `datatype` of the entire column is `float64`,
         otherwise..
 
-      - If any of the types in the column are integers, the ``datatype``
-        of the entire column is ``int64``, otherwise...
+      - If any of the types in the column are integers, the `datatype`
+        of the entire column is `int64`, otherwise...
 
-      - The ``datatype`` of the entire column is ``bool8``.
+      - The `datatype` of the entire column is `bool8`.
 
     type: array
     items:
@@ -273,25 +273,23 @@ anyOf:
         description: |
           The source of the data.
 
-          - If an integer:
-
-              - If positive, the zero-based index of the block within the
-                same file.
-
-              - If negative, the index from the last block within the same
-                file.  For example, a source of ``-1`` corresponds to the
-                last block in the same file.
+          - If an integer: If positive, the zero-based index of the
+            block within the same file. If negative, the index from
+            the last block within the same file.  For example, a
+            source of `-1` corresponds to the last block in the same
+            file.
 
           - If a string, a URI to an external ASDF file containing the
             block data.  Relative URIs and ``file:`` and ``http:``
             protocols must be supported.  Other protocols may be supported
             by specific library implementations.
 
-            The ability to reference block data in an external ASDF file
-            is intentionally limited to the first block in the external
-            ASDF file, and is intended only to support the needs of
-            :ref:`exploded`.  For the more general case of referencing
-            data in an external ASDF file, use tree :ref:`references`.
+          The ability to reference block data in an external ASDF file
+          is intentionally limited to the first block in the external
+          ASDF file, and is intended only to support the needs of
+          [exploded](ref:exploded).  For the more general case of
+          referencing data in an external ASDF file, use tree
+          [references](ref:references).
 
         anyOf:
           - type: integer
@@ -302,17 +300,17 @@ anyOf:
         description: |
           The data for the array inline.
 
-          If ``datatype`` and/or ``shape`` are also provided, they must
+          If `datatype` and/or `shape` are also provided, they must
           match the data here and can be used as a consistency check.
-          ``strides``, ``offset`` and ``byteorder`` are meaningless
-          when ``data`` is provided.
+          `strides`, `offset` and `byteorder` are meaningless when
+          `data` is provided.
         $ref: "#/definitions/inline-data"
 
       shape:
         description: |
           The shape of the array.
 
-          The first entry may be the string ``*``, indicating that the
+          The first entry may be the string `*`, indicating that the
           length of the first index of the array will be automatically
           determined from the size of the block.  This is used for
           streaming support.

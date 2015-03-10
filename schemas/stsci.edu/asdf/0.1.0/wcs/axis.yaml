@@ -17,22 +17,22 @@ properties:
       The type of frame for this axis.  It must have one of the
       following values:
 
-      - ``celestial``: Celestial coordinates.  A ``celestial_type``
+      - `celestial`: Celestial coordinates.  A `celestial_type`
         property must also be given.
 
-      - ``time``: Time coordinate.  A ``time_scale`` property must
-        also be given.
+      - `time`: Time coordinate.  A `time_scale` property must also be
+        given.
 
-      - ``spectral``: Spectral coordinate.
+      - `spectral`: Spectral coordinate.
 
-      - ``cartesian``: Cartesian coordinate.
+      - `cartesian`: Cartesian coordinate.
 
-      - ``detector``: Native detector coordinate.
+      - `detector`: Native detector coordinate.
 
-      - ``focal_plane``: A coordinate in the focal plane.  Naturally,
+      - `focal_plane`: A coordinate in the focal plane.  Naturally,
         these coordinates will be instrument specific.
 
-      - ``custom``: A custom axis frame that is not one of the above.
+      - `custom`: A custom axis frame that is not one of the above.
         Additional information about the frame may be stored in
         additional properties as a non-standard extension.
 
@@ -47,17 +47,17 @@ properties:
 
   celestial_type:
     description: |
-      If ``type`` is "celestial", this property must be given.
+      If `type` is "celestial", this property must be given.
 
-      - FK4: Celestial coordinates in the FK4 system.  ``equinox`` and
-        ``observation_time`` may also be given.  ``name`` should be
-        ``ra`` or ``dec``.
-      - FK5: Celestial coordinates in the FK5 system.  ``equinox`` may
-        also be given.  ``name`` should be ``ra`` or ``dec``.
-      - ICRS: Celestial coordinates in the ICRS system.  ``name``
-        should be ``ra`` or ``dec``.
-      - galactic: Galactic coordinates.  ``name`` should be ``lon`` or
-        ``lat``.
+      - FK4: Celestial coordinates in the FK4 system.  `equinox` and
+        `observation_time` may also be given.  `name` should be `ra`
+        or `dec`.
+      - FK5: Celestial coordinates in the FK5 system.  `equinox` may
+        also be given.  `name` should be `ra` or `dec`.
+      - ICRS: Celestial coordinates in the ICRS system.  `name` should
+        be `ra` or `dec`.
+      - galactic: Galactic coordinates.  `name` should be `lon` or
+        `lat`.
 
     enum:
       - FK4
@@ -75,7 +75,7 @@ properties:
   observation_time:
     description: |
       The observation time of the celestial frame, if different from
-      ``equinox``.
+      `equinox`.
     type: string # ../time/time
 
   time_scale:
@@ -104,7 +104,7 @@ properties:
 
   name:
     description: |
-      The name of the axis.  If the ``type`` is multidimensional, such
+      The name of the axis.  If the `type` is multidimensional, such
       as "celestial", this name has meaning, and must correspond to
       it.  For example, for a celestial ICRS frame, it must be either
       "ra" or "dec".  Otherwise, it may be an arbitrary name for the

@@ -4,13 +4,15 @@ $schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
 id: "http://stsci.edu/schemas/asdf/0.1.0/core/complex"
 title: Complex number value.
 description: |
-  Represents a complex number matching the following EBNF grammar::
+  Represents a complex number matching the following EBNF grammar
 
+  ```
     plus-or-minus = "+" | "-"
     suffix        = "J" | "j" | "I" | "i"
     complex       = [ieee754] [plus-or-minus ieee754 suffix]
+  ```
 
-  Where ``ieee754`` is a floating point number in IEEE 754 decimal
+  Where `ieee754` is a floating point number in IEEE 754 decimal
   format.
 
 examples:
