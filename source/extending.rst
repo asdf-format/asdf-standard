@@ -12,7 +12,13 @@ don't understand those conventions.
 YAML Schema
 -----------
 
-YAML Schema is a small extension to `JSON Schema Draft 4
+.. toctree::
+   :hidden:
+
+   schemas/stsci.edu/yaml-schema/draft-01.rst
+
+:ref:`YAML Schema <http://stsci.edu/schemas/yaml-schema/draft-01>` is
+a small extension to `JSON Schema Draft 4
 <http://json-schema.org/latest/json-schema-validation.html>`__ created
 specifically for ASDF.  `Understanding JSON Schema
 <http://spacetelescope.github.io/understanding-json-schema/>`__
@@ -37,8 +43,8 @@ For example, the root :ref:`ASDF schema
 the ``data`` property must be an :ref:`ndarray
 <http://stsci.edu/schemas/asdf/0.1.0/core/ndarray>`.  It does
 this not by using the ``tag`` keyword directly, but by referencing the
-``ndarray`` schema, which in turn has the ``tag`` keyword.  The `ASDF
-schema` includes::
+``ndarray`` schema, which in turn has the ``tag`` keyword.  The ASDF
+schema includes::
 
     properties:
       data:

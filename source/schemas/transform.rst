@@ -18,6 +18,8 @@ Basics
    stsci.edu/asdf/0.1.0/transform/transform.rst
    stsci.edu/asdf/0.1.0/transform/generic.rst
    stsci.edu/asdf/0.1.0/transform/identity.rst
+   stsci.edu/asdf/0.1.0/transform/constant.rst
+   stsci.edu/asdf/0.1.0/transform/domain.rst
 
 Compound transformations
 ------------------------
@@ -68,4 +70,3 @@ Polynomials
    :maxdepth: 1
 
    stsci.edu/asdf/0.1.0/transform/polynomial.rst
-
