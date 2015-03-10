@@ -21,6 +21,11 @@ for resizing a block, which has an explicit size stored in the file
 Note also that, by design, an ASDF file containing no binary blocks is
 also a completely standard and valid YAML file.
 
+Additionally, the spec allows for extra unallocated space after the
+tree and between blocks.  This allows libraries to more easily update
+the files in place, since it allows expansion of certain areas without
+rewriting of the entire file.
+
 .. _header:
 
 Header
