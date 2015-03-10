@@ -2,6 +2,8 @@
 ---
 $schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
 id: "http://stsci.edu/schemas/yaml-schema/draft-01"
+title:
+  YAML Schema
 description: |
   A metaschema extending JSON Schema's metaschema to add support for
   some YAML-specific constructions.
