@@ -1,0 +1,46 @@
+%YAML 1.1
+---
+$schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
+id: "http://stsci.edu/schemas/asdf/0.1.0/transform/zenithal_perspective"
+tag: "tag:stsci.edu:asdf/0.1.0/transform/zenithal_perspective"
+title: |
+  The zenithal perspective projection.
+
+description: |
+  Corresponds to the `AZP` projection in the FITS WCS standard.
+
+  See
+  [zenithal](ref:http://stsci.edu/schemas/asdf/0.1.0/transform/zenithal)
+  for the definition of the full transformation.
+
+  The pixel-to-sky transformation is defined as:
+
+  $$\theta = \arg(\rho, 1) - \sin^{-1}\left(\frac{\rho \mu}{\sqrt{\rho^2 + 1}}\right)$$
+
+  where:
+
+  $$\rho = \frac{\pi}{180^{\circ}}\frac{R_\theta}{\mu + 1}$$
+
+  And the sky-to-pixel transformation is defined as:
+
+  $$R_\theta = \frac{180^{\circ}}{\pi}\frac{(\mu + 1) \cos \theta}{\mu + \sin \theta}$$
+
+  Invertability: All ASDF tools are required to provide the inverse of
+  this transform.
+
+allOf:
+  - $ref: zenithal
+  - type: object
+    properties:
+      mu:
+        type: number
+        description: |
+          Distance from point of projection to center of sphere in
+          spherical radii.
+        default: 0
+
+      gamma:
+        type: number
+        description: |
+          Look angle, in degrees.
+        default: 0

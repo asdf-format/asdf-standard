@@ -1,0 +1,18 @@
+%YAML 1.1
+---
+$schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
+id: "http://stsci.edu/schemas/asdf/0.1.0/transform/cylindrical"
+tag: "tag:stsci.edu:asdf/0.1.0/transform/cylindrical"
+title: |
+  Base class of all cylindrical projections.
+
+description: |
+  The surface of cylindrical projections is a cylinder.
+
+allOf:
+  - $ref: transform
+  - type: object
+    properties:
+      direction:
+        enum: [pix2sky, sky2pix]
+        default: pix2sky
