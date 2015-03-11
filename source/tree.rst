@@ -132,7 +132,7 @@ is present, the reference refers to the top of the tree.
 .. note::
 
    JSON Pointer is a very simple convention.  The only wrinkle is that
-   because the characters ``'~'`` (x7E) and ``'/'`` (%x2F) have
+   because the characters ``'~'`` (0x7E) and ``'/'`` (0x2F) have
    special meanings, ``'~'`` needs to be encoded as ``'~0'`` and
    ``'/'`` needs to be encoded as ``'~1'`` when these characters
    appear in a reference token.
