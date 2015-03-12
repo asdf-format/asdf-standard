@@ -1,4 +1,4 @@
 Prerequisites
 =============
 
-> pip install sphinx sphinx-bootstrap-theme jsonschema pyyaml six
+> pip install sphinx sphinx-bootstrap-theme jsonschema pyyaml six mistune
