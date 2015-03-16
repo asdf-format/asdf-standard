@@ -55,13 +55,39 @@ Simple Transforms
 Projections
 -----------
 
+Affine
+^^^^^^
+
 .. toctree::
    :maxdepth: 1
 
    stsci.edu/asdf/0.1.0/transform/affine.rst
    stsci.edu/asdf/0.1.0/transform/rotate2d.rst
    stsci.edu/asdf/0.1.0/transform/rotate3d.rst
-   stsci.edu/asdf/0.1.0/transform/tangent.rst
+
+Zenithal (azimuthal)
+^^^^^^^^^^^^^^^^^^^^
+
+.. toctree::
+   :maxdepth: 1
+
+   stsci.edu/asdf/0.1.0/transform/zenithal.rst
+   stsci.edu/asdf/0.1.0/transform/gnomonic.rst
+   stsci.edu/asdf/0.1.0/transform/zenithal_perspective.rst
+   stsci.edu/asdf/0.1.0/transform/stereographic.rst
+   stsci.edu/asdf/0.1.0/transform/slant_orthographic.rst
+
+Cylindrical
+^^^^^^^^^^^
+
+.. toctree::
+   :maxdepth: 1
+
+   stsci.edu/asdf/0.1.0/transform/cylindrical.rst
+   stsci.edu/asdf/0.1.0/transform/cylindrical_perspective.rst
+   stsci.edu/asdf/0.1.0/transform/cylindrical_equal_area.rst
+   stsci.edu/asdf/0.1.0/transform/plate_carree.rst
+   stsci.edu/asdf/0.1.0/transform/mercator.rst
 
 Polynomials
 -----------

@@ -1,0 +1,25 @@
+%YAML 1.1
+---
+$schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
+id: "http://stsci.edu/schemas/asdf/0.1.0/transform/mercator"
+tag: "tag:stsci.edu:asdf/0.1.0/transform/mercator"
+title: |
+  The Mercator projection.
+
+description: |
+  Corresponds to the `MER` projection in the FITS WCS standard.
+
+  The pixel-to-sky transformation is defined as:
+
+  $$\phi &= x \\
+  \theta &= 2 \tan^{-1}\left(e^{y \pi / 180^{\circ}}\right)-90^{\circ}$$
+
+  And the sky-to-pixel transformation is defined as:
+
+  $$x &= \phi \\
+  y &= \frac{180^{\circ}}{\pi}\ln \tan \left(\frac{90^{\circ} + \theta}{2}\right)$$
+
+  Invertability: All ASDF tools are required to provide the inverse of
+  this transform.
+
+$ref: cylindrical
