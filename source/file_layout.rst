@@ -187,9 +187,9 @@ Each block begins with the following header:
   If compression is being used, this is the size of the decoded block
   data.
 
-- ``checksum`` (64-bit unsigned integer, big-endian): An optional MD5
-  checksum of the used data in the block.  The special value of 0
-  indicates that no checksum verification should be performed.  *TBD*.
+- ``checksum`` (16-byte string): An optional MD5 checksum of the used
+  data in the block.  The special value of all zeros indicates that no
+  checksum verification should be performed.
 
 Flags
 ^^^^^
