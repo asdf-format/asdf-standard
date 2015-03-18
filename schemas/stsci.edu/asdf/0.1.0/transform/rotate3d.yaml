@@ -34,6 +34,6 @@ allOf:
         type: number
         description: Angle, in degrees.
       direction:
-        enum: [native2celestial, celestial2native]
+        enum: [zxz, zyz, yzy, yxy, xyx, xzx, native2celestial, celestial2native]
         default: native2celestial
     required: [phi, theta, psi]
