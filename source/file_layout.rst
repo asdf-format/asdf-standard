@@ -163,7 +163,7 @@ Each block begins with the following header:
   backward compatibility.  Importantly, ASDF parsers should not assume
   a fixed size of the header, but should obey the ``header_size``
   defined in the file.  In ASDF version 0.1, this should be at least
-  40, but may be larger, for example to align the beginning of the
+  48, but may be larger, for example to align the beginning of the
   block content with a file system block boundary.
 
 - ``flags`` (32-bit unsigned integer, big-endian): A bit field
@@ -187,9 +187,9 @@ Each block begins with the following header:
   If compression is being used, this is the size of the decoded block
   data.
 
-- ``checksum`` (64-bit unsigned integer, big-endian): An optional MD5
-  checksum of the used data in the block.  The special value of 0
-  indicates that no checksum verification should be performed.  *TBD*.
+- ``checksum`` (16-byte string): An optional MD5 checksum of the used
+  data in the block.  The special value of all zeros indicates that no
+  checksum verification should be performed.
 
 Flags
 ^^^^^
