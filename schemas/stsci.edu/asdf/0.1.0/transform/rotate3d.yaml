@@ -46,4 +46,4 @@ allOf:
       direction:
         enum: [zxz, zyz, yzy, yxy, xyx, xzx, native2celestial, celestial2native]
         default: native2celestial
-    required: [phi, theta, psi]
+    required: [phi, theta, psi, direction]
