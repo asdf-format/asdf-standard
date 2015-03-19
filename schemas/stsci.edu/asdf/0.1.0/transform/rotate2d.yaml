@@ -8,7 +8,7 @@ title: >
 description: >
   A 2D rotation around the origin, in degrees.
 
-  Invertability: All ASDF tools are required to be able to compute the
+  Invertibility: All ASDF tools are required to be able to compute the
   analytic inverse of this transform.
 allOf:
   - $ref: transform

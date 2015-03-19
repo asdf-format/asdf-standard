@@ -21,7 +21,7 @@ description: |
 
   $$R_\theta = \frac{180^{\circ}}{\pi}\frac{2 \cos \theta}{1 + \sin \theta}$$
 
-  Invertability: All ASDF tools are required to provide the inverse of
+  Invertibility: All ASDF tools are required to provide the inverse of
   this transform.
 
 $ref: zenithal

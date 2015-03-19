@@ -14,7 +14,7 @@ description: |
 
   $$P = \sum_{i, j=0}^{i+j=n}c_{ij} * x^{i} * y^{j}$$
 
-  Invertability: This transform is not automatically invertible.
+  Invertibility: This transform is not automatically invertible.
 
 examples:
   -

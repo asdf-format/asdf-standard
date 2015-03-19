@@ -6,7 +6,7 @@ tag: "tag:stsci.edu:asdf/0.1.0/transform/identity"
 title: >
   The identity transform.
 description: >
-  Invertability: The inverse of this transform is also the identity
+  Invertibility: The inverse of this transform is also the identity
   transform.
 allOf:
   - $ref: transform

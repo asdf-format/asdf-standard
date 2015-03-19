@@ -8,7 +8,7 @@ title: >
 description: |
   Rotation by 3 Euler angles.
 
-  Invertability: All ASDF tools are required to be able to compute the
+  Invertibility: All ASDF tools are required to be able to compute the
   analytic inverse of this transform.
 
 examples:
