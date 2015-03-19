@@ -3,3 +3,4 @@ sphinx_bootstrap_theme
 jsonschema
 pyyaml
 six
+mistune
