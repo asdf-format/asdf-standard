@@ -28,6 +28,7 @@ examples:
         phi: 12.3
         theta: 34
         psi: -1.2
+        direction: zxz
 
 allOf:
   - $ref: transform
