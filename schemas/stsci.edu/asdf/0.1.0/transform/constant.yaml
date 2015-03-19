@@ -7,7 +7,7 @@ title: >
   A transform that takes no inputs and always outputs a constant
   value.
 description: |
-  Invertability: All ASDF tools are required to be able to compute the
+  Invertibility: All ASDF tools are required to be able to compute the
   analytic inverse of this transform, which always outputs zero values.
 allOf:
   - $ref: transform

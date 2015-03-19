@@ -19,7 +19,7 @@ description: |
   $$x &= \phi \\
   y &= \frac{180^{\circ}}{\pi}\ln \tan \left(\frac{90^{\circ} + \theta}{2}\right)$$
 
-  Invertability: All ASDF tools are required to provide the inverse of
+  Invertibility: All ASDF tools are required to provide the inverse of
   this transform.
 
 $ref: cylindrical

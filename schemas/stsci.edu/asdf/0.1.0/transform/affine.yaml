@@ -6,7 +6,7 @@ tag: "tag:stsci.edu:asdf/0.1.0/transform/affine"
 title: >
   An affine transform.
 description: |
-  Invertability: All ASDF tools are required to be able to compute the
+  Invertibility: All ASDF tools are required to be able to compute the
   analytic inverse of this transform.
 allOf:
   - $ref: transform

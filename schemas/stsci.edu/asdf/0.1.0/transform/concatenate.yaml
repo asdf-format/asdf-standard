@@ -40,7 +40,7 @@ description: |
   If reordering of the input or output axes is required, use in series
   with the `remap_axes` transform.
 
-  Invertability: All ASDF tools are required to be able to compute the
+  Invertibility: All ASDF tools are required to be able to compute the
   analytic inverse of this transform.
 examples:
   -

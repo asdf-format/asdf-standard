@@ -19,7 +19,7 @@ description: |
   $$x &= \phi \\
   y &= \frac{180^{\circ}}{\pi}\frac{\sin \theta}{\lambda}$$
 
-  Invertability: All ASDF tools are required to provide the inverse of
+  Invertibility: All ASDF tools are required to provide the inverse of
   this transform.
 
 allOf:

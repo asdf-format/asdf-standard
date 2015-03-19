@@ -30,7 +30,7 @@ description: |
 
   $$R = \frac{180^{\circ}}{\pi} \frac{(\mu + 1) \cos \theta}{(\mu + \sin \theta) + \cos \theta \cos \phi \tan \gamma}$$
 
-  Invertability: All ASDF tools are required to provide the inverse of
+  Invertibility: All ASDF tools are required to provide the inverse of
   this transform.
 
 allOf:
