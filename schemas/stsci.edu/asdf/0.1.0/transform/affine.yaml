@@ -17,7 +17,7 @@ allOf:
       matrix:
         description: |
           An array of size (*n* x *n*), where *n* is the number of axes,
-          representing the linear transformation in an affine transformation.
+          representing the linear transformation in an affine transform.
         anyOf:
           - $ref: ../core/ndarray
           - type: array
@@ -32,7 +32,7 @@ allOf:
       translation:
         description: |
           An array of size (*n*,), where  *n* is the number of axes,
-          representing the translation in an affine transformation.
+          representing the translation in an affine transform.
         anyOf:
           - $ref: ../core/ndarray
           - type: array
