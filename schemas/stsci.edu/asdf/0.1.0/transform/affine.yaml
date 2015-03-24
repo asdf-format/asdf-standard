@@ -8,20 +8,36 @@ title: >
 description: |
   Invertibility: All ASDF tools are required to be able to compute the
   analytic inverse of this transform.
+
+
 allOf:
   - $ref: transform
   - type: object
     properties:
       matrix:
         description: |
-          An affine transformation matrix of the size (*n* + 1) × (*n*
-          + 1), where *n* is the number of axes in the transformation.
-        allOf:
+          An array of size (*n* x *n*), where *n* is the number of axes,
+          representing the linear transformation in an affine transform.
+        anyOf:
           - $ref: ../core/ndarray
-          - type: object
-            properties:
-              shape:
-                type: array
-                minItems: 2
-                maxItems: 2
+          - type: array
+            items:
+              type: array
+              items:
+                type: number
+              minItems: 2
+              maxItems: 2
+            minItems: 2
+            maxItems: 2
+      translation:
+        description: |
+          An array of size (*n*,), where  *n* is the number of axes,
+          representing the translation in an affine transform.
+        anyOf:
+          - $ref: ../core/ndarray
+          - type: array
+            items:
+              type: number
+            minItems: 2
+            maxItems: 2
     required: [matrix]
