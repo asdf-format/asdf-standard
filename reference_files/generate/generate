@@ -145,11 +145,13 @@ def ref_exploded(fd):
 
 def ref_compressed(fd):
     tree = {
-        'data': np.arange(128)
+        'zlib': np.arange(128),
+        'bzp2': np.arange(128)
     }
 
     ff = pyasdf.AsdfFile(tree)
-    ff.set_array_compression(tree['data'], 'zlib')
+    ff.set_array_compression(tree['zlib'], 'zlib')
+    ff.set_array_compression(tree['bzp2'], 'bzp2')
     with ff.write_to(fd):
         pass
 
