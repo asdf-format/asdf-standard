@@ -207,11 +207,16 @@ The following bit flags are understood in the ``flags`` field:
 Compression
 ^^^^^^^^^^^
 
-Currently, only one block compression type is supported:
+Currently, two block compression types are supported:
 
 - ``zlib``: The zlib lossless compression algorithm.  It is widely
   used, patent-unencumbered, and has an implementation released under
   a permissive license in `zlib <http://www.zlib.net/>`__.
+
+- ``bzp2``: The bzip2 lossless compression algorithm.  It is widely
+  used, assumed to be patent-unencumbered, and has an implementation
+  released under a permissive license in the `bzip2 library
+  <http://www.bzip.org/>`__.
 
 Block content
 ^^^^^^^^^^^^^
