@@ -19,5 +19,5 @@ allOf:
           region labels as in the RegionSelector transform.
           Pixels which are not within any region have value 0 or " ".
 
-        type: !core/ndarray
+        $ref: ../core/ndarray
     required: [mask]
