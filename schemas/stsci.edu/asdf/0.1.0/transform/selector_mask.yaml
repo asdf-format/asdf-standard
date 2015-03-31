@@ -1,0 +1,23 @@
+%YAML 1.1
+---
+$schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
+id: "http://stsci.edu/schemas/asdf/0.1.0/transform/selector_mask"
+tag: "tag:stsci.edu:asdf/0.1.0/transform/selector_mask"
+title: >
+  Represents a SelectorMask.
+description: |
+  A mask model to be used with the RegionsSelector transform.
+
+allOf:
+  - $ref: transform
+  - type: object
+    properties:
+      mask:
+        description: |
+          An array with the shape of the detector/observation.
+          Pixel values are of type int or str and represent
+          region labels as in the RegionSelector transform.
+          Pixels which are not within any region have value 0 or " ".
+
+        type: !core/ndarray
+    required: [mask]
