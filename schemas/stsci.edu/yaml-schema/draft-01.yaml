@@ -31,7 +31,7 @@ allOf:
         items:
           type: string
 
-      flow_style:
+      flowStyle:
         description: |
           Specifies the default serialization style to use for an
           array or object.  YAML supports multiple styles for
