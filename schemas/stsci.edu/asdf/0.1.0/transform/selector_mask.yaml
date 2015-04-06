@@ -6,7 +6,7 @@ tag: "tag:stsci.edu:asdf/0.1.0/transform/selector_mask"
 title: >
   Represents a SelectorMask.
 description: |
-  A mask model to be used with the RegionsSelector transform.
+  A mask model to be used with the `regions_selector` transform.
 
 allOf:
   - $ref: transform

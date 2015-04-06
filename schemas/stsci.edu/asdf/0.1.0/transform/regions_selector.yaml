@@ -1,0 +1,55 @@
+%YAML 1.1
+---
+$schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
+id: "http://stsci.edu/schemas/asdf/0.1.0/transform/regions_selector"
+tag: "tag:stsci.edu:asdf/0.1.0/transform/regions_selector"
+title: >
+  Represents a RegionsSelector transform.
+description: |
+  A model which maps regions to their corresponding transforms.
+
+allOf:
+  - $ref: transform
+  - type: object
+    properties:
+      mask:
+        description: |
+          An array with the shape of the detector/observation.
+          Pixel values are of type int or str and represent
+          region labels as in the RegionSelector transform.
+          Pixels which are not within any region have value 0 or " ".
+
+        $ref: ./selector_mask
+      inputs:
+        description: |
+          Names of inputs.
+        type: array
+        items:
+          type: string
+      outputs:
+        description: |
+          Names of outputs.
+        type: array
+        items:
+          type: string
+      labels:
+        description: |
+          Names of regions.
+        type: array
+        items:
+          type:
+            - integer
+            - string
+      transforms:
+        description: |
+          A transform for each region. The order should match the order of labels.
+        type: array
+        items:
+          $ref: transform
+      undefined_transform_value:
+        description: |
+          Value to be returned if there's no transform defined for the inputs.
+        type:
+          - number
+        default: NaN
+    required: [mask, inputs, outputs, labels, transforms]
