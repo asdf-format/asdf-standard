@@ -8,6 +8,49 @@ title: >
 description: |
   A model which maps regions to their corresponding transforms.
 
+examples:
+  -
+    - Create a regions_selector schema for an IFU with 2 slices, labeled "1" and "2".
+    - |
+        !transform/regions_selector
+          inputs: [x, y]
+          mask: !transform/selector_mask
+            mask: !core/ndarray
+              datatype: int8
+              data:
+                [[0, 1, 1, 0, 2, 0],
+                 [0, 1, 1, 0, 2, 0],
+                 [0, 1, 1, 0, 2, 0],
+                 [0, 1, 1, 0, 2, 0],
+                 [0, 1, 1, 0, 2, 0]]
+
+          outputs: [ra, dec, lam]
+          selector:
+            1: !transform/compose
+              forward:
+              - !transform/remap_axes
+                mapping: [0, 1, 1]
+              - !transform/concatenate
+                forward:
+                - !transform/concatenate
+                  forward:
+                  - !transform/shift {offset: 1.0}
+                  - !transform/shift {offset: 2.0}
+                - !transform/shift {offset: 3.0}
+            2: !transform/compose
+              forward:
+              - !transform/remap_axes
+                mapping: [0, 1, 1]
+              - !transform/concatenate
+                forward:
+                - !transform/concatenate
+                  forward:
+                  - !transform/scale {factor: 2.0}
+                  - !transform/scale {factor: 3.0}
+                - !transform/scale {factor: 3.0}
+          undefined_transform_value: .nan
+
+
 allOf:
   - $ref: transform
   - type: object
@@ -32,24 +75,29 @@ allOf:
         type: array
         items:
           type: string
-      labels:
+      selector:
         description: |
-          Names of regions.
-        type: array
-        items:
-          type:
-            - integer
-            - string
-      transforms:
-        description: |
-          A transform for each region. The order should match the order of labels.
-        type: array
-        items:
-          $ref: transform
+          A mapping of regions to trransforms.
+        type: object
+        properties:
+          labels:
+            description: |
+              Names of regions.
+            type: array
+            items:
+              type:
+                - integer
+                - string
+          transforms:
+            description: |
+              A transform for each region. The order should match the order of labels.
+            type: array
+            items:
+              $ref: transform
       undefined_transform_value:
         description: |
           Value to be returned if there's no transform defined for the inputs.
         type:
           - number
         default: NaN
-    required: [mask, inputs, outputs, labels, transforms]
+    required: [mask, inputs, outputs, selector]
