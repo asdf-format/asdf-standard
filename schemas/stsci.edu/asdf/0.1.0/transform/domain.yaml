@@ -25,14 +25,14 @@ properties:
       The lower value of the domain.  If not provided, the
       domain has no lower limit.
     type: number
-    default: -inf
+    default: -.inf
 
   upper:
     description: >
       The upper value of the domain.  If not provided, the
       domain has no upper limit.
     type: number
-    default: inf
+    default: .inf
 
   includes_lower:
     description: If `true`, the domain includes `lower`.
