@@ -18,7 +18,7 @@ structures rather than flat key/value pairs.  However, those
 text-based formats are unsuitable for storing large amounts of binary
 data.  On the other end of the spectrum, formats such as `HDF5
 <http://www.hdfgroup.org/HDF5/>`__ and `BLZ
-<http://blaze.pydata.org/docs/>`__ address problems
+<http://blaze.pydata.org/>`__ address problems
 with large data sets and distributed computing, but don't really
 address the metadata needs of an interchange format.  ASDF aims to
 exist in the same middle ground that made FITS so successful, by being
