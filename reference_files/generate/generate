@@ -19,8 +19,7 @@ def ref_basic(fd):
         'data': np.arange(8)
         }
 
-    with pyasdf.AsdfFile(tree).write_to(fd):
-        pass
+    pyasdf.AsdfFile(tree).write_to(fd)
 
 
 def ref_int(fd):
@@ -39,8 +38,7 @@ def ref_int(fd):
             arr = np.array(values, datatype)
             tree['datatype' + datatype] = arr
 
-    with pyasdf.AsdfFile(tree).write_to(fd):
-        pass
+    pyasdf.AsdfFile(tree).write_to(fd)
 
 
 def ref_float(fd):
@@ -55,8 +53,7 @@ def ref_float(fd):
             arr = np.array(values, datatype)
             tree['datatype' + datatype] = arr
 
-    with pyasdf.AsdfFile(tree).write_to(fd):
-        pass
+    pyasdf.AsdfFile(tree).write_to(fd)
 
 
 def ref_complex(fd):
@@ -77,15 +74,13 @@ def ref_complex(fd):
             arr = np.array(complex_values, datatype)
             tree['datatype' + datatype] = arr
 
-    with pyasdf.AsdfFile(tree).write_to(fd):
-        pass
+    pyasdf.AsdfFile(tree).write_to(fd)
 
 
 def ref_ascii(fd):
     arr = np.array([b'', b'ascii'], dtype='S')
     tree = {'data': arr}
-    with pyasdf.AsdfFile(tree).write_to(fd):
-        pass
+    pyasdf.AsdfFile(tree).write_to(fd)
 
 
 def ref_unicode_bmp(fd):
@@ -94,8 +89,7 @@ def ref_unicode_bmp(fd):
         arr = np.array(['', 'Æʩ'], dtype=endian + 'U')
         tree['datatype' + endian + 'U'] = arr
 
-    with pyasdf.AsdfFile(tree).write_to(fd):
-        pass
+    pyasdf.AsdfFile(tree).write_to(fd)
 
 
 def ref_unicode_spp(fd):
@@ -104,8 +98,7 @@ def ref_unicode_spp(fd):
         arr = np.array(['', '𐀠'], dtype=endian + 'U')
         tree['datatype' + endian + 'U'] = arr
 
-    with pyasdf.AsdfFile(tree).write_to(fd):
-        pass
+    pyasdf.AsdfFile(tree).write_to(fd)
 
 
 def ref_shared(fd):
@@ -115,8 +108,7 @@ def ref_shared(fd):
         'subset': data[1::2]
         }
 
-    with pyasdf.AsdfFile(tree).write_to(fd):
-        pass
+    pyasdf.AsdfFile(tree).write_to(fd)
 
 
 def ref_stream(fd):
@@ -126,12 +118,13 @@ def ref_stream(fd):
     }
 
     ff = pyasdf.AsdfFile(tree)
-    with ff.write_to(fd):
+    with open(fd, 'wb') as fd:
+        ff.write_to(fd)
         # Write 100 rows of data, one row at a time.  ``write_to_stream``
         # expects the raw binary bytes, not an array, so we use
         # ``tostring()``.
         for i in range(8):
-            ff.write_to_stream(np.array([i] * 8, np.float64).tostring())
+            fd.write(np.array([i] * 8, np.float64).tostring())
 
 
 def ref_exploded(fd):
@@ -139,8 +132,7 @@ def ref_exploded(fd):
         'data': np.arange(8)
     }
 
-    with pyasdf.AsdfFile(tree).write_to(fd, all_array_storage='external'):
-        pass
+    pyasdf.AsdfFile(tree).write_to(fd, all_array_storage='external')
 
 
 def ref_compressed(fd):
@@ -152,8 +144,7 @@ def ref_compressed(fd):
     ff = pyasdf.AsdfFile(tree)
     ff.set_array_compression(tree['zlib'], 'zlib')
     ff.set_array_compression(tree['bzp2'], 'bzp2')
-    with ff.write_to(fd):
-        pass
+    ff.write_to(fd)
 
 
 def generate(version):
@@ -168,8 +159,7 @@ def generate(version):
         func(filename + ".asdf")
         with pyasdf.open(filename + ".asdf") as asdf:
             asdf.resolve_and_inline()
-            with asdf.write_to(filename + ".yaml"):
-                pass
+            asdf.write_to(filename + ".yaml")
 
 
 if __name__ == '__main__':
