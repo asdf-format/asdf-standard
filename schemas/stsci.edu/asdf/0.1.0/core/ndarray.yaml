@@ -255,6 +255,9 @@ definitions:
 
       - The `datatype` of the entire column is `bool8`.
 
+      Masked values may be included in the array using `null`.  If an
+      explicit mask array is also provided, it takes precedence.
+
     type: array
     items:
       anyOf:
