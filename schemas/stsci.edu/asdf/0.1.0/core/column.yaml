@@ -14,7 +14,10 @@ description: |
 type: object
 properties:
   name:
-    description: The name of the column
+    description: |
+      The name of the column.  Each name in a
+      [table](http://stsci.edu/schemas/asdf/0.1.0/core/table) must be
+      unique.
     type: string
     pattern: "[A-Za-z_][A-Za-z0-9_]*"
 
