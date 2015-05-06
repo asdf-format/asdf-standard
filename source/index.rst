@@ -22,6 +22,8 @@ released version of the ASDF standard.**
    known_limits.rst
    changes.rst
 
+   asdf_in_fits.rst
+
 .. only:: html
 
    There is also a `print version of this document
