@@ -23,8 +23,7 @@ properties:
 
   data:
     description: |
-      The array data for the column.  The array must have a scalar
-      datatype (that is, it may not be a structured array).
+      The array data for the column.
     allOf:
       - $ref: ndarray
 
