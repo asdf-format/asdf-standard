@@ -207,6 +207,7 @@ latex_elements = {
     \usepackage{microtype}
     \usepackage{changepage}
     \usepackage{enumitem}
+    \usepackage{pmboxdraw}
     \MakeRobust\marginpar
 
     \DeclareUnicodeCharacter{2264}{$\leq$}
