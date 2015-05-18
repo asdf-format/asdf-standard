@@ -1,6 +1,6 @@
 %YAML 1.1
 ---
-$schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
+$schema: "http://stsci.edu/schemas/asdf/0.1.0/asdf-schema"
 id: "http://stsci.edu/schemas/asdf/0.1.0/core/ndarray"
 tag: "tag:stsci.edu:asdf/0.1.0/core/ndarray"
 
@@ -366,7 +366,9 @@ anyOf:
         anyOf:
           - type: number
           - $ref: complex
-          - $ref: ndarray
+          - allOf:
+            - $ref: ndarray
+            - datatype: bool8
 
     dependencies:
       source: [shape, datatype, byteorder]
