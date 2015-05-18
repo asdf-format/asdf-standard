@@ -13,11 +13,11 @@ allOf:
     properties:
       max_ndim:
         description: |
-          Specifies that the matching ndarray is at most the given
-          number of dimensions.  If the array has fewer dimensions, it
-          should be logically treated as if it were "broadcast" to the
-          expected dimensions by adding 1's to the front of the shape
-          list.
+          Specifies that the corresponding ndarray is at most the
+          given number of dimensions.  If the array has fewer
+          dimensions, it should be logically treated as if it were
+          "broadcast" to the expected dimensions by adding 1's to the
+          front of the shape list.
         type: integer
         minimum: 0
 
