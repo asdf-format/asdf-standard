@@ -158,9 +158,8 @@ allOf:
             measuring time: either the rate at which time passes; or
             points in time; or both. See also [3] and [4].
 
-            [TODO: Describing these scales in enough detail to
-            reimplement is perhaps too much to do here, but we should
-            have good ironclad references for each.]
+            These scales are defined in detail in [SOFA Time Scale and
+            Calendar Tools](http://www.iausofa.org/sofa_ts_c.pdf).
 
             The supported time scales are:
 
