@@ -209,7 +209,7 @@ allOf:
                 unit:
                   allOf:
                     - $ref: ../unit/unit
-                    - default: !unit/unit m
+                    - default: m
               requiredProperties: [x, y, z]
             - type: object
               properties:
@@ -227,7 +227,7 @@ allOf:
                 unit:
                   allOf:
                     - $ref: ../unit/unit
-                    - default: !unit/unit m
+                    - default: m
               requiredProperties: [longitude, latitude]
 
       requiredProperties: value
