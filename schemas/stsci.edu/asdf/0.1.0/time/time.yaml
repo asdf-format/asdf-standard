@@ -140,11 +140,6 @@ allOf:
               UNIX time doesn't match POSIX's here.  What should we
               do for the purposes of ASDF?]
 
-            - `cxcsec`: Chandra X-ray Center seconds from 1998-01-01
-              00:00:00 TT. For example, 63072064.184 is midnight on
-              January 1, 2000.  [TODO: Is this general enough to
-              include?]
-
           enum:
             - iso
             - yday
@@ -170,9 +165,7 @@ allOf:
             The supported time scales are:
 
             - `utc`: Coordinated Universal Time (UTC).  This is the
-              default time scale, except for the formats that
-              represents seconds since an epoch, namely `gps`, `unix`
-              and `cxcsec`.
+              default time scale, except for `gps`, `unix`.
 
             - `tai`: International Atomic Time (TAI).
 
