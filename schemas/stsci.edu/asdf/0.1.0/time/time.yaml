@@ -193,9 +193,9 @@ allOf:
             Specifies the observer location for scales that are
             sensitive to observer location, currently only `tdb`.  May
             be specified either with geocentric coordinates (X, Y, Z)
-            or geodetic coordinates (longitude in degrees, latitude in
-            degrees, and optional height). [TODO: What are the units
-            for geocentric coordinates?]
+            with an optional unit or geodetic coordinates (longitude
+            in degrees, latitude in degrees, and optional
+            height).
 
           anyOf:
             - type: object
@@ -206,6 +206,10 @@ allOf:
                   type: number
                 z:
                   type: number
+                unit:
+                  allOf:
+                    - $ref: ../unit/unit
+                    - default: !unit/unit m
               requiredProperties: [x, y, z]
             - type: object
               properties:
@@ -220,6 +224,10 @@ allOf:
                 height:
                   type: number
                   default: 0
+                unit:
+                  allOf:
+                    - $ref: ../unit/unit
+                    - default: !unit/unit m
               requiredProperties: [longitude, latitude]
 
       requiredProperties: value
