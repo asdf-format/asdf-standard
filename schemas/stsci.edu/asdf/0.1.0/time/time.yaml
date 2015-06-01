@@ -5,8 +5,8 @@ id: "http://stsci.edu/schemas/asdf/0.1.0/time/time"
 title: Represents an instance in time.
 description: |
   A "time" is a single instant in time.  It may explicitly specify the
-  way time is represented (the "format") and the "scale" which the
-  offset and scaling relation of the unit of time.
+  way time is represented (the "format") and the "scale" which
+  specifies the offset and scaling relation of the unit of time.
 
   Specific emphasis is placed on supporting time scales (e.g. UTC,
   TAI, UT1, TDB) and time representations (e.g. JD, MJD, ISO 8601)
