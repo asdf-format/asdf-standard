@@ -1,6 +1,6 @@
 %YAML 1.1
 ---
-$schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
+$schema: "http://stsci.edu/schemas/asdf/0.1.0/asdf-schema"
 id: "http://stsci.edu/schemas/asdf/0.1.0/time/time"
 title: Represents an instance in time.
 description: |
@@ -25,8 +25,7 @@ description: |
   In either case, a single time tag may be used to represent an
   n-dimensional array of times, using either an `ndarray` tag or
   inline as (possibly nested) YAML lists.  If YAML lists, the same
-  format must be used for all time values [TODO: This is a restriction
-  of astropy: Do we need to retain it or should we try to fix that?]
+  format must be used for all time values.
 
 examples:
   -
@@ -42,6 +41,11 @@ examples:
   -
     - Example Besselian Epoch time
     - |
+        !time/time B2000.0
+
+  -
+    - Example Besselian Epoch time, equivalent to above
+    - |
         !time/time
           value: 2000.0
           format: byear
@@ -53,23 +57,65 @@ examples:
           ["2000-12-31T13:05:27.737", "2000-12-31T13:06:38.444"]
 
   -
-    - Example array of times
+    - Example large array of times stored in a binary block
     - |
         !time/time
           value: !core/ndarray
-            data: [2000.1, 2000.2, 2000.3]
+            source: 0
+            shape: [1024]
             datatype: float64
+            byteorder: big
           format: jyear
+
+  -
+    - Example with a location
+    - |
+        !time/time
+          value: 2000.0
+          format: jyear
+          scale: tdb
+          location:
+            x: 6378100
+            y: 0
+            z: 0
+
+definitions:
+  iso_time:
+    type: string
+    pattern: "[0-9]{4}-(0[1-9])|(1[0-2])-(0[1-9])|([1-2][0-9])|(3[0-1])[T ]([0-1][0-9])|(2[0-4]):[0-5][0-9]:[0-5][0-9](.[0-9]+)?"
+
+  byear:
+    type: string
+    pattern: "B[0-9]+(.[0-9]+)?"
+
+  jyear:
+    type: string
+    pattern: "J[0-9]+(.[0-9]+)?"
+
+  yday:
+    type: string
+    pattern: "[0-9]{4}:(00[1-9])|(0[1-9][0-9])|([1-2][0-9][0-9])|(3[0-5][0-9])|(36[0-5]):([0-1][0-9])|([0-1][0-9])|(2[0-4]):[0-5][0-9]:[0-5][0-9](.[0-9]+)?"
+
+  string_formats:
+    anyOf:
+      - $ref: "#definitions/iso_time"
+      - $ref: "#definitions/byear"
+      - $ref: "#definitions/jyear"
+      - $ref: "#definitions/yday"
+
+  array_of_strings:
+    type: array
+    items:
+      anyOf:
+        - $ref: "#definitions/array_of_strings"
+        - $ref: "#definitions/string_formats"
 
 allOf:
   - tag: "tag:stsci.edu:asdf/0.1.0/time/time"
   - anyOf:
-    - type: string
-      # TODO: pattern
+    - $ref: "#definitions/string_formats"
 
-    - type: array
-      # We can't say `items: string` here, since then we'd couldn't
-      # have nested lists.
+    - $ref: "#definitions/array_of_strings"
 
     - $ref: ../core/ndarray
 
@@ -80,10 +126,10 @@ allOf:
             The value(s) of the time.
 
           anyOf:
-            - type: string
-            - type: number
-            - type: array
+            - $ref: "#definitions/string_formats"
+            - $ref: "#definitions/array_of_strings"
             - $ref: ../core/ndarray
+            - type: number
 
         format:
           description: |
@@ -192,9 +238,10 @@ allOf:
             Specifies the observer location for scales that are
             sensitive to observer location, currently only `tdb`.  May
             be specified either with geocentric coordinates (X, Y, Z)
-            with an optional unit or geodetic coordinates (longitude
-            in degrees, latitude in degrees, and optional
-            height).
+            with an optional unit or geodetic coordinates:
+              - `long`: longitude in degrees
+              - `lat`: in degrees
+              - `h`: optional height
 
           anyOf:
             - type: object
@@ -212,21 +259,21 @@ allOf:
               requiredProperties: [x, y, z]
             - type: object
               properties:
-                longitude:
+                long:
                   type: number
                   minimum: -180
                   maximum: 180
-                latitude:
+                lat:
                   type: number
                   minimum: -90
                   maximum: 90
-                height:
+                h:
                   type: number
                   default: 0
                 unit:
                   allOf:
                     - $ref: ../unit/unit
                     - default: m
-              requiredProperties: [longitude, latitude]
+              requiredProperties: [long, lat]
 
-      requiredProperties: value
+      requiredProperties: [value]
