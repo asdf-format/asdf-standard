@@ -1,6 +1,6 @@
 %YAML 1.1
 ---
-$schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
+$schema: "http://json-schema.org/draft-04/schema"
 id: "http://stsci.edu/schemas/yaml-schema/draft-01"
 title:
   YAML Schema
