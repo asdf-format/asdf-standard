@@ -62,14 +62,12 @@ examples:
           ["2000-12-31T13:05:27.737", "2000-12-31T13:06:38.444"]
 
   -
-    - Example large array of times stored in a binary block
+    - Example of an array of times
     - |
         !time/time
           value: !core/ndarray
-            source: 0
-            shape: [1024]
+            data: [2000, 2001]
             datatype: float64
-            byteorder: big
           format: jyear
 
   -
