@@ -27,6 +27,11 @@ description: |
   inline as (possibly nested) YAML lists.  If YAML lists, the same
   format must be used for all time values.
 
+  The precision of the numeric formats should only be assumed to be as
+  good as an IEEE-754 double precision (float64) value.  If
+  higher-precision is required, the `iso` or `yday` format should be
+  used.
+
 examples:
   -
     - Example ISO time
