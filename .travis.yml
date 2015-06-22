@@ -10,6 +10,7 @@ branches:
 
 before_install:
   - pip install six sphinx sphinx_bootstrap_theme jsonschema pyyaml mistune
+  - sudo apt-get install graphviz
   - bash -x ./install-texlive.sh
   - export PATH=$PWD/texlive/bin/x86_64-linux:$PATH
 
