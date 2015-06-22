@@ -328,6 +328,8 @@ def recurse(o, name, schema, path, level, required=False):
             o.write(indent)
             o.write(':category:`Properties:`\n\n')
             for key, val in schema.get('properties', {}).items():
+                if key == '$ref':
+                    continue
                 recurse(o, key, val, path + ['properties', key], level + 1,
                         key in schema.get('required', []))
 

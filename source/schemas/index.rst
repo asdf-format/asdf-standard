@@ -15,6 +15,7 @@ must support the "core" module, but the other modules are optional.
    core.rst
    fits.rst
    unit.rst
+   time.rst
    transform.rst
    wcs.rst
 
@@ -24,6 +25,7 @@ The following graph shows the dependencies between modules:
 
    "fits" -> "core"
    "unit" -> "core"
+   "time" -> "core"
    "transform" -> "core"
    "wcs" -> "transform"
    "wcs" -> "unit"
