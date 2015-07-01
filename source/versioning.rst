@@ -32,6 +32,8 @@ specification.
 - **major version**: The major version number advances when a
   backward incompatible change is made.  For example, this would
   happen when an existing property in a schema changes meaning.
+  (An exception to this is that when the major version is 0, there
+  are no guarantees of backward compatibility.)
 
 - **minor version**: The minor version number advances when a
   backward compatible change is made.  For example, this would
