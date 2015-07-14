@@ -9,10 +9,6 @@ addons:
     packages:
       - graphviz
 
-cache:
-  directories:
-    - $PWD/texlive
-
 language: python
 
 branches:
