@@ -2,6 +2,17 @@ env:
   global:
     - secure: "W3PaYhPnJFCaG6TW5Xc0wtggdEqcreTQcHThmIo5Eqs/jUL2toiUiv3ZWlhzR3tkphLvt2KeaQe83BR6RTifYjSmnmAePj0Gw5res1AXzN95OsKEk3nMiTZbVP+PuTTbQZJga8B31nRUBiAMQ6FsNlpGq7E8sp9N65lnR3mGHAE="
 
+sudo: false
+
+addons:
+  apt:
+    packages:
+      - graphviz
+
+cache:
+  directories:
+    - $PWD/texlive
+
 language: python
 
 branches:
@@ -10,7 +21,6 @@ branches:
 
 before_install:
   - pip install six sphinx sphinx_bootstrap_theme jsonschema pyyaml mistune
-  - sudo apt-get install graphviz
   - bash -x ./install-texlive.sh
   - export PATH=$PWD/texlive/bin/x86_64-linux:$PATH
 
