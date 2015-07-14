@@ -1,7 +1,5 @@
 #!/bin/bash
 
-set -e
-
 if [ ! -d "$PWD/texlive" ]; then
 
     # Put the current working directory into the profile file

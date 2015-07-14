@@ -9,9 +9,9 @@ addons:
     packages:
       - graphviz
 
-# cache:
-#   directories:
-#     - $PWD/texlive
+cache:
+  directories:
+    - $PWD/texlive
 
 language: python
 
