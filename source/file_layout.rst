@@ -287,9 +287,9 @@ were allowed to appear in any order, it would be impossible to rebuild
 the index by skipping blocks were the index to become damaged or
 out-of-sync.
 
-Additional zeroed bytes may appear after the block index.  This is
-mainly to support operating systems, such as Microsoft Windows, where
-truncating the file may not be easily possible.
+Additional zero-valued bytes may appear after the block index.  This
+is mainly to support operating systems, such as Microsoft Windows,
+where truncating the file may not be easily possible.
 
 Implementation recommendations
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
