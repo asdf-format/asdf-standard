@@ -11,18 +11,19 @@ features to reasonably make sense of the rest of the file.
 The ASDF standard includes three categories of versions, which all
 advance independently of one another.
 
-- The version of the standard as a whole.  This version does not
-  appear in ASDF files, but provides a convenient handle to refer to a
-  particular snapshot of the ASDF standard at a given time.  This
-  allows libraries to advertise support for "ASDF standard version
-  X.Y.Z".
+- **Standard version**: The version of the standard as a whole.  This
+  version provides a convenient handle to refer to a particular
+  snapshot of the ASDF standard at a given time.  This allows
+  libraries to advertise support for "ASDF standard version X.Y.Z".
+  This is the first number that appears on the ``#ASDF`` header line
+  at the start of every ASDF file.
 
-- The file format version.  This appears in the ``#ASDF`` header line
-  at the start of every ASDF file.  This version refers to details
-  about the low-level file layout, including the contents of the block
-  headers.
+- **File format version**: Refers to the version of the blocking
+  scheme and other details of the low-level file layout.  This is the
+  second number that appears on the ``#ASDF`` header line at the start
+  of every ASDF file.
 
-- Schema versions.  Each schema for a particular YAML tag is
+- **Schema versions**: Each schema for a particular YAML tag is
   individually versioned.
 
 Version numbers themselves all follow the same convention, and follows
@@ -42,18 +43,19 @@ specification.
 - **patch version**: The patch version number advances when a minor
   change is made that does not directly affect the file format itself.
   For example, this would happen when a misspelling or grammatical
-  error in the text is made.
+  error in the specification text is made.
 
 - **pre-release version**: An optional fourth part may also be present
   following a hyphen to indicate a pre-release version in development.
   For example, the pre-release of version ``1.2.3`` would be
   ``1.2.3-dev+a2c4``.
 
-The version of the standard is incremented based on the the change of
-version in the file format or the schemas.  For example, if any of the
-schemas introduced a backward-incompatible change in a particular
-release of the standard, the major number of the standard's version
-would advance.
+The major number in the **standard version** is incremented whenever
+the major number in the **file format version** is incremented.
+However, the major number of the **standard version** is not always
+incremented when the major number of a **schema version** is
+incremented, since it still may otherwise be backward compatible.
+
 
 Handling version mismatches
 ---------------------------
@@ -90,5 +92,8 @@ of the following modes of operation:
 - Upgrade the file to the latest versions of the file format and
   schemas understood by the library.
 
-- Preserve the versions of the file format and schemas of the input
-  file.
+- Preserve the version of the ASDF standard used by the input file.
+
+Writing out a file that mixes versions of schema from different
+versions of the ASDF standard is not recommended, though such a file
+should be accepted by readers given the rules above.

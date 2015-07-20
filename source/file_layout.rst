@@ -40,27 +40,24 @@ Header
 
 All ASDF files must start with a short one-line header.  For example::
 
-  #ASDF 0.1.0
+  #ASDF 0.1.0 0.1.0
 
-It is made up of the following parts (described in EBNF form)::
+It is made up of three parts, separated by white space characters:
 
-  asdf_token = "#ASDF"
-  major      = integer
-  minor      = integer
-  micro      = integer
-  header     = asdf_token " " major "." minor "." micro ["\r"] "\n"
+  - **ASDF token**: The constant string ``#ASDF``. This can be used to
+    quickly identify the file as an ASDF file by reading the first 5
+    bytes.  It begins with a ``#`` so it will be treated as a YAML
+    comment such that the :ref:`header` and the :ref:`tree` together
+    form a valid YAML file.
 
-- ``asdf_token``: The constant string ``#ASDF``.  This can be used
-  to quickly identify the file as an ASDF file by reading the first 5
-  bytes.  It begins with a ``#`` so it will be treated as a YAML
-  comment such that the :ref:`header` and the :ref:`tree` together
-  form a valid YAML file.
+  - **Specification version**: The version of the ASDF specification
+    that this file is based on.
 
-- ``major``: The major version.
+  - **File format version**: The version of the low-level file format
+    that this file was written with.
 
-- ``minor``: The minor version.
-
-- ``micro``: The bugfix release version.
+See :ref:`versioning-conventions` for more information about these
+versions.
 
 .. _tree:
 
