@@ -338,11 +338,9 @@ Exploded form is useful in the following scenarios:
 
 - Over a network protocol, such as HTTP, a client may only need to
   access some of the blocks.  While reading a subset of the file can
-  be done using HTTP ``Range`` headers, it still requires one (small)
-  request per block to "jump" through the file to determine the start
-  location of each block.  This can become time-consuming over a
-  high-latency network if there are many blocks.  Exploded form allows
-  each block to be requested directly by a specific URI.
+  be done using HTTP ``Range`` headers, not all web servers support
+  this HTTP feature.  Exploded form allows each block to be requested
+  directly by a specific URI.
 
 - An ASDF writer may stream a table to disk, when the size of the table
   is not known at the outset.  Using exploded form simplifies this,
