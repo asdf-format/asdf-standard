@@ -1,0 +1,48 @@
+%YAML 1.1
+---
+$schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
+id: "http://stsci.edu/schemas/asdf/0.1.0/transform/slant_zenithal_perspective"
+tag: "tag:stsci.edu:asdf/0.1.0/transform/slant_zenithal_perspective"
+title: |
+  The slant zenithal perspective projection.
+
+description: |
+  Corresponds to the `SZP` projection in the FITS WCS standard.
+
+  See
+  [zenithal](ref:http://stsci.edu/schemas/asdf/0.1.0/transform/zenithal)
+  for the definition of the full transformation.
+
+  The pixel-to-sky transformation is defined as:
+
+  $$\theta = \tan^{-1}\left(\frac{180^{\circ}}{\pi R_\theta}\right)$$
+
+  And the sky-to-pixel transformation is defined as:
+
+  $$R_\theta = \frac{180^{\circ}}{\pi}\cot \theta$$
+
+  Invertibility: All ASDF tools are required to provide the inverse of
+  this transform.
+
+allOf:
+  - $ref: zenithal
+  - type: object
+    properties:
+      mu:
+        type: number
+        description: |
+          Distance from point of projection to center of sphere in
+          spherical radii.
+        default: 0
+
+      phi0:
+        type: number
+        description: |
+          The longitude φ₀ of the reference point, in degrees.
+        default: 0
+
+      theta0:
+        type: number
+        description: |
+          The latitude θ₀ of the reference point, in degrees.
+        default: 90
