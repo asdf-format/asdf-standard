@@ -16,14 +16,14 @@ properties:
       Describes the ASDF library that produced the file.
     $ref: software
 
-  software:
+  history:
     description: |
-      Lists any relevant software that produced or modified the ASDF
-      file.  May include such things as data calibration pipelines,
-      data analysis tools etc.
+      A log of transformations that have happened to the file.  May
+      include such things as data collection, data calibration
+      pipelines, data analysis etc.
     type: array
     items:
-      $ref: "software"
+      $ref: history_entry
 
   data:
     description: |
