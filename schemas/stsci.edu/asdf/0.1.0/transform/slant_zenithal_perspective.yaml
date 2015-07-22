@@ -38,11 +38,11 @@ allOf:
       phi0:
         type: number
         description: |
-          The longitude φ₀ of the reference point, in degrees.
+          The longitude $\phi_0$ of the reference point, in degrees.
         default: 0
 
       theta0:
         type: number
         description: |
-          The latitude θ₀ of the reference point, in degrees.
+          The latitude $\theta_0$ of the reference point, in degrees.
         default: 90
