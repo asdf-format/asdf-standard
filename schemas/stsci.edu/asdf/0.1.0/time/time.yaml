@@ -101,24 +101,24 @@ definitions:
 
   string_formats:
     anyOf:
-      - $ref: "#definitions/iso_time"
-      - $ref: "#definitions/byear"
-      - $ref: "#definitions/jyear"
-      - $ref: "#definitions/yday"
+      - $ref: "#/definitions/iso_time"
+      - $ref: "#/definitions/byear"
+      - $ref: "#/definitions/jyear"
+      - $ref: "#/definitions/yday"
 
   array_of_strings:
     type: array
     items:
       anyOf:
-        - $ref: "#definitions/array_of_strings"
-        - $ref: "#definitions/string_formats"
+        - $ref: "#/definitions/array_of_strings"
+        - $ref: "#/definitions/string_formats"
 
 allOf:
   - tag: "tag:stsci.edu:asdf/0.1.0/time/time"
   - anyOf:
-    - $ref: "#definitions/string_formats"
+    - $ref: "#/definitions/string_formats"
 
-    - $ref: "#definitions/array_of_strings"
+    - $ref: "#/definitions/array_of_strings"
 
     - type: object
       properties:
@@ -131,8 +131,8 @@ allOf:
             The value(s) of the time.
 
           anyOf:
-            - $ref: "#definitions/string_formats"
-            - $ref: "#definitions/array_of_strings"
+            - $ref: "#/definitions/string_formats"
+            - $ref: "#/definitions/array_of_strings"
             - $ref: ../core/ndarray
             - type: number
 

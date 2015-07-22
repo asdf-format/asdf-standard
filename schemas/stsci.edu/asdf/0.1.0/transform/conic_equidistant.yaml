@@ -1,0 +1,25 @@
+%YAML 1.1
+---
+$schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
+id: "http://stsci.edu/schemas/asdf/0.1.0/transform/conic_equidistant"
+tag: "tag:stsci.edu:asdf/0.1.0/transform/conic_equidistant"
+title: |
+  Conic equidistant projection.
+
+description: |
+  Corresponds to the `COD` projection in the FITS WCS standard.
+
+  See
+  [conic](ref:http://stsci.edu/schemas/asdf/0.1.0/transform/conic)
+  for the definition of the full transformation.
+
+  The transformation is defined as:
+
+  $$C &= \frac{180^\circ}{\pi} \frac{\sin\theta_a\sin\eta}{\eta} \\
+    R_\theta &= \theta_a - \theta + \eta\cot\eta\cot\theta_a \\
+    Y_0 = \eta\cot\eta\cot\theta_a$$
+
+  Invertibility: All ASDF tools are required to provide the inverse of
+  this transform.
+
+$ref: conic
