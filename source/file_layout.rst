@@ -5,6 +5,8 @@ The overall structure of a file is as follows (in order):
 
 - :ref:`header`
 
+- :ref:`comments`, optional
+
 - :ref:`tree`, optional
 
 - Zero or more :ref:`block`
@@ -40,9 +42,9 @@ Header
 
 All ASDF files must start with a short one-line header.  For example::
 
-  #ASDF 0.1.0 0.1.0
+  #ASDF 0.1.0
 
-It is made up of three parts, separated by white space characters:
+It is made up of two parts, separated by white space characters:
 
   - **ASDF token**: The constant string ``#ASDF``. This can be used to
     quickly identify the file as an ASDF file by reading the first 5
@@ -50,14 +52,25 @@ It is made up of three parts, separated by white space characters:
     comment such that the :ref:`header` and the :ref:`tree` together
     form a valid YAML file.
 
-  - **Specification version**: The version of the ASDF specification
-    that this file is based on.
-
   - **File format version**: The version of the low-level file format
-    that this file was written with.
+    that this file was written with.  This version may differ from the
+    version of the ASDF specification, and is only updated when a
+    change is made that affects the layout of file.  See
+    :ref:`versioning-conventions` for more information about these
+    versions.
 
-See :ref:`versioning-conventions` for more information about these
-versions.
+.. _comments:
+
+Comments
+--------
+
+Additional comment lines may appear between the Header and the Tree.
+
+The use of comments here is intended for information for the ASDF
+parser, and not information of general interest to the end user.  All
+data of interest to the end user should be in the Tree.
+
+Each line must begin with a ``#`` character.
 
 .. _tree:
 
