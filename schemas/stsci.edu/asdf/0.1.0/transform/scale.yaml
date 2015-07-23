@@ -13,4 +13,4 @@ properties:
   factor:
     type: number
     description: Multiplication factor.
-requiredProperties: [factor]
+required: [factor]
