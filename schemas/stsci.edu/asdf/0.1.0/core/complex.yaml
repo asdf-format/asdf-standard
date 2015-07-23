@@ -15,6 +15,9 @@ description: |
   Where `ieee754` is a floating point number in IEEE 754 decimal
   format.
 
+  Though `J`, `j`, `I` and `i` must be supported on reading, it is
+  recommended to use `i` on writing.
+
 examples:
   -
     - 1 real, -1 imaginary
