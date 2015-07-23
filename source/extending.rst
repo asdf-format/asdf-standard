@@ -311,7 +311,7 @@ the ASDF standard::
 Lastly, we'll declare ``exposure_time`` as being required, and allow
 extra elements to be added::
 
-  requiredProperties: [exposure_time]
+  required: [exposure_time]
   additionalProperties: true
 
 The complete example
@@ -356,7 +356,7 @@ Here is our complete schema example::
       default:
         s
 
-  requiredProperties: [exposure_time]
+  required: [exposure_time]
   additionalProperties: true
 
 .. _extending-a-schema:

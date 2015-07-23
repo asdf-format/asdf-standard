@@ -13,4 +13,4 @@ properties:
   offset:
     type: number
     description: Offset in one direction.
-requiredProperties: [offset]
+required: [offset]

@@ -34,4 +34,4 @@ properties:
       final output axes.
     $ref: ../transform/transform
 
-requiredProperties: [name]
+required: [name]

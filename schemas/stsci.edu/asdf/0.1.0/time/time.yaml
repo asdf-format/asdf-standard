@@ -261,7 +261,7 @@ allOf:
                   allOf:
                     - $ref: ../unit/unit
                     - default: m
-              requiredProperties: [x, y, z]
+              required: [x, y, z]
             - type: object
               properties:
                 long:
@@ -279,6 +279,6 @@ allOf:
                   allOf:
                     - $ref: ../unit/unit
                     - default: m
-              requiredProperties: [long, lat]
+              required: [long, lat]
 
-      requiredProperties: [value]
+      required: [value]

@@ -125,7 +125,7 @@ properties:
       The unit for the axis.
     $ref: ../unit/unit
 
-requiredProperties: [type, name]
+required: [type, name]
 additionalProperties: true
 
 tag: "tag:stsci.edu:asdf/0.1.0/wcs/axis"
