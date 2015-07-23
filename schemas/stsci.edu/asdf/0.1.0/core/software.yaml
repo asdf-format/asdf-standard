@@ -5,7 +5,7 @@ id: "http://stsci.edu/schemas/asdf/0.1.0/core/software"
 title: |
   Describes a software package.
 
-tag: "tag:stsci.edu:asdf/0.1.0/core/asdf"
+tag: "tag:stsci.edu:asdf/0.1.0/core/software"
 type: object
 properties:
   name:
@@ -31,5 +31,5 @@ properties:
       Specification)[http://semver.org/spec/v2.0.0.html].
     type: string
 
-requiredProperties: [name, author, homepage, version]
+required: [name, author, homepage, version]
 additionalProperties: true

@@ -46,5 +46,4 @@ properties:
       The location of the main WCS for the main data.
     $ref: "../wcs/wcs"
 
-requiredProperties: [asdf_library]
 additionalProperties: true
