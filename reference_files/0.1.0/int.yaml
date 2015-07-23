@@ -14,10 +14,6 @@ datatype<i4: !core/ndarray
   data: [2147483647, -2147483648, 0]
   datatype: int32
   shape: [3]
-datatype<i8: !core/ndarray
-  data: [9223372036854775807, -9223372036854775808, 0]
-  datatype: int64
-  shape: [3]
 datatype<u1: !core/ndarray
   data: [255, 0]
   datatype: uint8
@@ -29,10 +25,6 @@ datatype<u2: !core/ndarray
 datatype<u4: !core/ndarray
   data: [4294967295, 0]
   datatype: uint32
-  shape: [2]
-datatype<u8: !core/ndarray
-  data: [18446744073709551615, 0]
-  datatype: uint64
   shape: [2]
 datatype>i1: !core/ndarray
   data: [127, -128, 0]
@@ -46,10 +38,6 @@ datatype>i4: !core/ndarray
   data: [2147483647, -2147483648, 0]
   datatype: int32
   shape: [3]
-datatype>i8: !core/ndarray
-  data: [9223372036854775807, -9223372036854775808, 0]
-  datatype: int64
-  shape: [3]
 datatype>u1: !core/ndarray
   data: [255, 0]
   datatype: uint8
@@ -61,9 +49,5 @@ datatype>u2: !core/ndarray
 datatype>u4: !core/ndarray
   data: [4294967295, 0]
   datatype: uint32
-  shape: [2]
-datatype>u8: !core/ndarray
-  data: [18446744073709551615, 0]
-  datatype: uint64
   shape: [2]
 ...

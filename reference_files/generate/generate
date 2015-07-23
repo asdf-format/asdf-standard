@@ -25,7 +25,7 @@ def ref_basic(fd):
 def ref_int(fd):
     tree = {}
 
-    for size in (1, 2, 4, 8):
+    for size in (1, 2, 4):
         bits = size * 8
         for endian in ['>', '<']:
             values = [(1 << (bits - 1)) - 1, -(1 << (bits - 1)), 0]
