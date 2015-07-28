@@ -55,9 +55,10 @@ It is made up of two parts, separated by white space characters:
   - **File format version**: The version of the low-level file format
     that this file was written with.  This version may differ from the
     version of the ASDF specification, and is only updated when a
-    change is made that affects the layout of file.  See
-    :ref:`versioning-conventions` for more information about these
-    versions.
+    change is made that affects the layout of file.  It follows the
+    `Semantic Versioning 2.0.0 <http://semver.org/spec/v2.0.0.html>`__
+    specification. See :ref:`versioning-conventions` for more
+    information about these versions.
 
 .. _comments:
 
