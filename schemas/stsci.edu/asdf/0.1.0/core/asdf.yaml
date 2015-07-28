@@ -11,6 +11,20 @@ description: |
 tag: "tag:stsci.edu:asdf/0.1.0/core/asdf"
 type: object
 properties:
+  asdf_library:
+    description: |
+      Describes the ASDF library that produced the file.
+    $ref: software
+
+  history:
+    description: |
+      A log of transformations that have happened to the file.  May
+      include such things as data collection, data calibration
+      pipelines, data analysis etc.
+    type: array
+    items:
+      $ref: history_entry
+
   data:
     description: |
       The data array corresponds to the main science data array in the
