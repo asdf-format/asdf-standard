@@ -23,8 +23,12 @@ may advance independently of one another.
   various parts of an ASDF file.
 
 - **Schema versions**: Each schema for a particular YAML tag is
-  individually versioned.  We encourage schemas provided by third
-  parties (i.e. not in the ASDF specification itself) to be versioned
+  individually versioned.  This allows schemas to evolve, while still
+  allowing data written to an older version of the schema to be
+  validated correctly.
+
+  Schemas provided by third parties (i.e. not in the ASDF
+  specification itself) are also strongly encouraged to be versioned
   as well.
 
 Version numbers all follow the same convention according to the
@@ -71,7 +75,7 @@ of ASDF libraries.  ASDF libraries should, but are not required, to
 support as many existing versions of the file format and schemas as
 possible, and use the version numbers in the file to act accordingly.
 
-For future proofing, the library should gracefully handle version
+For future-proofing, the library should gracefully handle version
 numbers that are greater than those understood by the library.  The
 following applies to both kinds of version numbers that appear in the
 file: the **file format version** and **schema versions**.
