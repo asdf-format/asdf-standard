@@ -60,6 +60,11 @@ It is made up of two parts, separated by white space characters:
     specification. See :ref:`versioning-conventions` for more
     information about these versions.
 
+The header in EBNF form::
+
+    asdf_token = "#ASDF"
+    header     = asdf_token " " format_version ["\r"] "\n"
+
 .. _comments:
 
 Comments
