@@ -30,11 +30,11 @@ allOf:
         type: number
         description: |
           Distance from center of sphere in the direction opposite the
-          projected surface, in spherical radii.
-        default: 0
+          projected surface, in spherical radii, default is 1.
+        default: 1
 
       lambda:
         type: number
         description: |
-          Radius of the cylinder in spherical radii, default is 0.
-        default: 0
+          Radius of the cylinder in spherical radii, default is 1.
+        default: 1

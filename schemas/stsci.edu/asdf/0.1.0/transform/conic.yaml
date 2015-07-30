@@ -36,6 +36,7 @@ allOf:
         description: |
           $(\theta_1 + \theta_2) / 2$ where $\theta_1$ and $\theta_2$
           are the latitudes of the standard parallels, in degrees.
+          Default is 0.
         default: 0
 
       delta:
@@ -43,4 +44,5 @@ allOf:
         description: |
           $(\theta_1 - \theta_2) / 2$ where $\theta_1$ and $\theta_2$
           are the latitudes of the standard parallels, in degrees.
-        default: 0
+          Default is 90.
+        default: 90
