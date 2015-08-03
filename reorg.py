@@ -15,7 +15,7 @@ for module in os.listdir(root) + ['.']:
         if not os.path.isfile(old_filepath):
             continue
         new_filepath = os.path.join(
-            '.', module, os.path.splitext(filename)[0] + '-0.1.0.yaml')
+            './schemas/stsci.edu/asdf/', module, os.path.splitext(filename)[0] + '-0.1.0.yaml')
 
         with open(old_filepath, 'rb') as fd:
             content = fd.read()
