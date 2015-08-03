@@ -1,54 +1,54 @@
 #ASDF 0.1.0
 %YAML 1.1
-%TAG ! tag:stsci.edu:asdf/0.1.0/
---- !core/asdf
-asdf_library: !core/software {author: Space Telescope Science Institute, homepage: 'http://github.com/spacetelescope/pyasdf',
-  name: pyasdf, version: 0.0.dev626}
-datatype<i1: !core/ndarray
+%TAG ! tag:stsci.edu:asdf/
+--- !core/asdf-0.1.0
+asdf_library: !core/software-0.1.0 {author: Space Telescope Science Institute, homepage: 'http://github.com/spacetelescope/pyasdf',
+  name: pyasdf, version: 0.0.dev643}
+datatype<i1: !core/ndarray-0.1.0
   data: [127, -128, 0]
   datatype: int8
   shape: [3]
-datatype<i2: !core/ndarray
+datatype<i2: !core/ndarray-0.1.0
   data: [32767, -32768, 0]
   datatype: int16
   shape: [3]
-datatype<i4: !core/ndarray
+datatype<i4: !core/ndarray-0.1.0
   data: [2147483647, -2147483648, 0]
   datatype: int32
   shape: [3]
-datatype<u1: !core/ndarray
+datatype<u1: !core/ndarray-0.1.0
   data: [255, 0]
   datatype: uint8
   shape: [2]
-datatype<u2: !core/ndarray
+datatype<u2: !core/ndarray-0.1.0
   data: [65535, 0]
   datatype: uint16
   shape: [2]
-datatype<u4: !core/ndarray
+datatype<u4: !core/ndarray-0.1.0
   data: [4294967295, 0]
   datatype: uint32
   shape: [2]
-datatype>i1: !core/ndarray
+datatype>i1: !core/ndarray-0.1.0
   data: [127, -128, 0]
   datatype: int8
   shape: [3]
-datatype>i2: !core/ndarray
+datatype>i2: !core/ndarray-0.1.0
   data: [32767, -32768, 0]
   datatype: int16
   shape: [3]
-datatype>i4: !core/ndarray
+datatype>i4: !core/ndarray-0.1.0
   data: [2147483647, -2147483648, 0]
   datatype: int32
   shape: [3]
-datatype>u1: !core/ndarray
+datatype>u1: !core/ndarray-0.1.0
   data: [255, 0]
   datatype: uint8
   shape: [2]
-datatype>u2: !core/ndarray
+datatype>u2: !core/ndarray-0.1.0
   data: [65535, 0]
   datatype: uint16
   shape: [2]
-datatype>u4: !core/ndarray
+datatype>u4: !core/ndarray-0.1.0
   data: [4294967295, 0]
   datatype: uint32
   shape: [2]
