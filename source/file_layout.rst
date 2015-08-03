@@ -112,9 +112,9 @@ end marker), each on their own line.  Between these two markers is the
 YAML content.  For example::
 
       %YAML 1.1
-      %TAG ! tag:stsci.edu:asdf/0.1.0/
-      --- !core/asdf
-      data: !core/ndarray
+      %TAG ! tag:stsci.edu:asdf/
+      --- !core/asdf-0.1.0
+      data: !core/ndarray-0.1.0
         source: 0
         datatype: float64
         shape: [1024, 1024]

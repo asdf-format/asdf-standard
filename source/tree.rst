@@ -34,7 +34,7 @@ object in the tree.  This is an important feature that sets it apart
 from other data representation languages, such as JSON.  ASDF defines
 a number of custom tags, each of which has a corresponding schema.
 For example the tag of the root element of the tree must always be
-``tag:stsci.edu:asdf/0.1.0/core/asdf``, which corresponds to the
+``tag:stsci.edu:asdf/core/asdf-0.1.0``, which corresponds to the
 :ref:`asdf schema <http://stsci.edu/schemas/asdf/core/asdf-0.1.0>`
 --in other words, the top level schema for ASDF trees.  A validating ASDF reader would
 encounter the tag when reading in the file, load the corresponding schema,
@@ -46,8 +46,8 @@ content.
 For example::
 
      %YAML 1.1
-     --- !<tag:stsci.edu:asdf/0.1.0/core/asdf>
-     data: !<tag:stsci.edu:asdf/0.1.0/core/ndarray>
+     --- !<tag:stsci.edu:asdf/core/asdf-0.1.0>
+     data: !<tag:stsci.edu:asdf/core/ndarray-0.1.0>
        source: 0
        datatype: float64
        shape: [1024, 1024]
@@ -55,15 +55,13 @@ For example::
      ...
 
 All tags defined in the ASDF standard itself begin with the prefix
-``tag:stsci.edu:asdf/0.1.0/``.  This can be broken down as:
+``tag:stsci.edu:asdf/``.  This can be broken down as:
 
 - ``tag:`` The standard prefix used for all YAML tags.
 
 - ``stsci.edu`` The owner of the tag.
 
 - ``asdf`` The name of the standard.
-
-- ``0.1.0`` The version of the standard.
 
 Following that is the "module" containing the schema (see
 :ref:`schema` for a list of the available modules).  Lastly is the tag
@@ -74,12 +72,12 @@ file and use it throughout.  (Most standard YAML writing libraries
 have facilities to do this automatically.)  For example, the following
 example is equivalent to the above example, but is more user-friendly.
 The ``%TAG`` declaration declares that the exclamation point (``!``)
-will be replaced with the prefix ``tag:stsci.edu:asdf/0.1.0/``::
+will be replaced with the prefix ``tag:stsci.edu:asdf/``::
 
       %YAML 1.1
-      %TAG ! tag:stsci.edu:asdf/0.1.0/
-      --- !core/asdf
-      data: !core/ndarray
+      %TAG ! tag:stsci.edu:asdf/
+      --- !core/asdf-0.1.0
+      data: !core/ndarray-0.1.0
         source: 0
         datatype: float64
         shape: [1024, 1024]

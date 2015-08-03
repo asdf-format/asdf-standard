@@ -84,18 +84,18 @@ extensions elsewhere in the file.
   ├─────────────────────────────────────┤   │   │
   │#ASDF 0.1.0                          │   │   │
   │%YAML 1.1                            │   │   │
-  │%TAG ! tag:stsci.edu:asdf/0.1.0/     │   │   │
-  │--- !core/asdf                       │   │   │
+  │%TAG ! tag:stsci.edu:asdf/           │   │   │
+  │--- !core/asdf-0.1.0                 │   │   │
   │model:                               │   │   │
   │  sci:                               │   │   │
-  │    data: !core/ndarray              │   │   │
+  │    data: !core/ndarray-0.1.0        │   │   │
   │      source: fits:SCI,1   ──────────┼───┘   │
   │      datatype: float64              │       │
   │      byteorder: little              │       │
   │      shape: [512]                   │       │
   │    wcs: ...WCS info...              │       │
   │  dq:                                │       │
-  │    data: !core/ndarray              │       │
+  │    data: !core/ndarray-0.1.0        │       │
   │      source: fits:DQ,1    ──────────┼───────┘
   │      datatype: float64              │
   │      byteorder: little              │

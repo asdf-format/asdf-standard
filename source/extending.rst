@@ -51,11 +51,11 @@ schema includes::
 And the :ref:`ndarray
 <http://stsci.edu/schemas/asdf/core/ndarray-0.1.0>` schema includes::
 
-    tag: "tag:stsci.edu:asdf/0.1.0/core/ndarray"
+    tag: "tag:stsci.edu:asdf/core/ndarray-0.1.0"
 
 This has the net effect of requiring that the ``data`` property at the
 top-level of all ASDF files is tagged as
-``tag:stsci.edu:asdf/0.1.0/core/ndarray``.
+``tag:stsci.edu:asdf/core/ndarray-0.1.0``.
 
 ``propertyOrder`` keyword
 ^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -204,14 +204,14 @@ Tags and IDs
 All of the tags defined by the ASDF standard itself have the following
 prefix::
 
-  tag:stsci.edu:asdf/0.1.0
+  tag:stsci.edu:asdf/
 
 This prefix is reserved for tags and schemas defined within the ASDF
 standard itself.  ASDF can, of course, include any tags, as long as
 the tag names are globally unique.  So, for our example instrument,
 we'll declare the tag to be::
 
-  tag:stsci.edu:FOO/0.1.0/metadata
+  tag:stsci.edu:FOO/metadata-0.1.0
 
 Each tag should be associated with a schema in order to validate
 it. Each schema must also have a universally unique ``id``, which is
@@ -233,14 +233,14 @@ to a schema URI, and then load the associated schema.
 Again following with our example, we will assign the following URI to
 refer to our schema::
 
-  http://stsci.edu/schemas/FOO/0.1.0/metadata
+  http://stsci.edu/schemas/FOO/metadata-0.1.0
 
 Therefore, in our schema file, we have the following keys, one
 declaring the name of the YAML ``tag``, and one defining the ``id`` of
 the schema::
 
-  tag: "tag:stsci.edu:FOO/0.1.0/metadata"
-  id: "http://stsci.edu/schemas/FOO/0.1.0/metadata"
+  tag: "tag:stsci.edu:FOO/metadata-0.1.0"
+  id: "http://stsci.edu/schemas/FOO/metadata-0.1.0"
 
 Descriptive information
 ^^^^^^^^^^^^^^^^^^^^^^^
@@ -265,7 +265,7 @@ Continuing our example::
     -
       - A minimal description of an exposure.
       - |
-          !FOO/0.1.0/metadata
+          !FOO/metadata-0.1.0
             exposure_time: 0.001
 
 The schema proper
@@ -302,7 +302,7 @@ elements in your schema that are based on the custom types defined in
 the ASDF standard::
 
     exposure_time_units:
-      $ref: "http://stsci.edu/schemas/asdf/0.1.0/unit/unit"
+      $ref: "http://stsci.edu/schemas/asdf/unit/unit-0.1.0"
       description: |
         The unit of the exposure time.
       default:
@@ -322,8 +322,8 @@ Here is our complete schema example::
   %YAML 1.1
   ---
   $schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
-  tag: "tag:stsci.edu:FOO/0.1.0/metadata"
-  id: "http://stsci.edu/schemas/FOO/0.1.0/metadata"
+  tag: "tag:stsci.edu:FOO/metadata-0.1.0"
+  id: "http://stsci.edu/schemas/FOO/metadata-0.1.0"
 
   title: |
     Metadata for the FOO instrument.
@@ -333,7 +333,7 @@ Here is our complete schema example::
     -
       - A minimal description of an exposure.
       - |
-          !FOO/0.1.0/metadata
+          !FOO/metadata-0.1.0
             exposure_time: 0.001
 
   type: object
@@ -350,7 +350,7 @@ Here is our complete schema example::
         The time of the exposure, in nanoseconds.
 
     exposure_time_units:
-      $ref: "http://stsci.edu/schemas/asdf/0.1.0/unit/unit"
+      $ref: "http://stsci.edu/schemas/asdf/unit/unit-0.1.0"
       description: |
         The unit of the exposure time.
       default:
