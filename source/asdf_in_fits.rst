@@ -18,7 +18,7 @@ Rather than including a copy of the large data arrays in the ASDF
 extension, the ASDF content may refer to binary data stored in regular
 FITS extensions elsewhere in the same file.  The convention for doing
 this is to set the ``source`` property of a :ref:`ndarray
-<http://stsci.edu/schemas/asdf/0.1.0/core/ndarray>` object to a
+<http://stsci.edu/schemas/asdf/core/ndarray-0.1.0>` object to a
 special string identifier for a FITS reference.  These values come in
 two forms:
 
@@ -36,7 +36,7 @@ could be performed by a non-ASDF-aware FITS library.
 Such "FITS references" simply point to the binary content of the data
 portion of a FITS header/data unit.  There is no enforcement that the
 ``datatype`` of the ASDF :ref:`ndarray
-<http://stsci.edu/schemas/asdf/0.1.0/core/ndarray>` matches the
+<http://stsci.edu/schemas/asdf/core/ndarray-0.1.0>` matches the
 ``BITPIX`` of the FITS extension, or expectation that an explicit
 conversion would be performed if they don't match.  It is up to the
 writer of the file to keep the ASDF and FITS datatype descriptions in

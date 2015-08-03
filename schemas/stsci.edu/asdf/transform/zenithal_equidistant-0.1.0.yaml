@@ -1,0 +1,27 @@
+%YAML 1.1
+---
+$schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
+id: "http://stsci.edu/schemas/asdf/transform/zenithal_equidistant-0.1.0"
+tag: "tag:stsci.edu:asdf/transform/zenithal_equidistant-0.1.0"
+title: |
+  The zenithal equidistant projection.
+
+description: |
+  Corresponds to the `ARC` projection in the FITS WCS standard.
+
+  See
+  [zenithal](ref:http://stsci.edu/schemas/asdf/transform/zenithal-0.1.0)
+  for the definition of the full transformation.
+
+  The pixel-to-sky transformation is defined as:
+
+  $$\theta = 90^\circ - R_\theta$$
+
+  And the sky-to-pixel transformation is defined as:
+
+  $$R_\theta = 90^\circ - \theta$$
+
+  Invertibility: All ASDF tools are required to provide the inverse of
+  this transform.
+
+$ref: "zenithal-0.1.0"

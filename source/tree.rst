@@ -13,7 +13,7 @@ Since these core data structures on their own are so flexible, the
 ASDF standard includes a number of schema that define the structure of
 higher-level content.  For instance, there is a schema that defines
 how :ref:`n-dimensional array data
-<http://stsci.edu/schemas/asdf/0.1.0/core/ndarray>` should be
+<http://stsci.edu/schemas/asdf/core/ndarray-0.1.0>` should be
 described.  These schema are written in a language called
 :ref:`yaml-schema` which is just a thin extension of `JSON Schema,
 Draft 4
@@ -35,7 +35,7 @@ from other data representation languages, such as JSON.  ASDF defines
 a number of custom tags, each of which has a corresponding schema.
 For example the tag of the root element of the tree must always be
 ``tag:stsci.edu:asdf/0.1.0/core/asdf``, which corresponds to the
-:ref:`asdf schema <http://stsci.edu/schemas/asdf/0.1.0/core/asdf>`
+:ref:`asdf schema <http://stsci.edu/schemas/asdf/core/asdf-0.1.0>`
 --in other words, the top level schema for ASDF trees.  A validating ASDF reader would
 encounter the tag when reading in the file, load the corresponding schema,
 and validate the content against it.  An ASDF library may also use this
@@ -92,7 +92,7 @@ ship as part of the ASDF standard.
 An ASDF parser may also use the tag information to convert the element
 to a native data type.  For example, in Python, an ASDF parser may
 convert a :ref:`ndarray
-<http://stsci.edu/schemas/asdf/0.1.0/core/ndarray>` tag to a
+<http://stsci.edu/schemas/asdf/core/ndarray-0.1.0>` tag to a
 `Numpy <http://www.numpy.org>`__ array instance, providing a
 convenient and familiar interface to the user to access
 *n*-dimensional data.
@@ -201,7 +201,7 @@ of a 64-bit double precision floating point number: 52-bits of
 precision.  Therefore, ASDF libraries should refuse to write files
 containing integers that are larger than 52-bits.
 
-.. _comments:
+.. _tree-comments:
 
 Comments
 --------

@@ -1,0 +1,18 @@
+%YAML 1.1
+---
+$schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
+id: "http://stsci.edu/schemas/asdf/transform/constant-0.1.0"
+tag: "tag:stsci.edu:asdf/transform/constant-0.1.0"
+title: >
+  A transform that takes no inputs and always outputs a constant
+  value.
+description: |
+  Invertibility: All ASDF tools are required to be able to compute the
+  analytic inverse of this transform, which always outputs zero values.
+allOf:
+  - $ref: "transform-0.1.0"
+  - type: object
+    properties:
+      value:
+        type: number
+    required: [value]

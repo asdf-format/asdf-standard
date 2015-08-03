@@ -13,4 +13,4 @@ compatibility with FITS.
 .. toctree::
    :maxdepth: 1
 
-   stsci.edu/asdf/0.1.0/fits/fits.rst
+   stsci.edu/asdf/fits/fits-0.1.0.rst

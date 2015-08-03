@@ -1,0 +1,39 @@
+%YAML 1.1
+---
+$schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
+id: "http://stsci.edu/schemas/asdf/transform/transform-0.1.0"
+title: >
+  A generic type used to mark where other transforms are accepted.
+
+description: >
+  These objects are designed to be nested in arbitrary ways to build up
+  transformation pipelines out of a number of low-level pieces.
+
+anyOf:
+  - type: object
+    properties:
+      name:
+        description: |
+          A user-friendly name for the transform, to give it extra
+          meaning.
+        type: string
+
+      domain:
+        description: |
+          The domain (range of valid inputs) to the transform.
+          Each entry in the list corresponds to an input dimension.
+        type: array
+        items:
+          $ref: "domain-0.1.0"
+
+      inverse:
+        description: |
+          Explicitly sets the inverse transform of this transform.
+
+          If the transform has a direct analytic inverse, this
+          property is usually not necessary, as the ASDF-reading tool
+          can provide it automatically.
+
+        $ref: "transform-0.1.0"
+    additionalProperties: true
+  - {}

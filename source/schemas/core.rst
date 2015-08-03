@@ -9,9 +9,9 @@ asdf library.
 .. toctree::
    :maxdepth: 1
 
-   stsci.edu/asdf/0.1.0/core/asdf.rst
-   stsci.edu/asdf/0.1.0/core/complex.rst
-   stsci.edu/asdf/0.1.0/core/ndarray.rst
-   stsci.edu/asdf/0.1.0/core/constant.rst
-   stsci.edu/asdf/0.1.0/core/software.rst
-   stsci.edu/asdf/0.1.0/core/history_entry.rst
+   stsci.edu/asdf/core/asdf-0.1.0.rst
+   stsci.edu/asdf/core/complex-0.1.0.rst
+   stsci.edu/asdf/core/ndarray-0.1.0.rst
+   stsci.edu/asdf/core/constant-0.1.0.rst
+   stsci.edu/asdf/core/software-0.1.0.rst
+   stsci.edu/asdf/core/history_entry-0.1.0.rst

@@ -1,0 +1,35 @@
+%YAML 1.1
+---
+$schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
+id: "http://stsci.edu/schemas/asdf/core/software-0.1.0"
+title: |
+  Describes a software package.
+
+tag: "tag:stsci.edu:asdf/core/software-0.1.0"
+type: object
+properties:
+  name:
+    description: |
+      The name of the application or library.
+    type: string
+
+  author:
+    description: |
+      The author (or institution) that produced the software package.
+    type: string
+
+  homepage:
+    description: |
+      A URI to the homepage of the software.
+    type: string
+    format: uri
+
+  version:
+    description: |
+      The version of the software used.  It is recommended, but not
+      required, that this follows the (Semantic Versioning
+      Specification)[http://semver.org/spec/v2.0.0.html].
+    type: string
+
+required: [name, author, homepage, version]
+additionalProperties: true

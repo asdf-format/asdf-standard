@@ -1,0 +1,44 @@
+%YAML 1.1
+---
+$schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
+id: "http://stsci.edu/schemas/asdf/transform/bonne_equal_area-0.1.0"
+tag: "tag:stsci.edu:asdf/transform/bonne_equal_area-0.1.0"
+title: |
+  Bonne's equal area pseudoconic projection.
+
+description: |
+  Corresponds to the `BON` projection in the FITS WCS standard.
+
+  The pixel-to-sky transformation is defined as:
+
+  $$\phi &= \frac{\pi}{180^\circ} A_\phi R_\theta / \cos \theta \\
+    \theta &= Y_0 - R_\theta$$
+
+  where:
+
+  $$R_\theta &= \mathrm{sign} \theta_1 \sqrt{x^2 + (Y_0 - y)^2} \\
+    A_\phi &= \arg\left(\frac{Y_0 - y}{R_\theta}, \frac{x}{R_\theta}\right)$$
+
+  And the sky-to-pixel transformation is defined as:
+
+  $$x &= R_\theta \sin A_\phi \\
+    y &= -R_\theta \cos A_\phi + Y_0$$
+
+  where:
+
+  $$A_\phi &= \frac{180^\circ}{\pi R_\theta} \phi \cos \theta \\
+    R_\theta &= Y_0 - \theta \\
+    Y_0 &= \frac{180^\circ}{\pi} \cot \theta_1 + \theta_1$$
+
+  Invertibility: All ASDF tools are required to provide the inverse of
+  this transform.
+
+allOf:
+  - $ref: "pseudoconic-0.1.0"
+  - type: object
+    properties:
+      theta1:
+        type: number
+        description: |
+          Bonne conformal latitude, in degrees.
+        default: 0
