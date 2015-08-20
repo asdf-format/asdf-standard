@@ -14,7 +14,7 @@ examples:
     - |
         !transform/regions_selector
           inputs: [x, y]
-          mask: !transform/selector_mask
+          mask: !transform/label_mapper
             mask: !core/ndarray
               datatype: int8
               data:
@@ -55,14 +55,14 @@ allOf:
   - $ref: transform
   - type: object
     properties:
-      mask:
+      label_mapper:
         description: |
           An array with the shape of the detector/observation.
           Pixel values are of type int or str and represent
           region labels as in the RegionSelector transform.
           Pixels which are not within any region have value 0 or " ".
 
-        $ref: ./selector_mask
+        $ref: ./label_mapper
       inputs:
         description: |
           Names of inputs.
@@ -100,4 +100,4 @@ allOf:
         type:
           - number
         default: NaN
-    required: [mask, inputs, outputs, selector]
+    required: [label_mapper, inputs, outputs, selector]

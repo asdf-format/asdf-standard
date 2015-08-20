@@ -1,0 +1,136 @@
+%YAML 1.1
+---
+$schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
+id: "http://stsci.edu/schemas/asdf/0.1.0/transform/label_mapper"
+tag: "tag:stsci.edu:asdf/0.1.0/transform/label_mapper"
+title: >
+  Represents a _LabelMapper.
+description: |
+  A label mapper instance maps locations to a label.
+  It is used together with RegionsSelector. The LabelMapper
+  returns the label corresponding to given inputs. The RegionsSelector
+  returns the transform corresponding to this label. This maps uniquely inputs
+  (e.g. pixels on a detector) to transforms.
+
+examples:
+  -
+    - A LabelMapperArray - array indices are mapped to labels.
+      mapper = LabelMapperArray(np.array([[1, 0, 2],
+                                          [1, 0, 2],
+                                          [1, 0, 2]])
+    - |
+        !transform/label_mapper
+          mapper: !core/ndarray
+            [[1, 0, 2],
+            [1, 0, 2],
+            [1, 0, 2]]
+
+  -
+    - A LabelMapperDict - maps dictionary keys to transforms which return labels.
+      dmapper = {-1.9580548: models.Mapping([1]) | models.Shift(2),
+                 -1.118888: models.Mapping([1]) | models.Shift(4),
+                 -1.67833272: models.Mapping([1]) | models.Shift(6)
+                }
+      model = LabelMapperDict(('x', 'y'), dmapper, inputs_mapping=models.Mapping((0,), n_inputs=2))
+    - |
+        !transform/label_mapper
+          mapper: !!omap
+          - !!omap
+            labels: [-1.67833272, -1.9580548, -1.118888]
+          - !!omap
+            models:
+          - !transform/compose
+            forward:
+            - !transform/remap_axes
+              mapping: [1]
+            - !transform/shift {offset: 6.0}
+          - !transform/compose
+            forward:
+            - !transform/remap_axes
+              mapping: [1]
+            - !transform/shift {offset: 2.0}
+          - !transform/compose
+            forward:
+            - !transform/remap_axes
+              mapping: [1]
+            - !transform/shift {offset: 4.0}
+          inputs: [x, y]
+          inputs_mapping: !transform/remap_axes
+            mapping: [0]
+            n_inputs: 2
+
+  -
+    - A LabelMapperRange - maps a range of numbers to transforms which return labels.
+      rmapper = {(3.2, 4.1): models.Mapping([1]) | models.Shift(2),
+                 (2.67, 2.98): models.Mapping([1) | models.Shift(4),
+                 (1.95, 2.3): models.Mapping([1]) | models.Shift(6)
+                }
+      model = LabelMapperRange(('x', 'y'), rmapper, inputs_mapping=models.Mapping((0,), n_inputs=2))
+    - |
+        !transform/label_mapper
+          mapper: !!omap
+          - !!omap
+            labels:
+            - [3.2, 4.1]
+            - [2.67, 2.98]
+            - [1.95, 2.3]
+          - !!omap
+            models:
+          - !transform/compose
+            forward:
+            - !transform/remap_axes
+              mapping: [1]
+            - !transform/shift {offset: 6.0}
+          - !transform/compose
+            forward:
+            - !transform/remap_axes
+              mapping: [1]
+            - !transform/shift {offset: 2.0}
+          - !transform/compose
+            forward:
+            - !transform/remap_axes
+              mapping: [1]
+            - !transform/shift {offset: 4.0}
+          inputs: [x, y]
+          inputs_mapping: !transform/remap_axes
+            mapping: [0]
+            n_inputs: 2
+
+allOf:
+  - $ref: transform
+  - type: object
+    properties:
+      mapper:
+        description: |
+          An array with the shape of the detector/observation.
+          Pixel values are of type int or str and represent
+          region labels as in the RegionSelector transform.
+          Pixels which are not within any region have value 0 or " ".
+        anyOf:
+          - $ref: ../core/ndarray
+          - type: object
+            properties:
+              labels:
+                type: array
+                items:
+                  anyOf:
+                    - type: number
+                    - type: array
+                      items:
+                        type: number
+                      minLength: 2
+                      maxLength: 2
+              models:
+                type: array
+                items:
+                  $ref: transform
+            propertyOrder: [labels, models]
+      inputs:
+        type: array
+        items:
+          type: string
+      inputs_mapping:
+        $ref: transform
+
+    required: [mapper]
+    propertyOrder: [mapper, inputs, inputs_mapping]
