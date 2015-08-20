@@ -370,8 +370,12 @@ def convert_schema_to_rst(src, dst):
         name += ': ' + schema['title'].strip()
     recurse(o, name, schema, [id], 0)
 
-    o.write(".. only:: html\n\n   :download:`Original schema in YAML <{0}>`\n".format(
+    write_header(o, 'Original schema in YAML', 1)
+    o.write(".. only:: html\n\n   :download:`[Download raw] <{0}>`\n".format(
         os.path.basename(src)))
+    o.write(".. literalinclude:: {0}\n".format(os.path.basename(dst)))
+    o.write("    :language: yaml\n")
+    o.write("    :linenos:\n\n")
 
     write_if_different(dst, yaml_content)
     write_if_different(dst[:-5] + ".rst", o.getvalue().encode('utf-8'))
