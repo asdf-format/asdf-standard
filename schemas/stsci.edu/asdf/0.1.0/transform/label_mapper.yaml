@@ -14,10 +14,11 @@ description: |
 
 examples:
   -
-    - A LabelMapperArray - array indices are mapped to labels.
-      mapper = LabelMapperArray(np.array([[1, 0, 2],
-                                          [1, 0, 2],
-                                          [1, 0, 2]])
+    - |
+        A LabelMapperArray - array indices are mapped to labels.
+        mapper = LabelMapperArray(np.array([[1, 0, 2],
+                                            [1, 0, 2],
+                                            [1, 0, 2]])
     - |
         !transform/label_mapper
           mapper: !core/ndarray
@@ -26,12 +27,13 @@ examples:
             [1, 0, 2]]
 
   -
-    - A LabelMapperDict - maps dictionary keys to transforms which return labels.
-      dmapper = {-1.9580548: models.Mapping([1]) | models.Shift(2),
-                 -1.118888: models.Mapping([1]) | models.Shift(4),
-                 -1.67833272: models.Mapping([1]) | models.Shift(6)
-                }
-      model = LabelMapperDict(('x', 'y'), dmapper, inputs_mapping=models.Mapping((0,), n_inputs=2))
+    - |
+        A LabelMapperDict - maps dictionary keys to transforms which return labels.
+        dmapper = {-1.9580548: models.Mapping([1]) | models.Shift(2),
+                   -1.118888: models.Mapping([1]) | models.Shift(4),
+                   -1.67833272: models.Mapping([1]) | models.Shift(6)
+                  }
+        model = LabelMapperDict(('x', 'y'), dmapper, inputs_mapping=models.Mapping((0,), n_inputs=2))
     - |
         !transform/label_mapper
           mapper: !!omap
@@ -60,12 +62,13 @@ examples:
             n_inputs: 2
 
   -
-    - A LabelMapperRange - maps a range of numbers to transforms which return labels.
-      rmapper = {(3.2, 4.1): models.Mapping([1]) | models.Shift(2),
-                 (2.67, 2.98): models.Mapping([1) | models.Shift(4),
-                 (1.95, 2.3): models.Mapping([1]) | models.Shift(6)
-                }
-      model = LabelMapperRange(('x', 'y'), rmapper, inputs_mapping=models.Mapping((0,), n_inputs=2))
+    - |
+        A LabelMapperRange - maps a range of numbers to transforms which return labels.
+        rmapper = {(3.2, 4.1): models.Mapping([1]) | models.Shift(2),
+                   (2.67, 2.98): models.Mapping([1) | models.Shift(4),
+                   (1.95, 2.3): models.Mapping([1]) | models.Shift(6)
+                  }
+        model = LabelMapperRange(('x', 'y'), rmapper, inputs_mapping=models.Mapping((0,), n_inputs=2))
     - |
         !transform/label_mapper
           mapper: !!omap
