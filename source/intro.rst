@@ -99,6 +99,8 @@ The ASDF format is built on top of a number of existing standards:
 
 - `JSON Pointer <http://tools.ietf.org/html/rfc6901>`__
 
+- `Semantic Versioning 2.0.0 <http://semver.org/spec/v2.0.0.html>`__
+
 - `VOUnits (Units in the VO)
   <http://www.ivoa.net/documents/VOUnits/index.html>`__
 

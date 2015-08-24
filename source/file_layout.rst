@@ -5,6 +5,8 @@ The overall structure of a file is as follows (in order):
 
 - :ref:`header`
 
+- :ref:`comments`, optional
+
 - :ref:`tree`, optional
 
 - Zero or more :ref:`block`
@@ -42,25 +44,39 @@ All ASDF files must start with a short one-line header.  For example::
 
   #ASDF 0.1.0
 
-It is made up of the following parts (described in EBNF form)::
+It is made up of two parts, separated by white space characters:
 
-  asdf_token = "#ASDF"
-  major      = integer
-  minor      = integer
-  micro      = integer
-  header     = asdf_token " " major "." minor "." micro ["\r"] "\n"
+  - **ASDF token**: The constant string ``#ASDF``. This can be used to
+    quickly identify the file as an ASDF file by reading the first 5
+    bytes.  It begins with a ``#`` so it will be treated as a YAML
+    comment such that the :ref:`header` and the :ref:`tree` together
+    form a valid YAML file.
 
-- ``asdf_token``: The constant string ``#ASDF``.  This can be used
-  to quickly identify the file as an ASDF file by reading the first 5
-  bytes.  It begins with a ``#`` so it will be treated as a YAML
-  comment such that the :ref:`header` and the :ref:`tree` together
-  form a valid YAML file.
+  - **File format version**: The version of the low-level file format
+    that this file was written with.  This version may differ from the
+    version of the ASDF specification, and is only updated when a
+    change is made that affects the layout of file.  It follows the
+    `Semantic Versioning 2.0.0 <http://semver.org/spec/v2.0.0.html>`__
+    specification. See :ref:`versioning-conventions` for more
+    information about these versions.
 
-- ``major``: The major version.
+The header in EBNF form::
 
-- ``minor``: The minor version.
+    asdf_token = "#ASDF"
+    header     = asdf_token " " format_version ["\r"] "\n"
 
-- ``micro``: The bugfix release version.
+.. _comments:
+
+Comments
+--------
+
+Additional comment lines may appear between the Header and the Tree.
+
+The use of comments here is intended for information for the ASDF
+parser, and not information of general interest to the end user.  All
+data of interest to the end user should be in the Tree.
+
+Each line must begin with a ``#`` character.
 
 .. _tree:
 
@@ -96,9 +112,9 @@ end marker), each on their own line.  Between these two markers is the
 YAML content.  For example::
 
       %YAML 1.1
-      %TAG ! tag:stsci.edu:asdf/0.1.0/
-      --- !core/asdf
-      data: !core/ndarray
+      %TAG ! tag:stsci.edu:asdf/
+      --- !core/asdf-0.1.0
+      data: !core/ndarray-0.1.0
         source: 0
         datatype: float64
         shape: [1024, 1024]
@@ -134,7 +150,7 @@ Blocks represent a contiguous chunk of binary data and nothing more.
 Information about how to interpret the block, such as the data type or
 array shape, is stored entirely in ``ndarray`` structures in the tree,
 as described in :ref:`ndarray
-<http://stsci.edu/schemas/asdf/0.1.0/core/ndarray>`.  This allows
+<http://stsci.edu/schemas/asdf/core/ndarray-0.1.0>`.  This allows
 for a very flexible type system on top of a very simple approach to
 memory management within the file.  It also allows for new extensions
 to ASDF that might interpret the raw binary data in ways that are yet
@@ -354,6 +370,6 @@ exploded form, other than the fact that some or all of its blocks come
 from external files.  The exact way in which a file is exploded is up
 to the library and tools implementing the standard.  In the simplest
 scenario, to explode a file, each :ref:`ndarray source property
-<http://stsci.edu/schemas/asdf/0.1.0/core/ndarray/anyOf/1/properties/source>`
+<http://stsci.edu/schemas/asdf/core/ndarray-0.1.0/anyOf/1/properties/source>`
 in the tree is converted from a local block reference into a relative
 URI.

@@ -17,6 +17,7 @@ released version of the ASDF standard.**
    intro.rst
    file_layout.rst
    tree.rst
+   versioning.rst
    schemas/index.rst
    extending.rst
    known_limits.rst

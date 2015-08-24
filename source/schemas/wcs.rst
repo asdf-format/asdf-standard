@@ -13,7 +13,7 @@ coordinate system transformations.
 .. toctree::
    :maxdepth: 1
 
-   stsci.edu/asdf/0.1.0/wcs/wcs.rst
-   stsci.edu/asdf/0.1.0/wcs/steps.rst
-   stsci.edu/asdf/0.1.0/wcs/step.rst
-   stsci.edu/asdf/0.1.0/wcs/axis.rst
+   stsci.edu/asdf/wcs/wcs-0.1.0.rst
+   stsci.edu/asdf/wcs/steps-0.1.0.rst
+   stsci.edu/asdf/wcs/step-0.1.0.rst
+   stsci.edu/asdf/wcs/axis-0.1.0.rst

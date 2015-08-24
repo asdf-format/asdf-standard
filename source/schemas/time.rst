@@ -13,4 +13,4 @@ in time and time deltas.
 .. toctree::
    :maxdepth: 1
 
-   stsci.edu/asdf/0.1.0/time/time.rst
+   stsci.edu/asdf/time/time-0.1.0.rst
