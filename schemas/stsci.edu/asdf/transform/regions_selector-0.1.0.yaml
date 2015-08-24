@@ -1,8 +1,8 @@
 %YAML 1.1
 ---
 $schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
-id: "http://stsci.edu/schemas/asdf/0.1.0/transform/regions_selector"
-tag: "tag:stsci.edu:asdf/0.1.0/transform/regions_selector"
+id: "http://stsci.edu/schemas/asdf/transform/regions_selector-0.1.0"
+tag: "tag:stsci.edu:asdf/transform/regions_selector-0.1.0"
 title: >
   Represents a RegionsSelector transform.
 description: |
@@ -12,7 +12,7 @@ examples:
   -
     - Create a regions_selector schema for an IFU with 2 slices, labeled "1" and "2".
     - |
-        !transform/regions_selector
+        !transform/regions_selector-0.1.0
           inputs: [x, y]
           mask: !transform/label_mapper
             mask: !core/ndarray
@@ -26,33 +26,33 @@ examples:
 
           outputs: [ra, dec, lam]
           selector:
-            1: !transform/compose
+            1: !transform/compose-0.1.0
               forward:
-              - !transform/remap_axes
+              - !transform/remap_axes-0.1.0
                 mapping: [0, 1, 1]
-              - !transform/concatenate
+              - !transform/concatenate-0.1.0
                 forward:
-                - !transform/concatenate
+                - !transform/concatenate-0.1.0
                   forward:
-                  - !transform/shift {offset: 1.0}
-                  - !transform/shift {offset: 2.0}
-                - !transform/shift {offset: 3.0}
-            2: !transform/compose
+                  - !transform/shift-0.1.0 {offset: 1.0}
+                  - !transform/shift-0.1.0 {offset: 2.0}
+                - !transform/shift-0.1.0 {offset: 3.0}
+            2: !transform/compose-0.1.0
               forward:
-              - !transform/remap_axes
+              - !transform/remap_axes-0.1.0
                 mapping: [0, 1, 1]
-              - !transform/concatenate
+              - !transform/concatenate-0.1.0
                 forward:
-                - !transform/concatenate
+                - !transform/concatenate-0.1.0
                   forward:
-                  - !transform/scale {factor: 2.0}
-                  - !transform/scale {factor: 3.0}
-                - !transform/scale {factor: 3.0}
+                  - !transform/scale-0.1.0 {factor: 2.0}
+                  - !transform/scale-0.1.0 {factor: 3.0}
+                - !transform/scale-0.1.0 {factor: 3.0}
           undefined_transform_value: .nan
 
 
 allOf:
-  - $ref: transform
+  - $ref: "transform-0.1.0"
   - type: object
     properties:
       label_mapper:
@@ -62,7 +62,7 @@ allOf:
           region labels as in the RegionSelector transform.
           Pixels which are not within any region have value 0 or " ".
 
-        $ref: ./label_mapper
+        $ref: "./label_mapper-0.1.0"
       inputs:
         description: |
           Names of inputs.
@@ -93,7 +93,7 @@ allOf:
               A transform for each region. The order should match the order of labels.
             type: array
             items:
-              $ref: transform
+              $ref: "transform-0.1.0"
       undefined_transform_value:
         description: |
           Value to be returned if there's no transform defined for the inputs.

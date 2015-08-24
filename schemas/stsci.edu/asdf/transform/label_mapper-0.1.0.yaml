@@ -1,8 +1,8 @@
 %YAML 1.1
 ---
 $schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
-id: "http://stsci.edu/schemas/asdf/0.1.0/transform/label_mapper"
-tag: "tag:stsci.edu:asdf/0.1.0/transform/label_mapper"
+id: "http://stsci.edu/schemas/asdf/transform/label_mapper-0.1.0"
+tag: "tag:stsci.edu:asdf/transform/label_mapper-0.1.0"
 title: >
   Represents a _LabelMapper.
 description: |
@@ -20,8 +20,8 @@ examples:
                                             [1, 0, 2],
                                             [1, 0, 2]])
     - |
-        !transform/label_mapper
-          mapper: !core/ndarray
+        !transform/label_mapper-0.1.0
+          mapper: !core/ndarray-0.1.0
             [[1, 0, 2],
             [1, 0, 2],
             [1, 0, 2]]
@@ -35,7 +35,7 @@ examples:
                   }
         model = LabelMapperDict(('x', 'y'), dmapper, inputs_mapping=models.Mapping((0,), n_inputs=2))
     - |
-        !transform/label_mapper
+        !transform/label_mapper-0.1.0
           mapper: !!omap
           - !!omap
             labels: [-1.67833272, -1.9580548, -1.118888]
@@ -100,7 +100,7 @@ examples:
             n_inputs: 2
 
 allOf:
-  - $ref: transform
+  - $ref: "transform-0.1.0"
   - type: object
     properties:
       mapper:
@@ -110,7 +110,7 @@ allOf:
           region labels as in the RegionSelector transform.
           Pixels which are not within any region have value 0 or " ".
         anyOf:
-          - $ref: ../core/ndarray
+          - $ref: "../core/ndarray-0.1.0"
           - type: object
             properties:
               labels:
@@ -126,14 +126,13 @@ allOf:
               models:
                 type: array
                 items:
-                  $ref: transform
-            propertyOrder: [labels, models]
+                  $ref: "transform-0.1.0"
+
       inputs:
         type: array
         items:
           type: string
       inputs_mapping:
-        $ref: transform
+        $ref: "transform-0.1.0"
 
     required: [mapper]
-    propertyOrder: [mapper, inputs, inputs_mapping]
