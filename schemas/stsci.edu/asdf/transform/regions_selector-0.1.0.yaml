@@ -4,13 +4,13 @@ $schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
 id: "http://stsci.edu/schemas/asdf/transform/regions_selector-0.1.0"
 tag: "tag:stsci.edu:asdf/transform/regions_selector-0.1.0"
 title: >
-  Represents a RegionsSelector transform.
+  Represents a discontinuous transform.
 description: |
-  A model which maps regions to their corresponding transforms.
+  Maps regions to transgorms and evaluates the transforms with the corresponding inputs.
 
 examples:
   -
-    - Create a regions_selector schema for an IFU with 2 slices, labeled "1" and "2".
+    - Create a regions_selector schema for 2 regions, labeled "1" and "2".
     - |
         !transform/regions_selector-0.1.0
           inputs: [x, y]
@@ -57,11 +57,7 @@ allOf:
     properties:
       label_mapper:
         description: |
-          An array with the shape of the detector/observation.
-          Pixel values are of type int or str and represent
-          region labels as in the RegionSelector transform.
-          Pixels which are not within any region have value 0 or " ".
-
+          An instance of [label_mapper](ref:label_mapper)
         $ref: "./label_mapper-0.1.0"
       inputs:
         description: |
@@ -82,7 +78,7 @@ allOf:
         properties:
           labels:
             description: |
-              Names of regions.
+              An array of unique region labels.
             type: array
             items:
               type:
@@ -99,5 +95,5 @@ allOf:
           Value to be returned if there's no transform defined for the inputs.
         type:
           - number
-        default: NaN
+        default: 'null'
     required: [label_mapper, inputs, outputs, selector]
