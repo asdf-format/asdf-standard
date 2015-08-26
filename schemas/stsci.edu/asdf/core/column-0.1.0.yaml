@@ -1,8 +1,8 @@
 %YAML 1.1
 ---
 $schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
-id: "http://stsci.edu/schemas/asdf/0.1.0/core/column"
-tag: "tag:stsci.edu:asdf/0.1.0/core/column"
+id: "http://stsci.edu/schemas/asdf/core/column-0.1.0"
+tag: "tag:stsci.edu:asdf/core/column-0.1.0"
 
 title: >
   A column in a table.
@@ -16,7 +16,7 @@ properties:
   name:
     description: |
       The name of the column.  Each name in a
-      [table](http://stsci.edu/schemas/asdf/0.1.0/core/table) must be
+      [table](http://stsci.edu/schemas/asdf/core/table-0.1.0) must be
       unique.
     type: string
     pattern: "[A-Za-z_][A-Za-z0-9_]*"
@@ -25,7 +25,7 @@ properties:
     description: |
       The array data for the column.
     allOf:
-      - $ref: ndarray
+      - $ref: ndarray-0.1.0
 
   description:
     description: |
@@ -37,7 +37,7 @@ properties:
     description:
       An optional unit for the column.
     allOf:
-      - $ref: ../unit/unit
+      - $ref: ../unit/unit-0.1.0
 
   meta:
     description:

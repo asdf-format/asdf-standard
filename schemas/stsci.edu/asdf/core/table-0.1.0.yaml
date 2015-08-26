@@ -1,15 +1,15 @@
 %YAML 1.1
 ---
 $schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
-id: "http://stsci.edu/schemas/asdf/0.1.0/core/table"
-tag: "tag:stsci.edu:asdf/0.1.0/core/table"
+id: "http://stsci.edu/schemas/asdf/core/table-0.1.0"
+tag: "tag:stsci.edu:asdf/core/table-0.1.0"
 
 title: >
   A table.
 
 description: |
   A table is represented as a list of columns, where each entry is a
-  [column](ref:http://stsci.edu/schemas/asdf/0.1.0/core/column)
+  [column](ref:http://stsci.edu/schemas/asdf/core/column-0.1.0)
   object, containing the data and some additional information.
 
   The data itself may be stored inline as text, or in binary in either
@@ -23,10 +23,10 @@ examples:
   -
     - A table stored in column-major order, with each column in a separate block
     - |
-        !core/table
+        !core/table-0.1.0
           columns:
-          - !core/column
-            data: !core/ndarray
+          - !core/column-0.1.0
+            data: !core/ndarray-0.1.0
               source: 0
               datatype: float64
               byteorder: little
@@ -34,17 +34,17 @@ examples:
             description: RA
             meta: {foo: bar}
             name: a
-            unit: !unit/unit deg
-          - !core/column
-            data: !core/ndarray
+            unit: !unit/unit-0.1.0 deg
+          - !core/column-0.1.0
+            data: !core/ndarray-0.1.0
               source: 1
               datatype: float64
               byteorder: little
               shape: [3]
             description: DEC
             name: b
-          - !core/column
-            data: !core/ndarray
+          - !core/column-0.1.0
+            data: !core/ndarray-0.1.0
               source: 2
               datatype: [ascii, 1]
               byteorder: big
@@ -55,10 +55,10 @@ examples:
   -
     - A table stored in row-major order, all stored in the same block
     - |
-        !core/table
+        !core/table-0.1.0
           columns:
-          - !core/column
-            data: !core/ndarray
+          - !core/column-0.1.0
+            data: !core/ndarray-0.1.0
               source: 0
               datatype: float64
               byteorder: little
@@ -67,9 +67,9 @@ examples:
             description: RA
             meta: {foo: bar}
             name: a
-            unit: !unit/unit deg
-          - !core/column
-            data: !core/ndarray
+            unit: !unit/unit-0.1.0 deg
+          - !core/column-0.1.0
+            data: !core/ndarray-0.1.0
               source: 0
               datatype: float64
               byteorder: little
@@ -78,8 +78,8 @@ examples:
               strides: [13]
             description: DEC
             name: b
-          - !core/column
-            data: !core/ndarray
+          - !core/column-0.1.0
+            data: !core/ndarray-0.1.0
               source: 0
               datatype: [ascii, 1]
               byteorder: big
@@ -96,7 +96,7 @@ properties:
       A list of columns in the table.
     type: array
     items:
-      $ref: column
+      $ref: column-0.1.0
 
   meta:
     description: |
