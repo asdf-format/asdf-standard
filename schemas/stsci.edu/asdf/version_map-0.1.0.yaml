@@ -5,11 +5,13 @@ YAML_VERSION: "1.1"
 tags:
   tag:stsci.edu:asdf/asdf-schema: 0.1.0
   tag:stsci.edu:asdf/core/asdf: 0.1.0
+  tag:stsci.edu:asdf/core/column: 0.1.0
   tag:stsci.edu:asdf/core/complex: 0.1.0
   tag:stsci.edu:asdf/core/constant: 0.1.0
   tag:stsci.edu:asdf/core/history_entry: 0.1.0
   tag:stsci.edu:asdf/core/ndarray: 0.1.0
   tag:stsci.edu:asdf/core/software: 0.1.0
+  tag:stsci.edu:asdf/core/table: 0.1.0
   tag:stsci.edu:asdf/fits/fits: 0.1.0
   tag:stsci.edu:asdf/time/time: 0.1.0
   tag:stsci.edu:asdf/transform/add: 0.1.0

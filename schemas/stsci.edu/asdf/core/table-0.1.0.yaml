@@ -1,0 +1,108 @@
+%YAML 1.1
+---
+$schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
+id: "http://stsci.edu/schemas/asdf/core/table-0.1.0"
+tag: "tag:stsci.edu:asdf/core/table-0.1.0"
+
+title: >
+  A table.
+
+description: |
+  A table is represented as a list of columns, where each entry is a
+  [column](ref:http://stsci.edu/schemas/asdf/core/column-0.1.0)
+  object, containing the data and some additional information.
+
+  The data itself may be stored inline as text, or in binary in either
+  row- or column-major order by use of the `strides` property on the
+  individual column arrays.
+
+  Each column in the table must have the same first (slowest moving)
+  dimension.
+
+examples:
+  -
+    - A table stored in column-major order, with each column in a separate block
+    - |
+        !core/table-0.1.0
+          columns:
+          - !core/column-0.1.0
+            data: !core/ndarray-0.1.0
+              source: 0
+              datatype: float64
+              byteorder: little
+              shape: [3]
+            description: RA
+            meta: {foo: bar}
+            name: a
+            unit: !unit/unit-0.1.0 deg
+          - !core/column-0.1.0
+            data: !core/ndarray-0.1.0
+              source: 1
+              datatype: float64
+              byteorder: little
+              shape: [3]
+            description: DEC
+            name: b
+          - !core/column-0.1.0
+            data: !core/ndarray-0.1.0
+              source: 2
+              datatype: [ascii, 1]
+              byteorder: big
+              shape: [3]
+            description: The target name
+            name: c
+
+  -
+    - A table stored in row-major order, all stored in the same block
+    - |
+        !core/table-0.1.0
+          columns:
+          - !core/column-0.1.0
+            data: !core/ndarray-0.1.0
+              source: 0
+              datatype: float64
+              byteorder: little
+              shape: [3]
+              strides: [13]
+            description: RA
+            meta: {foo: bar}
+            name: a
+            unit: !unit/unit-0.1.0 deg
+          - !core/column-0.1.0
+            data: !core/ndarray-0.1.0
+              source: 0
+              datatype: float64
+              byteorder: little
+              shape: [3]
+              offset: 4
+              strides: [13]
+            description: DEC
+            name: b
+          - !core/column-0.1.0
+            data: !core/ndarray-0.1.0
+              source: 0
+              datatype: [ascii, 1]
+              byteorder: big
+              shape: [3]
+              offset: 12
+              strides: [13]
+            description: The target name
+            name: c
+
+type: object
+properties:
+  columns:
+    description: |
+      A list of columns in the table.
+    type: array
+    items:
+      $ref: column-0.1.0
+
+  meta:
+    description: |
+      Additional free-form metadata about the table.
+    type: object
+    default: {}
+
+additionalProperties: false
+requiredProperties: [data]

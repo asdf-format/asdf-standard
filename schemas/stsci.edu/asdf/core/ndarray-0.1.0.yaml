@@ -5,7 +5,7 @@ id: "http://stsci.edu/schemas/asdf/core/ndarray-0.1.0"
 tag: "tag:stsci.edu:asdf/core/ndarray-0.1.0"
 
 title: >
-  An *n*-dimensional array or table.
+  An *n*-dimensional array.
 
 description: |
   There are two ways to store the data in an ndarray.
@@ -42,7 +42,7 @@ examples:
              [0, 0, 1]]
 
   -
-    - An inline table, where the types of each column are
+    - An inline structured array, where the types of each column are
       automatically detected
     - |
         !core/ndarray-0.1.0
@@ -52,7 +52,7 @@ examples:
            [M103, 103, 581, Cas]]
 
   -
-    - An inline table, where the types of each column are
+    - An inline structured array, where the types of each column are
       explicitly specified
     - |
         !core/ndarray-0.1.0
@@ -85,8 +85,8 @@ examples:
           offset: 2099200
 
   -
-    - A table datatype, with nested columns for a coordinate in (*ra*,
-      *dec*), and a 3x3 convolution kernel
+    - A structured datatype, with nested columns for a coordinate in
+      (*ra*, *dec*), and a 3x3 convolution kernel
     - |
         !core/ndarray-0.1.0
           source: 0
