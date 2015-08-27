@@ -13,7 +13,9 @@ properties:
   frame:
     description: |
       The frame of the inputs to the transform.
-    type: string
+    anyOf:
+      - type: string
+      - $ref: frame-0.1.0
 
   transform:
     description: |
