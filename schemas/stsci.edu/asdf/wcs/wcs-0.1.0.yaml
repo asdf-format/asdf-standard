@@ -23,7 +23,7 @@ properties:
       The inverse transformation is determined automatically by
       reversing this list, and inverting each of the individual
       transforms according to the rules described in
-      [inverse](ref:http://stsci.edu/schemas/asdf/0.1.0/transform/transform/anyOf/0/properties/inverse).
+      [inverse](ref:http://stsci.edu/schemas/asdf/transform/transform-0.1.0/properties/inverse).
     type: array
     items:
       $ref: step-0.1.0
