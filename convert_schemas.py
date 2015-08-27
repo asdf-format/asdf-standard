@@ -372,6 +372,7 @@ def convert_schema_to_rst(src, dst):
 
     id = schema.get('id', '#')
     name = os.path.basename(src[:-5])
+    name = name[:name.rfind('-')]
     if 'title' in schema:
         name += ': ' + schema['title'].strip()
     recurse(o, name, schema, [id], 0)
