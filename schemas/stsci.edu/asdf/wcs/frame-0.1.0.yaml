@@ -7,6 +7,10 @@ title: >
 description: >
   These objects are designed to be nested in arbitrary ways to build up
   transformation pipelines out of a number of low-level pieces.
+
+  Most of these coordinate frames are defined in [IERS
+  conventions](http://www.iers.org/IERS/EN/Publications/TechnicalNotes/tn36.html).
+
 type: object
 properties:
   name:
@@ -32,9 +36,144 @@ properties:
 
   reference_frame:
     description: |
-      The reference frame.
+      The reference frame.  Some reference frames require additional
+      properties, listed next to each reference frame type below.
+
+      The reference frames types are:
+
+      - `ICRS`
+
+      - `FK5`: `equinox`.
+
+      - `FK4`: `equinox` and optionally `obstime`.
+
+      - `FK4_noeterms`: `equinox` and optionally `obstime`.
+
+      - `galactic`
+
+      - `galactocentric`: `galcen_distance`, `galcen_ra`,
+        `galcen_dec`, `z_sun` and `roll`.
+
+      - `GCRS`: `obstime`, `obsgeoloc`, and `obsgeovel`.
+
+      - `CIRS`: `obstime`.
+
+      - `ITRS`: `obstime`.
+
+      - `precessed_geocentric`: `obstime`, `obsgeoloc`, and
+        `obsgeovel`.
+
     enum: [ICRS, FK5, FK4, FK4_noeterms, galactic, galactocentric,
-           altaz, GCRS, CIRS, ITRS, precessed_geocentric]
+           GCRS, CIRS, ITRS, precessed_geocentric]
+    default: ICRS
+
+  equinox:
+    description: |
+      The equinox of the reference frame.  Required when
+      `reference_frame` one of:
+
+        `FK5`, `FK4`, `FK4_noeterms`
+
+    $ref: ../time/time-0.1.0
+
+  obstime:
+    description: |
+      The observation time of the reference frame, used to determine
+      the location of the Earth.  Required when `reference_frame` is
+      one of:
+
+        `FK4`, `FK4_noeterms`, `GCRS`, `CIRS`, `ITRS`
+
+      If not provided, it defaults to the same value as `equinox`.
+    $ref: ../time/time-0.1.0
+
+  galcen_distance:
+    description: |
+      The distance from the Sun to the Galactic center.  Required when
+      `reference_frame` is `galactocentric`.
+    type: array
+    items:
+      - type: number
+      - $ref: ../unit/unit-0.1.0
+        default: pc
+
+  galcen_ra:
+    description: |
+      The Right Ascension (RA) of the Galactic center in the ICRS
+      frame.  Required when `reference_frame` is `galactocentric`.
+    type: array
+    items:
+      - type: number
+      - $ref: ../unit/unit-0.1.0
+        default: degree
+
+  galcen_dec:
+    description: |
+      The Declination (DEC) of the Galactic center in the ICRS frame.
+      Required when `reference_frame` is `galactocentric`.
+    type: array
+    items:
+      - type: number
+      - $ref: ../unit/unit-0.1.0
+        default: degree
+
+  z_sun:
+    description: |
+      The distance from the sun to the galactic midplane.  Required
+      when `reference_frame` is `galactocentric`.  Required when
+      `reference_frame` is `galactocentric`.
+    type: array
+    items:
+      - type: number
+      - $ref: ../unit/unit-0.1.0
+        default: pc
+
+  roll:
+    description: |
+      The angle to rotate about the final x-axis, relative to the
+      orientation for `galactic`.  Required when `reference_frame` is
+      `galactocentric`.
+    type: array
+    items:
+      - type: number
+      - $ref: ../unit/unit-0.1.0
+        default: degree
+
+  obsgeoloc:
+    description: |
+      3-vector giving the position of the observer relative to the
+      center-of-mass of the Earth, oriented the same as
+      BCRS/ICRS. Defaults to `[0, 0, 0]`, meaning "true" GCRS.  Used
+      when `reference_frame` is `GCRS` or `precessed_geocentric`.
+    type: array
+    items:
+      - type: array
+        items:
+          type: number
+        minItems: 3
+        maxItems: 3
+      - $ref: ../unit/unit-0.1.0
+        default: m
+    default:
+      - [0, 0, 0]
+
+  obsgeovel:
+    description: |
+      3-vector giving the velocity of the observer relative to the
+      center-of-mass of the Earth, oriented the same as
+      BCRS/ICRS. Defaults to `[0, 0, 0]`, meaning "true" GCRS.  Used
+      when `reference_frame` is `GCRS` or `precessed_geocentric`.
+    type: array
+    items:
+      - type: array
+        items:
+          type: number
+        minItems: 3
+        maxItems: 3
+      - $ref: ../unit/unit-0.1.0
+        default: m/s
+    default:
+      - [0, 0, 0]
 
   unit:
     description: |

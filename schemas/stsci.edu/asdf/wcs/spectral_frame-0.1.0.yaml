@@ -9,6 +9,12 @@ title: >
 allOf:
   - type: object
     properties:
+      reference_position:
+        description: |
+          The position of the reference frame.
+        enum: [geocenter, barycenter, heliocenter]
+        default: geocenter
+
       axes_names:
         minItems: 1
         maxItems: 1

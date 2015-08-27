@@ -10,21 +10,16 @@ title: >
 allOf:
   - type: object
     properties:
-      reference_position:
-        description: |
-          The position of the reference frame.
-        enum: [geocenter, barycenter, heliocenter]
-
       axes_names:
         minItems: 2
-        maxItems: 2
+        maxItems: 3
 
       axes_order:
         minItems: 2
-        maxItems: 2
+        maxItems: 3
 
       unit:
         minItems: 2
-        maxItems: 2
+        maxItems: 3
 
   - $ref: frame-0.1.0
