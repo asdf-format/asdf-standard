@@ -23,7 +23,7 @@ properties:
     description: |
       One or more descriptions of the software that performed the
       operation.
-    oneOf:
+    anyOf:
       - $ref: "software-0.1.0"
       - type: array
         items:
