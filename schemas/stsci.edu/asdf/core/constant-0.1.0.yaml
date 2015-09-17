@@ -1,8 +1,0 @@
-%YAML 1.1
----
-$schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
-id: "http://stsci.edu/schemas/asdf/core/constant-0.1.0"
-tag: "tag:stsci.edu:asdf/core/constant-0.1.0"
-title: Specify that a value is a constant.
-description: |
-  Used as a utility to indicate that value is a literal constant.

@@ -1,0 +1,17 @@
+%YAML 1.1
+---
+$schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
+id: "http://stsci.edu/schemas/asdf/transform/pseudoconic-1.0.0"
+title: |
+  Base class of all pseudoconic projections.
+
+description: |
+  Pseudoconics are a subclass of conics with concentric parallels.
+
+allOf:
+  - $ref: "transform-1.0.0"
+  - type: object
+    properties:
+      direction:
+        enum: [pix2sky, sky2pix]
+        default: pix2sky

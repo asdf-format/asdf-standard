@@ -1,0 +1,25 @@
+%YAML 1.1
+---
+$schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
+id: "http://stsci.edu/schemas/asdf/transform/sanson_flamsteed-1.0.0"
+tag: "tag:stsci.edu:asdf/transform/sanson_flamsteed-1.0.0"
+title: |
+  The Sanson-Flamsteed projection.
+
+description: |
+  Corresponds to the `SFL` projection in the FITS WCS standard.
+
+  The pixel-to-sky transformation is defined as:
+
+  $$\phi &= \frac{x}{\cos y} \\
+    \theta &= y$$
+
+  And the sky-to-pixel transformation is defined as:
+
+  $$x &= \phi \cos \theta \\
+    y &= \theta$$
+
+  Invertibility: All ASDF tools are required to provide the inverse of
+  this transform.
+
+$ref: "pseudocylindrical-1.0.0"

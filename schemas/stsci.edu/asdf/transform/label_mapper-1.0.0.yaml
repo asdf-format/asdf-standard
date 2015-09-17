@@ -1,0 +1,127 @@
+%YAML 1.1
+---
+$schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
+id: "http://stsci.edu/schemas/asdf/transform/label_mapper-1.0.0"
+tag: "tag:stsci.edu:asdf/transform/label_mapper-1.0.0"
+title: >
+  Represents a mapping from a coordinate value to a label.
+description: |
+  A label mapper instance maps inputs to a label.  It is used together
+  with [regions_selector](ref:regions_selector-1.0.0). The
+  [label_mapper](ref:label_mapper-1.0.0) returns the label
+  corresponding to given inputs. The
+  [regions_selector](ref:regions_selector-1.0.0) returns the transform
+  corresponding to this label. This maps inputs (e.g. pixels on a
+  detector) to transforms uniquely.
+
+examples:
+  -
+    - Map array indices are to labels.
+
+    - |
+        !transform/label_mapper-1.0.0
+          mapper: !core/ndarray-1.0.0
+            [[1, 0, 2],
+            [1, 0, 2],
+            [1, 0, 2]]
+
+  -
+    - Map numbers dictionary to transforms which return labels.
+
+    - |
+        !transform/label_mapper-1.0.0
+          mapper: !!omap
+          - !!omap
+            labels: [-1.67833272, -1.9580548, -1.118888]
+          - !!omap
+            models:
+          - !transform/compose-1.0.0
+            forward:
+            - !transform/remap_axes-1.0.0
+              mapping: [1]
+            - !transform/shift-1.0.0 {offset: 6.0}
+          - !transform/compose-1.0.0
+            forward:
+            - !transform/remap_axes-1.0.0
+              mapping: [1]
+            - !transform/shift-1.0.0 {offset: 2.0}
+          - !transform/compose-1.0.0
+            forward:
+            - !transform/remap_axes-1.0.0
+              mapping: [1]
+            - !transform/shift-1.0.0 {offset: 4.0}
+          inputs: [x, y]
+          inputs_mapping: !transform/remap_axes-1.0.0
+            mapping: [0]
+            n_inputs: 2
+
+  -
+    - Map a number wihtin a range of numbers to transforms which return labels.
+
+    - |
+        !transform/label_mapper-1.0.0
+          mapper: !!omap
+          - !!omap
+            labels:
+            - [3.2, 4.1]
+            - [2.67, 2.98]
+            - [1.95, 2.3]
+          - !!omap
+            models:
+          - !transform/compose-1.0.0
+            forward:
+            - !transform/remap_axes-1.0.0
+              mapping: [1]
+            - !transform/shift-1.0.0 {offset: 6.0}
+          - !transform/compose-1.0.0
+            forward:
+            - !transform/remap_axes-1.0.0
+              mapping: [1]
+            - !transform/shift-1.0.0 {offset: 2.0}
+          - !transform/compose-1.0.0
+            forward:
+            - !transform/remap_axes-1.0.0
+              mapping: [1]
+            - !transform/shift-1.0.0 {offset: 4.0}
+          inputs: [x, y]
+          inputs_mapping: !transform/remap_axes-1.0.0
+            mapping: [0]
+            n_inputs: 2
+
+allOf:
+  - $ref: "transform-1.0.0"
+  - type: object
+    properties:
+      mapper:
+        description: |
+          An array with the shape of the detector/observation.
+          Pixel values are of type integer or string and represent
+          region labels.
+          Pixels which are not within any region have value 0 or " ".
+        anyOf:
+          - $ref: "../core/ndarray-1.0.0"
+          - type: object
+            properties:
+              labels:
+                type: array
+                items:
+                  anyOf:
+                    - type: number
+                    - type: array
+                      items:
+                        type: number
+                      minLength: 2
+                      maxLength: 2
+              models:
+                type: array
+                items:
+                  $ref: "transform-1.0.0"
+
+      inputs:
+        type: array
+        items:
+          type: string
+      inputs_mapping:
+        $ref: "transform-1.0.0"
+
+    required: [mapper]

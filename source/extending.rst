@@ -37,9 +37,9 @@ Writing a new schema is described in :ref:`designing-schema`.
 element must have the given YAML tag.
 
 For example, the root :ref:`asdf
-<http://stsci.edu/schemas/asdf/core/asdf-0.1.0>` schema declares that
+<http://stsci.edu/schemas/asdf/core/asdf-1.0.0>` schema declares that
 the ``data`` property must be an :ref:`ndarray
-<http://stsci.edu/schemas/asdf/core/ndarray-0.1.0>`.  It does
+<http://stsci.edu/schemas/asdf/core/ndarray-1.0.0>`.  It does
 this not by using the ``tag`` keyword directly, but by referencing the
 ``ndarray`` schema, which in turn has the ``tag`` keyword.  The ASDF
 schema includes::
@@ -49,13 +49,13 @@ schema includes::
         $ref: "ndarray"
 
 And the :ref:`ndarray
-<http://stsci.edu/schemas/asdf/core/ndarray-0.1.0>` schema includes::
+<http://stsci.edu/schemas/asdf/core/ndarray-1.0.0>` schema includes::
 
-    tag: "tag:stsci.edu:asdf/core/ndarray-0.1.0"
+    tag: "tag:stsci.edu:asdf/core/ndarray-1.0.0"
 
 This has the net effect of requiring that the ``data`` property at the
 top-level of all ASDF files is tagged as
-``tag:stsci.edu:asdf/core/ndarray-0.1.0``.
+``tag:stsci.edu:asdf/core/ndarray-1.0.0``.
 
 ``propertyOrder`` keyword
 ^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -133,12 +133,12 @@ ASDF Schema
 .. toctree::
    :hidden:
 
-   schemas/stsci.edu/asdf/asdf-schema-0.1.0.rst
+   schemas/stsci.edu/asdf/asdf-schema-1.0.0.rst
 
-:ref:`ASDF Schema <http://stsci.edu/schemas/asdf/asdf-schema-0.1.0>`
+:ref:`ASDF Schema <http://stsci.edu/schemas/asdf/asdf-schema-1.0.0>`
 further extends YAML schema to add some validations specific to ASDF,
 notably to do with :ref:`ndarray
-<http://stsci.edu/schemas/asdf/core/ndarray-0.1.0>`.
+<http://stsci.edu/schemas/asdf/core/ndarray-1.0.0>`.
 
 ``ndim`` keyword
 ^^^^^^^^^^^^^^^^
@@ -211,7 +211,7 @@ standard itself.  ASDF can, of course, include any tags, as long as
 the tag names are globally unique.  So, for our example instrument,
 we'll declare the tag to be::
 
-  tag:stsci.edu:FOO/metadata-0.1.0
+  tag:stsci.edu:FOO/metadata-1.0.0
 
 Each tag should be associated with a schema in order to validate
 it. Each schema must also have a universally unique ``id``, which is
@@ -233,14 +233,14 @@ to a schema URI, and then load the associated schema.
 Again following with our example, we will assign the following URI to
 refer to our schema::
 
-  http://stsci.edu/schemas/FOO/metadata-0.1.0
+  http://stsci.edu/schemas/FOO/metadata-1.0.0
 
 Therefore, in our schema file, we have the following keys, one
 declaring the name of the YAML ``tag``, and one defining the ``id`` of
 the schema::
 
-  tag: "tag:stsci.edu:FOO/metadata-0.1.0"
-  id: "http://stsci.edu/schemas/FOO/metadata-0.1.0"
+  tag: "tag:stsci.edu:FOO/metadata-1.0.0"
+  id: "http://stsci.edu/schemas/FOO/metadata-1.0.0"
 
 Descriptive information
 ^^^^^^^^^^^^^^^^^^^^^^^
@@ -265,7 +265,7 @@ Continuing our example::
     -
       - A minimal description of an exposure.
       - |
-          !FOO/metadata-0.1.0
+          !FOO/metadata-1.0.0
             exposure_time: 0.001
 
 The schema proper
@@ -302,7 +302,7 @@ elements in your schema that are based on the custom types defined in
 the ASDF standard::
 
     exposure_time_units:
-      $ref: "http://stsci.edu/schemas/asdf/unit/unit-0.1.0"
+      $ref: "http://stsci.edu/schemas/asdf/unit/unit-1.0.0"
       description: |
         The unit of the exposure time.
       default:
@@ -322,8 +322,8 @@ Here is our complete schema example::
   %YAML 1.1
   ---
   $schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
-  tag: "tag:stsci.edu:FOO/metadata-0.1.0"
-  id: "http://stsci.edu/schemas/FOO/metadata-0.1.0"
+  tag: "tag:stsci.edu:FOO/metadata-1.0.0"
+  id: "http://stsci.edu/schemas/FOO/metadata-1.0.0"
 
   title: |
     Metadata for the FOO instrument.
@@ -333,7 +333,7 @@ Here is our complete schema example::
     -
       - A minimal description of an exposure.
       - |
-          !FOO/metadata-0.1.0
+          !FOO/metadata-1.0.0
             exposure_time: 0.001
 
   type: object
@@ -350,7 +350,7 @@ Here is our complete schema example::
         The time of the exposure, in nanoseconds.
 
     exposure_time_units:
-      $ref: "http://stsci.edu/schemas/asdf/unit/unit-0.1.0"
+      $ref: "http://stsci.edu/schemas/asdf/unit/unit-1.0.0"
       description: |
         The unit of the exposure time.
       default:

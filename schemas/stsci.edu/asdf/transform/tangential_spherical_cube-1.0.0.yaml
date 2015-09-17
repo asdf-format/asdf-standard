@@ -1,0 +1,15 @@
+%YAML 1.1
+---
+$schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
+id: "http://stsci.edu/schemas/asdf/transform/tangential_spherical_cube-1.0.0"
+tag: "tag:stsci.edu:asdf/transform/tangential_spherical_cube-1.0.0"
+title: |
+  Tangential spherical cube projection.
+
+description: |
+  Corresponds to the `TSC` projection in the FITS WCS standard.
+
+  Invertibility: All ASDF tools are required to provide the inverse of
+  this transform.
+
+$ref: "quadcube-1.0.0"

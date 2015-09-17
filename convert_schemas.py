@@ -363,7 +363,7 @@ def convert_schema_to_rst(src, dst):
         yaml_content = fd.read()
 
     if schema.get('$schema') not in (
-            "http://stsci.edu/schemas/asdf/asdf-schema-0.1.0",
+            "http://stsci.edu/schemas/asdf/asdf-schema-1.0.0",
             "http://stsci.edu/schemas/yaml-schema/draft-01",
             "http://json-schema.org/draft-04/schema"):
         return
