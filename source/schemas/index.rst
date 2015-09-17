@@ -29,3 +29,4 @@ The following graph shows the dependencies between modules:
    "transform" -> "core"
    "wcs" -> "transform"
    "wcs" -> "unit"
+   "wcs" -> "time"

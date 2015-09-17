@@ -6,25 +6,16 @@ tag: "tag:stsci.edu:asdf/wcs/step-0.1.0"
 title: >
   Describes a single step of a WCS transform pipeline.
 description: >
-
 examples: []
 
 type: object
 properties:
-  name:
+  frame:
     description: |
-      The name of this step on the WCS transform pipeline.  This name
-      may be used by a library to allow the user to say "transform
-      from pixel space to the focal plane" without performing the
-      entire WCS pipeline.
-    type: string
-
-  axes:
-    description: |
-      A description of each of the input axes for this step.
-    type: array
-    items:
-      $ref: "axis-0.1.0"
+      The frame of the inputs to the transform.
+    anyOf:
+      - type: string
+      - $ref: frame-0.1.0
 
   transform:
     description: |
@@ -32,6 +23,9 @@ properties:
       last step in a WCS should not have a transform, but
       exists only to describe the frames and units of the
       final output axes.
-    $ref: "../transform/transform-0.1.0"
+    anyOf:
+      - $ref: ../transform/transform-0.1.0
+      - type: 'null'
+    default: null
 
-required: [name]
+required: [frame]

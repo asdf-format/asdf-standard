@@ -68,8 +68,10 @@ tags:
   tag:stsci.edu:asdf/transform/zenithal_perspective: 0.1.0
   tag:stsci.edu:asdf/unit/defunit: 0.1.0
   tag:stsci.edu:asdf/unit/unit: 0.1.0
-  tag:stsci.edu:asdf/wcs/axis: 0.1.0
+  tag:stsci.edu:asdf/wcs/celestial_frame: 0.1.0
+  tag:stsci.edu:asdf/wcs/composite_frame: 0.1.0
+  tag:stsci.edu:asdf/wcs/frame: 0.1.0
+  tag:stsci.edu:asdf/wcs/spectral_frame: 0.1.0
   tag:stsci.edu:asdf/wcs/step: 0.1.0
-  tag:stsci.edu:asdf/wcs/steps: 0.1.0
   tag:stsci.edu:asdf/wcs/wcs: 0.1.0
 ...
