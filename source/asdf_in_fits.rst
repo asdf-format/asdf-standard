@@ -18,7 +18,7 @@ Rather than including a copy of the large data arrays in the ASDF
 extension, the ASDF content may refer to binary data stored in regular
 FITS extensions elsewhere in the same file.  The convention for doing
 this is to set the ``source`` property of a :ref:`ndarray
-<http://stsci.edu/schemas/asdf/core/ndarray-0.1.0>` object to a
+<http://stsci.edu/schemas/asdf/core/ndarray-1.0.0>` object to a
 special string identifier for a FITS reference.  These values come in
 two forms:
 
@@ -36,7 +36,7 @@ could be performed by a non-ASDF-aware FITS library.
 Such "FITS references" simply point to the binary content of the data
 portion of a FITS header/data unit.  There is no enforcement that the
 ``datatype`` of the ASDF :ref:`ndarray
-<http://stsci.edu/schemas/asdf/core/ndarray-0.1.0>` matches the
+<http://stsci.edu/schemas/asdf/core/ndarray-1.0.0>` matches the
 ``BITPIX`` of the FITS extension, or expectation that an explicit
 conversion would be performed if they don't match.  It is up to the
 writer of the file to keep the ASDF and FITS datatype descriptions in
@@ -82,20 +82,20 @@ extensions elsewhere in the file.
   │EXTNAME = 'ASDF    '                 │   │   │
   │END                                  │   │   │
   ├─────────────────────────────────────┤   │   │
-  │#ASDF 0.1.0                          │   │   │
+  │#ASDF 1.0.0                          │   │   │
   │%YAML 1.1                            │   │   │
   │%TAG ! tag:stsci.edu:asdf/           │   │   │
-  │--- !core/asdf-0.1.0                 │   │   │
+  │--- !core/asdf-1.0.0                 │   │   │
   │model:                               │   │   │
   │  sci:                               │   │   │
-  │    data: !core/ndarray-0.1.0        │   │   │
+  │    data: !core/ndarray-1.0.0        │   │   │
   │      source: fits:SCI,1   ──────────┼───┘   │
   │      datatype: float64              │       │
   │      byteorder: little              │       │
   │      shape: [512]                   │       │
   │    wcs: ...WCS info...              │       │
   │  dq:                                │       │
-  │    data: !core/ndarray-0.1.0        │       │
+  │    data: !core/ndarray-1.0.0        │       │
   │      source: fits:DQ,1    ──────────┼───────┘
   │      datatype: float64              │
   │      byteorder: little              │

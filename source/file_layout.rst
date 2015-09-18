@@ -42,7 +42,7 @@ Header
 
 All ASDF files must start with a short one-line header.  For example::
 
-  #ASDF 0.1.0
+  #ASDF 1.0.0
 
 It is made up of two parts, separated by white space characters:
 
@@ -113,8 +113,8 @@ YAML content.  For example::
 
       %YAML 1.1
       %TAG ! tag:stsci.edu:asdf/
-      --- !core/asdf-0.1.0
-      data: !core/ndarray-0.1.0
+      --- !core/asdf-1.0.0
+      data: !core/ndarray-1.0.0
         source: 0
         datatype: float64
         shape: [1024, 1024]
@@ -150,7 +150,7 @@ Blocks represent a contiguous chunk of binary data and nothing more.
 Information about how to interpret the block, such as the data type or
 array shape, is stored entirely in ``ndarray`` structures in the tree,
 as described in :ref:`ndarray
-<http://stsci.edu/schemas/asdf/core/ndarray-0.1.0>`.  This allows
+<http://stsci.edu/schemas/asdf/core/ndarray-1.0.0>`.  This allows
 for a very flexible type system on top of a very simple approach to
 memory management within the file.  It also allows for new extensions
 to ASDF that might interpret the raw binary data in ways that are yet
@@ -370,6 +370,6 @@ exploded form, other than the fact that some or all of its blocks come
 from external files.  The exact way in which a file is exploded is up
 to the library and tools implementing the standard.  In the simplest
 scenario, to explode a file, each :ref:`ndarray source property
-<http://stsci.edu/schemas/asdf/core/ndarray-0.1.0/anyOf/1/properties/source>`
+<http://stsci.edu/schemas/asdf/core/ndarray-1.0.0/anyOf/1/properties/source>`
 in the tree is converted from a local block reference into a relative
 URI.

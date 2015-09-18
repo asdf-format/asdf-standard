@@ -1,0 +1,34 @@
+%YAML 1.1
+---
+$schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
+id: "http://stsci.edu/schemas/asdf/transform/add-1.0.0"
+tag: "tag:stsci.edu:asdf/transform/add-1.0.0"
+title: >
+  Perform a list of subtransforms in parallel and then
+  add their results together.
+
+description: |
+  Each of the subtransforms must have the same number of inputs and
+  outputs.
+
+examples:
+  -
+    - A list of transforms, performed in parallel and added together
+    - |
+      !transform/add-1.0.0
+        forward:
+          - !transform/generic-1.0.0
+            n_inputs: 1
+            n_outputs: 2
+          - !transform/generic-1.0.0
+            n_inputs: 1
+            n_outputs: 2
+
+allOf:
+  - $ref: "transform-1.0.0"
+  - properties:
+      forward:
+        type: array
+        items:
+          $ref: "transform-1.0.0"
+    required: [forward]

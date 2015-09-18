@@ -1,0 +1,27 @@
+%YAML 1.1
+---
+$schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
+id: "http://stsci.edu/schemas/asdf/transform/slant_orthographic-1.0.0"
+tag: "tag:stsci.edu:asdf/transform/slant_orthographic-1.0.0"
+title: |
+  The slant orthographic projection.
+
+description: |
+  Corresponds to the `SIN` projection in the FITS WCS standard.
+
+  See
+  [zenithal](ref:http://stsci.edu/schemas/asdf/transform/zenithal-1.0.0)
+  for the definition of the full transformation.
+
+  The pixel-to-sky transformation is defined as:
+
+  $$\theta = \cos^{-1}\left(\frac{\pi}{180^{\circ}}R_\theta\right)$$
+
+  And the sky-to-pixel transformation is defined as:
+
+  $$R_\theta = \frac{180^{\circ}}{\pi}\cos \theta$$
+
+  Invertibility: All ASDF tools are required to provide the inverse of
+  this transform.
+
+$ref: "zenithal-1.0.0"

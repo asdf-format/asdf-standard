@@ -36,7 +36,7 @@ published in Astronomy and Computing:
 .. only:: html
 
    There is also a `print version of this document
-   <http://spacetelescope.github.io/asdf-standard/ASDFStandard-0.1.0dev.pdf>`__.
+   <http://spacetelescope.github.io/asdf-standard/ASDFStandard-1.0.0dev.pdf>`__.
 
 .. only:: html
 

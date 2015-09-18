@@ -1,0 +1,25 @@
+%YAML 1.1
+---
+$schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
+id: "http://stsci.edu/schemas/asdf/transform/conic_perspective-1.0.0"
+tag: "tag:stsci.edu:asdf/transform/conic_perspective-1.0.0"
+title: |
+  Colles' conic perspecitve projection.
+
+description: |
+  Corresponds to the `COP` projection in the FITS WCS standard.
+
+  See
+  [conic](ref:http://stsci.edu/schemas/asdf/transform/conic-1.0.0)
+  for the definition of the full transformation.
+
+  The transformation is defined as:
+
+  $$C &= \sin \theta_a \\
+    R_\theta &= \frac{180^\circ}{\pi} \cos \eta [ \cot \theta_a - \tan(\theta - \theta_a)] \\
+    Y_0 &= \frac{180^\circ}{\pi} \cos \eta \cot \theta_a$$
+
+  Invertibility: All ASDF tools are required to provide the inverse of
+  this transform.
+
+$ref: "conic-1.0.0"

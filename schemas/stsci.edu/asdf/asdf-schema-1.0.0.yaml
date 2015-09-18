@@ -1,0 +1,46 @@
+%YAML 1.1
+---
+$schema: "http://json-schema.org/draft-04/schema"
+id: "http://stsci.edu/schemas/asdf/asdf-schema-1.0.0"
+title:
+  ASDF schema
+description: |
+  A metaschema extending YAML Schema and JSON Schema to add support
+  for some ASDF-specific checks, related to nd-arrays.
+allOf:
+  - $ref: "http://stsci.edu/schemas/yaml-schema/draft-01"
+  - type: object
+    properties:
+      max_ndim:
+        description: |
+          Specifies that the corresponding ndarray is at most the
+          given number of dimensions.  If the array has fewer
+          dimensions, it should be logically treated as if it were
+          "broadcast" to the expected dimensions by adding 1's to the
+          front of the shape list.
+        type: integer
+        minimum: 0
+
+      ndim:
+        description: |
+          Specifies that the matching ndarray is exactly the given
+          number of dimensions.
+        type: integer
+        minimum: 0
+
+      datatype:
+        description: |
+          Specifies the datatype of the ndarray.
+
+          By default, an array is considered "matching" if the array
+          can be cast to the given datatype without data loss.  For
+          exact datatype matching, set `exact_datatype` to `true`.
+        allOf:
+          - $ref: "http://stsci.edu/schemas/asdf/core/ndarray-1.0.0#definitions/datatype-1.0.0"
+
+      exact_datatype:
+        description: |
+          If `true`, the datatype must match exactly.
+        type: boolean
+        default: false
+...

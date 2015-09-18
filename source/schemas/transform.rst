@@ -15,11 +15,11 @@ Basics
 .. toctree::
    :maxdepth: 1
 
-   stsci.edu/asdf/transform/transform-0.1.0.rst
-   stsci.edu/asdf/transform/generic-0.1.0.rst
-   stsci.edu/asdf/transform/identity-0.1.0.rst
-   stsci.edu/asdf/transform/constant-0.1.0.rst
-   stsci.edu/asdf/transform/domain-0.1.0.rst
+   stsci.edu/asdf/transform/transform-1.0.0.rst
+   stsci.edu/asdf/transform/generic-1.0.0.rst
+   stsci.edu/asdf/transform/identity-1.0.0.rst
+   stsci.edu/asdf/transform/constant-1.0.0.rst
+   stsci.edu/asdf/transform/domain-1.0.0.rst
 
 Compound transformations
 ------------------------
@@ -27,9 +27,9 @@ Compound transformations
 .. toctree::
    :maxdepth: 1
 
-   stsci.edu/asdf/transform/compose-0.1.0.rst
-   stsci.edu/asdf/transform/concatenate-0.1.0.rst
-   stsci.edu/asdf/transform/remap_axes-0.1.0.rst
+   stsci.edu/asdf/transform/compose-1.0.0.rst
+   stsci.edu/asdf/transform/concatenate-1.0.0.rst
+   stsci.edu/asdf/transform/remap_axes-1.0.0.rst
 
 Arithmetic operations
 ---------------------
@@ -37,11 +37,11 @@ Arithmetic operations
 .. toctree::
    :maxdepth: 1
 
-   stsci.edu/asdf/transform/add-0.1.0.rst
-   stsci.edu/asdf/transform/subtract-0.1.0.rst
-   stsci.edu/asdf/transform/multiply-0.1.0.rst
-   stsci.edu/asdf/transform/divide-0.1.0.rst
-   stsci.edu/asdf/transform/power-0.1.0.rst
+   stsci.edu/asdf/transform/add-1.0.0.rst
+   stsci.edu/asdf/transform/subtract-1.0.0.rst
+   stsci.edu/asdf/transform/multiply-1.0.0.rst
+   stsci.edu/asdf/transform/divide-1.0.0.rst
+   stsci.edu/asdf/transform/power-1.0.0.rst
 
 Simple Transforms
 -----------------
@@ -49,8 +49,8 @@ Simple Transforms
 .. toctree::
    :maxdepth: 1
 
-   stsci.edu/asdf/transform/shift-0.1.0.rst
-   stsci.edu/asdf/transform/scale-0.1.0.rst
+   stsci.edu/asdf/transform/shift-1.0.0.rst
+   stsci.edu/asdf/transform/scale-1.0.0.rst
 
 Projections
 -----------
@@ -61,9 +61,9 @@ Affine
 .. toctree::
    :maxdepth: 1
 
-   stsci.edu/asdf/transform/affine-0.1.0.rst
-   stsci.edu/asdf/transform/rotate2d-0.1.0.rst
-   stsci.edu/asdf/transform/rotate3d-0.1.0.rst
+   stsci.edu/asdf/transform/affine-1.0.0.rst
+   stsci.edu/asdf/transform/rotate2d-1.0.0.rst
+   stsci.edu/asdf/transform/rotate3d-1.0.0.rst
 
 Zenithal (azimuthal)
 ^^^^^^^^^^^^^^^^^^^^
@@ -71,15 +71,15 @@ Zenithal (azimuthal)
 .. toctree::
    :maxdepth: 1
 
-   stsci.edu/asdf/transform/zenithal-0.1.0.rst
-   stsci.edu/asdf/transform/gnomonic-0.1.0.rst
-   stsci.edu/asdf/transform/zenithal_perspective-0.1.0.rst
-   stsci.edu/asdf/transform/slant_zenithal_perspective-0.1.0.rst
-   stsci.edu/asdf/transform/stereographic-0.1.0.rst
-   stsci.edu/asdf/transform/slant_orthographic-0.1.0.rst
-   stsci.edu/asdf/transform/zenithal_equidistant-0.1.0.rst
-   stsci.edu/asdf/transform/zenithal_equal_area-0.1.0.rst
-   stsci.edu/asdf/transform/airy-0.1.0.rst
+   stsci.edu/asdf/transform/zenithal-1.0.0.rst
+   stsci.edu/asdf/transform/gnomonic-1.0.0.rst
+   stsci.edu/asdf/transform/zenithal_perspective-1.0.0.rst
+   stsci.edu/asdf/transform/slant_zenithal_perspective-1.0.0.rst
+   stsci.edu/asdf/transform/stereographic-1.0.0.rst
+   stsci.edu/asdf/transform/slant_orthographic-1.0.0.rst
+   stsci.edu/asdf/transform/zenithal_equidistant-1.0.0.rst
+   stsci.edu/asdf/transform/zenithal_equal_area-1.0.0.rst
+   stsci.edu/asdf/transform/airy-1.0.0.rst
 
 Cylindrical
 ^^^^^^^^^^^
@@ -87,11 +87,11 @@ Cylindrical
 .. toctree::
    :maxdepth: 1
 
-   stsci.edu/asdf/transform/cylindrical-0.1.0.rst
-   stsci.edu/asdf/transform/cylindrical_perspective-0.1.0.rst
-   stsci.edu/asdf/transform/cylindrical_equal_area-0.1.0.rst
-   stsci.edu/asdf/transform/plate_carree-0.1.0.rst
-   stsci.edu/asdf/transform/mercator-0.1.0.rst
+   stsci.edu/asdf/transform/cylindrical-1.0.0.rst
+   stsci.edu/asdf/transform/cylindrical_perspective-1.0.0.rst
+   stsci.edu/asdf/transform/cylindrical_equal_area-1.0.0.rst
+   stsci.edu/asdf/transform/plate_carree-1.0.0.rst
+   stsci.edu/asdf/transform/mercator-1.0.0.rst
 
 Pseudocylindrical
 ^^^^^^^^^^^^^^^^^
@@ -99,11 +99,11 @@ Pseudocylindrical
 .. toctree::
    :maxdepth: 1
 
-   stsci.edu/asdf/transform/pseudocylindrical-0.1.0.rst
-   stsci.edu/asdf/transform/sanson_flamsteed-0.1.0.rst
-   stsci.edu/asdf/transform/parabolic-0.1.0.rst
-   stsci.edu/asdf/transform/molleweide-0.1.0.rst
-   stsci.edu/asdf/transform/hammer_aitoff-0.1.0.rst
+   stsci.edu/asdf/transform/pseudocylindrical-1.0.0.rst
+   stsci.edu/asdf/transform/sanson_flamsteed-1.0.0.rst
+   stsci.edu/asdf/transform/parabolic-1.0.0.rst
+   stsci.edu/asdf/transform/molleweide-1.0.0.rst
+   stsci.edu/asdf/transform/hammer_aitoff-1.0.0.rst
 
 Conic
 ^^^^^
@@ -111,11 +111,11 @@ Conic
 .. toctree::
    :maxdepth: 1
 
-   stsci.edu/asdf/transform/conic-0.1.0.rst
-   stsci.edu/asdf/transform/conic_perspective-0.1.0.rst
-   stsci.edu/asdf/transform/conic_equidistant-0.1.0.rst
-   stsci.edu/asdf/transform/conic_equal_area-0.1.0.rst
-   stsci.edu/asdf/transform/conic_orthomorphic-0.1.0.rst
+   stsci.edu/asdf/transform/conic-1.0.0.rst
+   stsci.edu/asdf/transform/conic_perspective-1.0.0.rst
+   stsci.edu/asdf/transform/conic_equidistant-1.0.0.rst
+   stsci.edu/asdf/transform/conic_equal_area-1.0.0.rst
+   stsci.edu/asdf/transform/conic_orthomorphic-1.0.0.rst
 
 Pseudoconic
 ^^^^^^^^^^^
@@ -123,9 +123,9 @@ Pseudoconic
 .. toctree::
    :maxdepth: 1
 
-   stsci.edu/asdf/transform/pseudoconic-0.1.0.rst
-   stsci.edu/asdf/transform/bonne_equal_area-0.1.0.rst
-   stsci.edu/asdf/transform/polyconic-0.1.0.rst
+   stsci.edu/asdf/transform/pseudoconic-1.0.0.rst
+   stsci.edu/asdf/transform/bonne_equal_area-1.0.0.rst
+   stsci.edu/asdf/transform/polyconic-1.0.0.rst
 
 Quadcube
 ^^^^^^^^
@@ -133,10 +133,10 @@ Quadcube
 .. toctree::
    :maxdepth: 1
 
-   stsci.edu/asdf/transform/quadcube-0.1.0.rst
-   stsci.edu/asdf/transform/tangential_spherical_cube-0.1.0.rst
-   stsci.edu/asdf/transform/cobe_quad_spherical_cube-0.1.0.rst
-   stsci.edu/asdf/transform/quad_spherical_cube-0.1.0.rst
+   stsci.edu/asdf/transform/quadcube-1.0.0.rst
+   stsci.edu/asdf/transform/tangential_spherical_cube-1.0.0.rst
+   stsci.edu/asdf/transform/cobe_quad_spherical_cube-1.0.0.rst
+   stsci.edu/asdf/transform/quad_spherical_cube-1.0.0.rst
 
 HEALPix
 ^^^^^^^
@@ -144,8 +144,8 @@ HEALPix
 .. toctree::
    :maxdepth: 1
 
-   stsci.edu/asdf/transform/healpix-0.1.0.rst
-   stsci.edu/asdf/transform/healpix_polar-0.1.0.rst
+   stsci.edu/asdf/transform/healpix-1.0.0.rst
+   stsci.edu/asdf/transform/healpix_polar-1.0.0.rst
 
 Polynomials
 -----------
@@ -153,4 +153,13 @@ Polynomials
 .. toctree::
    :maxdepth: 1
 
-   stsci.edu/asdf/transform/polynomial-0.1.0.rst
+   stsci.edu/asdf/transform/polynomial-1.0.0.rst
+
+Regions and labels
+------------------
+
+.. toctree::
+   :maxdepth: 1
+
+   stsci.edu/asdf/transform/regions_selector-1.0.0.rst
+   stsci.edu/asdf/transform/label_mapper-1.0.0.rst
