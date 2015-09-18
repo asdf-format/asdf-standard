@@ -154,3 +154,12 @@ Polynomials
    :maxdepth: 1
 
    stsci.edu/asdf/transform/polynomial-1.0.0.rst
+
+Regions and labels
+------------------
+
+.. toctree::
+   :maxdepth: 1
+
+   stsci.edu/asdf/transform/regions_selector-1.0.0.rst
+   stsci.edu/asdf/transform/label_mapper-1.0.0.rst

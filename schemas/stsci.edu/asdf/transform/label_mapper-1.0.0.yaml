@@ -7,12 +7,13 @@ title: >
   Represents a mapping from a coordinate value to a label.
 description: |
   A label mapper instance maps inputs to a label.  It is used together
-  with [regions_selector](ref:regions_selector-1.0.0). The
-  [label_mapper](ref:label_mapper-1.0.0) returns the label
-  corresponding to given inputs. The
-  [regions_selector](ref:regions_selector-1.0.0) returns the transform
-  corresponding to this label. This maps inputs (e.g. pixels on a
-  detector) to transforms uniquely.
+  with
+  [regions_selector](ref:http://stsci.edu/schemas/asdf/transform/regions_selector-1.0.0). The
+  [label_mapper](ref:http://stsci.edu/schemas/asdf/transform/label_mapper-1.0.0)
+  returns the label corresponding to given inputs. The
+  [regions_selector](ref:http://stsci.edu/schemas/asdf/transform/regions_selector-1.0.0)
+  returns the transform corresponding to this label. This maps inputs
+  (e.g. pixels on a detector) to transforms uniquely.
 
 examples:
   -

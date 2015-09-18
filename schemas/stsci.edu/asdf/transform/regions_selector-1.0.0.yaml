@@ -57,7 +57,8 @@ allOf:
     properties:
       label_mapper:
         description: |
-          An instance of [label_mapper-1.0.0](ref:label_mapper-1.0.0)
+          An instance of
+          [label_mapper-1.0.0](ref:http://stsci.edu/schemas/asdf/transform/label_mapper-1.0.0)
         $ref: "./label_mapper-1.0.0"
       inputs:
         description: |

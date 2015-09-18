@@ -38,6 +38,7 @@ tags:
   tag:stsci.edu:asdf/transform/healpix: 1.0.0
   tag:stsci.edu:asdf/transform/healpix_polar: 1.0.0
   tag:stsci.edu:asdf/transform/identity: 1.0.0
+  tag:stsci.edu:asdf/transform/label_mapper: 1.0.0
   tag:stsci.edu:asdf/transform/mercator: 1.0.0
   tag:stsci.edu:asdf/transform/molleweide: 1.0.0
   tag:stsci.edu:asdf/transform/multiply: 1.0.0
@@ -50,6 +51,7 @@ tags:
   tag:stsci.edu:asdf/transform/pseudocylindrical: 1.0.0
   tag:stsci.edu:asdf/transform/quad_spherical_cube: 1.0.0
   tag:stsci.edu:asdf/transform/quadcube: 1.0.0
+  tag:stsci.edu:asdf/transform/regions_selector: 1.0.0
   tag:stsci.edu:asdf/transform/remap_axes: 1.0.0
   tag:stsci.edu:asdf/transform/rotate2d: 1.0.0
   tag:stsci.edu:asdf/transform/rotate3d: 1.0.0
