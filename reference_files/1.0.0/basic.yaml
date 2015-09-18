@@ -4,9 +4,9 @@
 %TAG ! tag:stsci.edu:asdf/
 --- !core/asdf-1.0.0
 asdf_library: !core/software-1.0.0 {author: Space Telescope Science Institute, homepage: 'http://github.com/spacetelescope/pyasdf',
-  name: pyasdf, version: 0.0.dev644}
+  name: pyasdf, version: 1.0.0}
 data: !core/ndarray-1.0.0
-  data: ['', ascii]
-  datatype: [ascii, 5]
-  shape: [2]
+  data: [0, 1, 2, 3, 4, 5, 6, 7]
+  datatype: int64
+  shape: [8]
 ...
