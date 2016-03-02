@@ -77,7 +77,7 @@ Implementations
 
 The ASDF standard is being developed concurrently with a `reference
 implementation written in Python
-<http://github.com/spacetelescope/pyasdf>`__.
+<http://github.com/spacetelescope/asdf>`__.
 
 There is also a work-in-progress `implementation for Go
 <http://github.com/astrogo/asdf>`__ by Sebastian Binet.
