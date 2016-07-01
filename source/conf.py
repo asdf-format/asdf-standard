@@ -256,6 +256,8 @@ latex_show_urls = 'inline'
 # If false, no module index is generated.
 latex_domain_indices = False
 
+# Additional latex styles needed
+latex_additional_files = ['eqparbox.sty', 'capt-of.sty']
 
 # -- Options for manual page output --------------------------------------------
 
