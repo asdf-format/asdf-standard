@@ -6,7 +6,7 @@ pronounced *AZ*-diff.
 
 The full specification is available at:
 
-http://asdf-standard.readthedocs.org/
+http://asdf-standard.readthedocs.io/
 
 A paper,
 [ASDF: A new data format for astronomy](http://dx.doi.org/10.1016/j.ascom.2015.06.004)
