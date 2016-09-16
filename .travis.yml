@@ -21,7 +21,7 @@ before_install:
   - export PATH=$PWD/texlive/bin/x86_64-linux:$PATH
 
 install:
-  - make html latexpdf
+  - make html
 
 script:
   - bash -x ./travis_deploy.sh
