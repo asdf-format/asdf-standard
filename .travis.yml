@@ -17,11 +17,9 @@ branches:
 
 before_install:
   - pip install six sphinx sphinx_bootstrap_theme jsonschema pyyaml mistune
-  - bash -x ./install-texlive.sh
-  - export PATH=$PWD/texlive/bin/x86_64-linux:$PATH
 
 install:
-  - make html
+  - python setup.py
 
 script:
-  - bash -x ./travis_deploy.sh
+  - make html
