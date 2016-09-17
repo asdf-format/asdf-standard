@@ -32,7 +32,7 @@ if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then
 
         # Copy the built files to the root
         cp -r build/html/* .
-        cp -r build/latex/*.pdf .
+        #cp -r build/latex/*.pdf .
 
         # Delete the original location of the built files
         rm -rf build
