@@ -28,3 +28,8 @@ Build requirements
 The following command should install these requirements::
 
   pip install sphinx sphinx_bootstrap_theme jsonshema pyyaml mistune
+
+
+Travis Status: [![Build Status](https://travis-ci.org/spacetelescope/asdf-standard.svg?branch=master)](https://travis-ci.org/spacetelescope/asdf-standard)
+
+Documentation Status: [![Documentation Status](https://readthedocs.org/projects/asdf-standard/badge/?version=latest)](http://asdf-standard.readthedocs.io/en/latest/?badge=latest)
