@@ -1,35 +1,21 @@
 ASDF standard
 =============
+[![Build Status](https://travis-ci.org/spacetelescope/asdf-standard.svg?branch=master)](https://travis-ci.org/spacetelescope/asdf-standard) [![Documentation Status](https://readthedocs.org/projects/asdf-standard/badge/?version=latest)](http://asdf-standard.readthedocs.io/en/latest/?badge=latest)
 
 This document describes the Advanced Scientific Data Format (ASDF),
 pronounced *AZ*-diff.
 
-The full specification is available at:
-
-http://asdf-standard.readthedocs.io/
-
-A paper,
-[ASDF: A new data format for astronomy](http://dx.doi.org/10.1016/j.ascom.2015.06.004)
-about ASDF has been published in Astronomy and Computing:
-
-    Greenfield, P., Droettboom, M., & Bray, E. (2015). ASDF: A new
-    data format for Astronomy.  *Astronomy and Computing*.  (In
-    press).  doi:10.1016/j.ascom.2015.06.004
-
-Build requirements
-==================
-
-- `sphinx`
-- `sphinx_bootstrap_theme`
-- `jsonschema`
-- `pyyaml`
-- `mistune`
-
-The following command should install these requirements::
-
-  pip install sphinx sphinx_bootstrap_theme jsonshema pyyaml mistune
+You can read the full specification at [the online documentation](http://asdf-standard.readthedocs.io/).
 
 
-Travis Status: [![Build Status](https://travis-ci.org/spacetelescope/asdf-standard.svg?branch=master)](https://travis-ci.org/spacetelescope/asdf-standard)
+## Contributing
+Please open a new [issue](https://github.com/spacetelescope/asdf-standard/issue) or new [pull request](https://github.com/spacetelescope/asdf-standard/pulls) for bugs, feedback, or new features you would like to see. If there is an issue you would like to work on, please leave a comment and we will be happy to assist. New contributions and contributors are very welcome!
 
-Documentation Status: [![Documentation Status](https://readthedocs.org/projects/asdf-standard/badge/?version=latest)](http://asdf-standard.readthedocs.io/en/latest/?badge=latest)
+## Getting More Information
+
+* [FAQ page](https://github.com/spacetelescope/asdf-standard/wiki/FAQ) on the wiki.
+* [ASDF: A new data format for astronomy](http://dx.doi.org/10.1016/j.ascom.2015.06.004), published in Astronomy and Computing:
+
+      Greenfield, P., Droettboom, M., & Bray, E. (2015). ASDF: A new
+      data format for Astronomy.  *Astronomy and Computing*.  (In
+      press).  doi:10.1016/j.ascom.2015.06.004
