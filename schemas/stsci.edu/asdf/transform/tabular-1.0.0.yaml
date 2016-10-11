@@ -21,10 +21,12 @@ properties:
       - $ref: ../core/ndarray-1.0.0
       - type: array
   points:
-    $ref: ../core/ndarray-1.0.0
+    type: array
+    items:
+      $ref: ../core/ndarray-1.0.0
     description: |
       Grid values - each row in the array corresponds to a dimension
-      in the lookup table. The grid does not have o be regular.
+      in the lookup table. The grid does not have to be regular.
   method:
     description: |
       Method of interpolation. Supported are "linear" and
