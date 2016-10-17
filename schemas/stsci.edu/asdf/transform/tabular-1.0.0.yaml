@@ -23,7 +23,9 @@ properties:
   points:
     type: array
     items:
-      $ref: ../core/ndarray-1.0.0
+      anyOf:
+        - type: array
+        - $ref: ../core/ndarray-1.0.0
     description: |
       Grid values - each row in the array corresponds to a dimension
       in the lookup table. The grid does not have to be regular.
