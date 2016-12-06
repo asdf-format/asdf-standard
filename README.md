@@ -5,6 +5,8 @@ ASDF standard
 This document describes the Advanced Scientific Data Format (ASDF),
 pronounced *AZ*-diff.
 
+> This is the **A**dvanced **S**cientific **D**ata **F**ormat - if you are looking for the **A**daptable **S**eismic **D**ata **F**ormat, go here: http://seismic-data.org/
+
 You can read the full specification at [the online documentation](http://asdf-standard.readthedocs.io/).
 
 
