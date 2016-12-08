@@ -122,7 +122,15 @@ allOf:
         type: array
         items:
           type: string
+        description: |
+          Names of inputs.
       inputs_mapping:
         $ref: "transform-1.0.0"
+        description: |
+          [mapping](ref:http://stsci.edu/schemas/asdf/transform/remap-axes-1.0.0)
+      atol:
+        type: number
+        description: |
+          absolute tolerance to compare keys in mapper.
 
     required: [mapper]
