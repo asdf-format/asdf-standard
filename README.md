@@ -3,9 +3,9 @@ ASDF standard
 [![Build Status](https://travis-ci.org/spacetelescope/asdf-standard.svg?branch=master)](https://travis-ci.org/spacetelescope/asdf-standard) [![Documentation Status](https://readthedocs.org/projects/asdf-standard/badge/?version=latest)](http://asdf-standard.readthedocs.io/en/latest/?badge=latest)
 
 This document describes the Advanced Scientific Data Format (ASDF),
-pronounced *AZ*-diff.
+pronounced *AZ*-diff.  You can read the full specification at [the online documentation](http://asdf-standard.readthedocs.io/).
 
-You can read the full specification at [the online documentation](http://asdf-standard.readthedocs.io/).
+> This is the **A**dvanced **S**cientific **D**ata **F**ormat - if you are looking for the **A**daptable **S**eismic **D**ata **F**ormat, go here: http://seismic-data.org/
 
 
 ## Contributing

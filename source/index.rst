@@ -25,6 +25,15 @@ released version of the ASDF standard.**
 
    asdf_in_fits.rst
 
+
+.. note::
+
+    This is the **A**\ dvanced **S**\ cientific **D**\ ata **F**\ ormat - if
+    you are looking for the
+    **A**\ daptable **S**\ eismic **D**\ ata **F**\ ormat,
+    go here: http://seismic-data.org/
+
+
 A paper, `ASDF: A new data format for astronomy
 <http://dx.doi.org/10.1016/j.ascom.2015.06.004>`__ about ASDF has been
 published in Astronomy and Computing:
