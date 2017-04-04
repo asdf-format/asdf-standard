@@ -1,0 +1,29 @@
+%YAML 1.1
+---
+$schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
+id: "http://stsci.edu/schemas/asdf/transform/hammer_aitoff-1.1.0"
+tag: "tag:stsci.edu:asdf/transform/hammer_aitoff-1.1.0"
+title: |
+  Hammer-Aitoff projection.
+
+description: |
+  Corresponds to the `AIT` projection in the FITS WCS standard.
+
+  The pixel-to-sky transformation is defined as:
+
+  $$\phi &= 2 \arg \left(2Z^2 - 1, \frac{\pi}{180^\circ} \frac{Z}{2}x\right) \\
+    \theta &= \sin^{-1}\left(\frac{\pi}{180^\circ}yZ\right)$$
+
+  And the sky-to-pixel transformation is defined as:
+
+  $$x &= 2 \gamma \cos \theta \sin \frac{\phi}{2} \\
+    y &= \gamma \sin \theta$$
+
+  where:
+
+  $$\gamma = \frac{180^\circ}{\pi} \sqrt{\frac{2}{1 + \cos \theta \cos(\phi / 2)}}$$
+
+  Invertibility: All ASDF tools are required to provide the inverse of
+  this transform.
+
+$ref: "pseudocylindrical-1.1.0"

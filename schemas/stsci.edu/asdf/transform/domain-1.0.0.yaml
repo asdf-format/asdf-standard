@@ -4,7 +4,7 @@ $schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
 id: "http://stsci.edu/schemas/asdf/transform/domain-1.0.0"
 tag: "tag:stsci.edu:asdf/transform/domain-1.0.0"
 title: >
-  Defines the domain of an input axis.
+  Defines the domain of an input axis. (deprecated since 1.1.0)
 
 description: >
   Describes the range of acceptable input values to a particular

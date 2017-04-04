@@ -1,0 +1,32 @@
+%YAML 1.1
+---
+$schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
+id: "http://stsci.edu/schemas/asdf/transform/conic_orthomorphic-1.1.0"
+tag: "tag:stsci.edu:asdf/transform/conic_orthomorphic-1.1.0"
+title: |
+  Conic orthomorphic projection.
+
+description: |
+  Corresponds to the `COO` projection in the FITS WCS standard.
+
+  See
+  [conic](ref:http://stsci.edu/schemas/asdf/transform/conic-1.1.0)
+  for the definition of the full transformation.
+
+  The transformation is defined as:
+
+  $$C &= \frac{\ln \left( \frac{\cos\theta_2}{\cos\theta_1} \right)}
+              {\ln \left[ \frac{\tan\left(\frac{90^\circ-\theta_2}{2}\right)}
+                               {\tan\left(\frac{90^\circ-\theta_1}{2}\right)} \right] } \\
+    R_\theta &= \psi \left[ \tan \left( \frac{90^\circ - \theta}{2} \right) \right]^C \\
+    Y_0 &= \psi \left[ \tan \left( \frac{90^\circ - \theta_a}{2} \right) \right]^C$$
+
+  where:
+
+  $$\psi = \frac{180^\circ}{\pi} \frac{\cos \theta}
+           {C\left[\tan\left(\frac{90^\circ-\theta}{2}\right)\right]^C}$$
+
+  Invertibility: All ASDF tools are required to provide the inverse of
+  this transform.
+
+$ref: "conic-1.1.0"
