@@ -1,0 +1,32 @@
+%YAML 1.1
+---
+$schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
+id: "http://stsci.edu/schemas/asdf/wcs/wcs-1.1.0"
+tag: "tag:stsci.edu:asdf/wcs/wcs-1.1.0"
+title: >
+  A system for describing generalized world coordinate transformations.
+description: >
+  ASDF WCS is a way of specifying transformations (usually from
+  detector space to world coordinate space and back) by using the
+  transformations in the `transform-schema` module.
+type: object
+properties:
+  name:
+    description: |
+      A descriptive name for this WCS.
+    type: string
+
+  steps:
+    description: |
+      A list of steps in the forward transformation from detector to
+      world coordinates.
+      The inverse transformation is determined automatically by
+      reversing this list, and inverting each of the individual
+      transforms according to the rules described in
+      [inverse](ref:http://stsci.edu/schemas/asdf/transform/transform-1.1.0/properties/inverse).
+    type: array
+    items:
+      $ref: step-1.1.0
+
+required: [name, steps]
+additionalProperties: true
