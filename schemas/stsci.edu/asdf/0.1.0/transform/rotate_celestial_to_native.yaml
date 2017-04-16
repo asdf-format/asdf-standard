@@ -1,0 +1,22 @@
+%YAML 1.1
+---
+$schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
+id: "http://stsci.edu/schemas/asdf/0.1.0/transforms/rotate_celestial_to_native"
+tag: "tag:stsci.edu:asdf/0.1.0/transforms/rotate_celestial_to_native"
+title: >
+  A 3D (ZXZ) rotation.
+description: >
+  Rotate coordinates from celestial to native coordinate system (WCS Paper II)
+
+type: object
+properties:
+  phi:
+    type: number
+    description: Angle, in degrees.
+  theta:
+    type: number
+    description: Angle, in degrees.
+  psi:
+    type: number
+    description: Angle, in degrees.
+requiredProperties: [phi, theta, psi]

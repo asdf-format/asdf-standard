@@ -1,0 +1,20 @@
+%YAML 1.1
+---
+$schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
+id: "http://stsci.edu/schemas/asdf/0.1.0/transforms/scale"
+tag: "tag:stsci.edu:asdf/0.1.0/transforms/scale"
+title: >
+  A Scale model.
+description: >
+  Multiply the input by a factor
+
+type: object
+properties:
+  factor:
+    type: number
+    description: Multiplication factor.
+  param_dim:
+    type: integer
+    description:
+      Number of parameter sets.
+requiredProperties: [factor]
