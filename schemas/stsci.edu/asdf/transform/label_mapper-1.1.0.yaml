@@ -95,12 +95,18 @@ allOf:
     properties:
       mapper:
         description: |
-          An array with the shape of the detector/observation.
+          A mapping of inputs to labels.
+          In the general case this is a `astropy.modeling.core.Model`.
+
+          It could be a numpy array with the shape of the detector/observation.
           Pixel values are of type integer or string and represent
-          region labels.
-          Pixels which are not within any region have value 0 or " ".
+          region labels. Pixels which are not within any region have value ``no_label``.
+
+          It could be a dictionary which maps tuples to labels or floating point numbers to labels.
+
         anyOf:
           - $ref: "../core/ndarray-1.0.0"
+          - $ref: "../transform-1.1.0"
           - type: object
             properties:
               labels:
@@ -132,5 +138,11 @@ allOf:
         type: number
         description: |
           absolute tolerance to compare keys in mapper.
+      no_label:
+        description: |
+          Fill in value for missing output.
+        anyOf:
+          - type: number
+          - type: string
 
     required: [mapper]
