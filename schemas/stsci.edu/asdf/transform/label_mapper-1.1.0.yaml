@@ -106,7 +106,7 @@ allOf:
 
         anyOf:
           - $ref: "../core/ndarray-1.0.0"
-          - $ref: "../transform-1.1.0"
+          - $ref: "transform-1.1.0"
           - type: object
             properties:
               labels:
