@@ -168,15 +168,13 @@ properties:
           when `reference_frame` is `GCRS` or `precessed_geocentric`.
         type: array
         items:
-          - type: array
-            items:
-              type: number
-            minItems: 3
-            maxItems: 3
-          - $ref: ../unit/unit-1.0.0
-            default: m
+          $ref: quantity-1.0.0
+        minItems: 3
+        maxItems: 3
         default:
-          - [0, 0, 0]
+          - { value: [0], unit: m }
+          - { value: [0], unit: m }
+          - { value: [0], unit: m }
 
       obsgeovel:
         description: |
@@ -186,15 +184,13 @@ properties:
           when `reference_frame` is `GCRS` or `precessed_geocentric`.
         type: array
         items:
-          - type: array
-            items:
-              type: number
-            minItems: 3
-            maxItems: 3
-          - $ref: ../unit/unit-1.0.0
-            default: m/s
+          $ref: quantity-1.0.0
+        minItems: 3
+        maxItems: 3
         default:
-          - [0, 0, 0]
+          - { value: [0], unit: m/s }
+          - { value: [0], unit: m/s }
+          - { value: [0], unit: m/s }
 
     required: [type]
 
