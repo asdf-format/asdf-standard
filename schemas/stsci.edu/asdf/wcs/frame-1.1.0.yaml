@@ -1,7 +1,7 @@
 %YAML 1.1
 ---
 $schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
-id: "http://stsci.edu/schemas/asdf/wcs/frame-1.0.0"
+id: "http://stsci.edu/schemas/asdf/wcs/frame-1.1.0"
 title: |
   The base class of all coordinate frames.
 
@@ -17,7 +17,7 @@ examples:
     - |
         A celestial frame in the FK4 reference frame.
     - |
-        !wcs/celestial_frame-1.0.0
+        !wcs/celestial_frame-1.1.0
           axes_names: [ra, dec]
           name: CelestialFrame
           reference_frame:
@@ -168,15 +168,13 @@ properties:
           when `reference_frame` is `GCRS` or `precessed_geocentric`.
         type: array
         items:
-          - type: array
-            items:
-              type: number
-            minItems: 3
-            maxItems: 3
-          - $ref: ../unit/unit-1.0.0
-            default: m
+          $ref: ../unit/quantity-1.1.0
+        minItems: 3
+        maxItems: 3
         default:
-          - [0, 0, 0]
+          - { value: [0], unit: m }
+          - { value: [0], unit: m }
+          - { value: [0], unit: m }
 
       obsgeovel:
         description: |
@@ -186,15 +184,13 @@ properties:
           when `reference_frame` is `GCRS` or `precessed_geocentric`.
         type: array
         items:
-          - type: array
-            items:
-              type: number
-            minItems: 3
-            maxItems: 3
-          - $ref: ../unit/unit-1.0.0
-            default: m/s
+          $ref: ../unit/quantity-1.1.0
+        minItems: 3
+        maxItems: 3
         default:
-          - [0, 0, 0]
+          - { value: [0], unit: m/s }
+          - { value: [0], unit: m/s }
+          - { value: [0], unit: m/s }
 
     required: [type]
 
