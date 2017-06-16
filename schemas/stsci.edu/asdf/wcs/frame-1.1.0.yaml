@@ -113,30 +113,21 @@ properties:
           The distance from the Sun to the Galactic center.  Required when
           `reference_frame` is `galactocentric`.
         type: array
-        items:
-          - type: number
-          - $ref: ../unit/unit-1.0.0
-            default: pc
+        $ref: ../unit/quantity-1.1.0
 
       galcen_ra:
         description: |
           The Right Ascension (RA) of the Galactic center in the ICRS
           frame.  Required when `reference_frame` is `galactocentric`.
         type: array
-        items:
-          - type: number
-          - $ref: ../unit/unit-1.0.0
-            default: deg
+        $ref: ../unit/quantity-1.1.0
 
       galcen_dec:
         description: |
           The Declination (DEC) of the Galactic center in the ICRS frame.
           Required when `reference_frame` is `galactocentric`.
         type: array
-        items:
-          - type: number
-          - $ref: ../unit/unit-1.0.0
-            default: deg
+        $ref: ../unit/quantity-1.1.0
 
       z_sun:
         description: |
@@ -144,10 +135,7 @@ properties:
           when `reference_frame` is `galactocentric`.  Required when
           `reference_frame` is `galactocentric`.
         type: array
-        items:
-          - type: number
-          - $ref: ../unit/unit-1.0.0
-            default: pc
+        $ref: ../unit/quantity-1.1.0
 
       roll:
         description: |
@@ -155,10 +143,7 @@ properties:
           orientation for `galactic`.  Required when `reference_frame` is
           `galactocentric`.
         type: array
-        items:
-          - type: number
-          - $ref: ../unit/unit-1.0.0
-            default: deg
+        $ref: ../unit/quantity-1.1.0
 
       obsgeoloc:
         description: |
