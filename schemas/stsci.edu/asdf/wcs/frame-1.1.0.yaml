@@ -121,6 +121,20 @@ properties:
           `reference_frame` is `galactocentric`.
         $ref: icrs_coord-1.0.0
 
+      galcen_v_sun:
+        description: |
+          The velocity of the sun in the galactocentric frame as Cartesian
+          velocity components.
+        type: array
+        items:
+          $ref: ../unit/quantity-1.1.0
+        minItems: 3
+        maxItems: 3
+        default:
+          - { value: [0], unit: k/s }
+          - { value: [0], unit: k/s }
+          - { value: [0], unit: k/s }
+
       z_sun:
         description: |
           The distance from the sun to the galactic midplane.  Required
