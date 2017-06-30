@@ -115,24 +115,16 @@ properties:
         type: array
         $ref: ../unit/quantity-1.1.0
 
-      galcen_ra:
+      galcen_coord:
         description: |
-          The Right Ascension (RA) of the Galactic center in the ICRS
-          frame.  Required when `reference_frame` is `galactocentric`.
-        type: array
-        $ref: ../unit/quantity-1.1.0
-
-      galcen_dec:
-        description: |
-          The Declination (DEC) of the Galactic center in the ICRS frame.
-          Required when `reference_frame` is `galactocentric`.
-        type: array
-        $ref: ../unit/quantity-1.1.0
+          The ICRS coordinates of the Galactic center. Required when
+          `reference_frame` is `galactocentric`.
+        $ref: icrs_coord-1.0.0
 
       z_sun:
         description: |
           The distance from the sun to the galactic midplane.  Required
-          when `reference_frame` is `galactocentric`.  Required when
+          when `reference_frame` is `galactocentric`.
           `reference_frame` is `galactocentric`.
         type: array
         $ref: ../unit/quantity-1.1.0
