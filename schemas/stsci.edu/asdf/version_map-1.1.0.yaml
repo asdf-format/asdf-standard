@@ -73,8 +73,8 @@ tags:
   tag:stsci.edu:asdf/wcs/celestial_frame: 1.1.0
   tag:stsci.edu:asdf/wcs/composite_frame: 1.1.0
   tag:stsci.edu:asdf/wcs/frame: 1.1.0
-  tag:stsci.edu:asdf/wcs/icrs_coord: 1.0.0
+  tag:stsci.edu:asdf/wcs/icrs_coord: 1.1.0
   tag:stsci.edu:asdf/wcs/spectral_frame: 1.1.0
-  tag:stsci.edu:asdf/wcs/step: 1.2.0
+  tag:stsci.edu:asdf/wcs/step: 1.1.0
   tag:stsci.edu:asdf/wcs/wcs: 1.0.0
 ...

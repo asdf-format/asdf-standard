@@ -119,7 +119,7 @@ properties:
         description: |
           The ICRS coordinates of the Galactic center. Required when
           `reference_frame` is `galactocentric`.
-        $ref: icrs_coord-1.0.0
+        $ref: icrs_coord-1.1.0
 
       galcen_v_sun:
         description: |

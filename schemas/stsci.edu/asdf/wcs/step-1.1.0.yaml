@@ -15,7 +15,7 @@ properties:
       The frame of the inputs to the transform.
     anyOf:
       - type: string
-      - $ref: frame-1.0.0
+      - $ref: frame-1.1.0
 
   transform:
     description: |
