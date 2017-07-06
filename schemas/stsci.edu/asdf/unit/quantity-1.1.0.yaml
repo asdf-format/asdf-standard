@@ -1,0 +1,29 @@
+%YAML 1.1
+---
+$schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
+id: "http://stsci.edu/schemas/asdf/unit/quantity-1.1.0"
+
+title: >
+  Represents a Quantity object from astropy
+
+anyOf:
+  - tag: "tag:stsci.edu:asdf/unit/quantity-1.1.0"
+  - {}
+
+type: object
+properties:
+  value:
+    description: |
+      A vector of one or more values
+    anyOf:
+      - type: number
+      - type: array
+        items:
+          type: number
+        minItems: 1
+  unit:
+    description: |
+      The unit corresponding to the values
+    $ref: unit-1.0.0
+required: [value, unit]
+...
