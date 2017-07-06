@@ -15,10 +15,12 @@ properties:
   value:
     description: |
       A vector of one or more values
-    type: array
-    items:
-      type: number
-    minItems: 1
+    anyOf:
+      - type: number
+      - type: array
+        items:
+          type: number
+        minItems: 1
   unit:
     description: |
       The unit corresponding to the values
