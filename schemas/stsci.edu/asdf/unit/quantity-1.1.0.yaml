@@ -21,6 +21,7 @@ properties:
         items:
           type: number
         minItems: 1
+      - $ref: "../core/ndarray-1.0.0"
   unit:
     description: |
       The unit corresponding to the values
