@@ -14,10 +14,6 @@ properties:
       A vector of one or more values
     anyOf:
       - type: number
-      - type: array
-        items:
-          type: number
-        minItems: 1
       - $ref: "../core/ndarray-1.0.0"
   unit:
     description: |
