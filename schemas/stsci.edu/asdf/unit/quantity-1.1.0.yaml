@@ -2,13 +2,43 @@
 ---
 $schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
 id: "http://stsci.edu/schemas/asdf/unit/quantity-1.1.0"
+tag: "tag:stsci.edu:asdf/unit/quantity-1.1.0"
 
 title: >
   Represents a Quantity object from astropy
 
-anyOf:
-  - tag: "tag:stsci.edu:asdf/unit/quantity-1.1.0"
-  - {}
+examples:
+  -
+    - A quantity consisting of a scalar value and unit
+    - |
+        !unit/quantity-1.1.0
+          value: 3.14159
+          unit: km
+
+  -
+    - A quantity consisting of a single value in an array
+    - |
+        !unit/quantity-1.1.0
+          value: !core/ndarray-1.0.0 [2.71828]
+          unit: A
+
+  -
+    - A quantity with an array of values
+    - |
+        !unit/quantity-1.1.0
+          value: !core/ndarray-1.0.0 [1, 2, 3, 4]
+          unit: second
+
+  -
+    - A quantity with an n-dimensional array of values
+    - |
+        !unit/quantity-1.1.0
+          value: !core/ndarray-1.0.0
+            datatype: float64
+            data: [[1, 2, 3],
+                   [4, 5, 6]]
+          unit: pc
+
 
 type: object
 properties:
@@ -17,10 +47,7 @@ properties:
       A vector of one or more values
     anyOf:
       - type: number
-      - type: array
-        items:
-          type: number
-        minItems: 1
+      - $ref: "../core/ndarray-1.0.0"
   unit:
     description: |
       The unit corresponding to the values
