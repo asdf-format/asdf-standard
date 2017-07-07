@@ -18,5 +18,3 @@ allOf:
         description:
           List of frames in the composite frame.
         type: array
-
-  - $ref: frame-1.1.0
