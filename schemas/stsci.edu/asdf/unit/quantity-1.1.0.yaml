@@ -27,7 +27,7 @@ examples:
     - |
         !unit/quantity-1.1.0
           value: !core/ndarray-1.0.0 [1, 2, 3, 4]
-          unit: second
+          unit: s
 
   -
     - A quantity with an n-dimensional array of values
