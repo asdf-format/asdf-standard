@@ -112,7 +112,6 @@ properties:
         description: |
           The distance from the Sun to the Galactic center.  Required when
           `reference_frame` is `galactocentric`.
-        type: array
         $ref: ../unit/quantity-1.1.0
 
       galcen_coord:
@@ -140,7 +139,6 @@ properties:
           The distance from the sun to the galactic midplane.  Required
           when `reference_frame` is `galactocentric`.
           `reference_frame` is `galactocentric`.
-        type: array
         $ref: ../unit/quantity-1.1.0
 
       roll:
@@ -148,7 +146,6 @@ properties:
           The angle to rotate about the final x-axis, relative to the
           orientation for `galactic`.  Required when `reference_frame` is
           `galactocentric`.
-        type: array
         $ref: ../unit/quantity-1.1.0
 
       obsgeoloc:
