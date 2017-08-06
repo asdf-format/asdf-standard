@@ -62,6 +62,7 @@ tags:
   tag:stsci.edu:asdf/transform/slant_zenithal_perspective: 1.0.0
   tag:stsci.edu:asdf/transform/stereographic: 1.0.0
   tag:stsci.edu:asdf/transform/subtract: 1.0.0
+  tag:stsci.edu:asdf/transform/tabular: 1.0.0
   tag:stsci.edu:asdf/transform/tangential_spherical_cube: 1.0.0
   tag:stsci.edu:asdf/transform/transform: 1.0.0
   tag:stsci.edu:asdf/transform/zenithal: 1.0.0
