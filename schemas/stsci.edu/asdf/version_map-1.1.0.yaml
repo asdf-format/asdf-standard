@@ -13,7 +13,7 @@ tags:
   tag:stsci.edu:asdf/core/software: 1.0.0
   tag:stsci.edu:asdf/core/table: 1.0.0
   tag:stsci.edu:asdf/fits/fits: 1.0.0
-  tag:stsci.edu:asdf/time/time: 1.0.0
+  tag:stsci.edu:asdf/time/time: 1.1.0
   tag:stsci.edu:asdf/transform/add: 1.1.0
   tag:stsci.edu:asdf/transform/affine: 1.1.0
   tag:stsci.edu:asdf/transform/airy: 1.1.0
