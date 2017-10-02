@@ -22,8 +22,8 @@ examples:
           name: CelestialFrame
           reference_frame:
             type: FK4
-            equinox: !time/time-1.0.0 '2010-01-01 00:00:00.000'
-            obstime: !time/time-1.0.0 '2015-01-01 00:00:00.000'
+            equinox: !time/time-1.1.0 '2010-01-01 00:00:00.000'
+            obstime: !time/time-1.1.0 '2015-01-01 00:00:00.000'
           unit: [!unit/unit-1.0.0 deg, !unit/unit-1.0.0 deg]
 
 type: object
@@ -95,7 +95,7 @@ properties:
 
             `FK5`, `FK4`, `FK4_noeterms`
 
-        $ref: ../time/time-1.0.0
+        $ref: ../time/time-1.1.0
 
       obstime:
         description: |
@@ -106,7 +106,7 @@ properties:
             `FK4`, `FK4_noeterms`, `GCRS`, `CIRS`, `ITRS`
 
           If not provided, it defaults to the same value as `equinox`.
-        $ref: ../time/time-1.0.0
+        $ref: ../time/time-1.1.0
 
       galcen_distance:
         description: |
