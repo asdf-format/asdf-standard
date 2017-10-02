@@ -248,15 +248,14 @@ allOf:
               - `lat`: in degrees
               - `h`: optional height
 
-          anyOf:
-            - type: object
-              properties:
-                x:
-                  $ref: "../unit/quantity-1.1.0"
-                y:
-                  $ref: "../unit/quantity-1.1.0"
-                z:
-                  $ref: "../unit/quantity-1.1.0"
-              required: [x, y, z]
+          type: object
+          properties:
+            x:
+              $ref: "../unit/quantity-1.1.0"
+            y:
+              $ref: "../unit/quantity-1.1.0"
+            z:
+              $ref: "../unit/quantity-1.1.0"
+          required: [x, y, z]
 
       required: [value]
