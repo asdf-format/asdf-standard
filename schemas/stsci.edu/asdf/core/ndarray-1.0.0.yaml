@@ -267,6 +267,7 @@ definitions:
         - $ref: "complex-1.0.0"
         - $ref: "#/definitions/inline-data"
         - type: boolean
+        - {}
 
 anyOf:
   - $ref: "#/definitions/inline-data"
