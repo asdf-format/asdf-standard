@@ -1,0 +1,23 @@
+%YAML 1.1
+---
+$schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
+id: "http://stsci.edu/schemas/asdf/core/externalarray-1.0.0"
+tag: "tag:stsci.edu:asdf/core/externalarray-1.0.0"
+title: Point to an array-like object in an external file.
+
+type: object
+properties:
+  source:
+    type: string
+  target:
+    type: object
+  datatype:
+    type: string
+  shape:
+    type: array
+    items:
+      anyOf:
+      - type: integer
+        minimum: 0
+      - enum: ['*']
+...
