@@ -4,6 +4,15 @@ $schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
 id: "http://stsci.edu/schemas/asdf/core/externalarray-1.0.0"
 tag: "tag:stsci.edu:asdf/core/externalarray-1.0.0"
 title: Point to an array-like object in an external file.
+examples:
+  -
+    - Example external reference
+    - |
+      !core/externalarray-1.0.0
+        datatype: int16
+        fileuri: aia.lev1_euv_12s.2017-09-06T120001Z.94.image_lev1.fits
+        shape: [4096, 4096]
+        target: 1
 
 type: object
 properties:
@@ -21,5 +30,4 @@ properties:
       anyOf:
       - type: integer
         minimum: 0
-      - enum: ['*']
 ...
