@@ -4,6 +4,10 @@ $schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
 id: "http://stsci.edu/schemas/asdf/core/externalarray-1.0.0"
 tag: "tag:stsci.edu:asdf/core/externalarray-1.0.0"
 title: Point to an array-like object in an external file.
+description: |
+  Allow referencing of array-like objects in external files. These files can be
+  any type of file and in any absolute or relative location to the asdf file.
+  Loading of these files into arrays is not handled by asdf.
 examples:
   -
     - Example external reference
