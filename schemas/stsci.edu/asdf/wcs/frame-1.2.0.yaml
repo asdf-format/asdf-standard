@@ -118,7 +118,7 @@ properties:
         description: |
           The ICRS coordinates of the Galactic center. Required when
           `reference_frame` is `galactocentric`.
-        $ref: "tag:astropy.org:astropy/coords/icrs_coord-1.0.0"
+        $ref: "tag:astropy.org:astropy/coordinates/frames/icrs-1.0.0"
 
       galcen_v_sun:
         description: |
