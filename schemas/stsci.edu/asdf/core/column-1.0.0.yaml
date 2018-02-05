@@ -45,5 +45,5 @@ properties:
     type: object
     default: {}
 
-requiredProperties: [name, data]
+required: [name, data]
 additionalProperties: false

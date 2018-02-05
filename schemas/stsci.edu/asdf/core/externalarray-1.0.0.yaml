@@ -20,7 +20,7 @@ examples:
 
 type: object
 properties:
-  source:
+  fileuri:
     type: string
   target:
     anyOf:
@@ -35,6 +35,6 @@ properties:
       - type: integer
         minimum: 0
 
-requiredProperties: [source, target, datatype, shape]
+required: [fileuri, target, datatype, shape]
 additionalProperties: true
 ...
