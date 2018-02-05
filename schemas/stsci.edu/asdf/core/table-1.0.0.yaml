@@ -105,4 +105,4 @@ properties:
     default: {}
 
 additionalProperties: false
-requiredProperties: [data]
+required: [columns]
