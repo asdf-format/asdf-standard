@@ -1,0 +1,29 @@
+%YAML 1.1
+---
+$schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
+id: "http://stsci.edu/schemas/asdf/core/asdf-1.1.0"
+title: |
+  Top-level schema for every ASDF file.
+
+description: |
+  This schema contains the top-level attributes for every ASDF file.
+
+tag: "tag:stsci.edu:asdf/core/asdf-1.1.0"
+type: object
+properties:
+  asdf_library:
+    description: |
+      Describes the ASDF library that produced the file.
+    $ref: "software-1.0.0"
+
+  history:
+    description: |
+      A log of transformations that have happened to the file.  May
+      include such things as data collection, data calibration
+      pipelines, data analysis etc.
+    type: array
+    items:
+      $ref: "history_entry-1.0.0"
+
+additionalProperties: true
+...
