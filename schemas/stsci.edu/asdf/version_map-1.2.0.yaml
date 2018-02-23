@@ -4,7 +4,7 @@ FILE_FORMAT: 1.0.0
 YAML_VERSION: "1.1"
 tags:
   tag:stsci.edu:asdf/asdf-schema: 1.0.0
-  tag:stsci.edu:asdf/core/asdf: 1.0.0
+  tag:stsci.edu:asdf/core/asdf: 1.1.0
   tag:stsci.edu:asdf/core/column: 1.0.0
   tag:stsci.edu:asdf/core/complex: 1.0.0
   tag:stsci.edu:asdf/core/constant: 1.0.0
