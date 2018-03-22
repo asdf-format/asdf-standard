@@ -23,7 +23,9 @@ properties:
       pipelines, data analysis etc.
     type: array
     items:
-      $ref: "history_entry-1.0.0"
+      anyOf:
+        - $ref: "history_entry-1.0.0"
+        - $ref: "extension_metadata-1.0.0"
 
 additionalProperties: true
 ...
