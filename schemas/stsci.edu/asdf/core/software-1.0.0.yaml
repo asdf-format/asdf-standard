@@ -31,5 +31,5 @@ properties:
       Specification)[http://semver.org/spec/v2.0.0.html].
     type: string
 
-required: [name, author, homepage, version]
+required: [name, version]
 additionalProperties: true

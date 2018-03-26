@@ -21,9 +21,30 @@ properties:
       A log of transformations that have happened to the file.  May
       include such things as data collection, data calibration
       pipelines, data analysis etc.
-    type: array
-    items:
-      $ref: "history_entry-1.0.0"
+    anyOf:
+      # This is to support backwards compatibility with older history formats
+      - type: array
+        items:
+          - $ref: "history_entry-1.0.0"
+      # This is the new, richer history implementation that includes
+      # extension metadata.
+      - $ref: "#/definitions/history-1.1.0"
 
 additionalProperties: true
+
+
+# This contains the definition of the new history format, which includes
+# metadata about the extensions used to create the file.
+definitions:
+  history-1.1.0:
+    type: object
+    properties:
+      extensions:
+        type: array
+        items:
+          - $ref: "extension_metadata-1.0.0"
+      entries:
+        type: array
+        items:
+          - $ref: "history_entry-1.0.0"
 ...
