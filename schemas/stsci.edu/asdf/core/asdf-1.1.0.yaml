@@ -31,6 +31,8 @@ properties:
       - $ref: "#/definitions/history-1.1.0"
 
 additionalProperties: true
+# Make sure that these two metadata fields are always at the top of the file
+propertyOrder: [asdf_library, history]
 
 
 # This contains the definition of the new history format, which includes
