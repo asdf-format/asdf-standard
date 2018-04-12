@@ -6,7 +6,7 @@ tag: "tag:stsci.edu:asdf/transform/scale-1.2.0"
 title: >
   A Scale model.
 description: >
-  Multiply the input by a factor.
+  Scale the input by a dimensionless factor.
 
 type: object
 properties:
@@ -14,5 +14,5 @@ properties:
     anyOf:
       - $ref: "../unit/quantity-1.1.0"
       - type: number
-    description: Multiplication factor.
+    description: Scale factor.
 required: [factor]
