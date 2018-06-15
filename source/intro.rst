@@ -108,7 +108,7 @@ The ASDF format is built on top of a number of existing standards:
 
 - `Zlib Deflate compression <http://www.zlib.net/feldspar.html>`__
 
-.. [Thomas2015] Thomas, B., Jenness. T. et al. 2015, "The Future of
-                Astronomical Data Formats I. Learning from FITS".
-                Astronomy & Computing, in press, arXiv e-print: 1502.00996.
-                ``https://github.com/timj/aandc-fits``.
+.. [Thomas2015] Thomas, B., Jenness. T. et al. (2015).
+   Learning from FITS: Limitations in use in modern astronomical research.
+   *Astronomy and Computing*, 12: 133-145.
+   `doi:10.1016/j.ascom.2015.01.009 <https://doi.org/10.1016/j.ascom.2015.01.009>`__

@@ -14,8 +14,7 @@ Please open a new [issue](https://github.com/spacetelescope/asdf-standard/issue)
 ## Getting More Information
 
 * [FAQ page](https://github.com/spacetelescope/asdf-standard/wiki/FAQ) on the wiki.
-* [ASDF: A new data format for astronomy](http://dx.doi.org/10.1016/j.ascom.2015.06.004), published in Astronomy and Computing:
+* [ASDF: A new data format for astronomy](https://doi.org/10.1016/j.ascom.2015.06.004), published in *Astronomy and Computing*:
 
-      Greenfield, P., Droettboom, M., & Bray, E. (2015). ASDF: A new
-      data format for Astronomy.  *Astronomy and Computing*.  (In
-      press).  doi:10.1016/j.ascom.2015.06.004
+> Greenfield, P., Droettboom, M., & Bray, E. (2015). ASDF: A new data format for astronomy. *Astronomy and Computing*, 12: 240-251.
+> doi:[10.1016/j.ascom.2015.06.004](https://doi.org/10.1016/j.ascom.2015.06.004)
