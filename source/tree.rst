@@ -156,7 +156,7 @@ reference data, available on a public webserver at the URI
 Another file may reference this data directly::
 
     reference_data:
-      $ref: "http://www.nowhere.com/reference.asdf#wavelengths/0"
+      $ref: "http://www.nowhere.com/reference.asdf#/wavelengths/0"
 
 It is also possible to use references within the same file::
 
