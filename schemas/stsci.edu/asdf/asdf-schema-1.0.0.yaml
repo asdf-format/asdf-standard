@@ -36,7 +36,7 @@ allOf:
           can be cast to the given datatype without data loss.  For
           exact datatype matching, set `exact_datatype` to `true`.
         allOf:
-          - $ref: "http://stsci.edu/schemas/asdf/core/ndarray-1.0.0#definitions/datatype-1.0.0"
+          - $ref: "http://stsci.edu/schemas/asdf/core/ndarray-1.0.0#/definitions/datatype-1.0.0"
 
       exact_datatype:
         description: |
