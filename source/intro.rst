@@ -79,8 +79,14 @@ The ASDF standard is being developed concurrently with a `reference
 implementation written in Python
 <http://github.com/spacetelescope/asdf>`__.
 
-There is also a work-in-progress `implementation for Go
-<http://github.com/astrogo/asdf>`__ by Sebastian Binet.
+There are two prototype implementations for C++: `asdf-cpp
+<https://github.com/spacetelescope/asdf-cpp>`__ and `asdf-cxx
+<https://github.com/eschnett/asdf-cxx>`__. Neither is currently feature
+complete, but both provide enough functionality to read and write ASDF files.
+
+There is also a `work-in-progress wrapper
+<https://github.com/eschnett/asdf.jl>`__ of the Python implementation
+for `Julia <https://julialang.org>`__.
 
 Incorporated standards
 ----------------------
