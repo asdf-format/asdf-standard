@@ -1,0 +1,23 @@
+%YAML 1.1
+---
+$schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
+id: "http://stsci.edu/schemas/asdf/core/integer-1.0.0"
+title: Arbitrary precision integer value.
+description: |
+  Represents an arbitrarily large integer value.
+
+tag: "tag:stsci.edu:asdf/core/integer-1.0.0"
+type: object
+properties:
+  words:
+    $ref: "ndarray-1.0.0"
+    description: |
+      An array of unsigned 32-bit words representing the integer value, stored
+      as little endian (i.e. the first word of the array represents the least
+      significant bits of the integer value).
+  sign:
+    type: string
+    pattern: "^[+-]$"
+    description: |
+      String indicating whether the integer value is positive or negative.
+required: [words, sign]
