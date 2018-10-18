@@ -20,4 +20,10 @@ properties:
     pattern: "^[+-]$"
     description: |
       String indicating whether the integer value is positive or negative.
+  string:
+    type: string
+    description: |
+      Optional string representation of the integer value. This field is only
+      intended to improve readability for humans, and therefore no assumptions
+      about format should be made by ASDF readers.
 required: [words, sign]
