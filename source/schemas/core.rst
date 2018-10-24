@@ -18,3 +18,4 @@ asdf library.
    stsci.edu/asdf/core/software-1.0.0.rst
    stsci.edu/asdf/core/history_entry-1.0.0.rst
    stsci.edu/asdf/core/extension_metadata-1.0.0.rst
+   stsci.edu/asdf/core/integer-1.0.0.rst
