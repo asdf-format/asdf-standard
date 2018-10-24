@@ -1,6 +1,8 @@
 env:
   global:
     - secure: "W3PaYhPnJFCaG6TW5Xc0wtggdEqcreTQcHThmIo5Eqs/jUL2toiUiv3ZWlhzR3tkphLvt2KeaQe83BR6RTifYjSmnmAePj0Gw5res1AXzN95OsKEk3nMiTZbVP+PuTTbQZJga8B31nRUBiAMQ6FsNlpGq7E8sp9N65lnR3mGHAE="
+    - PIP_DOC_DEPENDENCIES="six sphinx sphinx_bootstrap_theme jsonschema pyyaml mistune"
+    - ASDF_MASTER="git+git://github.com/spacetelescope/asdf"
 
 sudo: false
 
@@ -15,11 +17,15 @@ branches:
   only:
     - master
 
-before_install:
-  - pip install six sphinx sphinx_bootstrap_theme jsonschema pyyaml mistune
+jobs:
+  include:
+    # Build documentation
+    - before_install:
+        - pip install $PIP_DOC_DEPENDENCIES
+      install: python setup.py
+      script: make html
 
-install:
-  - python setup.py
-
-script:
-  - make html
+    # Run schema validation and example tests using pytest
+    - before_install:
+        - pip install $ASDF_MASTER pytest
+      script: pytest
