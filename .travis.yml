@@ -13,6 +13,9 @@ addons:
 
 language: python
 
+python:
+  - 3.6
+
 branches:
   only:
     - master
@@ -28,4 +31,5 @@ jobs:
     # Run schema validation and example tests using pytest
     - before_install:
         - pip install $ASDF_MASTER pytest
+      install: echo Nothing to install
       script: pytest
