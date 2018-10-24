@@ -6,6 +6,31 @@ title: Arbitrary precision integer value.
 description: |
   Represents an arbitrarily large integer value.
 
+examples:
+  -
+    - An integer value that is stored using an internal array
+    - |
+        !core/integer-1.0.0
+          sign: +
+          string: '1193942770599561143856918438330'
+          words: !core/ndarray-1.0.0
+            source: 0
+            datatype: uint32
+            byteorder: little
+            shape: [4]
+
+  -
+    - The same integer value is stored using an inline array
+    - |
+        !core/integer-1.0.0
+          sign: +
+          string: '1193942770599561143856918438330'
+          words: !core/ndarray-1.0.0
+            data: [1103110586, 1590521629, 299257845, 15]
+            datatype: uint32
+            shape: [4]
+
+
 tag: "tag:stsci.edu:asdf/core/integer-1.0.0"
 type: object
 properties:
