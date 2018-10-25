@@ -4,9 +4,6 @@ ASDF Standard
 This document describes the Advanced Scientific Data Format (ASDF),
 pronounced *AZ*-diff.
 
-**This document is a work in progress and does not represent a
-released version of the ASDF standard.**
-
 .. only:: html
 
     Contents:
