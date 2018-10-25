@@ -31,5 +31,8 @@ jobs:
     # Run schema validation and example tests using pytest
     - before_install:
         - pip install $ASDF_MASTER pytest
+        # We need to install these packages because they contain the canonical
+        # implementations for some of the schemas we need to test
+        - pip install astropy gwcs
       install: echo Nothing to install
       script: pytest
