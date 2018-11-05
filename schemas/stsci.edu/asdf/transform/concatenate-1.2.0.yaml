@@ -1,0 +1,68 @@
+%YAML 1.1
+---
+$schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
+id: "http://stsci.edu/schemas/asdf/transform/concatenate-1.2.0"
+tag: "tag:stsci.edu:asdf/transform/concatenate-1.2.0"
+title: >
+  Send axes to different subtransforms.
+
+description: |
+  Transforms a set of separable inputs by splitting the axes apart,
+  sending them through the given subtransforms in parallel, and
+  finally concatenating the subtransform output axes back together.
+
+  The input axes are assigned to each subtransform in order.  If the
+  number of input axes is unequal to the sum of the number of input
+  axes of all of the subtransforms, that is considered an error case.
+
+  The output axes from each subtransform are appended together to make
+  up the resulting output axes.
+
+  For example, given 5 input axes, and 3 subtransforms with the
+  following orders:
+
+  1. transform A: 2 in -> 2 out
+  1. transform B: 1 in -> 2 out
+  1. transform C: 2 in -> 1 out
+
+  The transform is performed as follows:
+
+  ```
+    :    i0    i1       i2       i3    i4
+    :    |     |        |        |     |
+    :  +---------+ +---------+ +----------+
+    :  |    A    | |    B    | |    C     |
+    :  +---------+ +---------+ +----------+
+    :    |     |     |     |        |
+    :    o0    o1    o2    o3       o4
+  ```
+
+  If reordering of the input or output axes is required, use in series
+  with the `remap_axes` transform.
+
+  Invertibility: All ASDF tools are required to be able to compute the
+  analytic inverse of this transform.
+examples:
+  -
+    - The example in the description
+    - |
+      !transform/concatenate-1.2.0
+        forward:
+          - !transform/generic-1.1.0
+            n_inputs: 2
+            n_outputs: 2
+          - !transform/generic-1.1.0
+            n_inputs: 1
+            n_outputs: 2
+          - !transform/generic-1.1.0
+            n_inputs: 2
+            n_outputs: 1
+
+allOf:
+  - $ref: "transform-1.2.0"
+  - properties:
+      forward:
+        type: array
+        items:
+          $ref: "transform-1.2.0"
+    required: [forward]

@@ -1,0 +1,42 @@
+%YAML 1.1
+---
+$schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
+id: "http://stsci.edu/schemas/asdf/transform/compose-1.2.0"
+tag: "tag:stsci.edu:asdf/transform/compose-1.2.0"
+title: >
+  Perform a list of subtransforms in series.
+
+description: |
+  The output of each subtransform is fed into the input of the next
+  subtransform.
+
+  The number of output dimensions of each subtransform must be equal
+  to the number of input dimensions of the next subtransform in list.
+  To reorder or add/drop axes, insert `remap_axes` transforms in the
+  subtransform list.
+
+  Invertibility: All ASDF tools are required to be able to compute the
+  analytic inverse of this transform, by reversing the list of
+  transforms and applying the inverse of each.
+
+examples:
+  -
+    - A series of transforms
+    - |
+      !transform/compose-1.2.0
+        forward:
+          - !transform/generic-1.1.0
+            n_inputs: 1
+            n_outputs: 2
+          - !transform/generic-1.1.0
+            n_inputs: 2
+            n_outputs: 1
+
+allOf:
+  - $ref: "transform-1.2.0"
+  - properties:
+      forward:
+        type: array
+        items:
+          $ref: "transform-1.2.0"
+    required: [forward]
