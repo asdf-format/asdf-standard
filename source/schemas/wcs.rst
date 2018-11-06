@@ -3,6 +3,11 @@
 WCS
 ===
 
+.. note::
+
+   WCS schemas have been removed from v1.3.0 of the standard. They are now
+   provided by the `GWCS package <https://github.com/spacetelescope/gwcs>`_.
+
 The ``WCS`` module contains schema used to describe generalized world
 coordinate system transformations.
 
