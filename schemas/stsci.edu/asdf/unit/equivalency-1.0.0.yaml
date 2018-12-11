@@ -1,0 +1,67 @@
+%YAML 1.1
+---
+$schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
+id: "http://stsci.edu/schemas/asdf/unit/equivalency-1.0.0"
+tag: "tag:stsci.edu:asdf/unit/equivalency-1.0.0"
+
+title: |
+  Represents unit equivalency.
+
+description: |
+  Supports serialization of equivalencies between units
+  in certain contexts.
+
+examples: |
+  -
+    - Serialize pixel_scale equivalency
+    - |
+        !unit/equivalency-1.0.0
+          equivalencies:
+          - args:
+            - !unit/quantity-1.1.0 {unit: !unit/unit-1.0.0 deg pixel-1, value: 0.5}
+            kwargs_names: []
+            kwargs_values: []
+            name: pixel_scale
+
+    - Serialize thermodynamic_temperature equivalency
+    - |
+        !unit/equivalency-1.0.0
+          equivalencies:
+          - args:
+            - !unit/quantity-1.1.0 {unit: !unit/unit-1.0.0 GHz, value: 140.0}
+            kwargs_names: [T_cmb]
+            kwargs_values:
+            - !unit/quantity-1.1.0 {unit: !unit/unit-1.0.0 K, value: 2.7255}
+            name: thermodynamic_temperature
+
+
+definitions:
+  equivalency:
+    type: object
+    properties:
+      name:
+        type: string
+      args:
+        type: array
+        items:
+          anyOf:
+            - $ref: "tag:stsci.edu:asdf/unit/quantity-1.1.0"
+            - type: number
+      kwargs_names:
+        type: array
+        items:
+          type: string
+      kwargs_values:
+        type: array
+        items:
+          anyOf:
+            - $ref: "tag:stsci.edu:asdf/unit/quantity-1.1.0"
+            - type: number
+            - null
+type: object
+properties:
+  equivalencies:
+    type: array
+    items:
+      $ref: "#definitions/equivalency"
+...
