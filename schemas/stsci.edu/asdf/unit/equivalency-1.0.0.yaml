@@ -11,7 +11,7 @@ description: |
   Supports serialization of equivalencies between units
   in certain contexts.
 
-examples: |
+examples:
   -
     - Serialize pixel_scale equivalency
     - |
@@ -23,6 +23,7 @@ examples: |
             kwargs_values: []
             name: pixel_scale
 
+  -
     - Serialize thermodynamic_temperature equivalency
     - |
         !unit/equivalency-1.0.0
@@ -57,7 +58,7 @@ definitions:
           anyOf:
             - $ref: "tag:stsci.edu:asdf/unit/quantity-1.1.0"
             - type: number
-            - null
+            - type: null
 type: object
 properties:
   equivalencies:
