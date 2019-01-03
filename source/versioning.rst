@@ -62,10 +62,22 @@ Relationship of version numbers
 The major number in the **standard version** is incremented whenever
 the major number in the **file format version** is incremented.
 
-At present the **schema versions** move in lock-step with the
-**standard version**.  However, in the future, we may break from that
-convention, so libraries should address versions of individual schemas
-independently.
+**Schema versions** are created and adjusted independently of the **standad
+version** and the **file format version**. New schemas are created with version
+``1.0.0`` and are updated according to the Semantic Versioning conventions
+discussed above.
+
+An update to any of the **schema versions** will be reflected in a bump of the
+**standard version** as well, although the version numbers will not necessarily
+match. Bumping a particular **schema version** will also require new versions
+of any of the schemas that make reference to it.
+
+For example, schema ``Foo`` has version ``1.0.0`` in version ``1.2.0`` of the
+Standard. We make a backwards compatible change to ``Foo`` and bump its version
+to ``1.1.0``. Schema ``Bar`` contains a  reference to ``Foo``. The current
+version of ``Bar`` is ``1.1.0``, and we must now bump it to ``1.2.0`` to
+reflect the new reference to ``Foo-1.1.0``. We also bump the Standard version
+to ``1.3.0`` to reflect the changes to these schemas.
 
 Handling version mismatches
 ---------------------------
