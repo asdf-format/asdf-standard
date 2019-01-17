@@ -48,3 +48,5 @@ published in *Astronomy and Computing*:
 
     * :ref:`genindex`
     * :ref:`search`
+
+.. asdf-schemas::
