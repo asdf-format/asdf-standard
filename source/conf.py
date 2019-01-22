@@ -49,6 +49,9 @@ master_doc = 'index'
 project = u'ASDF Standard'
 copyright = u'2014, Michael Droettboom, Erik Bray, Space Telescope Science Institute'
 
+# Top-level directory containing ASDF schemas (relative to current directory)
+asdf_schema_path = '../schemas'
+
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
 # built documents.

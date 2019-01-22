@@ -31,7 +31,36 @@ class AsdfSchemas(SphinxDirective):
         return [paragraph, tocnode]
 
 
+def find_autoasdf_directives(filename):
+
+    return []
+
+
 def autogenerate_schema_docs(app):
+
+    # Read all source files
+
+    # Look for all 'asdf-schema' directives and parse arguments
+
+    # 
+
+    schema_path = app.env.config.asdf_schema_path
+    schema_path = posixpath.join(app.env.srcdir, schema_path)
+
+    genfiles = [env.doc2path(x, base=None) for x in env.found_docs
+                if os.path.isfile(env.doc2path(x))]
+
+    if not genfiles:
+        return
+
+    ext = list(app.config.source_suffix)
+    genfiles = [genfile + (not genfile.endswith(tuple(ext)) and ext[0] or '')
+                for genfile in genfiles]
+
+    for fn in genfiles:
+        # Look for asdf-schema directive
+        # Create documentation files based on contents of such directives
+        schemas = find_autoasdf_directives(fn)
 
     with open(posixpath.join(app.srcdir, 'schemas', 'hello.rst'), 'w') as ff:
         ff.write('MY TITLE\n')
@@ -41,6 +70,7 @@ def autogenerate_schema_docs(app):
 
 def setup(app):
 
+    # Describes a path relative to the sphinx source directory
     app.add_config_value('asdf_schema_path', 'schemas', 'env')
     app.add_directive('asdf-schemas', AsdfSchemas)
 
