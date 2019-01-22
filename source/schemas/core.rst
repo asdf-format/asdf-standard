@@ -6,8 +6,7 @@ Core
 The ``core`` module contains schema that must be implemented by every
 asdf library.
 
-.. toctree::
-   :maxdepth: 1
+.. asdf-schemas::
 
    stsci.edu/asdf/core/asdf-1.1.0.rst
    stsci.edu/asdf/core/complex-1.0.0.rst
