@@ -1,3 +1,4 @@
+import os
 import posixpath
 
 from docutils import nodes
@@ -66,6 +67,16 @@ def find_autoasdf_directives(env, filename):
             if isinstance(x, schema_def)]
 
 
+def create_schema_doc(schema_name, doc_path):
+
+    os.makedirs(posixpath.dirname(doc_path), exist_ok=True)
+
+    with open(doc_path, 'w') as ff:
+        ff.write(schema_name + '\n')
+        ff.write('=' * len(schema_name) + '\n')
+        ff.write('Your message here\n')
+
+
 def autogenerate_schema_docs(app):
 
     # Read all source files
@@ -75,7 +86,6 @@ def autogenerate_schema_docs(app):
     # 
 
     env = app.env
-    env.autoasdf_generate = True
 
     schema_path = env.config.asdf_schema_path
     schema_path = posixpath.join(env.srcdir, schema_path)
@@ -90,18 +100,23 @@ def autogenerate_schema_docs(app):
     genfiles = [genfile + (not genfile.endswith(tuple(ext)) and ext[0] or '')
                 for genfile in genfiles]
 
+    env.autoasdf_generate = True
+
     schemas = set()
     for fn in genfiles:
-        # Look for asdf-schema directive
-        # Create documentation files based on contents of such directives
+        # Create documentation files based on contents of asdf-schema directives
         path = posixpath.join(env.srcdir, fn)
         app.env.temp_data['docname'] = env.path2doc(path)
         schemas = schemas.union(find_autoasdf_directives(app.env, path))
 
-    with open(posixpath.join(app.srcdir, 'schemas', 'hello.rst'), 'w') as ff:
-        ff.write('MY TITLE\n')
-        ff.write('========\n')
-        ff.write('HEY THERE\n')
+    output_dir = posixpath.join(app.srcdir, 'generated')
+    os.makedirs(output_dir, exist_ok=True)
+
+    for s in schemas:
+        realpath = posixpath.join(output_dir, s)
+        if posixpath.exists(realpath):
+            continue
+        create_schema_doc(s, realpath)
 
     env.autoasdf_generate = False
 
