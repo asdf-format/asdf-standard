@@ -23,14 +23,21 @@ class AsdfSchemas(SphinxDirective):
 
         dirname = posixpath.dirname(self.env.docname)
         schema_path = self.state.document.settings.env.config.asdf_schema_path
+        srcdir = self.state.document.settings.env.srcdir
 
         schemas = [x.strip().split()[0] for x in self.content]
 
-        source_path = posixpath.join(dirname, 'hello')
+        links = []
+        for name in self.content:
+            schema = self.env.path2doc(name.strip().split()[0])
+            link = posixpath.join('generated', schema)
+            links.append((schema, link))
+
+        from IPython import embed; embed()
 
         tocnode = addnodes.toctree()
-        tocnode['includefiles'] = [source_path]
-        tocnode['entries'] = [(name, source_path) for name in schemas]
+        tocnode['includefiles'] = [x[1] for x in links]
+        tocnode['entries'] = links
         tocnode['maxdepth'] = -1
         tocnode['glob'] = None
 
