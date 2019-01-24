@@ -33,8 +33,6 @@ class AsdfSchemas(SphinxDirective):
             link = posixpath.join('generated', schema)
             links.append((schema, link))
 
-        from IPython import embed; embed()
-
         tocnode = addnodes.toctree()
         tocnode['includefiles'] = [x[1] for x in links]
         tocnode['entries'] = links
@@ -123,7 +121,7 @@ def autogenerate_schema_docs(app):
         realpath = posixpath.join(output_dir, s)
         if posixpath.exists(realpath):
             continue
-        create_schema_doc(s, realpath)
+        create_schema_doc(env.path2doc(s), realpath)
 
     env.autoasdf_generate = False
 
