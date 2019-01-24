@@ -25,11 +25,11 @@ class AsdfSchemas(SphinxDirective):
         schema_path = self.state.document.settings.env.config.asdf_schema_path
         srcdir = self.state.document.settings.env.srcdir
 
-        schemas = [x.strip().split()[0] for x in self.content]
-
         links = []
         for name in self.content:
-            schema = self.env.path2doc(name.strip().split()[0])
+            if not name:
+                continue
+            schema = self.env.path2doc(name.strip() + '.rst')
             link = posixpath.join('generated', schema)
             links.append((schema, link))
 
@@ -98,9 +98,8 @@ def create_schema_docs(app, schemas):
     output_dir = posixpath.join(app.srcdir, 'generated')
     os.makedirs(output_dir, exist_ok=True)
 
-    for s in schemas:
-        doc_path = posixpath.join(output_dir, s)
-        schema_name = app.env.path2doc(s)
+    for schema_name in schemas:
+        doc_path = posixpath.join(output_dir, schema_name + '.rst')
 
         if posixpath.exists(doc_path):
             continue
