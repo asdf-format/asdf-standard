@@ -139,7 +139,7 @@ def setup(app):
 
     # Describes a path relative to the sphinx source directory
     app.add_config_value('asdf_schema_path', 'schemas', 'env')
-    app.add_directive('asdf-schemas', AsdfSchemas)
+    app.add_directive('asdf-autoschemas', AsdfSchemas)
 
     app.connect('builder-inited', autogenerate_schema_docs)
 
