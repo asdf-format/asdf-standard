@@ -5,9 +5,11 @@ import yaml
 
 from docutils import nodes
 from docutils.frontend import OptionParser
+from docutils.statemachine import ViewList
 
 from sphinx import addnodes
 from sphinx.parsers import RSTParser
+from sphinx.util.nodes import nested_parse_with_titles
 from sphinx.util.docutils import SphinxDirective, new_document
 
 
@@ -72,9 +74,19 @@ class AsdfSchema(SphinxDirective):
             content = yaml.safe_load(ff.read())
 
         title = content.get('title', '')
-        description = content.get('description', 'No description provided')
+        description = content.get('description', '')
 
-        return [nodes.subtitle(text=title), nodes.paragraph(text=description)]
+        rst = ViewList()
+        rst.append("{}\n".format(title), schema_file, 2)
+        if description:
+            rst.append("**Description:** {}\n".format(description), schema_file, 3)
+
+        node = nodes.section()
+        node.document = self.state.document
+
+        nested_parse_with_titles(self.state, rst, node)
+
+        return node.children
 
 
 def find_autoasdf_directives(env, filename):
