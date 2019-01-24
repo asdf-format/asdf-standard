@@ -72,23 +72,48 @@ def find_autoasdf_directives(env, filename):
             if isinstance(x, schema_def)]
 
 
-def create_schema_doc(schema_name, doc_path):
+def find_autoschema_references(app, genfiles):
 
-    os.makedirs(posixpath.dirname(doc_path), exist_ok=True)
+    # We set this environment variable to indicate that the AsdfSchemas
+    # directive should be parsed as a simple list of schema references
+    # rather than as the toctree that will be generated when the documentation
+    # is actually built.
+    app.env.autoasdf_generate = True
 
-    with open(doc_path, 'w') as ff:
-        ff.write(schema_name + '\n')
-        ff.write('=' * len(schema_name) + '\n')
-        ff.write('Your message here\n')
+    schemas = set()
+    for fn in genfiles:
+        # Create documentation files based on contents of asdf-schema directives
+        path = posixpath.join(app.env.srcdir, fn)
+        app.env.temp_data['docname'] = app.env.path2doc(path)
+        schemas = schemas.union(find_autoasdf_directives(app.env, path))
+
+    # Unset this variable now that we're done.
+    app.env.autoasdf_generate = False
+
+    return list(schemas)
+
+
+def create_schema_docs(app, schemas):
+
+    output_dir = posixpath.join(app.srcdir, 'generated')
+    os.makedirs(output_dir, exist_ok=True)
+
+    for s in schemas:
+        doc_path = posixpath.join(output_dir, s)
+        schema_name = app.env.path2doc(s)
+
+        if posixpath.exists(doc_path):
+            continue
+
+        os.makedirs(posixpath.dirname(doc_path), exist_ok=True)
+
+        with open(doc_path, 'w') as ff:
+            ff.write(schema_name + '\n')
+            ff.write('=' * len(schema_name) + '\n')
+            ff.write('Your message here\n')
 
 
 def autogenerate_schema_docs(app):
-
-    # Read all source files
-
-    # Look for all 'asdf-schema' directives and parse arguments
-
-    # 
 
     env = app.env
 
@@ -105,25 +130,10 @@ def autogenerate_schema_docs(app):
     genfiles = [genfile + (not genfile.endswith(tuple(ext)) and ext[0] or '')
                 for genfile in genfiles]
 
-    env.autoasdf_generate = True
-
-    schemas = set()
-    for fn in genfiles:
-        # Create documentation files based on contents of asdf-schema directives
-        path = posixpath.join(env.srcdir, fn)
-        app.env.temp_data['docname'] = env.path2doc(path)
-        schemas = schemas.union(find_autoasdf_directives(app.env, path))
-
-    output_dir = posixpath.join(app.srcdir, 'generated')
-    os.makedirs(output_dir, exist_ok=True)
-
-    for s in schemas:
-        realpath = posixpath.join(output_dir, s)
-        if posixpath.exists(realpath):
-            continue
-        create_schema_doc(env.path2doc(s), realpath)
-
-    env.autoasdf_generate = False
+    # Read all source documentation files and parse all asdf-schema directives
+    schemas = find_autoschema_references(app, genfiles)
+    # Create the documentation files that correspond to the schemas listed
+    create_schema_docs(app, schemas)
 
 
 def setup(app):
