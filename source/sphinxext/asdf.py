@@ -1,6 +1,8 @@
 import os
 import posixpath
 
+import yaml
+
 from docutils import nodes
 from docutils.frontend import OptionParser
 
@@ -20,10 +22,6 @@ class AsdfSchemas(SphinxDirective):
     has_content = True
 
     def _process_asdf_toctree(self):
-
-        dirname = posixpath.dirname(self.env.docname)
-        schema_path = self.state.document.settings.env.config.asdf_schema_path
-        srcdir = self.state.document.settings.env.srcdir
 
         links = []
         for name in self.content:
@@ -56,6 +54,26 @@ class AsdfSchemas(SphinxDirective):
         # much cleaner than writing a custom parser to extract the schema
         # information.
         return [schema_def(text=c.strip().split()[0]) for c in self.content]
+
+
+class AsdfSchema(SphinxDirective):
+
+    has_content = True
+
+    def run(self):
+
+        schema_name = self.content[0]
+        schema_dir = self.state.document.settings.env.config.asdf_schema_path
+        srcdir = self.state.document.settings.env.srcdir
+
+        schema_file = posixpath.join(srcdir, schema_dir, schema_name) + '.yaml'
+
+        with open(schema_file) as ff:
+            content = yaml.safe_load(ff.read())
+
+        description = content.get('description', 'No description provided')
+
+        return [nodes.paragraph(text=description)]
 
 
 def find_autoasdf_directives(env, filename):
@@ -108,16 +126,14 @@ def create_schema_docs(app, schemas):
 
         with open(doc_path, 'w') as ff:
             ff.write(schema_name + '\n')
-            ff.write('=' * len(schema_name) + '\n')
-            ff.write('Your message here\n')
+            ff.write('=' * len(schema_name) + '\n\n')
+            ff.write('.. asdf-schema::\n\n')
+            ff.write('    {}\n'.format(schema_name))
 
 
 def autogenerate_schema_docs(app):
 
     env = app.env
-
-    schema_path = env.config.asdf_schema_path
-    schema_path = posixpath.join(env.srcdir, schema_path)
 
     genfiles = [env.doc2path(x, base=None) for x in env.found_docs
                 if posixpath.isfile(env.doc2path(x))]
@@ -140,6 +156,7 @@ def setup(app):
     # Describes a path relative to the sphinx source directory
     app.add_config_value('asdf_schema_path', 'schemas', 'env')
     app.add_directive('asdf-autoschemas', AsdfSchemas)
+    app.add_directive('asdf-schema', AsdfSchema)
 
     app.connect('builder-inited', autogenerate_schema_docs)
 
