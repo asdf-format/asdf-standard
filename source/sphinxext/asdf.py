@@ -71,9 +71,10 @@ class AsdfSchema(SphinxDirective):
         with open(schema_file) as ff:
             content = yaml.safe_load(ff.read())
 
+        title = content.get('title', '')
         description = content.get('description', 'No description provided')
 
-        return [nodes.paragraph(text=description)]
+        return [nodes.subtitle(text=title), nodes.paragraph(text=description)]
 
 
 def find_autoasdf_directives(env, filename):
