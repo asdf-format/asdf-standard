@@ -10,7 +10,6 @@ in time and time deltas.
 
 :doc:`core`
 
-.. toctree::
-   :maxdepth: 1
+.. asdf-autoschemas::
 
-   stsci.edu/asdf/time/time-1.1.0.rst
+   stsci.edu/asdf/time/time-1.1.0
