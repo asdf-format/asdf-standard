@@ -5,11 +5,10 @@ import yaml
 
 from docutils import nodes
 from docutils.frontend import OptionParser
-from docutils.statemachine import ViewList
 
 from sphinx import addnodes
 from sphinx.parsers import RSTParser
-from sphinx.util.nodes import nested_parse_with_titles
+from sphinx.util.fileutil import copy_asset
 from sphinx.util.docutils import SphinxDirective, new_document
 
 
@@ -17,19 +16,52 @@ class schema_def(nodes.comment):
     pass
 
 
-class AsdfViewList(ViewList):
+class schema_title(nodes.line):
+    pass
 
-    def __init__(self, *args, filename='', start_idx=1, **kwargs):
-        super().__init__(*args, **kwargs)
-        self._filename = filename
-        self._lineno = start_idx
 
-    def append(self, line):
-        super().append(line, self._filename, self._lineno)
-        self._lineno += 1
+class asdf_tree(nodes.bullet_list):
+    pass
 
-    def empty_line(self):
-        self.append("")
+
+def visit_asdf_tree_html(self, node):
+    self.body.append(r'<ul class="asdf_tree">')
+
+
+def depart_asdf_tree_html(self, node):
+    self.body.append(r'</ul>')
+
+
+class tree_item(nodes.line):
+    pass
+
+
+def visit_tree_item_html(self, node):
+    self.body.append(r'<li>')
+
+
+def depart_tree_item_html(self, node):
+    self.body.append(r'</li>')
+
+
+def visit_schema_title_html(self, node):
+    self.body.append(r'<p class="schema_title">')
+
+
+def depart_schema_title_html(self, node):
+    self.body.append(r'</p>')
+
+
+class schema_description(nodes.line):
+    pass
+
+
+def visit_schema_description_html(self, node):
+    self.body.append(r'<p class="schema_description"><b>Description:</b> ')
+
+
+def depart_schema_description_html(self, node):
+    self.body.append(r'</p>')
 
 
 class AsdfSchemas(SphinxDirective):
@@ -88,22 +120,28 @@ class AsdfSchema(SphinxDirective):
         with open(schema_file) as ff:
             content = yaml.safe_load(ff.read())
 
-        title = content.get('title', '')
+        title = schema_title(text=content.get('title', ''))
+
+        docnodes = [title]
+
         description = content.get('description', '')
-
-        # Start at second line to account for presence of the schema name
-        rst = AsdfViewList(filename=schema_file, start_idx=2)
-        rst.append("{}".format(title))
-        rst.empty_line()
         if description:
-            rst.append("**Description:** {}".format(description))
+            docnodes.append(schema_description(text=description))
 
-        node = nodes.section()
-        node.document = self.state.document
+        if 'properties' in content:
+            docnodes.append(self._walk_tree(content['properties']))
 
-        nested_parse_with_titles(self.state, rst, node)
+        return docnodes
 
-        return node.children
+
+    def _walk_tree(self, tree):
+        treenodes = asdf_tree()
+        for key in tree:
+            treenodes.append(tree_item(text=key))
+            if isinstance(tree[key], dict):
+                treenodes.append(self._walk_tree(tree[key]))
+
+        return treenodes
 
 
 def find_autoasdf_directives(env, filename):
@@ -181,6 +219,13 @@ def autogenerate_schema_docs(app):
     create_schema_docs(app, schemas)
 
 
+def on_build_finished(app, exc):
+    if exc is None:
+        src = posixpath.join(posixpath.dirname(__file__), 'asdf_schema.css')
+        dst = posixpath.join(app.outdir, '_static')
+        copy_asset(src, dst)
+
+
 def setup(app):
 
     # Describes a path relative to the sphinx source directory
@@ -188,6 +233,17 @@ def setup(app):
     app.add_directive('asdf-autoschemas', AsdfSchemas)
     app.add_directive('asdf-schema', AsdfSchema)
 
+    app.add_node(schema_title, html=(visit_schema_title_html,
+                                     depart_schema_title_html))
+    app.add_node(schema_description, html=(visit_schema_description_html,
+                                           depart_schema_description_html))
+    app.add_node(asdf_tree, html=(visit_asdf_tree_html,
+                                  depart_asdf_tree_html))
+    app.add_node(tree_item, html=(visit_tree_item_html,
+                                  depart_tree_item_html))
+    app.add_css_file('asdf_schema.css')
+
     app.connect('builder-inited', autogenerate_schema_docs)
+    app.connect('build-finished', on_build_finished)
 
     return dict(version='0.1')
