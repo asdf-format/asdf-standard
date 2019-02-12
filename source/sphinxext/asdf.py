@@ -17,6 +17,21 @@ class schema_def(nodes.comment):
     pass
 
 
+class AsdfViewList(ViewList):
+
+    def __init__(self, *args, filename='', start_idx=1, **kwargs):
+        super().__init__(*args, **kwargs)
+        self._filename = filename
+        self._lineno = start_idx
+
+    def append(self, line):
+        super().append(line, self._filename, self._lineno)
+        self._lineno += 1
+
+    def empty_line(self):
+        self.append("")
+
+
 class AsdfSchemas(SphinxDirective):
 
     required_arguments = 0
@@ -76,10 +91,12 @@ class AsdfSchema(SphinxDirective):
         title = content.get('title', '')
         description = content.get('description', '')
 
-        rst = ViewList()
-        rst.append("{}\n".format(title), schema_file, 2)
+        # Start at second line to account for presence of the schema name
+        rst = AsdfViewList(filename=schema_file, start_idx=2)
+        rst.append("{}".format(title))
+        rst.empty_line()
         if description:
-            rst.append("**Description:** {}\n".format(description), schema_file, 3)
+            rst.append("**Description:** {}".format(description))
 
         node = nodes.section()
         node.document = self.state.document
