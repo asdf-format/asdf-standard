@@ -5,15 +5,17 @@ import yaml
 
 from docutils import nodes
 from docutils.frontend import OptionParser
+from docutils.statemachine import ViewList
 
 from sphinx import addnodes
 from sphinx.parsers import RSTParser
 from sphinx.util.fileutil import copy_asset
+from sphinx.util.nodes import nested_parse_with_titles
 from sphinx.util.docutils import SphinxDirective, new_document
 
+from .md2rst import md2rst
 from .nodes import (add_asdf_nodes, schema_title, schema_description,
                     asdf_tree, asdf_tree_item)
-
 
 
 class schema_def(nodes.comment):
@@ -82,13 +84,25 @@ class AsdfSchema(SphinxDirective):
 
         description = content.get('description', '')
         if description:
-            docnodes.append(schema_description(text=description))
+            docnodes.append(self._parse_description(description, schema_file))
 
         if 'properties' in content:
             docnodes.append(self._walk_tree(content['properties']))
 
         return docnodes
 
+    def _parse_description(self, description, filename):
+
+        rst = ViewList()
+        for i, line in enumerate(md2rst(description).split('\n')):
+            rst.append(line, filename, i+1)
+
+        node = nodes.section()
+        node.document = self.state.document
+
+        nested_parse_with_titles(self.state, rst, node)
+
+        return schema_description(None, *node.children)
 
     def _walk_tree(self, tree):
         treenodes = asdf_tree()

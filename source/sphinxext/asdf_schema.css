@@ -3,6 +3,10 @@ p.schema_title {
     font-weight: bold;
 }
 
+div.schema_description {
+    font-size: 1.2em;
+}
+
 ul.asdf_tree {
     list-style-type: none;
 }

@@ -10,13 +10,13 @@ class schema_title(nodes.line):
         self.body.append(r'</p>')
 
 
-class schema_description(nodes.line):
+class schema_description(nodes.compound):
 
     def visit_html(self, node):
-        self.body.append(r'<p class="schema_description"><b>Description:</b> ')
+        self.body.append(r'<div class="schema_description"><b>Description:</b>')
 
     def depart_html(self, node):
-        self.body.append(r'</p>')
+        self.body.append(r'</div>')
 
 
 class asdf_tree(nodes.bullet_list):
