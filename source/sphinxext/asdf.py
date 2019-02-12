@@ -11,57 +11,13 @@ from sphinx.parsers import RSTParser
 from sphinx.util.fileutil import copy_asset
 from sphinx.util.docutils import SphinxDirective, new_document
 
+from .nodes import (add_asdf_nodes, schema_title, schema_description,
+                    asdf_tree, asdf_tree_item)
+
+
 
 class schema_def(nodes.comment):
     pass
-
-
-class schema_title(nodes.line):
-    pass
-
-
-class asdf_tree(nodes.bullet_list):
-    pass
-
-
-def visit_asdf_tree_html(self, node):
-    self.body.append(r'<ul class="asdf_tree">')
-
-
-def depart_asdf_tree_html(self, node):
-    self.body.append(r'</ul>')
-
-
-class tree_item(nodes.line):
-    pass
-
-
-def visit_tree_item_html(self, node):
-    self.body.append(r'<li>')
-
-
-def depart_tree_item_html(self, node):
-    self.body.append(r'</li>')
-
-
-def visit_schema_title_html(self, node):
-    self.body.append(r'<p class="schema_title">')
-
-
-def depart_schema_title_html(self, node):
-    self.body.append(r'</p>')
-
-
-class schema_description(nodes.line):
-    pass
-
-
-def visit_schema_description_html(self, node):
-    self.body.append(r'<p class="schema_description"><b>Description:</b> ')
-
-
-def depart_schema_description_html(self, node):
-    self.body.append(r'</p>')
 
 
 class AsdfSchemas(SphinxDirective):
@@ -137,7 +93,7 @@ class AsdfSchema(SphinxDirective):
     def _walk_tree(self, tree):
         treenodes = asdf_tree()
         for key in tree:
-            treenodes.append(tree_item(text=key))
+            treenodes.append(asdf_tree_item(text=key))
             if isinstance(tree[key], dict):
                 treenodes.append(self._walk_tree(tree[key]))
 
@@ -233,14 +189,8 @@ def setup(app):
     app.add_directive('asdf-autoschemas', AsdfSchemas)
     app.add_directive('asdf-schema', AsdfSchema)
 
-    app.add_node(schema_title, html=(visit_schema_title_html,
-                                     depart_schema_title_html))
-    app.add_node(schema_description, html=(visit_schema_description_html,
-                                           depart_schema_description_html))
-    app.add_node(asdf_tree, html=(visit_asdf_tree_html,
-                                  depart_asdf_tree_html))
-    app.add_node(tree_item, html=(visit_tree_item_html,
-                                  depart_tree_item_html))
+    add_asdf_nodes(app)
+
     app.add_css_file('asdf_schema.css')
 
     app.connect('builder-inited', autogenerate_schema_docs)
