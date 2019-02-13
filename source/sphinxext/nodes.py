@@ -19,6 +19,18 @@ class schema_description(nodes.compound):
         self.body.append(r'</div>')
 
 
+class schema_properties(nodes.compound):
+
+    def visit_html(self, node):
+        self.body.append(r'<div class="schema_properties"><h3>Properties</h3>')
+        self.body.append(r'<p>{}</p>'.format(
+            "These are the top-level properties for this schema"
+        ))
+
+    def depart_html(self, node):
+        self.body.append(r'</div>')
+
+
 class asdf_tree(nodes.bullet_list):
 
     def visit_html(self, node):
@@ -31,7 +43,7 @@ class asdf_tree(nodes.bullet_list):
 class asdf_tree_item(nodes.line):
 
     def visit_html(self, node):
-        self.body.append(r'<li>')
+        self.body.append(r'<li class="asdf_tree_item">')
 
     def depart_html(self, node):
         self.body.append(r'</li>')
@@ -40,6 +52,7 @@ class asdf_tree_item(nodes.line):
 custom_nodes = [
     schema_title,
     schema_description,
+    schema_properties,
     asdf_tree,
     asdf_tree_item,
 ]

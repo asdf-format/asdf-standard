@@ -15,7 +15,7 @@ from sphinx.util.docutils import SphinxDirective, new_document
 
 from .md2rst import md2rst
 from .nodes import (add_asdf_nodes, schema_title, schema_description,
-                    asdf_tree, asdf_tree_item)
+                    schema_properties, asdf_tree, asdf_tree_item)
 
 
 class schema_def(nodes.comment):
@@ -86,8 +86,7 @@ class AsdfSchema(SphinxDirective):
         if description:
             docnodes.append(self._parse_description(description, schema_file))
 
-        if 'properties' in content:
-            docnodes.append(self._walk_tree(content['properties']))
+        docnodes.append(self._process_properties(content))
 
         return docnodes
 
@@ -111,12 +110,24 @@ class AsdfSchema(SphinxDirective):
         nodes = self._markdown_to_nodes(description, filename)
         return schema_description(None, *nodes)
 
-    def _walk_tree(self, tree):
+    def _process_properties(self, schema):
+        if 'properties' in schema:
+            required = schema.get('required', [])
+            properties = self._walk_tree(schema['properties'], required)
+            return schema_properties(None, properties)
+        else:
+            return schema_properties()
+
+    def _walk_tree(self, tree, required, level=0):
         treenodes = asdf_tree()
         for key in tree:
-            treenodes.append(asdf_tree_item(text=key))
+            status = 'required' if key in required else 'optional'
+            text = "{} ({})".format(key, status)
+            treenodes.append(asdf_tree_item(text=text))
             if isinstance(tree[key], dict):
-                treenodes.append(self._walk_tree(tree[key]))
+                required = tree.get('required', [])
+                treenodes.append(self._walk_tree(tree[key], required,
+                                                 level=level+1))
 
         return treenodes
 

@@ -10,3 +10,8 @@ div.schema_description {
 ul.asdf_tree {
     list-style-type: none;
 }
+
+li.asdf_tree_item {
+    font-size: 1.1em;
+    font-weight: bold;
+}
