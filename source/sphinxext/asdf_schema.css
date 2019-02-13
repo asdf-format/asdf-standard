@@ -7,11 +7,33 @@ div.schema_description {
     font-size: 1.2em;
 }
 
+div.property_description {
+    font-side: 1em;
+}
+
 ul.asdf_tree {
     list-style-type: none;
+    border: 1px solid #ddd;
 }
 
 li.asdf_tree_item {
     font-size: 1.1em;
     font-weight: bold;
+}
+
+li.schema_property {
+    border-bottom: 1px solid #ddd;
+}
+
+li.schema_property:last-child {
+    border-bottom: none;
+}
+
+div.schema_property_name {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+div.schema_property_required {
+    font-style: italic;
 }

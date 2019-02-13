@@ -12,8 +12,15 @@ class schema_title(nodes.compound):
 
 class schema_description(nodes.compound):
 
+    def __init__(self, *args, top=False):
+        self.top = top
+        super().__init__(*args)
+
     def visit_html(self, node):
-        self.body.append(r'<div class="schema_description"><b>Description:</b>')
+        if node.top:
+            self.body.append(r'<div class="schema_description"><b>Description:</b>')
+        else:
+            self.body.append(r'<div class="property_description"')
 
     def depart_html(self, node):
         self.body.append(r'</div>')
@@ -29,6 +36,30 @@ class schema_properties(nodes.compound):
 
     def depart_html(self, node):
         self.body.append(r'</div>')
+
+
+class schema_property(nodes.compound):
+
+    def visit_html(self, node):
+        self.body.append(r'<li class="schema_property">')
+
+    def depart_html(self, node):
+        self.body.append(r'</li>')
+
+
+class schema_property_name(nodes.line):
+
+    def __init__(self, *args, required=False, **kwargs):
+        self.required = required
+        super().__init__(*args, **kwargs)
+
+    def visit_html(self, node):
+        self.body.append(r'<div class="schema_property_name">')
+
+    def depart_html(self, node):
+        self.body.append(r'</div>')
+        if node.required:
+            self.body.append(r'<div class="schema_property_required">Required</div>')
 
 
 class asdf_tree(nodes.bullet_list):
@@ -53,6 +84,8 @@ custom_nodes = [
     schema_title,
     schema_description,
     schema_properties,
+    schema_property,
+    schema_property_name,
     asdf_tree,
     asdf_tree_item,
 ]
