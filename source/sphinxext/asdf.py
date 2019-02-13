@@ -78,7 +78,7 @@ class AsdfSchema(SphinxDirective):
         with open(schema_file) as ff:
             content = yaml.safe_load(ff.read())
 
-        title = schema_title(text=content.get('title', ''))
+        title = self._parse_title(content.get('title', ''), schema_file)
 
         docnodes = [title]
 
@@ -91,10 +91,9 @@ class AsdfSchema(SphinxDirective):
 
         return docnodes
 
-    def _parse_description(self, description, filename):
-
+    def _markdown_to_nodes(self, text, filename):
         rst = ViewList()
-        for i, line in enumerate(md2rst(description).split('\n')):
+        for i, line in enumerate(md2rst(text).split('\n')):
             rst.append(line, filename, i+1)
 
         node = nodes.section()
@@ -102,7 +101,15 @@ class AsdfSchema(SphinxDirective):
 
         nested_parse_with_titles(self.state, rst, node)
 
-        return schema_description(None, *node.children)
+        return node.children
+
+    def _parse_title(self, title, filename):
+        nodes = self._markdown_to_nodes(title, filename)
+        return schema_title(None, *nodes)
+
+    def _parse_description(self, description, filename):
+        nodes = self._markdown_to_nodes(description, filename)
+        return schema_description(None, *nodes)
 
     def _walk_tree(self, tree):
         treenodes = asdf_tree()
