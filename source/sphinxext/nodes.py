@@ -59,7 +59,14 @@ class schema_property_name(nodes.line):
     def depart_html(self, node):
         self.body.append(r'</div>')
         if node.required:
-            self.body.append(r'<div class="schema_property_required">Required</div>')
+            self.body.append(r"""
+                <table class="schema_property_details">
+                    <tr>
+                        <td>BLOOT</td>
+                        <td class="schema_property_required">Required</td>
+                    </tr>
+                </table>
+            """)
 
 
 class asdf_tree(nodes.bullet_list):
