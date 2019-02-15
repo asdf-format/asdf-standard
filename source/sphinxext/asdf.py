@@ -116,6 +116,11 @@ class AsdfSchema(SphinxDirective):
             required = schema.get('required', [])
             properties = self._walk_tree(schema['properties'], required)
             return schema_properties(None, properties)
+        elif 'anyOf' in schema:
+            children = [nodes.line(text='anyOf goes here')]
+            return schema_properties(None, *children)
+        # TODO: handle cases where there is a top-level type keyword but no
+        # properties (see asdf/core/complex for an example)
         else:
             return schema_properties()
 
