@@ -49,24 +49,28 @@ class schema_property(nodes.compound):
 
 class schema_property_name(nodes.line):
 
-    def __init__(self, *args, required=False, **kwargs):
-        self.required = required
-        super().__init__(*args, **kwargs)
-
     def visit_html(self, node):
         self.body.append(r'<div class="schema_property_name">')
 
     def depart_html(self, node):
         self.body.append(r'</div>')
+
+
+class schema_property_details(nodes.compound):
+
+    def __init__(self, typ, required, *args, **kwargs):
+        self.typ = typ
+        self.required = required
+        super().__init__(*args, **kwargs)
+
+    def visit_html(self, node):
+        self.body.append(r'<table><tr>')
+        self.body.append(r'<td><b>{}</b></td>'.format(node.typ))
         if node.required:
-            self.body.append(r"""
-                <table class="schema_property_details">
-                    <tr>
-                        <td>BLOOT</td>
-                        <td class="schema_property_required">Required</td>
-                    </tr>
-                </table>
-            """)
+            self.body.append(r'<td><em>Required</em></td>')
+
+    def depart_html(self, node):
+        self.body.append(r'</tr></table>')
 
 
 class asdf_tree(nodes.bullet_list):
@@ -93,6 +97,7 @@ custom_nodes = [
     schema_properties,
     schema_property,
     schema_property_name,
+    schema_property_details,
     asdf_tree,
     asdf_tree_item,
 ]

@@ -16,7 +16,7 @@ from sphinx.util.docutils import SphinxDirective, new_document
 from .md2rst import md2rst
 from .nodes import (add_asdf_nodes, schema_title, schema_description,
                     schema_properties, schema_property, schema_property_name,
-                    asdf_tree, asdf_tree_item)
+                    schema_property_details, asdf_tree, asdf_tree_item)
 
 
 class schema_def(nodes.comment):
@@ -119,27 +119,27 @@ class AsdfSchema(SphinxDirective):
         else:
             return schema_properties()
 
-    def _create_top_property(self, name, description, required):
+    def _create_top_property(self, name, tree, required):
+
+        description = tree.pop('description', '')
+        typ = tree.pop('type', 'object')
 
         prop = schema_property()
-        prop.append(schema_property_name(text=name, required=required))
+        prop.append(schema_property_name(text=name))
+        prop.append(schema_property_details(typ, required))
         prop.append(self._parse_description(description, ''))
         return prop
 
     def _walk_tree(self, tree, required, level=0):
         treenodes = asdf_tree()
         for key in tree:
+            is_required = key in required
+            if level == 0:
+                treenodes.append(self._create_top_property(key, tree[key], is_required))
             if isinstance(tree[key], dict):
-                description = tree[key].pop('description', '')
-            else:
-                description = ''
-            treenodes.append(self._create_top_property(key,
-                                                       description,
-                                                       key in required))
-            #if isinstance(tree[key], dict):
-            #    required = tree.get('required', [])
-            #    treenodes.append(self._walk_tree(tree[key], required,
-            #                                     level=level+1))
+                required = tree.get('required', [])
+                treenodes.append(self._walk_tree(tree[key], required,
+                                                 level=level+1))
 
         return treenodes
 
