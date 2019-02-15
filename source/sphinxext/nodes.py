@@ -88,7 +88,7 @@ class schema_property_details(nodes.compound):
         self.body.append(r'</tr></table>')
 
 
-class schema_anyof(nodes.compound):
+class schema_anyof_header(nodes.compound):
 
     def __init__(self, *args, hrefs=[], **kwargs):
         self.hrefs = hrefs
@@ -100,6 +100,29 @@ class schema_anyof(nodes.compound):
     def depart_html(self, node):
         # Everything is handled by the template
         pass
+
+
+class schema_anyof_body(nodes.compound):
+
+    def __init__(self, *args, hrefs=[], **kwargs):
+        self.hrefs = hrefs
+        super().__init__(*args, **kwargs)
+
+    def visit_html(self, node):
+        self.body.append(r'<div class="tab-content">')
+        for i, ref in enumerate(node.hrefs):
+            if i == 0:
+                self.body.append(r'<div id={} class="tab-pane fade in active">'.format(ref))
+            else:
+                self.body.append(r'<div id={} class="tab-pane fade">'.format(ref))
+            self.body.append(r'<h3>HEADER {}'.format(i+1))
+            self.body.append(r'<p>Some stuff about {}</p>'.format(i+1))
+            self.body.append(r'<p>The link here is "{}"'.format(ref))
+            self.body.append(r'</div>')
+
+    def depart_html(self, node):
+        self.body.append(r'</dev>')
+
 
 class asdf_tree(nodes.bullet_list):
 
@@ -126,7 +149,8 @@ custom_nodes = [
     schema_property,
     schema_property_name,
     schema_property_details,
-    schema_anyof,
+    schema_anyof_header,
+    schema_anyof_body,
     asdf_tree,
     asdf_tree_item,
 ]

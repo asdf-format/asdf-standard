@@ -16,8 +16,8 @@ from sphinx.util.docutils import SphinxDirective, new_document
 from .md2rst import md2rst
 from .nodes import (add_asdf_nodes, schema_title, schema_description,
                     schema_properties, schema_property, schema_property_name,
-                    schema_property_details, schema_anyof, asdf_tree,
-                    asdf_tree_item)
+                    schema_property_details, schema_anyof_header,
+                    schema_anyof_body, asdf_tree, asdf_tree_item)
 
 
 class schema_def(nodes.comment):
@@ -118,10 +118,7 @@ class AsdfSchema(SphinxDirective):
             properties = self._walk_tree(schema['properties'], required)
             return schema_properties(None, properties)
         elif 'anyOf' in schema:
-            children = [
-                nodes.line(text='anyOf goes here'),
-                self._create_schema_anyof(schema['anyOf']),
-            ]
+            children = self._create_schema_anyof(schema['anyOf'])
             return schema_properties(None, *children)
         # TODO: handle cases where there is a top-level type keyword but no
         # properties (see asdf/core/complex for an example)
@@ -131,7 +128,11 @@ class AsdfSchema(SphinxDirective):
     def _create_schema_anyof(self, items, key=None):
         href_base = "{}-{}".format(self.schema_name, key or 'top')
         hrefs = ["{}-{}".format(href_base, i+1) for i in range(len(items))]
-        return schema_anyof(hrefs=hrefs)
+        return [
+            nodes.line(text='Schema can be any of the following types:'),
+            schema_anyof_header(hrefs=hrefs),
+            schema_anyof_body(items, hrefs=hrefs)
+        ]
 
     def _create_top_property(self, name, tree, required):
 
