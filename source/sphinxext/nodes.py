@@ -1,4 +1,19 @@
 from docutils import nodes
+from jinja2 import Environment
+
+
+template_env = Environment()
+anyof_template = template_env.from_string("""
+    <ul class="pagination">
+        <li class="previous"><a class="page-link" href="#">Previous</a></li>
+        {% for ref in hrefs %}
+            <li class="page-item">
+                <a class="page-link" href="#{{ ref }}">{{ loop.index }}</a>
+            </li>
+        {% endfor %}
+        <li class="next"><a class="page-link" href="#">Next</a></li>
+    </ul>
+""")
 
 
 class schema_title(nodes.compound):
@@ -73,6 +88,19 @@ class schema_property_details(nodes.compound):
         self.body.append(r'</tr></table>')
 
 
+class schema_anyof(nodes.compound):
+
+    def __init__(self, *args, hrefs=[], **kwargs):
+        self.hrefs = hrefs
+        super().__init__(*args, **kwargs)
+
+    def visit_html(self, node):
+        self.body.append(anyof_template.render(hrefs=node.hrefs))
+
+    def depart_html(self, node):
+        # Everything is handled by the template
+        pass
+
 class asdf_tree(nodes.bullet_list):
 
     def visit_html(self, node):
@@ -98,6 +126,7 @@ custom_nodes = [
     schema_property,
     schema_property_name,
     schema_property_details,
+    schema_anyof,
     asdf_tree,
     asdf_tree_item,
 ]

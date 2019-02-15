@@ -16,7 +16,8 @@ from sphinx.util.docutils import SphinxDirective, new_document
 from .md2rst import md2rst
 from .nodes import (add_asdf_nodes, schema_title, schema_description,
                     schema_properties, schema_property, schema_property_name,
-                    schema_property_details, asdf_tree, asdf_tree_item)
+                    schema_property_details, schema_anyof, asdf_tree,
+                    asdf_tree_item)
 
 
 class schema_def(nodes.comment):
@@ -70,11 +71,11 @@ class AsdfSchema(SphinxDirective):
 
     def run(self):
 
-        schema_name = self.content[0]
+        self.schema_name = self.content[0]
         schema_dir = self.state.document.settings.env.config.asdf_schema_path
         srcdir = self.state.document.settings.env.srcdir
 
-        schema_file = posixpath.join(srcdir, schema_dir, schema_name) + '.yaml'
+        schema_file = posixpath.join(srcdir, schema_dir, self.schema_name) + '.yaml'
 
         with open(schema_file) as ff:
             content = yaml.safe_load(ff.read())
@@ -117,12 +118,20 @@ class AsdfSchema(SphinxDirective):
             properties = self._walk_tree(schema['properties'], required)
             return schema_properties(None, properties)
         elif 'anyOf' in schema:
-            children = [nodes.line(text='anyOf goes here')]
+            children = [
+                nodes.line(text='anyOf goes here'),
+                self._create_schema_anyof(schema['anyOf']),
+            ]
             return schema_properties(None, *children)
         # TODO: handle cases where there is a top-level type keyword but no
         # properties (see asdf/core/complex for an example)
         else:
             return schema_properties()
+
+    def _create_schema_anyof(self, items, key=None):
+        href_base = "{}-{}".format(self.schema_name, key or 'top')
+        hrefs = ["{}-{}".format(href_base, i+1) for i in range(len(items))]
+        return schema_anyof(hrefs=hrefs)
 
     def _create_top_property(self, name, tree, required):
 
