@@ -122,7 +122,12 @@ class AsdfSchema(SphinxDirective):
     def _create_top_property(self, name, tree, required):
 
         description = tree.pop('description', '')
-        typ = tree.pop('type', 'object')
+
+        if '$ref' in tree:
+            # TODO: make the reference a link
+            typ = tree.pop('$ref')
+        else:
+            typ = tree.pop('type', 'object')
 
         prop = schema_property()
         prop.append(schema_property_name(text=name))
