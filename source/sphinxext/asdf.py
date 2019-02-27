@@ -17,7 +17,8 @@ from .md2rst import md2rst
 from .nodes import (add_asdf_nodes, schema_title, schema_description,
                     schema_properties, schema_property, schema_property_name,
                     schema_property_details, schema_anyof_header,
-                    schema_anyof_body, asdf_tree, asdf_tree_item)
+                    schema_anyof_body, schema_anyof_item, asdf_tree,
+                    asdf_tree_item)
 
 
 class schema_def(nodes.comment):
@@ -128,10 +129,24 @@ class AsdfSchema(SphinxDirective):
     def _create_schema_anyof(self, items, key=None):
         href_base = "{}-{}".format(self.schema_name, key or 'top')
         hrefs = ["{}-{}".format(href_base, i+1) for i in range(len(items))]
+
+        body = schema_anyof_body()
+        for i, tree in enumerate(items):
+            kwargs = {
+                'first': i == 0,
+                'href': hrefs[i],
+            }
+            if 'properties' in tree:
+                required = tree.get('required', [])
+                properties = self._walk_tree(tree['properties'], required)
+                body.append(schema_anyof_item(None, properties, **kwargs))
+            else:
+                body.append(schema_anyof_item(**kwargs))
+
         return [
             nodes.line(text='Schema can be any of the following types:'),
             schema_anyof_header(hrefs=hrefs),
-            schema_anyof_body(items, hrefs=hrefs)
+            body,
         ]
 
     def _create_top_property(self, name, tree, required):
