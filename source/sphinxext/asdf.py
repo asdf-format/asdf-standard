@@ -241,9 +241,10 @@ def autogenerate_schema_docs(app):
 
 def on_build_finished(app, exc):
     if exc is None:
-        src = posixpath.join(posixpath.dirname(__file__), 'asdf_schema.css')
-        dst = posixpath.join(app.outdir, '_static')
-        copy_asset(src, dst)
+        for asset in ['asdf_schema.css', 'asdf.js']:
+            src = posixpath.join(posixpath.dirname(__file__), asset)
+            dst = posixpath.join(app.outdir, '_static')
+            copy_asset(src, dst)
 
 
 def setup(app):
@@ -256,6 +257,7 @@ def setup(app):
     add_asdf_nodes(app)
 
     app.add_css_file('asdf_schema.css')
+    app.add_javascript('asdf.js')
 
     app.connect('builder-inited', autogenerate_schema_docs)
     app.connect('build-finished', on_build_finished)

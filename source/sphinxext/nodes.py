@@ -8,7 +8,7 @@ anyof_template = template_env.from_string("""
         <li class="previous"><a class="page-link" href="#">Previous</a></li>
         {% for ref in hrefs %}
             <li class="page-item">
-                <a class="page-link" href="#{{ ref }}">{{ loop.index }}</a>
+                <a class="anyof-link" href="#{{ ref }}" onclick="onClick(this)">{{ loop.index }}</a>
             </li>
         {% endfor %}
         <li class="next"><a class="page-link" href="#">Next</a></li>
