@@ -143,8 +143,7 @@ class AsdfSchema(SphinxDirective):
 
         body = schema_anyof_body()
         for i, tree in enumerate(items):
-            nodetype = functools.partial(schema_anyof_item, first=(i==0),
-                                         href=hrefs[i])
+            nodetype = functools.partial(schema_anyof_item, href=hrefs[i])
             body.append(self._process_properties(tree, nodetype=nodetype))
 
         return [

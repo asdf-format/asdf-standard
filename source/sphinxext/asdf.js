@@ -1,3 +1,8 @@
+window.onload = function () {
+    first = $('.tab-pane.fade')[0];
+    $(first).addClass('in active');
+}
+
 function onClick(link) {
     current = $('.tab-pane.fade.in.active')[0];
 

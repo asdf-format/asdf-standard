@@ -113,16 +113,12 @@ class schema_anyof_body(nodes.compound):
 
 class schema_anyof_item(nodes.compound):
 
-    def __init__(self, *args, href='', first=False, **kwargs):
+    def __init__(self, *args, href='', **kwargs):
         self.href = href
-        self.first = first
         super().__init__(*args, **kwargs)
 
     def visit_html(self, node):
-        if node.first:
-            self.body.append(r'<div id={} class="tab-pane fade in active">'.format(node.href))
-        else:
-            self.body.append(r'<div id={} class="tab-pane fade">'.format(node.href))
+        self.body.append(r'<div id={} class="tab-pane fade">'.format(node.href))
 
     def depart_html(self, node):
         self.body.append(r'</div>')
