@@ -1,5 +1,6 @@
 import os
 import posixpath
+import functools
 
 import yaml
 
@@ -118,23 +119,23 @@ class AsdfSchema(SphinxDirective):
         treenodes.append(asdf_ref(text=ref))
         return treenodes
 
-    def _process_properties(self, schema):
+    def _process_properties(self, schema, nodetype=schema_properties):
         if 'properties' in schema:
             required = schema.get('required', [])
             properties = self._walk_tree(schema['properties'], required)
-            return schema_properties(None, properties)
+            return nodetype(None, properties)
         elif 'type' in schema:
             text = nodes.line(text='This node is {} type'.format(schema['type']))
-            return schema_properties(None, text)
+            return nodetype(None, text)
         elif 'anyOf' in schema:
             children = self._create_schema_anyof(schema['anyOf'])
-            return schema_properties(None, *children)
+            return nodetype(None, *children)
         elif '$ref' in schema:
             ref = self._create_ref_node(schema['$ref'])
-            return schema_properties(None, ref)
+            return nodetype(None, ref)
         # TODO: handle case of top-level allOf
         else:
-            return schema_properties()
+            return nodetype()
 
     def _create_schema_anyof(self, items, key=None):
         href_base = "{}-{}".format(self.schema_name, key or 'top')
@@ -142,22 +143,9 @@ class AsdfSchema(SphinxDirective):
 
         body = schema_anyof_body()
         for i, tree in enumerate(items):
-            kwargs = {
-                'first': i == 0,
-                'href': hrefs[i],
-            }
-            if 'properties' in tree:
-                required = tree.get('required', [])
-                properties = self._walk_tree(tree['properties'], required)
-                body.append(schema_anyof_item(None, properties, **kwargs))
-            elif 'type' in tree:
-                text = nodes.line(text='This node is {} type'.format(schema['type']))
-                body.append(schema_properties(None, text))
-            elif '$ref' in tree:
-                ref = self._create_ref_node(tree['$ref'])
-                body.append(schema_anyof_item(None, ref, **kwargs))
-            else:
-                body.append(schema_anyof_item(**kwargs))
+            nodetype = functools.partial(schema_anyof_item, first=(i==0),
+                                         href=hrefs[i])
+            body.append(self._process_properties(tree, nodetype=nodetype))
 
         return [
             nodes.line(text='Schema can be any of the following types:'),
