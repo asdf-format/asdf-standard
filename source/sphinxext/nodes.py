@@ -146,6 +146,16 @@ class asdf_tree_item(nodes.line):
         self.body.append(r'</li>')
 
 
+class asdf_ref(nodes.line):
+
+    def visit_html(self, node):
+        self.body.append(r'<em>This node is a reference to another type:</em>')
+        self.body.append(r'<div class="asdf_ref">')
+
+    def depart_html(self, node):
+        self.body.append(r'</div>')
+
+
 custom_nodes = [
     schema_title,
     schema_description,
@@ -158,6 +168,7 @@ custom_nodes = [
     schema_anyof_item,
     asdf_tree,
     asdf_tree_item,
+    asdf_ref,
 ]
 
 

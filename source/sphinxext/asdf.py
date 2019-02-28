@@ -17,7 +17,7 @@ from .md2rst import md2rst
 from .nodes import (add_asdf_nodes, schema_title, schema_description,
                     schema_properties, schema_property, schema_property_name,
                     schema_property_details, schema_anyof_header,
-                    schema_anyof_body, schema_anyof_item, asdf_tree,
+                    schema_anyof_body, schema_anyof_item, asdf_tree, asdf_ref,
                     asdf_tree_item)
 
 
@@ -113,6 +113,11 @@ class AsdfSchema(SphinxDirective):
         nodes = self._markdown_to_nodes(description, filename)
         return schema_description(None, *nodes, top=top)
 
+    def _create_ref_node(self, ref):
+        treenodes = asdf_tree()
+        treenodes.append(asdf_ref(text=ref))
+        return treenodes
+
     def _process_properties(self, schema):
         if 'properties' in schema:
             required = schema.get('required', [])
@@ -121,6 +126,9 @@ class AsdfSchema(SphinxDirective):
         elif 'anyOf' in schema:
             children = self._create_schema_anyof(schema['anyOf'])
             return schema_properties(None, *children)
+        elif '$ref' in schema:
+            ref = self._create_ref_node(schema['$ref'])
+            return schema_properties(None, ref)
         # TODO: handle cases where there is a top-level type keyword but no
         # properties (see asdf/core/complex for an example)
         else:
@@ -140,6 +148,9 @@ class AsdfSchema(SphinxDirective):
                 required = tree.get('required', [])
                 properties = self._walk_tree(tree['properties'], required)
                 body.append(schema_anyof_item(None, properties, **kwargs))
+            elif '$ref' in tree:
+                ref = self._create_ref_node(tree['$ref'])
+                body.append(schema_anyof_item(None, ref, **kwargs))
             else:
                 body.append(schema_anyof_item(**kwargs))
 
