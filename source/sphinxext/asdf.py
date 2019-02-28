@@ -123,14 +123,16 @@ class AsdfSchema(SphinxDirective):
             required = schema.get('required', [])
             properties = self._walk_tree(schema['properties'], required)
             return schema_properties(None, properties)
+        elif 'type' in schema:
+            text = nodes.line(text='This node is {} type'.format(schema['type']))
+            return schema_properties(None, text)
         elif 'anyOf' in schema:
             children = self._create_schema_anyof(schema['anyOf'])
             return schema_properties(None, *children)
         elif '$ref' in schema:
             ref = self._create_ref_node(schema['$ref'])
             return schema_properties(None, ref)
-        # TODO: handle cases where there is a top-level type keyword but no
-        # properties (see asdf/core/complex for an example)
+        # TODO: handle case of top-level allOf
         else:
             return schema_properties()
 
@@ -148,6 +150,9 @@ class AsdfSchema(SphinxDirective):
                 required = tree.get('required', [])
                 properties = self._walk_tree(tree['properties'], required)
                 body.append(schema_anyof_item(None, properties, **kwargs))
+            elif 'type' in tree:
+                text = nodes.line(text='This node is {} type'.format(schema['type']))
+                body.append(schema_properties(None, text))
             elif '$ref' in tree:
                 ref = self._create_ref_node(tree['$ref'])
                 body.append(schema_anyof_item(None, ref, **kwargs))
