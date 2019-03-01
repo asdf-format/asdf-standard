@@ -19,7 +19,7 @@ from .nodes import (add_asdf_nodes, schema_title, schema_description,
                     schema_properties, schema_property, schema_property_name,
                     schema_property_details, schema_anyof_header,
                     schema_anyof_body, schema_anyof_item, asdf_tree, asdf_ref,
-                    asdf_tree_item)
+                    asdf_tree_item, example_section)
 
 
 class schema_def(nodes.comment):
@@ -187,7 +187,11 @@ class AsdfSchema(SphinxDirective):
         return treenodes
 
     def _process_examples(self, tree):
-        return nodes.line(text='example')
+        examples = example_section()
+        for i, example in enumerate(tree):
+            examples.append(nodes.line(text='{}:'.format(example[0])))
+            examples.append(nodes.literal_block(text=example[1]))
+        return examples
 
 
 def find_autoasdf_directives(env, filename):

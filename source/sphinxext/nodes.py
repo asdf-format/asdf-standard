@@ -40,7 +40,6 @@ class schema_description(nodes.compound):
 
 
 class schema_properties(nodes.compound):
-
     def visit_html(self, node):
         self.body.append(r'<div class="schema_properties"><h3>Schema Definition</h3>')
 
@@ -146,6 +145,15 @@ class asdf_ref(nodes.line):
         self.body.append(r'</div>')
 
 
+class example_section(nodes.compound):
+
+    def visit_html(self, node):
+        self.body.append(r'<div class="example_section"><h3>Examples</h3>')
+
+    def depart_html(self, node):
+        self.body.append(r'</div>')
+
+
 custom_nodes = [
     schema_title,
     schema_description,
@@ -159,6 +167,7 @@ custom_nodes = [
     asdf_tree,
     asdf_tree_item,
     asdf_ref,
+    example_section,
 ]
 
 
