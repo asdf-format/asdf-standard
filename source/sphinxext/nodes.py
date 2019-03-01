@@ -5,13 +5,11 @@ from jinja2 import Environment
 template_env = Environment()
 anyof_template = template_env.from_string("""
     <ul class="pagination">
-        <li class="previous"><a class="anyof-previous" href="#" onclick="onClick(this)">Previous</a></li>
+        <li><a class="anyof-previous" onclick="onClick(this)">Previous</a></li>
         {% for ref in hrefs %}
-            <li class="page-item">
-                <a class="anyof-link" href="#{{ ref }}" onclick="onClick(this)">{{ loop.index }}</a>
-            </li>
+            <li><a title="{{ ref }}" onclick="onClick(this)">{{ loop.index }}</a></li>
         {% endfor %}
-        <li class="next"><a class="anyof-next" href="#" onclick="onClick(this)">Next</a></li>
+        <li><a class="anyof-next" onclick="onClick(this)">Next</a></li>
     </ul>
 """)
 

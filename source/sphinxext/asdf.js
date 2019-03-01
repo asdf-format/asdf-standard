@@ -22,8 +22,7 @@ function onClick(link) {
     }
     else {
         $(current).removeClass('in active');
-        id = link.href.split('#')[1];
-        active = document.getElementById(id);
+        active = document.getElementById(link.title);
         $(active).addClass('in active');
     }
 }
