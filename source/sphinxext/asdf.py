@@ -126,7 +126,8 @@ class AsdfSchema(SphinxDirective):
         if 'properties' in schema:
             required = schema.get('required', [])
             properties = self._walk_tree(schema['properties'], required)
-            return nodetype(None, properties)
+            comment = nodes.line(text='This type is an object with the following properties:')
+            return nodetype(None, *[comment, properties])
         elif 'type' in schema:
             text = nodes.line(text='This node is {} type'.format(schema['type']))
             return nodetype(None, text)
@@ -134,8 +135,9 @@ class AsdfSchema(SphinxDirective):
             children = self._create_schema_anyof(schema['anyOf'])
             return nodetype(None, *children)
         elif '$ref' in schema:
+            comment = nodes.line(text='This schema node is a reference:')
             ref = self._create_ref_node(schema['$ref'])
-            return nodetype(None, ref)
+            return nodetype(None, *[comment, ref])
         # TODO: handle case of top-level allOf
         else:
             return nodetype()
@@ -150,7 +152,7 @@ class AsdfSchema(SphinxDirective):
             body.append(self._process_properties(tree, nodetype=nodetype))
 
         return [
-            nodes.line(text='Schema can be any of the following types:'),
+            nodes.line(text='Any of the following schemas are valid for this type:'),
             schema_anyof_header(hrefs=hrefs),
             body,
         ]

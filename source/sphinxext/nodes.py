@@ -42,10 +42,7 @@ class schema_description(nodes.compound):
 class schema_properties(nodes.compound):
 
     def visit_html(self, node):
-        self.body.append(r'<div class="schema_properties"><h3>Properties</h3>')
-        self.body.append(r'<p>{}</p>'.format(
-            "These are the top-level properties for this schema"
-        ))
+        self.body.append(r'<div class="schema_properties"><h3>Schema Definition</h3>')
 
     def depart_html(self, node):
         self.body.append(r'</div>')
@@ -143,7 +140,6 @@ class asdf_tree_item(nodes.line):
 class asdf_ref(nodes.line):
 
     def visit_html(self, node):
-        self.body.append(r'<em>This node is a reference to another type:</em>')
         self.body.append(r'<div class="asdf_ref">')
 
     def depart_html(self, node):
