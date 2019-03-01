@@ -91,6 +91,9 @@ class AsdfSchema(SphinxDirective):
             docnodes.append(self._parse_description(description, schema_file, top=True))
 
         docnodes.append(self._process_properties(content))
+        examples = content.get('examples', [])
+        if examples:
+            docnodes.append(self._process_examples(examples))
 
         return docnodes
 
@@ -180,6 +183,9 @@ class AsdfSchema(SphinxDirective):
                                                  level=level+1))
 
         return treenodes
+
+    def _process_examples(self, tree):
+        return nodes.line(text='example')
 
 
 def find_autoasdf_directives(env, filename):
