@@ -13,6 +13,30 @@ anyof_template = template_env.from_string("""
     </ul>
 """)
 
+example_carousel_header_template = template_env.from_string("""
+    <div class="example_section">
+      <h3>Examples</h3>
+      <div id="schemaExampleCarousel" class="carousel slide" data-interval="false">
+        <ol class="carousel-indicators">
+        {% for i in range(num) %}
+            <li class="example-indicator" data-target="#schemaExampleCarousel" data-slide-to="{{ i }}"></li>
+        {% endfor %}
+        </ol>
+        <div class="carousel-inner">
+""")
+
+
+carousel_controls = """
+  <a class="left carousel-control" href="#schemaExampleCarousel" role="button" data-slide="prev">
+    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="right carousel-control" href="#schemaExampleCarousel" role="button" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+    """
+
 
 class schema_title(nodes.compound):
 
@@ -147,8 +171,23 @@ class asdf_ref(nodes.line):
 
 class example_section(nodes.compound):
 
+    def __init__(self, *args, num=0, **kwargs):
+        self.num = num
+        super().__init__(*args, **kwargs)
+
     def visit_html(self, node):
-        self.body.append(r'<div class="example_section"><h3>Examples</h3>')
+        self.body.append(example_carousel_header_template.render(num=node.num))
+
+    def depart_html(self, node):
+        self.body.append(r'</div>')
+        self.body.append(carousel_controls)
+        self.body.append(r'</div></div>')
+
+
+class example_item(nodes.compound):
+
+    def visit_html(self, node):
+        self.body.append(r'<div class="item example-item">')
 
     def depart_html(self, node):
         self.body.append(r'</div>')
@@ -168,6 +207,7 @@ custom_nodes = [
     asdf_tree_item,
     asdf_ref,
     example_section,
+    example_item,
 ]
 
 

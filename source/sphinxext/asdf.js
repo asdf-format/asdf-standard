@@ -1,7 +1,13 @@
-window.onload = function () {
+$(document).ready(function () {
     first = $('.tab-pane.fade')[0];
     $(first).addClass('in active');
-}
+
+    first_example = $('.example-item')[0];
+    $(first_example).addClass('active');
+
+    first_indicator = $('.example-indicator')[0];
+    $(first_indicator).addClass('active');
+});
 
 function onClick(link) {
     current = $('.tab-pane.fade.in.active')[0];
