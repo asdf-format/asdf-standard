@@ -28,11 +28,11 @@ example_carousel_header_template = template_env.from_string("""
 
 carousel_controls = """
   <a class="left carousel-control" href="#schemaExampleCarousel" role="button" data-slide="prev">
-    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+    <span class="glyphicon glyphicon-chevron-left black" aria-hidden="true"></span>
     <span class="sr-only">Previous</span>
   </a>
   <a class="right carousel-control" href="#schemaExampleCarousel" role="button" data-slide="next">
-    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+    <span class="glyphicon glyphicon-chevron-right black" aria-hidden="true"></span>
     <span class="sr-only">Next</span>
   </a>
     """

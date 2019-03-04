@@ -58,6 +58,10 @@ td.schema_property_required {
     overflow: scroll;
 }
 
+.glyphicon.black {
+    color: black;
+}
+
 .example-item {
     margin-left: 15%;
     margin-right: 15%;
