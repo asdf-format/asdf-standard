@@ -192,6 +192,14 @@ class example_item(nodes.compound):
     def depart_html(self, node):
         self.body.append(r'</div>')
 
+class example_description(nodes.line):
+
+    def visit_html(self, node):
+        self.body.append(r'<p class="example-description">')
+
+    def depart_html(self, node):
+        self.body.append(r'</p>')
+
 
 custom_nodes = [
     schema_title,
@@ -208,6 +216,7 @@ custom_nodes = [
     asdf_ref,
     example_section,
     example_item,
+    example_description,
 ]
 
 
