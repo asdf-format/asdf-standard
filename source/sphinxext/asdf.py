@@ -94,7 +94,7 @@ class AsdfSchema(SphinxDirective):
         docnodes.append(self._process_properties(content))
         examples = content.get('examples', [])
         if examples:
-            docnodes.append(self._process_examples(examples))
+            docnodes.append(self._process_examples(examples, schema_file))
 
         return docnodes
 
@@ -187,11 +187,13 @@ class AsdfSchema(SphinxDirective):
 
         return treenodes
 
-    def _process_examples(self, tree):
+    def _process_examples(self, tree, filename):
         examples = example_section(num=len(tree))
         for i, example in enumerate(tree):
             node = example_item()
-            node.append(example_description(text='{}:'.format(example[0])))
+            desc_text = self._markdown_to_nodes(example[0]+':', filename)
+            description = example_description(None, *desc_text)
+            node.append(description)
             node.append(nodes.literal_block(text=example[1]))
             examples.append(node)
         return examples

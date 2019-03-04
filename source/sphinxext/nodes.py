@@ -192,13 +192,13 @@ class example_item(nodes.compound):
     def depart_html(self, node):
         self.body.append(r'</div>')
 
-class example_description(nodes.line):
+class example_description(nodes.compound):
 
     def visit_html(self, node):
-        self.body.append(r'<p class="example-description">')
+        self.body.append(r'<div class="example-description">')
 
     def depart_html(self, node):
-        self.body.append(r'</p>')
+        self.body.append(r'</div>')
 
 
 custom_nodes = [
