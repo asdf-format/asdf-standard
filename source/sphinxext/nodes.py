@@ -16,7 +16,7 @@ anyof_template = template_env.from_string("""
 example_carousel_header_template = template_env.from_string("""
     <div class="example_section">
       <h3>Examples</h3>
-      <div id="schemaExampleCarousel" class="carousel slide" data-interval="false">
+      <div id="schemaExampleCarousel" class="carousel slide" data-interval="false" data-wrap="false">
         <ol class="carousel-indicators">
         {% for i in range(num) %}
             <li class="example-indicator" data-target="#schemaExampleCarousel" data-slide-to="{{ i }}"></li>
