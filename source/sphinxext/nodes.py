@@ -13,29 +13,29 @@ anyof_template = template_env.from_string("""
     </ul>
 """)
 
-example_carousel_header_template = template_env.from_string("""
-    <div class="example_section">
-      <h3>Examples</h3>
-      <div id="schemaExampleCarousel" class="carousel slide" data-interval="false" data-wrap="false">
+carousel_header_template = template_env.from_string("""
+    <div class="{{ top_class }}">
+      <h3>{{ title }}</h3>
+      <div id="{{ carousel_name }}" class="carousel slide" data-interval="false" data-wrap="false">
         <ol class="carousel-indicators">
         {% for i in range(num) %}
-            <li class="example-indicator" data-target="#schemaExampleCarousel" data-slide-to="{{ i }}"></li>
+            <li class="{{ top_class }}-indicator" data-target="#{{ carousel_name }}" data-slide-to="{{ i }}"></li>
         {% endfor %}
         </ol>
         <div class="carousel-inner">
 """)
 
 
-carousel_controls = """
-  <a class="left carousel-control" href="#schemaExampleCarousel" role="button" data-slide="prev">
+carousel_control_template = template_env.from_string("""
+  <a class="left carousel-control" href="#{{ carousel_name }}" role="button" data-slide="prev">
     <span class="glyphicon glyphicon-chevron-left black" aria-hidden="true"></span>
     <span class="sr-only">Previous</span>
   </a>
-  <a class="right carousel-control" href="#schemaExampleCarousel" role="button" data-slide="next">
+  <a class="right carousel-control" href="#{{ carousel_name }}" role="button" data-slide="next">
     <span class="glyphicon glyphicon-chevron-right black" aria-hidden="true"></span>
     <span class="sr-only">Next</span>
   </a>
-    """
+    """)
 
 
 class schema_title(nodes.compound):
@@ -173,14 +173,20 @@ class example_section(nodes.compound):
 
     def __init__(self, *args, num=0, **kwargs):
         self.num = num
+        self.carousel_name = 'schemaExampleCarousel'
         super().__init__(*args, **kwargs)
 
     def visit_html(self, node):
-        self.body.append(example_carousel_header_template.render(num=node.num))
+        self.body.append(carousel_header_template.render(
+            top_class='example-section',
+            carousel_name=node.carousel_name,
+            title='Examples',
+            num=node.num))
 
     def depart_html(self, node):
         self.body.append(r'</div>')
-        self.body.append(carousel_controls)
+        self.body.append(carousel_control_template.render(
+            carousel_name=node.carousel_name))
         self.body.append(r'</div></div>')
 
 

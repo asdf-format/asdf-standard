@@ -5,7 +5,7 @@ $(document).ready(function () {
     first_example = $('.example-item')[0];
     $(first_example).addClass('active');
 
-    first_indicator = $('.example-indicator')[0];
+    first_indicator = $('.example-section-indicator')[0];
     $(first_indicator).addClass('active');
 });
 
