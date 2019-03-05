@@ -17,8 +17,8 @@ from .md2rst import md2rst
 from .nodes import (add_asdf_nodes, schema_title, schema_description,
                     schema_properties, schema_property, schema_property_name,
                     schema_property_details, schema_anyof_carousel,
-                    schema_anyof_item, asdf_tree, asdf_ref, asdf_tree_item,
-                    example_section, example_item, example_description)
+                    schema_anyof_item, asdf_tree, asdf_ref, example_section,
+                    example_item, example_description)
 
 
 class schema_def(nodes.comment):
@@ -173,10 +173,10 @@ class AsdfSchema(SphinxDirective):
             is_required = key in required
             if level == 0:
                 treenodes.append(self._create_top_property(key, tree[key], is_required))
-            if isinstance(tree[key], dict):
-                required = tree.get('required', [])
-                treenodes.append(self._walk_tree(tree[key], required,
-                                                 level=level+1))
+            #if isinstance(tree[key], dict):
+            #    required = tree.get('required', [])
+            #    treenodes.append(self._walk_tree(tree[key], required,
+            #                                     level=level+1))
 
         return treenodes
 

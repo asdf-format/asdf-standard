@@ -66,7 +66,7 @@ class schema_properties(nodes.compound):
 class schema_property(nodes.compound):
 
     def visit_html(self, node):
-        self.body.append(r'<li class="schema_property">')
+        self.body.append(r'<li class="list-group-item">')
 
     def depart_html(self, node):
         self.body.append(r'</li>')
@@ -101,19 +101,10 @@ class schema_property_details(nodes.compound):
 class asdf_tree(nodes.bullet_list):
 
     def visit_html(self, node):
-        self.body.append(r'<ul class="asdf_tree">')
+        self.body.append(r'<ul class="list-group">')
 
     def depart_html(self, node):
         self.body.append(r'</ul>')
-
-
-class asdf_tree_item(nodes.line):
-
-    def visit_html(self, node):
-        self.body.append(r'<li class="asdf_tree_item">')
-
-    def depart_html(self, node):
-        self.body.append(r'</li>')
 
 
 class asdf_ref(nodes.line):
@@ -197,7 +188,6 @@ custom_nodes = [
     schema_anyof_carousel,
     schema_anyof_item,
     asdf_tree,
-    asdf_tree_item,
     asdf_ref,
     example_section,
     example_item,
