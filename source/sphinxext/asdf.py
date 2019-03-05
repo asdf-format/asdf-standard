@@ -139,7 +139,8 @@ class AsdfSchema(SphinxDirective):
             return nodetype(None, *[comment, ref])
         # TODO: handle case of top-level allOf
         else:
-            return nodetype()
+            text = nodes.emphasis(text='This node has no type definition')
+            return nodetype(None, text)
 
     def _create_schema_anyof(self, items, key=None):
         body = schema_anyof_carousel(num=len(items))
