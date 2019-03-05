@@ -62,7 +62,7 @@ td.schema_property_required {
     color: black;
 }
 
-.example-item {
+.example-item, .anyof-item {
     margin-left: 15%;
     margin-right: 15%;
     margin-bottom 5%;
