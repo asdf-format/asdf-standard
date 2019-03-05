@@ -1,34 +1,12 @@
 $(document).ready(function () {
-    first = $('.tab-pane.fade')[0];
-    $(first).addClass('in active');
-
-    first_example = $('.example-item')[0];
-    $(first_example).addClass('active');
-
-    first_indicator = $('.example-section-indicator')[0];
-    $(first_indicator).addClass('active');
+    activateCarousel('.example-item', '.example-section-indicator');
+    activateCarousel('.anyof-item', '.anyof-carousel-indicator');
 });
 
-function onClick(link) {
-    current = $('.tab-pane.fade.in.active')[0];
+function activateCarousel(itemClass, indicatorClass) {
+    item = $(itemClass)[0];
+    $(item).addClass('active');
 
-    if ($(link).hasClass('anyof-previous')) {
-        prev = $(current).prev();
-        if ($(prev).hasClass('tab-pane')) {
-            $(current).removeClass('in active');
-            $(prev).addClass('in active');
-        }
-    }
-    else if ($(link).hasClass('anyof-next')) {
-        next = $(current).next();
-        if ($(next).hasClass('tab-pane')) {
-            $(current).removeClass('in active');
-            $(next).addClass('in active');
-        }
-    }
-    else {
-        $(current).removeClass('in active');
-        active = document.getElementById(link.title);
-        $(active).addClass('in active');
-    }
+    indicator = $(indicatorClass)[0];
+    $(indicator).addClass('active');
 }

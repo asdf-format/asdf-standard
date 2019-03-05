@@ -1,6 +1,5 @@
 import os
 import posixpath
-import functools
 
 import yaml
 
@@ -17,10 +16,9 @@ from sphinx.util.docutils import SphinxDirective, new_document
 from .md2rst import md2rst
 from .nodes import (add_asdf_nodes, schema_title, schema_description,
                     schema_properties, schema_property, schema_property_name,
-                    schema_property_details, schema_anyof_header,
-                    schema_anyof_body, schema_anyof_item, asdf_tree, asdf_ref,
-                    asdf_tree_item, example_section, example_item,
-                    example_description)
+                    schema_property_details, schema_anyof_carousel,
+                    schema_anyof_item, asdf_tree, asdf_ref, asdf_tree_item,
+                    example_section, example_item, example_description)
 
 
 class schema_def(nodes.comment):
@@ -144,17 +142,12 @@ class AsdfSchema(SphinxDirective):
             return nodetype()
 
     def _create_schema_anyof(self, items, key=None):
-        href_base = "{}-{}".format(self.schema_name, key or 'top')
-        hrefs = ["{}-{}".format(href_base, i+1) for i in range(len(items))]
-
-        body = schema_anyof_body()
+        body = schema_anyof_carousel(num=len(items))
         for i, tree in enumerate(items):
-            nodetype = functools.partial(schema_anyof_item, href=hrefs[i])
-            body.append(self._process_properties(tree, nodetype=nodetype))
+            body.append(self._process_properties(tree, nodetype=schema_anyof_item))
 
         return [
             nodes.line(text='Any of the following schemas are valid for this type:'),
-            schema_anyof_header(hrefs=hrefs),
             body,
         ]
 

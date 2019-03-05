@@ -3,19 +3,11 @@ from jinja2 import Environment
 
 
 template_env = Environment()
-anyof_template = template_env.from_string("""
-    <ul class="pagination">
-        <li><a class="anyof-previous" onclick="onClick(this)">Previous</a></li>
-        {% for ref in hrefs %}
-            <li><a title="{{ ref }}" onclick="onClick(this)">{{ loop.index }}</a></li>
-        {% endfor %}
-        <li><a class="anyof-next" onclick="onClick(this)">Next</a></li>
-    </ul>
-""")
-
 carousel_header_template = template_env.from_string("""
     <div class="{{ top_class }}">
+    {% if title %}
       <h3>{{ title }}</h3>
+    {% endif %}
       <div id="{{ carousel_name }}" class="carousel slide" data-interval="false" data-wrap="false">
         <ol class="carousel-indicators">
         {% for i in range(num) %}
@@ -106,42 +98,6 @@ class schema_property_details(nodes.compound):
         self.body.append(r'</tr></table>')
 
 
-class schema_anyof_header(nodes.compound):
-
-    def __init__(self, *args, hrefs=[], **kwargs):
-        self.hrefs = hrefs
-        super().__init__(*args, **kwargs)
-
-    def visit_html(self, node):
-        self.body.append(anyof_template.render(hrefs=node.hrefs))
-
-    def depart_html(self, node):
-        # Everything is handled by the template
-        pass
-
-
-class schema_anyof_body(nodes.compound):
-
-    def visit_html(self, node):
-        self.body.append(r'<div class="tab-content">')
-
-    def depart_html(self, node):
-        self.body.append(r'</div>')
-
-
-class schema_anyof_item(nodes.compound):
-
-    def __init__(self, *args, href='', **kwargs):
-        self.href = href
-        super().__init__(*args, **kwargs)
-
-    def visit_html(self, node):
-        self.body.append(r'<div id={} class="tab-pane fade">'.format(node.href))
-
-    def depart_html(self, node):
-        self.body.append(r'</div>')
-
-
 class asdf_tree(nodes.bullet_list):
 
     def visit_html(self, node):
@@ -169,18 +125,22 @@ class asdf_ref(nodes.line):
         self.body.append(r'</div>')
 
 
-class example_section(nodes.compound):
+class carousel_section(nodes.compound):
+    carousel_name = ''
+    top_class = ''
+    title = ''
+    description = ''
 
     def __init__(self, *args, num=0, **kwargs):
         self.num = num
-        self.carousel_name = 'schemaExampleCarousel'
         super().__init__(*args, **kwargs)
 
     def visit_html(self, node):
         self.body.append(carousel_header_template.render(
-            top_class='example-section',
+            top_class=node.top_class,
             carousel_name=node.carousel_name,
-            title='Examples',
+            title=node.title,
+            description=node.description,
             num=node.num))
 
     def depart_html(self, node):
@@ -188,6 +148,12 @@ class example_section(nodes.compound):
         self.body.append(carousel_control_template.render(
             carousel_name=node.carousel_name))
         self.body.append(r'</div></div>')
+
+
+class example_section(carousel_section):
+    carousel_name = 'schemaExampleCarousel'
+    top_class = 'example-section'
+    title = 'Examples'
 
 
 class example_item(nodes.compound):
@@ -207,6 +173,20 @@ class example_description(nodes.compound):
         self.body.append(r'</div>')
 
 
+class schema_anyof_carousel(carousel_section):
+    carousel_name = 'anyofCarousel'
+    top_class = 'anyof-carousel'
+
+
+class schema_anyof_item(nodes.compound):
+
+    def visit_html(self, node):
+        self.body.append(r'<div class="item anyof-item">')
+
+    def depart_html(self, node):
+        self.body.append(r'</div>')
+
+
 custom_nodes = [
     schema_title,
     schema_description,
@@ -214,8 +194,7 @@ custom_nodes = [
     schema_property,
     schema_property_name,
     schema_property_details,
-    schema_anyof_header,
-    schema_anyof_body,
+    schema_anyof_carousel,
     schema_anyof_item,
     asdf_tree,
     asdf_tree_item,
