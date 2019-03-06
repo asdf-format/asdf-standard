@@ -191,8 +191,12 @@ Every ASDF schema should begin with the following header::
   ---
   $schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
 
-This declares that the file is ``YAML 1.1`` format, and that the
-structure of the content conforms to ``YAML Schema`` defined above.
+The first lines are the ``YAML`` header and declare that the schema is ``YAML
+1.1`` format.
+
+The value of the ``$schema`` keyword indicates that the structure of the
+content conforms to ``YAML Schema`` defined above. This is the meta-schema that
+may be used to validate the schema itself.
 
 Tags and IDs
 ^^^^^^^^^^^^
