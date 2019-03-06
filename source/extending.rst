@@ -195,11 +195,49 @@ The first lines are the ``YAML`` header and declare that the schema is ``YAML
 1.1`` format.
 
 The value of the ``$schema`` keyword indicates that the structure of the
-content conforms to ``YAML Schema`` defined above. This is the meta-schema that
+content conforms to the YAML Schema defined above. This is the meta-schema that
 may be used to validate the schema itself.
 
 Tags and IDs
 ^^^^^^^^^^^^
+
+Each schema should contain two top-level properties: ``id`` and ``tag``. This
+requirement is currently not enforced by the YAML Schema but may be in a future
+version of the ASDF Standard. Creators of new schemas should assume that both
+fields are required.
+
+``id`` keyword
+""""""""""""""
+
+The ``id`` represents the name of the schema. It must be a valid URI and cannot
+be an empty string or an empty fragment (e.g. ``#``).
+
+The ``id`` keyword is used for reference resolution both within a schema and
+between schemas. Relative references within a schema are resolved against the
+``id`` of that schema. A reference to an external schema uses the ``id`` of
+that schema.
+
+While the ``id`` must be a valid URI, it does not have to describe a real
+location on disk or on a network. For example, the ``id`` value for all schemas
+in the ASDF Standard begin with the prefix ``http://stsci.edu/schemas/asdf/``.
+However, as of this writing, none of the schemas are actually hosted at that
+location. The primary requirement of the ``id`` is that it be a unique
+identifier; it should not be possible for the ``id`` values of any two
+different schemas to collide.
+
+Each ASDF implementation must define how to resolve a schema ``id`` to a real
+resource that contains the schema itself. This could be done in a variety of
+ways, but the following seem like the most likely possibilities:
+
+* Resolve the ``id`` to a real network location (assuming the schema is
+  actually hosted at that location)
+* Map the ``id`` to a file location on disk that contains the schema
+
+Other mappings are possible in theory. For example, a schema could be stored
+in a string literal as part of a program.
+
+``tag`` keyword
+"""""""""""""""
 
 All of the tags defined by the ASDF standard itself have the following
 prefix::
