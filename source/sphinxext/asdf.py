@@ -121,6 +121,20 @@ class AsdfSchema(SphinxDirective):
         treenodes.append(asdf_ref(text=ref))
         return treenodes
 
+    def _process_top_type(self, schema):
+        tree = asdf_tree()
+        prop = schema_property()
+        typename = schema['type']
+        prop.append(schema_property_name(text=typename))
+
+        if typename == 'string':
+            if 'pattern' in schema:
+                prop.append(nodes.line(text='Must match the following pattern:'))
+                prop.append(nodes.literal_block(text=schema['pattern']))
+
+        tree.append(prop)
+        return tree
+
     def _process_properties(self, schema, nodetype=schema_properties):
         if 'properties' in schema:
             required = schema.get('required', [])
@@ -128,8 +142,8 @@ class AsdfSchema(SphinxDirective):
             comment = nodes.line(text='This type is an object with the following properties:')
             return nodetype(None, *[comment, properties])
         elif 'type' in schema:
-            text = nodes.line(text='This node is {} type'.format(schema['type']))
-            return nodetype(None, text)
+            details = self._process_top_type(schema)
+            return nodetype(None, details)
         elif 'anyOf' in schema:
             children = self._create_schema_anyof(schema['anyOf'])
             return nodetype(None, *children)
