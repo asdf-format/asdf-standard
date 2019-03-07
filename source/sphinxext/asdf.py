@@ -121,9 +121,9 @@ class AsdfSchema(SphinxDirective):
         treenodes.append(asdf_ref(text=ref))
         return treenodes
 
-    def _process_validation_keywords(self, schema):
+    def _process_validation_keywords(self, schema, typename=None):
         node_list = []
-        typename = schema['type']
+        typename = typename or schema['type']
 
         if typename == 'string':
             if not ('minLength' in schema or 'maxLength' in schema):
@@ -186,18 +186,20 @@ class AsdfSchema(SphinxDirective):
 
     def _create_top_property(self, name, tree, required):
 
-        description = tree.pop('description', '')
+        description = tree.get('description', '')
 
         if '$ref' in tree:
             # TODO: make the reference a link
-            typ = tree.pop('$ref')
+            typ = tree.get('$ref')
         else:
-            typ = tree.pop('type', 'object')
+            typ = tree.get('type', 'object')
 
         prop = schema_property()
         prop.append(schema_property_name(text=name))
         prop.append(schema_property_details(typ, required))
         prop.append(self._parse_description(description, ''))
+        if typ != 'object':
+            prop.extend(self._process_validation_keywords(tree, typename=typ))
         return prop
 
     def _walk_tree(self, tree, required, level=0):
