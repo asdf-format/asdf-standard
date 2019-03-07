@@ -121,30 +121,35 @@ class AsdfSchema(SphinxDirective):
         treenodes.append(asdf_ref(text=ref))
         return treenodes
 
+    def _process_validation_keywords(self, schema):
+        node_list = []
+        typename = schema['type']
+
+        if typename == 'string':
+            if not ('minLength' in schema or 'maxLength' in schema):
+                node_list.append(nodes.emphasis(text='No length restriction'))
+            if 'minLength' in schema:
+                text = 'Minimum length: {}'.format(schema['minLength'])
+                node_list.append(nodes.line(text=text))
+            if 'maxLength' in schema:
+                text = 'Maximum length: {}'.format(schema['maxLength'])
+                node_list.append(nodes.line(text=text))
+            if 'pattern' in schema:
+                node_list.append(nodes.line(text='Must match the following pattern:'))
+                node_list.append(nodes.literal_block(text=schema['pattern']))
+
+        elif typename == 'array':
+            if not ('minItems' in schema or 'maxItems' in schema):
+                node_list.append(nodes.emphasis(text='No length restriction'))
+
+        return node_list
+
     def _process_top_type(self, schema):
         tree = asdf_tree()
         prop = schema_property()
         typename = schema['type']
         prop.append(schema_property_name(text=typename))
-
-        if typename == 'string':
-            if not ('minLength' in schema or 'maxLength' in schema):
-                prop.append(nodes.emphasis(text='No length restriction'))
-            if 'minLength' in schema:
-                text = 'Minimum length: {}'.format(schema['minLength'])
-                prop.append(nodes.line(text=text))
-            if 'maxLength' in schema:
-                text = 'Maximum length: {}'.format(schema['maxLength'])
-                prop.append(nodes.line(text=text))
-            if 'pattern' in schema:
-                prop.append(nodes.line(text='Must match the following pattern:'))
-                prop.append(nodes.literal_block(text=schema['pattern']))
-
-        elif typename == 'array':
-            if not ('minItems' in schema or 'maxItems' in schema):
-                prop.append(nodes.emphasis(text='No length restriction'))
-
-
+        prop.extend(self._process_validation_keywords(schema))
         tree.append(prop)
         return tree
 
