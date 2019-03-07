@@ -128,9 +128,22 @@ class AsdfSchema(SphinxDirective):
         prop.append(schema_property_name(text=typename))
 
         if typename == 'string':
+            if not ('minLength' in schema or 'maxLength' in schema):
+                prop.append(nodes.emphasis(text='No length restriction'))
+            if 'minLength' in schema:
+                text = 'Minimum length: {}'.format(schema['minLength'])
+                prop.append(nodes.line(text=text))
+            if 'maxLength' in schema:
+                text = 'Maximum length: {}'.format(schema['maxLength'])
+                prop.append(nodes.line(text=text))
             if 'pattern' in schema:
                 prop.append(nodes.line(text='Must match the following pattern:'))
                 prop.append(nodes.literal_block(text=schema['pattern']))
+
+        elif typename == 'array':
+            if not ('minItems' in schema or 'maxItems' in schema):
+                prop.append(nodes.emphasis(text='No length restriction'))
+
 
         tree.append(prop)
         return tree
