@@ -94,6 +94,8 @@ class AsdfSchema(SphinxDirective):
         if examples:
             docnodes.append(self._process_examples(examples, schema_file))
 
+        docnodes.append(nodes.literal_block(text=raw_content))
+
         return docnodes
 
     def _markdown_to_nodes(self, text, filename):
