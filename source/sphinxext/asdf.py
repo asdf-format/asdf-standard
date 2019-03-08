@@ -135,7 +135,7 @@ class AsdfSchema(SphinxDirective):
         if typename == 'string':
             if not ('minLength' in schema or 'maxLength' in schema):
                 node_list.append(nodes.emphasis(text='No length restriction'))
-            if 'minLength' in schema:
+            if schema.get('minLength', 0):
                 text = 'Minimum length: {}'.format(schema['minLength'])
                 node_list.append(nodes.line(text=text))
             if 'maxLength' in schema:
@@ -148,6 +148,12 @@ class AsdfSchema(SphinxDirective):
         elif typename == 'array':
             if not ('minItems' in schema or 'maxItems' in schema):
                 node_list.append(nodes.emphasis(text='No length restriction'))
+            if schema.get('minItems', 0):
+                text = 'Minimum length: {}'.format(schema['minItems'])
+                node_list.append(nodes.line(text=text))
+            if 'maxItems' in schema:
+                text = 'Maximum length: {}'.format(schema['maxItems'])
+                node_list.append(nodes.line(text=text))
 
         return node_list
 
