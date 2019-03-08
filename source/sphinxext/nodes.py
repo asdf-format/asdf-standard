@@ -5,9 +5,6 @@ from jinja2 import Environment
 template_env = Environment()
 carousel_header_template = template_env.from_string("""
     <div class="{{ top_class }}">
-    {% if title %}
-      <h3>{{ title }}</h3>
-    {% endif %}
       <div id="{{ carousel_name }}" class="carousel slide" data-interval="false" data-wrap="false">
         <ol class="carousel-indicators">
         {% for i in range(num) %}
@@ -27,6 +24,10 @@ carousel_control_template = template_env.from_string("""
     <span class="glyphicon glyphicon-chevron-right black" aria-hidden="true"></span>
     <span class="sr-only">Next</span>
   </a>
+    """)
+
+headerlink_template = template_env.from_string("""
+  <a class="headerlink" name="{{ name }}" href="#{{ name }}" title="{{ title }}">¶</a>
     """)
 
 
@@ -55,9 +56,19 @@ class schema_description(nodes.compound):
         self.body.append(r'</div>')
 
 
+class section_header(nodes.line):
+
+    def visit_html(self, node):
+        self.body.append(r'<h3 class="section-header">')
+
+    def depart_html(self, node):
+        self.body.append(headerlink_template.render(name=node[0].title()))
+        self.body.append(r'</h3>')
+
+
 class schema_properties(nodes.compound):
     def visit_html(self, node):
-        self.body.append(r'<div class="schema_properties"><h3>Schema Definition</h3>')
+        self.body.append(r'<div class="schema_properties">')
 
     def depart_html(self, node):
         self.body.append(r'</div>')
@@ -187,6 +198,7 @@ custom_nodes = [
     schema_property_details,
     schema_anyof_carousel,
     schema_anyof_item,
+    section_header,
     asdf_tree,
     asdf_ref,
     example_section,
