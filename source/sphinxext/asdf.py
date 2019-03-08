@@ -155,6 +155,8 @@ class AsdfSchema(SphinxDirective):
                 text = 'Maximum length: {}'.format(schema['maxItems'])
                 node_list.append(nodes.line(text=text))
 
+        # TODO: numerical validation keywords
+
         return node_list
 
     def _process_top_type(self, schema):
@@ -197,6 +199,9 @@ class AsdfSchema(SphinxDirective):
             body,
         ]
 
+    def _create_reference(self, refname):
+        return refname + '.html'
+
     def _create_top_property(self, name, tree, required):
 
         description = tree.get('description', '')
@@ -204,12 +209,14 @@ class AsdfSchema(SphinxDirective):
         if '$ref' in tree:
             # TODO: make the reference a link
             typ = tree.get('$ref')
+            ref = self._create_reference(typ)
         else:
             typ = tree.get('type', 'object')
+            ref = None
 
         prop = schema_property()
         prop.append(schema_property_name(text=name))
-        prop.append(schema_property_details(typ, required))
+        prop.append(schema_property_details(typ, required, ref))
         prop.append(self._parse_description(description, ''))
         if typ != 'object':
             prop.extend(self._process_validation_keywords(tree, typename=typ))

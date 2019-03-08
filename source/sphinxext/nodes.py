@@ -94,14 +94,20 @@ class schema_property_name(nodes.line):
 
 class schema_property_details(nodes.compound):
 
-    def __init__(self, typ, required, *args, **kwargs):
+    def __init__(self, typ, required, ref=None, *args, **kwargs):
         self.typ = typ
+        self.ref = ref
         self.required = required
         super().__init__(*args, **kwargs)
 
     def visit_html(self, node):
         self.body.append(r'<table><tr>')
-        self.body.append(r'<td><b>{}</b></td>'.format(node.typ))
+        self.body.append('<td><b>')
+        if node.ref is not None:
+            self.body.append('<a href={}>{}</a>'.format(node.ref, node.typ))
+        else:
+            self.body.append(node.typ)
+        self.body.append('</b></td>')
         if node.required:
             self.body.append(r'<td><em>Required</em></td>')
 
