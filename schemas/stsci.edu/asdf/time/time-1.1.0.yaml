@@ -120,9 +120,7 @@ allOf:
 
     - $ref: "#/definitions/array_of_strings"
 
-    - type: object
-      properties:
-        $ref: "../core/ndarray-1.0.0#/anyOf/1/properties"
+    - $ref: "../core/ndarray-1.0.0#/anyOf/1"
 
     - type: object
       properties:
