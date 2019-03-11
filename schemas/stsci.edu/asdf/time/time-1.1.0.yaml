@@ -2,6 +2,7 @@
 ---
 $schema: "http://stsci.edu/schemas/asdf/asdf-schema-1.0.0"
 id: "http://stsci.edu/schemas/asdf/time/time-1.1.0"
+tag: "tag:stsci.edu:asdf/time/time-1.1.0"
 title: Represents an instance in time.
 description: |
   A "time" is a single instant in time.  It may explicitly specify the
@@ -113,149 +114,145 @@ definitions:
         - $ref: "#/definitions/array_of_strings"
         - $ref: "#/definitions/string_formats"
 
-allOf:
-  - tag: "tag:stsci.edu:asdf/time/time-1.1.0"
-  - anyOf:
-    - $ref: "#/definitions/string_formats"
+anyOf:
+  - $ref: "#/definitions/string_formats"
 
-    - $ref: "#/definitions/array_of_strings"
+  - $ref: "#/definitions/array_of_strings"
 
-    - type: object
-      properties:
-        $ref: "../core/ndarray-1.0.0#/anyOf/1/properties"
+  - $ref: "../core/ndarray-1.0.0#/anyOf/1"
 
-    - type: object
-      properties:
-        value:
-          description: |
-            The value(s) of the time.
+  - type: object
+    properties:
+      value:
+        description: |
+          The value(s) of the time.
 
-          anyOf:
-            - $ref: "#/definitions/string_formats"
-            - $ref: "#/definitions/array_of_strings"
-            - $ref: "../core/ndarray-1.0.0"
-            - type: number
+        anyOf:
+          - $ref: "#/definitions/string_formats"
+          - $ref: "#/definitions/array_of_strings"
+          - $ref: "../core/ndarray-1.0.0"
+          - type: number
 
-        format:
-          description: |
-            The format of the time.
+      format:
+        description: |
+          The format of the time.
 
-            If not provided, the the format should be guessed from the
-            string from among the following unambiguous options:
-            `iso`, `byear`, `jyear` and `yday`.
+          If not provided, the the format should be guessed from the
+          string from among the following unambiguous options:
+          `iso`, `byear`, `jyear` and `yday`.
 
-            The supported formats are:
+          The supported formats are:
 
-            - `iso`: ISO 8601 compliant date-time format
-              `YYYY-MM-DDTHH:MM:SS.sss...`.  For example,
-              `2000-01-01 00:00:00.000` is midnight on January 1,
-              2000.  The `T` separating the date from the time
-              section is optional.
+          - `iso`: ISO 8601 compliant date-time format
+            `YYYY-MM-DDTHH:MM:SS.sss...`.  For example,
+            `2000-01-01 00:00:00.000` is midnight on January 1,
+            2000.  The `T` separating the date from the time
+            section is optional.
 
-            - `yday`: Year, day-of-year and time as
-              `YYYY:DOY:HH:MM:SS.sss...`. The day-of-year (DOY) goes
-              from 001 to 365 (366 in leap years). For example,
-              `2000:001:00:00:00.000` is midnight on January 1,
-              2000.
+          - `yday`: Year, day-of-year and time as
+            `YYYY:DOY:HH:MM:SS.sss...`. The day-of-year (DOY) goes
+            from 001 to 365 (366 in leap years). For example,
+            `2000:001:00:00:00.000` is midnight on January 1,
+            2000.
 
-            - `byear`: Besselian Epoch year, eg. `B1950.0`.  The `B`
-              is optional if the `byear` format is explicitly
-              specified.
+          - `byear`: Besselian Epoch year, eg. `B1950.0`.  The `B`
+            is optional if the `byear` format is explicitly
+            specified.
 
-            - `jyear`: Julian Epoch year, eg. `J2000.0`.  The `J` is
-              optional if the `jyear` format is explicitly
-              specified.
+          - `jyear`: Julian Epoch year, eg. `J2000.0`.  The `J` is
+            optional if the `jyear` format is explicitly
+            specified.
 
-            - `decimalyear`: Time as a decimal year, with integer
-              values corresponding to midnight of the first day of
-              each year. For example 2000.5 corresponds to the ISO
-              time `2000-07-02 00:00:00`.
+          - `decimalyear`: Time as a decimal year, with integer
+            values corresponding to midnight of the first day of
+            each year. For example 2000.5 corresponds to the ISO
+            time `2000-07-02 00:00:00`.
 
-            - `jd`: Julian Date time format. This represents the
-              number of days since the beginning of the Julian
-              Period. For example, 2451544.5 in `jd` is midnight on
-              January 1, 2000.
+          - `jd`: Julian Date time format. This represents the
+            number of days since the beginning of the Julian
+            Period. For example, 2451544.5 in `jd` is midnight on
+            January 1, 2000.
 
-            - `mjd`: Modified Julian Date time format. This
-              represents the number of days since midnight on
-              November 17, 1858. For example, 51544.0 in MJD is
-              midnight on January 1, 2000.
+          - `mjd`: Modified Julian Date time format. This
+            represents the number of days since midnight on
+            November 17, 1858. For example, 51544.0 in MJD is
+            midnight on January 1, 2000.
 
-            - `gps`: GPS time: seconds from 1980-01-06 00:00:00 UTC
-              For example, 630720013.0 is midnight on January 1,
-              2000.
+          - `gps`: GPS time: seconds from 1980-01-06 00:00:00 UTC
+            For example, 630720013.0 is midnight on January 1,
+            2000.
 
-            - `unix`: Unix time: seconds from 1970-01-01 00:00:00
-              UTC. For example, 946684800.0 in Unix time is midnight
-              on January 1, 2000.  [TODO: Astropy's definition of
-              UNIX time doesn't match POSIX's here.  What should we
-              do for the purposes of ASDF?]
+          - `unix`: Unix time: seconds from 1970-01-01 00:00:00
+            UTC. For example, 946684800.0 in Unix time is midnight
+            on January 1, 2000.  [TODO: Astropy's definition of
+            UNIX time doesn't match POSIX's here.  What should we
+            do for the purposes of ASDF?]
 
-          enum:
-            - iso
-            - yday
-            - byear
-            - jyear
-            - decimalyear
-            - jd
-            - mjd
-            - gps
-            - unix
-            - cxcsec
+        enum:
+          - iso
+          - yday
+          - byear
+          - jyear
+          - decimalyear
+          - jd
+          - mjd
+          - gps
+          - unix
+          - cxcsec
 
-        scale:
-          description: |
-            The time scale (or time standard) is a specification for
-            measuring time: either the rate at which time passes; or
-            points in time; or both. See also [3] and [4].
+      scale:
+        description: |
+          The time scale (or time standard) is a specification for
+          measuring time: either the rate at which time passes; or
+          points in time; or both. See also [3] and [4].
 
-            These scales are defined in detail in [SOFA Time Scale and
-            Calendar Tools](http://www.iausofa.org/sofa_ts_c.pdf).
+          These scales are defined in detail in [SOFA Time Scale and
+          Calendar Tools](http://www.iausofa.org/sofa_ts_c.pdf).
 
-            The supported time scales are:
+          The supported time scales are:
 
-            - `utc`: Coordinated Universal Time (UTC).  This is the
-              default time scale, except for `gps`, `unix`.
+          - `utc`: Coordinated Universal Time (UTC).  This is the
+            default time scale, except for `gps`, `unix`.
 
-            - `tai`: International Atomic Time (TAI).
+          - `tai`: International Atomic Time (TAI).
 
-            - `tcb`: Barycentric Coordinate Time (TCB).
+          - `tcb`: Barycentric Coordinate Time (TCB).
 
-            - `tcg`: Geocentric Coordinate Time (TCG).
+          - `tcg`: Geocentric Coordinate Time (TCG).
 
-            - `tdb`: Barycentric Dynamical Time (TDB).
+          - `tdb`: Barycentric Dynamical Time (TDB).
 
-            - `tt`: Terrestrial Time (TT).
+          - `tt`: Terrestrial Time (TT).
 
-            - `ut1`: Universal Time (UT1).
+          - `ut1`: Universal Time (UT1).
 
-          enum:
-            - utc
-            - tai
-            - tcb
-            - tcg
-            - tdb
-            - tt
-            - ut1
+        enum:
+          - utc
+          - tai
+          - tcb
+          - tcg
+          - tdb
+          - tt
+          - ut1
 
-        location:
-          description: |
-            Specifies the observer location for scales that are
-            sensitive to observer location, currently only `tdb`.  May
-            be specified either with geocentric coordinates (X, Y, Z)
-            with an optional unit or geodetic coordinates:
-              - `long`: longitude in degrees
-              - `lat`: in degrees
-              - `h`: optional height
+      location:
+        description: |
+          Specifies the observer location for scales that are
+          sensitive to observer location, currently only `tdb`.  May
+          be specified either with geocentric coordinates (X, Y, Z)
+          with an optional unit or geodetic coordinates:
+            - `long`: longitude in degrees
+            - `lat`: in degrees
+            - `h`: optional height
 
-          type: object
-          properties:
-            x:
-              $ref: "../unit/quantity-1.1.0"
-            y:
-              $ref: "../unit/quantity-1.1.0"
-            z:
-              $ref: "../unit/quantity-1.1.0"
-          required: [x, y, z]
+        type: object
+        properties:
+          x:
+            $ref: "../unit/quantity-1.1.0"
+          y:
+            $ref: "../unit/quantity-1.1.0"
+          z:
+            $ref: "../unit/quantity-1.1.0"
+        required: [x, y, z]
 
-      required: [value]
+    required: [value]
