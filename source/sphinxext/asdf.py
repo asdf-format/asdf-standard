@@ -215,13 +215,15 @@ class AsdfSchema(SphinxDirective):
             return nodetype(None, text)
 
     def _create_combiner(self, items, combiner):
+        text = 'This node must validate against **{}** of the following'
+        text_nodes = self._markdown_to_nodes(text.format(combiner), '')
+
         body = schema_combiner_body(num=len(items))
+        body.extend(text_nodes)
         for i, tree in enumerate(items):
             body.append(self._process_properties(tree, nodetype=schema_combiner_item))
 
-        text = 'This node must validate against **{}** of the following'
-        text_nodes = self._markdown_to_nodes(text.format(combiner), '')
-        return text_nodes + [body]
+        return [body]
 
     def _create_reference(self, refname):
         return refname + '.html'
