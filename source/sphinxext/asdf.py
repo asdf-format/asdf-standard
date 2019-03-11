@@ -189,10 +189,13 @@ class AsdfSchema(SphinxDirective):
 
     def _process_properties(self, schema, nodetype=schema_properties):
         if 'properties' in schema:
+            treenodes = asdf_tree()
             required = schema.get('required', [])
-            properties = self._walk_tree(schema['properties'], required)
+            for key, node in schema['properties'].items():
+                treenodes.append(self._create_top_property(key, node,
+                                                           key in required))
             comment = nodes.line(text='This type is an object with the following properties:')
-            return nodetype(None, *[comment, properties])
+            return nodetype(None, *[comment, treenodes])
         elif 'type' in schema:
             details = self._process_top_type(schema)
             return nodetype(None, details)
@@ -239,20 +242,9 @@ class AsdfSchema(SphinxDirective):
         prop.append(self._parse_description(description, ''))
         if typ != 'object':
             prop.extend(self._process_validation_keywords(tree, typename=typ))
+        else:
+            prop.append(self._process_properties(tree))
         return prop
-
-    def _walk_tree(self, tree, required, level=0):
-        treenodes = asdf_tree()
-        for key in tree:
-            is_required = key in required
-            if level == 0:
-                treenodes.append(self._create_top_property(key, tree[key], is_required))
-            #if isinstance(tree[key], dict):
-            #    required = tree.get('required', [])
-            #    treenodes.append(self._walk_tree(tree[key], required,
-            #                                     level=level+1))
-
-        return treenodes
 
     def _process_examples(self, tree, filename):
         examples = example_section(num=len(tree))

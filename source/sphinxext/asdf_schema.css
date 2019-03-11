@@ -64,10 +64,6 @@ td.schema_property_required {
     list-style-type: circle;
 }
 
-.anyof-list-item {
-    border-bottom: 1px solid #ccc;
-}
-
 .toc-link {
     display: block;
 }
