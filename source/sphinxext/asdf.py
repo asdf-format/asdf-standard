@@ -14,8 +14,9 @@ from sphinx.util.nodes import nested_parse_with_titles
 from sphinx.util.docutils import SphinxDirective, new_document
 
 from .md2rst import md2rst
-from .nodes import (add_asdf_nodes, toc_link, schema_title, schema_description,
-                    schema_properties, schema_property, schema_property_name,
+from .nodes import (add_asdf_nodes, toc_link, schema_header_title,
+                    schema_title, schema_description, schema_properties,
+                    schema_property, schema_property_name,
                     schema_property_details, schema_anyof_body,
                     schema_anyof_item, section_header, asdf_tree, asdf_ref,
                     example_section, example_item, example_description)
@@ -93,8 +94,10 @@ class AsdfSchema(SphinxDirective):
 
         description = schema.get('description', '')
         if description:
-            docnodes.append(self._parse_description(description, schema_file, top=True))
+            docnodes.append(schema_header_title(text='Description'))
+            docnodes.append(self._parse_description(description, schema_file))
 
+        docnodes.append(schema_header_title(text='Outline'))
         docnodes.append(self._create_toc(schema))
 
         docnodes.append(section_header(text=SCHEMA_DEF_SECTION_TITLE))
@@ -135,9 +138,9 @@ class AsdfSchema(SphinxDirective):
         nodes = self._markdown_to_nodes(title, filename)
         return schema_title(None, *nodes)
 
-    def _parse_description(self, description, filename, top=False):
+    def _parse_description(self, description, filename):
         nodes = self._markdown_to_nodes(description, filename)
-        return schema_description(None, *nodes, top=top)
+        return schema_description(None, *nodes)
 
     def _create_ref_node(self, ref):
         treenodes = asdf_tree()

@@ -50,17 +50,19 @@ class toc_link(nodes.line):
         self.body.append('</a>')
 
 
-class schema_description(nodes.compound):
-
-    def __init__(self, *args, top=False):
-        self.top = top
-        super().__init__(*args)
+class schema_header_title(nodes.line):
 
     def visit_html(self, node):
-        if node.top:
-            self.body.append(r'<div class="schema_description"><b>Description:</b>')
-        else:
-            self.body.append(r'<div class="property_description"')
+        self.body.append('<h4>')
+
+    def depart_html(self, node):
+        self.body.append('</h4>')
+
+
+class schema_description(nodes.compound):
+
+    def visit_html(self, node):
+        self.body.append(r'<div class="property_description"')
 
     def depart_html(self, node):
         self.body.append(r'</div>')
@@ -212,6 +214,7 @@ class schema_anyof_item(nodes.list_item):
 custom_nodes = [
     schema_title,
     toc_link,
+    schema_header_title,
     schema_description,
     schema_properties,
     schema_property,
