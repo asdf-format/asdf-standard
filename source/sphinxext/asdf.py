@@ -160,8 +160,8 @@ class AsdfSchema(SphinxDirective):
         return node_list
 
     def _process_top_type(self, schema):
-        tree = asdf_tree()
-        prop = schema_property()
+        tree = nodes.compound()
+        prop = nodes.compound()
         typename = schema['type']
         prop.append(schema_property_name(text=typename))
         prop.extend(self._process_validation_keywords(schema))
