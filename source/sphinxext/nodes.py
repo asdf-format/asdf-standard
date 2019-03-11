@@ -181,18 +181,22 @@ class example_description(nodes.compound):
         self.body.append(r'</div>')
 
 
-class schema_anyof_carousel(carousel_section):
-    carousel_name = 'anyofCarousel'
-    top_class = 'anyof-carousel'
-
-
-class schema_anyof_item(nodes.compound):
+class schema_anyof_body(nodes.bullet_list):
 
     def visit_html(self, node):
-        self.body.append(r'<div class="item anyof-item">')
+        self.body.append('<ul class="anyof-list">')
 
     def depart_html(self, node):
-        self.body.append(r'</div>')
+        self.body.append('</ul>')
+
+
+class schema_anyof_item(nodes.list_item):
+
+    def visit_html(self, node):
+        self.body.append('<li class="anyof-list-item">')
+
+    def depart_html(self, node):
+        self.body.append('</li>')
 
 
 custom_nodes = [
@@ -202,7 +206,7 @@ custom_nodes = [
     schema_property,
     schema_property_name,
     schema_property_details,
-    schema_anyof_carousel,
+    schema_anyof_body,
     schema_anyof_item,
     section_header,
     asdf_tree,

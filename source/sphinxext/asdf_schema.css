@@ -63,3 +63,11 @@ td.schema_property_required {
     padding-left: 1%;
     padding-right: 1%;
 }
+
+.anyof-list {
+    list-style-type: circle;
+}
+
+.anyof-list-item {
+    border-bottom: 1px solid #ccc;
+}

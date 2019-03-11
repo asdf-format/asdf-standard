@@ -16,7 +16,7 @@ from sphinx.util.docutils import SphinxDirective, new_document
 from .md2rst import md2rst
 from .nodes import (add_asdf_nodes, schema_title, schema_description,
                     schema_properties, schema_property, schema_property_name,
-                    schema_property_details, schema_anyof_carousel,
+                    schema_property_details, schema_anyof_body,
                     schema_anyof_item, section_header, asdf_tree, asdf_ref,
                     example_section, example_item, example_description)
 
@@ -190,7 +190,7 @@ class AsdfSchema(SphinxDirective):
             return nodetype(None, text)
 
     def _create_schema_anyof(self, items, key=None):
-        body = schema_anyof_carousel(num=len(items))
+        body = schema_anyof_body(num=len(items))
         for i, tree in enumerate(items):
             body.append(self._process_properties(tree, nodetype=schema_anyof_item))
 
