@@ -40,6 +40,16 @@ class schema_title(nodes.compound):
         self.body.append(r'</div>')
 
 
+class toc_link(nodes.line):
+
+    def visit_html(self, node):
+        text = node[0].title()
+        self.body.append('<a class="toc-link" href="#{}">'.format(text))
+
+    def depart_html(self, node):
+        self.body.append('</a>')
+
+
 class schema_description(nodes.compound):
 
     def __init__(self, *args, top=False):
@@ -201,6 +211,7 @@ class schema_anyof_item(nodes.list_item):
 
 custom_nodes = [
     schema_title,
+    toc_link,
     schema_description,
     schema_properties,
     schema_property,

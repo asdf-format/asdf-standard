@@ -14,11 +14,16 @@ from sphinx.util.nodes import nested_parse_with_titles
 from sphinx.util.docutils import SphinxDirective, new_document
 
 from .md2rst import md2rst
-from .nodes import (add_asdf_nodes, schema_title, schema_description,
+from .nodes import (add_asdf_nodes, toc_link, schema_title, schema_description,
                     schema_properties, schema_property, schema_property_name,
                     schema_property_details, schema_anyof_body,
                     schema_anyof_item, section_header, asdf_tree, asdf_ref,
                     example_section, example_item, example_description)
+
+
+SCHEMA_DEF_SECTION_TITLE = 'Schema Definitions'
+EXAMPLE_SECTION_TITLE = 'Examples'
+ORIGINAL_SCHEMA_SECTION_TITLE = 'Original Schema'
 
 
 class schema_def(nodes.comment):
@@ -90,18 +95,29 @@ class AsdfSchema(SphinxDirective):
         if description:
             docnodes.append(self._parse_description(description, schema_file, top=True))
 
-        docnodes.append(section_header(text='Schema Definition'))
+        docnodes.append(self._create_toc(schema))
+
+        docnodes.append(section_header(text=SCHEMA_DEF_SECTION_TITLE))
         docnodes.append(self._process_properties(schema))
 
         examples = schema.get('examples', [])
         if examples:
-            docnodes.append(section_header(text='Examples'))
+            docnodes.append(section_header(text=EXAMPLE_SECTION_TITLE))
             docnodes.append(self._process_examples(examples, schema_file))
 
-        docnodes.append(section_header(text='Original Schema'))
+        docnodes.append(section_header(text=ORIGINAL_SCHEMA_SECTION_TITLE))
         docnodes.append(nodes.literal_block(text=raw_content))
 
         return docnodes
+
+    def _create_toc(self, schema):
+
+        toc = nodes.compound()
+        toc.append(toc_link(text=SCHEMA_DEF_SECTION_TITLE))
+        if 'examples' in schema:
+            toc.append(toc_link(text=EXAMPLE_SECTION_TITLE))
+        toc.append(toc_link(text=ORIGINAL_SCHEMA_SECTION_TITLE))
+        return toc
 
     def _markdown_to_nodes(self, text, filename):
         rst = ViewList()
