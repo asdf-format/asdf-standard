@@ -101,7 +101,7 @@ class AsdfSchema(SphinxDirective):
         docnodes.append(self._create_toc(schema))
 
         docnodes.append(section_header(text=SCHEMA_DEF_SECTION_TITLE))
-        docnodes.append(self._process_properties(schema))
+        docnodes.append(self._process_properties(schema, top=True))
 
         examples = schema.get('examples', [])
         if examples:
@@ -187,7 +187,7 @@ class AsdfSchema(SphinxDirective):
         tree.append(prop)
         return tree
 
-    def _process_properties(self, schema, nodetype=schema_properties):
+    def _process_properties(self, schema, nodetype=schema_properties, top=False):
         if 'properties' in schema:
             treenodes = asdf_tree()
             required = schema.get('required', [])
@@ -200,10 +200,10 @@ class AsdfSchema(SphinxDirective):
             details = self._process_top_type(schema)
             return nodetype(None, details)
         elif 'anyOf' in schema:
-            children = self._create_combiner(schema['anyOf'], 'any')
+            children = self._create_combiner(schema['anyOf'], 'any', top=top)
             return nodetype(None, *children)
         elif 'allOf' in schema:
-            children = self._create_combiner(schema['allOf'], 'all')
+            children = self._create_combiner(schema['allOf'], 'all', top=top)
             return nodetype(None, *children)
         elif '$ref' in schema:
             comment = nodes.line(text='This schema node is a reference:')
@@ -214,11 +214,11 @@ class AsdfSchema(SphinxDirective):
             text = nodes.emphasis(text='This node has no type definition')
             return nodetype(None, text)
 
-    def _create_combiner(self, items, combiner):
+    def _create_combiner(self, items, combiner, top=False):
         text = 'This node must validate against **{}** of the following'
         text_nodes = self._markdown_to_nodes(text.format(combiner), '')
 
-        body = schema_combiner_body(num=len(items))
+        body = schema_combiner_body(top=top)
         body.extend(text_nodes)
         for i, tree in enumerate(items):
             body.append(self._process_properties(tree, nodetype=schema_combiner_item))
