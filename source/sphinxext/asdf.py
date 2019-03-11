@@ -216,10 +216,9 @@ class AsdfSchema(SphinxDirective):
         for i, tree in enumerate(items):
             body.append(self._process_properties(tree, nodetype=schema_anyof_item))
 
-        return [
-            nodes.line(text='Any of the following schemas are valid for this type:'),
-            body,
-        ]
+        text = 'This node must validate against **any** of the following'
+        text_nodes = self._markdown_to_nodes(text, '')
+        return text_nodes + [body]
 
     def _create_reference(self, refname):
         return refname + '.html'
