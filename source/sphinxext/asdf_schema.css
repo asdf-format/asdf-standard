@@ -40,7 +40,7 @@ td.schema_property_required {
     color: black;
 }
 
-.example-item, .anyof-item {
+.example-item, .combiner-list-item {
     margin-left: 15%;
     margin-right: 15%;
     margin-bottom 5%;
@@ -60,7 +60,7 @@ td.schema_property_required {
     padding-right: 1%;
 }
 
-.anyof-list {
+.combiner-list {
     list-style-type: circle;
 }
 

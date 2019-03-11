@@ -193,19 +193,19 @@ class example_description(nodes.compound):
         self.body.append(r'</div>')
 
 
-class schema_anyof_body(nodes.bullet_list):
+class schema_combiner_body(nodes.bullet_list):
 
     def visit_html(self, node):
-        self.body.append('<ul class="anyof-list">')
+        self.body.append('<ul class="combiner-list">')
 
     def depart_html(self, node):
         self.body.append('</ul>')
 
 
-class schema_anyof_item(nodes.list_item):
+class schema_combiner_item(nodes.list_item):
 
     def visit_html(self, node):
-        self.body.append('<li class="anyof-list-item">')
+        self.body.append('<li class="combiner-list-item">')
 
     def depart_html(self, node):
         self.body.append('</li>')
@@ -220,8 +220,8 @@ custom_nodes = [
     schema_property,
     schema_property_name,
     schema_property_details,
-    schema_anyof_body,
-    schema_anyof_item,
+    schema_combiner_body,
+    schema_combiner_item,
     section_header,
     asdf_tree,
     asdf_ref,

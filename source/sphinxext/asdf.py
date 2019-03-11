@@ -17,8 +17,8 @@ from .md2rst import md2rst
 from .nodes import (add_asdf_nodes, toc_link, schema_header_title,
                     schema_title, schema_description, schema_properties,
                     schema_property, schema_property_name,
-                    schema_property_details, schema_anyof_body,
-                    schema_anyof_item, section_header, asdf_tree, asdf_ref,
+                    schema_property_details, schema_combiner_body,
+                    schema_combiner_item, section_header, asdf_tree, asdf_ref,
                     example_section, example_item, example_description)
 
 
@@ -200,7 +200,10 @@ class AsdfSchema(SphinxDirective):
             details = self._process_top_type(schema)
             return nodetype(None, details)
         elif 'anyOf' in schema:
-            children = self._create_schema_anyof(schema['anyOf'])
+            children = self._create_combiner(schema['anyOf'], 'any')
+            return nodetype(None, *children)
+        elif 'allOf' in schema:
+            children = self._create_combiner(schema['allOf'], 'all')
             return nodetype(None, *children)
         elif '$ref' in schema:
             comment = nodes.line(text='This schema node is a reference:')
@@ -211,13 +214,13 @@ class AsdfSchema(SphinxDirective):
             text = nodes.emphasis(text='This node has no type definition')
             return nodetype(None, text)
 
-    def _create_schema_anyof(self, items, key=None):
-        body = schema_anyof_body(num=len(items))
+    def _create_combiner(self, items, combiner):
+        body = schema_combiner_body(num=len(items))
         for i, tree in enumerate(items):
-            body.append(self._process_properties(tree, nodetype=schema_anyof_item))
+            body.append(self._process_properties(tree, nodetype=schema_combiner_item))
 
-        text = 'This node must validate against **any** of the following'
-        text_nodes = self._markdown_to_nodes(text, '')
+        text = 'This node must validate against **{}** of the following'
+        text_nodes = self._markdown_to_nodes(text.format(combiner), '')
         return text_nodes + [body]
 
     def _create_reference(self, refname):
