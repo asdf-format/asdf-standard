@@ -145,35 +145,13 @@ class asdf_ref(nodes.line):
         self.body.append(r'</div>')
 
 
-class carousel_section(nodes.compound):
-    carousel_name = ''
-    top_class = ''
-    title = ''
-    description = ''
-
-    def __init__(self, *args, num=0, **kwargs):
-        self.num = num
-        super().__init__(*args, **kwargs)
+class example_section(nodes.compound):
 
     def visit_html(self, node):
-        self.body.append(carousel_header_template.render(
-            top_class=node.top_class,
-            carousel_name=node.carousel_name,
-            title=node.title,
-            description=node.description,
-            num=node.num))
+        self.body.append('<div class="example-section">')
 
     def depart_html(self, node):
         self.body.append(r'</div>')
-        self.body.append(carousel_control_template.render(
-            carousel_name=node.carousel_name))
-        self.body.append(r'</div></div>')
-
-
-class example_section(carousel_section):
-    carousel_name = 'schemaExampleCarousel'
-    top_class = 'example-section'
-    title = 'Examples'
 
 
 class example_item(nodes.compound):
