@@ -173,8 +173,9 @@ class example_description(nodes.compound):
 
 class schema_combiner_body(nodes.bullet_list):
 
-    def __init__(self, *args, top=False, **kwargs):
+    def __init__(self, *args, top=False, path='', **kwargs):
         self.top = top
+        self.path = path
         super().__init__(*args, **kwargs)
 
     def visit_html(self, node):
@@ -184,7 +185,7 @@ class schema_combiner_body(nodes.bullet_list):
         <span class="hidden">Hide </span>Details
     </button>
     <div class="collapse" id="{0}">
-            """.format('placeholder'))
+            """.format(node.path))
         self.body.append('<ul class="combiner-list">')
 
     def depart_html(self, node):

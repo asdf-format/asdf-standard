@@ -101,7 +101,7 @@ class AsdfSchema(SphinxDirective):
         docnodes.append(self._create_toc(schema))
 
         docnodes.append(section_header(text=SCHEMA_DEF_SECTION_TITLE))
-        docnodes.append(self._process_properties(schema, top=True))
+        docnodes.append(self._process_properties(schema, top=True, path='top'))
 
         examples = schema.get('examples', [])
         if examples:
@@ -187,23 +187,27 @@ class AsdfSchema(SphinxDirective):
         tree.append(prop)
         return tree
 
-    def _process_properties(self, schema, top=False):
+    def _process_properties(self, schema, top=False, path=''):
         if 'properties' in schema:
+            path = '{}-{}'.format(path, 'properties')
             treenodes = asdf_tree()
             required = schema.get('required', [])
             for key, node in schema['properties'].items():
                 treenodes.append(self._create_top_property(key, node,
-                                                           key in required))
+                                                           key in required,
+                                                           path=path))
             comment = nodes.line(text='This type is an object with the following properties:')
             return schema_properties(None, *[comment, treenodes])
         elif 'type' in schema:
             details = self._process_top_type(schema)
             return schema_properties(None, details)
         elif 'anyOf' in schema:
-            children = self._create_combiner(schema['anyOf'], 'any', top=top)
+            path = '{}-{}'.format(path, 'anyOf')
+            children = self._create_combiner(schema['anyOf'], 'any', top=top, path=path)
             return schema_properties(None, *children)
         elif 'allOf' in schema:
-            children = self._create_combiner(schema['allOf'], 'all', top=top)
+            path = '{}-{}'.format(path, 'allOf')
+            children = self._create_combiner(schema['allOf'], 'all', top=top, path=path)
             return schema_properties(None, *children)
         elif '$ref' in schema:
             comment = nodes.line(text='This schema node is a reference:')
@@ -213,21 +217,22 @@ class AsdfSchema(SphinxDirective):
             text = nodes.emphasis(text='This node has no type definition')
             return schema_properties(None, text)
 
-    def _create_combiner(self, items, combiner, top=False):
+    def _create_combiner(self, items, combiner, top=False, path=''):
         text = 'This node must validate against **{}** of the following'
         text_nodes = self._markdown_to_nodes(text.format(combiner), '')
 
-        body = schema_combiner_body(top=top)
+        body = schema_combiner_body(top=top, path=path)
         body.extend(text_nodes)
         for i, tree in enumerate(items):
-            body.append(self._process_properties(tree))
+            path = '{}-{}'.format(path, i)
+            body.append(self._process_properties(tree, path=path))
 
         return [body]
 
     def _create_reference(self, refname):
         return refname + '.html'
 
-    def _create_top_property(self, name, tree, required):
+    def _create_top_property(self, name, tree, required, path=''):
 
         description = tree.get('description', '')
 
@@ -246,7 +251,8 @@ class AsdfSchema(SphinxDirective):
         if typ != 'object':
             prop.extend(self._process_validation_keywords(tree, typename=typ))
         else:
-            prop.append(self._process_properties(tree))
+            path = '{}-{}'.format(path, name)
+            prop.append(self._process_properties(tree, path=path))
         return prop
 
     def _process_examples(self, tree, filename):
