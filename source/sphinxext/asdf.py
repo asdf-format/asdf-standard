@@ -24,6 +24,7 @@ from .nodes import (add_asdf_nodes, toc_link, schema_header_title,
 
 SCHEMA_DEF_SECTION_TITLE = 'Schema Definitions'
 EXAMPLE_SECTION_TITLE = 'Examples'
+INTERNAL_DEFINITIONS_SECTION_TITLE = 'Internal Definitions'
 ORIGINAL_SCHEMA_SECTION_TITLE = 'Original Schema'
 
 
@@ -108,17 +109,28 @@ class AsdfSchema(SphinxDirective):
             docnodes.append(section_header(text=EXAMPLE_SECTION_TITLE))
             docnodes.append(self._process_examples(examples, schema_file))
 
+        if 'definitions' in schema:
+            docnodes.append(section_header(text=INTERNAL_DEFINITIONS_SECTION_TITLE))
+            for name in schema['definitions']:
+                path = 'definitions-{}'.format(name)
+                tree = schema['definitions'][name]
+                required = schema.get('required', [])
+                docnodes.append(self._create_top_property(name, tree,
+                                                          name in required,
+                                                          path=path))
+
         docnodes.append(section_header(text=ORIGINAL_SCHEMA_SECTION_TITLE))
         docnodes.append(nodes.literal_block(text=raw_content))
 
         return docnodes
 
     def _create_toc(self, schema):
-
         toc = nodes.compound()
         toc.append(toc_link(text=SCHEMA_DEF_SECTION_TITLE))
         if 'examples' in schema:
             toc.append(toc_link(text=EXAMPLE_SECTION_TITLE))
+        if 'definitions' in schema:
+            toc.append(toc_link(text=INTERNAL_DEFINITIONS_SECTION_TITLE))
         toc.append(toc_link(text=ORIGINAL_SCHEMA_SECTION_TITLE))
         return toc
 
