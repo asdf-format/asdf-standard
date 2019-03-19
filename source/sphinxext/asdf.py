@@ -154,15 +154,19 @@ class AsdfSchema(SphinxDirective):
         nodes = self._markdown_to_nodes(description, filename)
         return schema_description(None, *nodes)
 
+    def _create_reference(self, refname):
+        if refname.startswith('#/definitions'):
+            components = refname.split('/')
+            href = '#definitions-{}'.format('-'.join(components[2:]))
+            refname = components[-1]
+        else:
+            href = refname + '.html'
+        return refname, href
+
     def _create_ref_node(self, ref):
         treenodes = asdf_tree()
-        if ref.startswith('#/definitions'):
-            components = ref.split('/')
-            href = '#definitions-{}'.format('-'.join(components[2:]))
-            ref = components[-1]
-        else:
-            href = ref
-        treenodes.append(asdf_ref(text=ref, href=href))
+        refname, href = self._create_reference(ref)
+        treenodes.append(asdf_ref(text=refname, href=href))
         return treenodes
 
     def _process_validation_keywords(self, schema, typename=None):
@@ -247,17 +251,12 @@ class AsdfSchema(SphinxDirective):
 
         return [body]
 
-    def _create_reference(self, refname):
-        return refname + '.html'
-
     def _create_top_property(self, name, tree, required, path=''):
 
         description = tree.get('description', '')
 
         if '$ref' in tree:
-            # TODO: make the reference a link
-            typ = tree.get('$ref')
-            ref = self._create_reference(typ)
+            typ, ref = self._create_reference(tree.get('$ref'))
         else:
             typ = tree.get('type', 'object')
             ref = None
