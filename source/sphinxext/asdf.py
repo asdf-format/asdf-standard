@@ -187,7 +187,7 @@ class AsdfSchema(SphinxDirective):
         tree.append(prop)
         return tree
 
-    def _process_properties(self, schema, nodetype=schema_properties, top=False):
+    def _process_properties(self, schema, top=False):
         if 'properties' in schema:
             treenodes = asdf_tree()
             required = schema.get('required', [])
@@ -195,24 +195,23 @@ class AsdfSchema(SphinxDirective):
                 treenodes.append(self._create_top_property(key, node,
                                                            key in required))
             comment = nodes.line(text='This type is an object with the following properties:')
-            return nodetype(None, *[comment, treenodes])
+            return schema_properties(None, *[comment, treenodes])
         elif 'type' in schema:
             details = self._process_top_type(schema)
-            return nodetype(None, details)
+            return schema_properties(None, details)
         elif 'anyOf' in schema:
             children = self._create_combiner(schema['anyOf'], 'any', top=top)
-            return nodetype(None, *children)
+            return schema_properties(None, *children)
         elif 'allOf' in schema:
             children = self._create_combiner(schema['allOf'], 'all', top=top)
-            return nodetype(None, *children)
+            return schema_properties(None, *children)
         elif '$ref' in schema:
             comment = nodes.line(text='This schema node is a reference:')
             ref = self._create_ref_node(schema['$ref'])
-            return nodetype(None, *[comment, ref])
-        # TODO: handle case of top-level allOf
+            return schema_properties(None, *[comment, ref])
         else:
             text = nodes.emphasis(text='This node has no type definition')
-            return nodetype(None, text)
+            return schema_properties(None, text)
 
     def _create_combiner(self, items, combiner, top=False):
         text = 'This node must validate against **{}** of the following'
@@ -221,7 +220,7 @@ class AsdfSchema(SphinxDirective):
         body = schema_combiner_body(top=top)
         body.extend(text_nodes)
         for i, tree in enumerate(items):
-            body.append(self._process_properties(tree, nodetype=schema_combiner_item))
+            body.append(self._process_properties(tree))
 
         return [body]
 
