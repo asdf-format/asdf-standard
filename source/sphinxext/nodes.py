@@ -88,8 +88,12 @@ class schema_properties(nodes.compound):
 
 class schema_property(nodes.compound):
 
+    def __init__(self, *args, **kwargs):
+        self.id = kwargs.pop('id', '')
+        super().__init__(*args, **kwargs)
+
     def visit_html(self, node):
-        self.body.append(r'<li class="list-group-item">')
+        self.body.append(r'<li class="list-group-item" id="{}">'.format(node.id))
 
     def depart_html(self, node):
         self.body.append(r'</li>')
@@ -138,11 +142,16 @@ class asdf_tree(nodes.bullet_list):
 
 class asdf_ref(nodes.line):
 
+    def __init__(self, *args, **kwargs):
+        self.text = kwargs['text']
+        self.href = kwargs.pop('href')
+        super().__init__(*args, **kwargs)
+
     def visit_html(self, node):
-        self.body.append(r'<div class="asdf_ref">')
+        self.body.append('<a class="asdf_ref" href="{}">'.format(node.href))
 
     def depart_html(self, node):
-        self.body.append(r'</div>')
+        self.body.append(r'</a>')
 
 
 class example_section(nodes.compound):

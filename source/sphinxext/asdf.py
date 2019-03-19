@@ -156,7 +156,13 @@ class AsdfSchema(SphinxDirective):
 
     def _create_ref_node(self, ref):
         treenodes = asdf_tree()
-        treenodes.append(asdf_ref(text=ref))
+        if ref.startswith('#/definitions'):
+            components = ref.split('/')
+            href = '#definitions-{}'.format('-'.join(components[2:]))
+            ref = components[-1]
+        else:
+            href = ref
+        treenodes.append(asdf_ref(text=ref, href=href))
         return treenodes
 
     def _process_validation_keywords(self, schema, typename=None):
@@ -256,7 +262,7 @@ class AsdfSchema(SphinxDirective):
             typ = tree.get('type', 'object')
             ref = None
 
-        prop = schema_property()
+        prop = schema_property(id=path)
         prop.append(schema_property_name(text=name))
         prop.append(schema_property_details(typ, required, ref))
         prop.append(self._parse_description(description, ''))
