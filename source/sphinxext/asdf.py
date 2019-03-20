@@ -253,9 +253,8 @@ class AsdfSchema(SphinxDirective):
             children = self._create_combiner(schema['allOf'], 'all', top=top, path=path)
             return schema_properties(None, *children, id=path)
         elif '$ref' in schema:
-            comment = nodes.line(text='This schema node is a reference:')
             ref = self._create_ref_node(schema['$ref'])
-            return schema_properties(None, *[comment, ref], id=path)
+            return schema_properties(None, *[ref], id=path)
         else:
             text = nodes.emphasis(text='This node has no type definition')
             return schema_properties(None, text, id=path)
