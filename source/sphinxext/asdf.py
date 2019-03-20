@@ -237,7 +237,14 @@ class AsdfSchema(SphinxDirective):
                 node_list.append(self._create_array_items_node(schema['items'],
                                                                path=path))
 
-        # TODO: numerical validation keywords
+        # TODO: more numerical validation keywords
+        elif typename in ['integer', 'number']:
+            if 'minimum' in schema:
+                text = 'Minimum value: {}'.format(schema['minimum'])
+                node_list.append(nodes.line(text=text))
+            if 'maximum' in schema:
+                text = 'Maximum value: {}'.format(schema['maximum'])
+                node_list.append(nodes.line(text=text))
 
         if 'enum' in schema:
             node_list.append(self._create_enum_node(schema['enum']))
