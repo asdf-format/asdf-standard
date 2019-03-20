@@ -136,6 +136,10 @@ class AsdfSchema(SphinxDirective):
         return toc
 
     def _markdown_to_nodes(self, text, filename):
+        """
+        This function is taken from the original schema conversion code written
+        by Michael Droetboom.
+        """
         rst = ViewList()
         for i, line in enumerate(md2rst(text).split('\n')):
             rst.append(line, filename, i+1)
