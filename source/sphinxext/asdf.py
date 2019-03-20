@@ -1,5 +1,6 @@
 import os
 import posixpath
+from pprint import pformat
 
 import yaml
 
@@ -248,6 +249,20 @@ class AsdfSchema(SphinxDirective):
 
         if 'enum' in schema:
             node_list.append(self._create_enum_node(schema['enum']))
+
+        if 'default' in schema:
+            if typename in ['string', 'integer', 'number']:
+                if typename == 'string' and not schema['default']:
+                    default = "''"
+                else:
+                    default = schema['default']
+                text = 'Default value: {}'.format(default)
+                node_list.append(nodes.line(text=text))
+            else:
+                default_node = nodes.compound()
+                default_node.append(nodes.line(text='Default value:'))
+                default_node.append(nodes.literal_block(text=pformat(schema['default'])))
+                node_list.append(default_node)
 
         return node_list
 
