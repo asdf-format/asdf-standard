@@ -18,8 +18,9 @@ from .nodes import (add_asdf_nodes, toc_link, schema_header_title,
                     schema_title, schema_description, schema_properties,
                     schema_property, schema_property_name,
                     schema_property_details, schema_combiner_body,
-                    schema_combiner_item, section_header, asdf_tree, asdf_ref,
-                    example_section, example_item, example_description)
+                    schema_combiner_list, schema_combiner_item, section_header,
+                    asdf_tree, asdf_ref, example_section, example_item,
+                    example_description)
 
 
 SCHEMA_DEF_SECTION_TITLE = 'Schema Definitions'
@@ -260,17 +261,24 @@ class AsdfSchema(SphinxDirective):
             return schema_properties(None, text, id=path)
 
     def _create_combiner(self, items, combiner, top=False, path=''):
-        text = 'This node must validate against **{}** of the following'
-        text_nodes = self._markdown_to_nodes(text.format(combiner), '')
+        if top:
+            container_node = nodes.compound()
+        else:
+            combiner_path = self._append_to_path(path, 'combiner')
+            container_node = schema_combiner_body(path=combiner_path)
 
-        combiner_path = self._append_to_path(path, 'combiner')
-        body = schema_combiner_body(top=top, path=combiner_path)
-        body.extend(text_nodes)
+        text = 'This node must validate against **{}** of the following:'
+        text_nodes = self._markdown_to_nodes(text.format(combiner), '')
+        container_node.extend(text_nodes)
+
+        combiner_list = schema_combiner_list()
         for i, tree in enumerate(items):
             new_path = self._append_to_path(path, i)
-            body.append(self._process_properties(tree, path=new_path))
+            properties = self._process_properties(tree, path=new_path)
+            combiner_list.append(schema_combiner_item(None, *[properties]))
 
-        return [body]
+        container_node.append(combiner_list)
+        return [container_node]
 
     def _create_top_property(self, name, tree, required, path=''):
 

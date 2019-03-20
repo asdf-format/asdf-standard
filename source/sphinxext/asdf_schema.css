@@ -39,8 +39,8 @@ td.schema_property_required {
     padding-right: 1%;
 }
 
-.combiner-list {
-    list-style-type: circle;
+.combiner-list-item {
+    display: list-item;
 }
 
 .toc-link {

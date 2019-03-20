@@ -162,27 +162,31 @@ class example_description(nodes.compound):
         self.body.append(r'</div>')
 
 
-class schema_combiner_body(nodes.bullet_list):
+class schema_combiner_body(nodes.compound):
 
-    def __init__(self, *args, top=False, path='', **kwargs):
-        self.top = top
+    def __init__(self, *args, path='', **kwargs):
         self.path = path
         super().__init__(*args, **kwargs)
 
     def visit_html(self, node):
-        if not node.top:
-            self.body.append("""
-    <button class="btn btn-primary" data-toggle="collapse" href="#{0}" aria-expanded="false">
-        <span class="hidden">Hide </span>Details
-    </button>
-    <div class="collapse" id="{0}">
-            """.format(node.path))
+        self.body.append("""
+<button class="btn btn-primary" data-toggle="collapse" href="#{0}" aria-expanded="false">
+    <span class="hidden">Hide </span>Details
+</button>
+<div class="collapse" id="{0}">
+        """.format(node.path))
+
+    def depart_html(self, node):
+        self.body.append('</div>')
+
+
+class schema_combiner_list(nodes.bullet_list):
+
+    def visit_html(self, node):
         self.body.append('<ul class="combiner-list">')
 
     def depart_html(self, node):
         self.body.append('</ul>')
-        if not node.top:
-            self.body.append('</div>')
 
 
 class schema_combiner_item(nodes.list_item):
@@ -204,6 +208,7 @@ custom_nodes = [
     schema_property_name,
     schema_property_details,
     schema_combiner_body,
+    schema_combiner_list,
     schema_combiner_item,
     section_header,
     asdf_tree,
