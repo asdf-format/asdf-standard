@@ -233,25 +233,25 @@ class AsdfSchema(SphinxDirective):
                                                            key in required,
                                                            path=new_path))
             comment = nodes.line(text='This type is an object with the following properties:')
-            return schema_properties(None, *[comment, treenodes])
+            return schema_properties(None, *[comment, treenodes], id=path)
         elif 'type' in schema:
             details = self._process_top_type(schema)
-            return schema_properties(None, details)
+            return schema_properties(None, details, id=path)
         elif 'anyOf' in schema:
             path = self._append_to_path(path, 'anyOf')
             children = self._create_combiner(schema['anyOf'], 'any', top=top, path=path)
-            return schema_properties(None, *children)
+            return schema_properties(None, *children, id=path)
         elif 'allOf' in schema:
             path = self._append_to_path(path, 'allOf')
             children = self._create_combiner(schema['allOf'], 'all', top=top, path=path)
-            return schema_properties(None, *children)
+            return schema_properties(None, *children, id=path)
         elif '$ref' in schema:
             comment = nodes.line(text='This schema node is a reference:')
             ref = self._create_ref_node(schema['$ref'])
-            return schema_properties(None, *[comment, ref])
+            return schema_properties(None, *[comment, ref], id=path)
         else:
             text = nodes.emphasis(text='This node has no type definition')
-            return schema_properties(None, text)
+            return schema_properties(None, text, id=path)
 
     def _create_combiner(self, items, combiner, top=False, path=''):
         text = 'This node must validate against **{}** of the following'

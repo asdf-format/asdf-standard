@@ -79,8 +79,13 @@ class section_header(nodes.line):
 
 
 class schema_properties(nodes.compound):
+
+    def __init__(self, *args, **kwargs):
+        self.id = kwargs.pop('id', '')
+        super().__init__(*args, **kwargs)
+
     def visit_html(self, node):
-        self.body.append(r'<div class="schema_properties">')
+        self.body.append(r'<div class="schema_properties" id="{}">'.format(node.id))
 
     def depart_html(self, node):
         self.body.append(r'</div>')
