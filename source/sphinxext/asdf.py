@@ -42,12 +42,14 @@ class AsdfSchemas(SphinxDirective):
 
     def _process_asdf_toctree(self):
 
+        standard_prefix = self.env.config.asdf_schema_standard_prefix
+
         links = []
         for name in self.content:
             if not name:
                 continue
             schema = self.env.path2doc(name.strip() + '.rst')
-            link = posixpath.join('generated', schema)
+            link = posixpath.join('generated', standard_prefix, schema)
             links.append((schema, link))
 
         tocnode = addnodes.toctree()
@@ -80,11 +82,14 @@ class AsdfSchema(SphinxDirective):
 
     def run(self):
 
+        config = self.state.document.settings.env.config
         self.schema_name = self.content[0]
-        schema_dir = self.state.document.settings.env.config.asdf_schema_path
+        schema_dir = config.asdf_schema_path
+        standard_prefix = config.asdf_schema_standard_prefix
         srcdir = self.state.document.settings.env.srcdir
 
-        schema_file = posixpath.join(srcdir, schema_dir, self.schema_name) + '.yaml'
+        schema_file = posixpath.join(srcdir, schema_dir, standard_prefix,
+                                     self.schema_name) + '.yaml'
 
         with open(schema_file) as ff:
             raw_content = ff.read()
@@ -405,7 +410,7 @@ def find_autoschema_references(app, genfiles):
 def create_schema_docs(app, schemas):
 
     standard_prefix = app.env.config.asdf_schema_standard_prefix
-    output_dir = posixpath.join(app.srcdir, 'generated')
+    output_dir = posixpath.join(app.srcdir, 'generated', standard_prefix)
     os.makedirs(output_dir, exist_ok=True)
 
     for schema_name in schemas:
@@ -417,9 +422,8 @@ def create_schema_docs(app, schemas):
         os.makedirs(posixpath.dirname(doc_path), exist_ok=True)
 
         with open(doc_path, 'w') as ff:
-            title = os.path.relpath(schema_name, standard_prefix)
-            ff.write(title + '\n')
-            ff.write('=' * len(title) + '\n\n')
+            ff.write(schema_name + '\n')
+            ff.write('=' * len(schema_name) + '\n\n')
             ff.write('.. asdf-schema::\n\n')
             ff.write('    {}\n'.format(schema_name))
 

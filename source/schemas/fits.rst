@@ -12,4 +12,4 @@ compatibility with FITS.
 
 .. asdf-autoschemas::
 
-   stsci.edu/asdf/fits/fits-1.0.0
+   fits/fits-1.0.0

@@ -17,10 +17,10 @@ coordinate system transformations.
 
 .. asdf-autoschemas::
 
-   stsci.edu/asdf/wcs/wcs-1.1.0
-   stsci.edu/asdf/wcs/step-1.1.0
-   stsci.edu/asdf/wcs/frame-1.1.0
-   stsci.edu/asdf/wcs/celestial_frame-1.1.0
-   stsci.edu/asdf/wcs/spectral_frame-1.1.0
-   stsci.edu/asdf/wcs/composite_frame-1.1.0
-   stsci.edu/asdf/wcs/icrs_coord-1.1.0
+   wcs/wcs-1.1.0
+   wcs/step-1.1.0
+   wcs/frame-1.1.0
+   wcs/celestial_frame-1.1.0
+   wcs/spectral_frame-1.1.0
+   wcs/composite_frame-1.1.0
+   wcs/icrs_coord-1.1.0

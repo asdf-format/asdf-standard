@@ -11,6 +11,6 @@ The ``unit`` module contains schema to support the units of physical quantities.
 
 .. asdf-autoschemas::
 
-   stsci.edu/asdf/unit/unit-1.0.0
-   stsci.edu/asdf/unit/defunit-1.0.0
-   stsci.edu/asdf/unit/quantity-1.1.0
+   unit/unit-1.0.0
+   unit/defunit-1.0.0
+   unit/quantity-1.1.0

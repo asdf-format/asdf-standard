@@ -8,13 +8,13 @@ asdf library.
 
 .. asdf-autoschemas::
 
-   stsci.edu/asdf/core/asdf-1.1.0
-   stsci.edu/asdf/core/complex-1.0.0
-   stsci.edu/asdf/core/ndarray-1.0.0
-   stsci.edu/asdf/core/table-1.0.0
-   stsci.edu/asdf/core/column-1.0.0
-   stsci.edu/asdf/core/constant-1.0.0
-   stsci.edu/asdf/core/software-1.0.0
-   stsci.edu/asdf/core/history_entry-1.0.0
-   stsci.edu/asdf/core/extension_metadata-1.0.0
-   stsci.edu/asdf/core/integer-1.0.0
+   core/asdf-1.1.0
+   core/complex-1.0.0
+   core/ndarray-1.0.0
+   core/table-1.0.0
+   core/column-1.0.0
+   core/constant-1.0.0
+   core/software-1.0.0
+   core/history_entry-1.0.0
+   core/extension_metadata-1.0.0
+   core/integer-1.0.0
