@@ -102,7 +102,7 @@ class AsdfSchema(SphinxDirective):
         docnodes.append(self._create_toc(schema))
 
         docnodes.append(section_header(text=SCHEMA_DEF_SECTION_TITLE))
-        docnodes.append(self._process_properties(schema, top=True, path='top'))
+        docnodes.append(self._process_properties(schema, top=True))
 
         examples = schema.get('examples', [])
         if examples:
@@ -155,13 +155,21 @@ class AsdfSchema(SphinxDirective):
         return schema_description(None, *nodes)
 
     def _create_reference(self, refname):
-        if refname.startswith('#/definitions'):
-            components = refname.split('/')
-            href = '#definitions-{}'.format('-'.join(components[2:]))
-            refname = components[-1]
+
+        if '#' in refname:
+            schema_id, fragment = refname.split('#')
         else:
-            href = refname + '.html'
-        return refname, href
+            schema_id = refname
+            fragment = ''
+
+        if schema_id:
+            schema_id += '.html'
+        if fragment:
+            components = fragment.split('/')
+            fragment = '#{}'.format('-'.join(components[1:]))
+            refname = components[-1]
+
+        return refname, schema_id + fragment
 
     def _create_ref_node(self, ref):
         treenodes = asdf_tree()
@@ -209,26 +217,32 @@ class AsdfSchema(SphinxDirective):
         tree.append(prop)
         return tree
 
+    def _append_to_path(self, path, new):
+        if not path:
+            return new
+        else:
+            return '{}-{}'.format(path, new)
+
     def _process_properties(self, schema, top=False, path=''):
         if 'properties' in schema:
-            path = '{}-{}'.format(path, 'properties')
             treenodes = asdf_tree()
             required = schema.get('required', [])
             for key, node in schema['properties'].items():
+                new_path = self._append_to_path(path, key)
                 treenodes.append(self._create_top_property(key, node,
                                                            key in required,
-                                                           path=path))
+                                                           path=new_path))
             comment = nodes.line(text='This type is an object with the following properties:')
             return schema_properties(None, *[comment, treenodes])
         elif 'type' in schema:
             details = self._process_top_type(schema)
             return schema_properties(None, details)
         elif 'anyOf' in schema:
-            path = '{}-{}'.format(path, 'anyOf')
+            path = self._append_to_path(path, 'anyOf')
             children = self._create_combiner(schema['anyOf'], 'any', top=top, path=path)
             return schema_properties(None, *children)
         elif 'allOf' in schema:
-            path = '{}-{}'.format(path, 'allOf')
+            path = self._append_to_path(path, 'allOf')
             children = self._create_combiner(schema['allOf'], 'all', top=top, path=path)
             return schema_properties(None, *children)
         elif '$ref' in schema:
@@ -246,8 +260,8 @@ class AsdfSchema(SphinxDirective):
         body = schema_combiner_body(top=top, path=path)
         body.extend(text_nodes)
         for i, tree in enumerate(items):
-            path = '{}-{}'.format(path, i)
-            body.append(self._process_properties(tree, path=path))
+            new_path = self._append_to_path(path, i)
+            body.append(self._process_properties(tree, path=new_path))
 
         return [body]
 
@@ -268,7 +282,7 @@ class AsdfSchema(SphinxDirective):
         if typ != 'object':
             prop.extend(self._process_validation_keywords(tree, typename=typ))
         else:
-            path = '{}-{}'.format(path, name)
+            path = self._append_to_path(path, name)
             prop.append(self._process_properties(tree, path=path))
         return prop
 
