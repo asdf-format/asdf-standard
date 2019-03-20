@@ -181,6 +181,14 @@ class AsdfSchema(SphinxDirective):
         treenodes.append(asdf_ref(text=refname, href=href))
         return treenodes
 
+    def _create_enum_node(self, enum_values):
+        enum_nodes = nodes.compound()
+        enum_nodes.append(nodes.line(
+            text='Only the following values are valid for this node:'))
+        markdown = '\n'.join(['* **{}**'.format(val) for val in enum_values])
+        enum_nodes.extend(self._markdown_to_nodes(markdown, ''))
+        return enum_nodes
+
     def _process_validation_keywords(self, schema, typename=None):
         node_list = []
         typename = typename or schema['type']
@@ -211,7 +219,7 @@ class AsdfSchema(SphinxDirective):
         # TODO: numerical validation keywords
 
         if 'enum' in schema:
-            node_list.append(nodes.line(text='This is an enumerated list!'))
+            node_list.append(self._create_enum_node(schema['enum']))
 
         return node_list
 
