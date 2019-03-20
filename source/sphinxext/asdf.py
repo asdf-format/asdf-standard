@@ -121,7 +121,7 @@ class AsdfSchema(SphinxDirective):
                                                            path=path))
 
         docnodes.append(section_header(text=ORIGINAL_SCHEMA_SECTION_TITLE))
-        docnodes.append(nodes.literal_block(text=raw_content))
+        docnodes.append(nodes.literal_block(text=raw_content, language='yaml'))
 
         return docnodes
 
@@ -221,7 +221,8 @@ class AsdfSchema(SphinxDirective):
                 node_list.append(nodes.line(text=text))
             if 'pattern' in schema:
                 node_list.append(nodes.line(text='Must match the following pattern:'))
-                node_list.append(nodes.literal_block(text=schema['pattern']))
+                node_list.append(nodes.literal_block(text=schema['pattern'],
+                                                     language='none'))
 
         elif typename == 'array':
             if not ('minItems' in schema or 'maxItems' in schema):
@@ -260,7 +261,8 @@ class AsdfSchema(SphinxDirective):
             else:
                 default_node = nodes.compound()
                 default_node.append(nodes.line(text='Default value:'))
-                default_node.append(nodes.literal_block(text=pformat(schema['default'])))
+                default_node.append(nodes.literal_block(text=pformat(schema['default']),
+                                                        language='none'))
                 node_list.append(default_node)
 
         return node_list
@@ -360,7 +362,7 @@ class AsdfSchema(SphinxDirective):
             desc_text = self._markdown_to_nodes(example[0]+':', filename)
             description = example_description(None, *desc_text)
             node.append(description)
-            node.append(nodes.literal_block(text=example[1]))
+            node.append(nodes.literal_block(text=example[1], language='yaml'))
             examples.append(node)
         return examples
 
