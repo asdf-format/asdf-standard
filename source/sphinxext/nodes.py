@@ -3,29 +3,6 @@ from jinja2 import Environment
 
 
 template_env = Environment()
-carousel_header_template = template_env.from_string("""
-    <div class="{{ top_class }}">
-      <div id="{{ carousel_name }}" class="carousel slide" data-interval="false" data-wrap="false">
-        <ol class="carousel-indicators">
-        {% for i in range(num) %}
-            <li class="{{ top_class }}-indicator" data-target="#{{ carousel_name }}" data-slide-to="{{ i }}"></li>
-        {% endfor %}
-        </ol>
-        <div class="carousel-inner">
-""")
-
-
-carousel_control_template = template_env.from_string("""
-  <a class="left carousel-control" href="#{{ carousel_name }}" role="button" data-slide="prev">
-    <span class="glyphicon glyphicon-chevron-left black" aria-hidden="true"></span>
-    <span class="sr-only">Previous</span>
-  </a>
-  <a class="right carousel-control" href="#{{ carousel_name }}" role="button" data-slide="next">
-    <span class="glyphicon glyphicon-chevron-right black" aria-hidden="true"></span>
-    <span class="sr-only">Next</span>
-  </a>
-    """)
-
 headerlink_template = template_env.from_string("""
   <a class="headerlink" name="{{ name }}" href="#{{ name }}" title="{{ title }}">¶</a>
     """)
