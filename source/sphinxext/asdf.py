@@ -169,6 +169,9 @@ class AsdfSchema(SphinxDirective):
             fragment = '#{}'.format('-'.join(components[1:]))
             refname = components[-1]
 
+        if schema_id and fragment:
+            refname = '{}#{}'.format(schema_id, refname)
+
         return refname, schema_id + fragment
 
     def _create_ref_node(self, ref):
