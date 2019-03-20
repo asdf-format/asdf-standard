@@ -260,7 +260,8 @@ class AsdfSchema(SphinxDirective):
         text = 'This node must validate against **{}** of the following'
         text_nodes = self._markdown_to_nodes(text.format(combiner), '')
 
-        body = schema_combiner_body(top=top, path=path)
+        combiner_path = self._append_to_path(path, 'combiner')
+        body = schema_combiner_body(top=top, path=combiner_path)
         body.extend(text_nodes)
         for i, tree in enumerate(items):
             new_path = self._append_to_path(path, i)
