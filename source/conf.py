@@ -51,6 +51,8 @@ copyright = u'2014, Michael Droettboom, Erik Bray, Space Telescope Science Insti
 
 # Top-level directory containing ASDF schemas (relative to current directory)
 asdf_schema_path = '../schemas'
+# This is the prefix common to all schema IDs in this repository
+asdf_schema_standard_prefix = 'stsci.edu/asdf'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the

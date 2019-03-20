@@ -402,6 +402,7 @@ def find_autoschema_references(app, genfiles):
 
 def create_schema_docs(app, schemas):
 
+    standard_prefix = app.env.config.asdf_schema_standard_prefix
     output_dir = posixpath.join(app.srcdir, 'generated')
     os.makedirs(output_dir, exist_ok=True)
 
@@ -414,8 +415,9 @@ def create_schema_docs(app, schemas):
         os.makedirs(posixpath.dirname(doc_path), exist_ok=True)
 
         with open(doc_path, 'w') as ff:
-            ff.write(schema_name + '\n')
-            ff.write('=' * len(schema_name) + '\n\n')
+            title = os.path.relpath(schema_name, standard_prefix)
+            ff.write(title + '\n')
+            ff.write('=' * len(title) + '\n\n')
             ff.write('.. asdf-schema::\n\n')
             ff.write('    {}\n'.format(schema_name))
 
@@ -452,6 +454,7 @@ def setup(app):
 
     # Describes a path relative to the sphinx source directory
     app.add_config_value('asdf_schema_path', 'schemas', 'env')
+    app.add_config_value('asdf_schema_standard_prefix', '', 'env')
     app.add_directive('asdf-autoschemas', AsdfSchemas)
     app.add_directive('asdf-schema', AsdfSchema)
 
