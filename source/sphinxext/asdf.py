@@ -282,7 +282,7 @@ class AsdfSchema(SphinxDirective):
             ref = self._create_ref_node(schema['$ref'])
             return schema_properties(None, *[ref], id=path)
         else:
-            text = nodes.emphasis(text='This node has no type definition')
+            text = nodes.emphasis(text='This node has no type definition (unrestricted)')
             return schema_properties(None, text, id=path)
 
     def _create_combiner(self, items, combiner, array=False, top=False, path=''):
