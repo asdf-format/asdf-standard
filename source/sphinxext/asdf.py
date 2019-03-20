@@ -56,8 +56,7 @@ class AsdfSchemas(SphinxDirective):
         tocnode['maxdepth'] = -1
         tocnode['glob'] = None
 
-        paragraph = nodes.paragraph(text="Here's where the schemas go")
-        return [paragraph, tocnode]
+        return [tocnode]
 
 
     def run(self):
