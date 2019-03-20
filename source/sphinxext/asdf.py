@@ -116,9 +116,9 @@ class AsdfSchema(SphinxDirective):
                 path = 'definitions-{}'.format(name)
                 tree = schema['definitions'][name]
                 required = schema.get('required', [])
-                docnodes.append(self._create_top_property(name, tree,
-                                                          name in required,
-                                                          path=path))
+                docnodes.append(self._create_property_node(name, tree,
+                                                           name in required,
+                                                           path=path))
 
         docnodes.append(section_header(text=ORIGINAL_SCHEMA_SECTION_TITLE))
         docnodes.append(nodes.literal_block(text=raw_content))
@@ -189,7 +189,20 @@ class AsdfSchema(SphinxDirective):
         enum_nodes.extend(self._markdown_to_nodes(markdown, ''))
         return enum_nodes
 
-    def _process_validation_keywords(self, schema, typename=None):
+    def _create_array_items_node(self, items, path):
+        path = self._append_to_path(path, 'items')
+        for combiner in ['anyOf', 'allOf']:
+            if combiner in items:
+                return self._create_combiner(items, combiner, array=True,
+                                             path=path)
+
+        node_list = nodes.compound()
+        node_list.append(nodes.line(
+            text='Items in the array are restricted to the following types:'))
+        node_list.append(self._process_properties(items, top=True, path=path))
+        return node_list
+
+    def _process_validation_keywords(self, schema, typename=None, path=''):
         node_list = []
         typename = typename or schema['type']
 
@@ -216,6 +229,10 @@ class AsdfSchema(SphinxDirective):
                 text = 'Maximum length: {}'.format(schema['maxItems'])
                 node_list.append(nodes.line(text=text))
 
+            if 'items' in schema:
+                node_list.append(self._create_array_items_node(schema['items'],
+                                                               path=path))
+
         # TODO: numerical validation keywords
 
         if 'enum' in schema:
@@ -223,12 +240,12 @@ class AsdfSchema(SphinxDirective):
 
         return node_list
 
-    def _process_top_type(self, schema):
+    def _process_top_type(self, schema, path=''):
         tree = nodes.compound()
         prop = nodes.compound()
         typename = schema['type']
         prop.append(schema_property_name(text=typename))
-        prop.extend(self._process_validation_keywords(schema))
+        prop.extend(self._process_validation_keywords(schema, path=path))
         tree.append(prop)
         return tree
 
@@ -239,27 +256,24 @@ class AsdfSchema(SphinxDirective):
             return '{}-{}'.format(path, new)
 
     def _process_properties(self, schema, top=False, path=''):
+        for combiner in ['anyOf', 'allOf']:
+            if combiner in schema:
+                return self._create_combiner(schema, combiner, top=top,
+                                             path=path)
+
         if 'properties' in schema:
             treenodes = asdf_tree()
             required = schema.get('required', [])
             for key, node in schema['properties'].items():
                 new_path = self._append_to_path(path, key)
-                treenodes.append(self._create_top_property(key, node,
-                                                           key in required,
-                                                           path=new_path))
+                treenodes.append(self._create_property_node(key, node,
+                                                            key in required,
+                                                            path=new_path))
             comment = nodes.line(text='This type is an object with the following properties:')
             return schema_properties(None, *[comment, treenodes], id=path)
         elif 'type' in schema:
-            details = self._process_top_type(schema)
+            details = self._process_top_type(schema, path=path)
             return schema_properties(None, details, id=path)
-        elif 'anyOf' in schema:
-            path = self._append_to_path(path, 'anyOf')
-            children = self._create_combiner(schema['anyOf'], 'any', top=top, path=path)
-            return schema_properties(None, *children, id=path)
-        elif 'allOf' in schema:
-            path = self._append_to_path(path, 'allOf')
-            children = self._create_combiner(schema['allOf'], 'all', top=top, path=path)
-            return schema_properties(None, *children, id=path)
         elif '$ref' in schema:
             ref = self._create_ref_node(schema['$ref'])
             return schema_properties(None, *[ref], id=path)
@@ -267,27 +281,33 @@ class AsdfSchema(SphinxDirective):
             text = nodes.emphasis(text='This node has no type definition')
             return schema_properties(None, text, id=path)
 
-    def _create_combiner(self, items, combiner, top=False, path=''):
-        if top:
+    def _create_combiner(self, items, combiner, array=False, top=False, path=''):
+        if top or array:
             container_node = nodes.compound()
         else:
             combiner_path = self._append_to_path(path, 'combiner')
             container_node = schema_combiner_body(path=combiner_path)
 
-        text = 'This node must validate against **{}** of the following:'
-        text_nodes = self._markdown_to_nodes(text.format(combiner), '')
+        path = self._append_to_path(path, combiner)
+
+        if array:
+            text = 'Items in the array must be **{}** of the following types:'
+        else:
+            text = 'This node must validate against **{}** of the following:'
+        text = text.format(combiner.replace('Of', ''))
+        text_nodes = self._markdown_to_nodes(text, '')
         container_node.extend(text_nodes)
 
         combiner_list = schema_combiner_list()
-        for i, tree in enumerate(items):
+        for i, tree in enumerate(items[combiner]):
             new_path = self._append_to_path(path, i)
             properties = self._process_properties(tree, path=new_path)
             combiner_list.append(schema_combiner_item(None, *[properties]))
 
         container_node.append(combiner_list)
-        return [container_node]
+        return schema_properties(None, *[container_node], id=path)
 
-    def _create_top_property(self, name, tree, required, path=''):
+    def _create_property_node(self, name, tree, required, path=''):
 
         description = tree.get('description', '')
 
@@ -302,7 +322,7 @@ class AsdfSchema(SphinxDirective):
         prop.append(schema_property_details(typ, required, ref))
         prop.append(self._parse_description(description, ''))
         if typ != 'object':
-            prop.extend(self._process_validation_keywords(tree, typename=typ))
+            prop.extend(self._process_validation_keywords(tree, typename=typ, path=path))
         else:
             path = self._append_to_path(path, name)
             prop.append(self._process_properties(tree, path=path))
