@@ -30,7 +30,7 @@ import sphinx_bootstrap_theme
 mathjax_path="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
 extensions = [
     'sphinx.ext.mathjax', 'sphinx.ext.ifconfig', 'sphinx.ext.graphviz',
-    'sphinxext.category', 'sphinxext.asdf'
+    'sphinxext.category', 'sphinxext.asdf', 'sphinx.ext.autosectionlabel'
 ]
 
 # Add any paths that contain templates here, relative to this directory.

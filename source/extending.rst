@@ -36,20 +36,17 @@ Writing a new schema is described in :ref:`designing-schema`.
 ``tag``, which may be attached to any data type, declares that the
 element must have the given YAML tag.
 
-For example, the root :ref:`asdf
-<http://stsci.edu/schemas/asdf/core/asdf-1.0.0>` schema declares that
-the ``data`` property must be an :ref:`ndarray
-<http://stsci.edu/schemas/asdf/core/ndarray-1.0.0>`.  It does
-this not by using the ``tag`` keyword directly, but by referencing the
-``ndarray`` schema, which in turn has the ``tag`` keyword.  The ASDF
-schema includes::
+For example, the root :ref:`asdf <core/asdf-1.1.0>` schema declares that the
+``data`` property must be an :ref:`ndarray <core/ndarray-1.0.0>`.  It does this
+not by using the ``tag`` keyword directly, but by referencing the ``ndarray``
+schema, which in turn has the ``tag`` keyword.  The ASDF schema includes::
 
     properties:
       data:
         $ref: "ndarray"
 
 And the :ref:`ndarray
-<http://stsci.edu/schemas/asdf/core/ndarray-1.0.0>` schema includes::
+<core/ndarray-1.0.0>` schema includes::
 
     tag: "tag:stsci.edu:asdf/core/ndarray-1.0.0"
 
@@ -133,12 +130,11 @@ ASDF Schema
 .. toctree::
    :hidden:
 
-   schemas/stsci.edu/asdf/asdf-schema-1.0.0.rst
+   generated/stsci.edu/asdf/core/asdf-1.1.0.rst
 
-:ref:`ASDF Schema <http://stsci.edu/schemas/asdf/asdf-schema-1.0.0>`
-further extends YAML schema to add some validations specific to ASDF,
-notably to do with :ref:`ndarray
-<http://stsci.edu/schemas/asdf/core/ndarray-1.0.0>`.
+:ref:`ASDF Schema <core/asdf-1.1.0>` further extends YAML schema to add
+some validations specific to ASDF, notably to do with :ref:`ndarray
+<core/ndarray-1.0.0>`.
 
 ``ndim`` keyword
 ^^^^^^^^^^^^^^^^
