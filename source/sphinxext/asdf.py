@@ -209,6 +209,9 @@ class AsdfSchema(SphinxDirective):
 
         # TODO: numerical validation keywords
 
+        if 'enum' in schema:
+            node_list.append(nodes.line(text='This is an enumerated list!'))
+
         return node_list
 
     def _process_top_type(self, schema):
