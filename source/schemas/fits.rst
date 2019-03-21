@@ -10,7 +10,6 @@ compatibility with FITS.
 
 :doc:`core`
 
-.. toctree::
-   :maxdepth: 1
+.. asdf-autoschemas::
 
-   stsci.edu/asdf/fits/fits-1.0.0.rst
+   fits/fits-1.0.0

@@ -25,7 +25,6 @@ matrix:
     - name: "Documentation build"
       before_install:
         - pip install $PIP_DOC_DEPENDENCIES
-      install: python setup.py
       script: make html
 
     - name: "Schema validation tests"

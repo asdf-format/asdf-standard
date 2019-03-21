@@ -2,4 +2,4 @@ build
 *.pyc
 *.pytest_cache
 
-source/schemas/stsci.edu
+source/generated

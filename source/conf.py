@@ -28,8 +28,10 @@ import sphinx_bootstrap_theme
 # Add any Sphinx extension module names here, as strings. They can be extensions
 # coming with Sphinx (named 'sphinx.ext.*') or your custom ones.
 mathjax_path="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
-extensions = ['sphinx.ext.mathjax', 'sphinx.ext.ifconfig',
-              'sphinx.ext.graphviz', 'sphinxext.category']
+extensions = [
+    'sphinx.ext.mathjax', 'sphinx.ext.ifconfig', 'sphinx.ext.graphviz',
+    'sphinxext.category', 'sphinxext.asdf', 'sphinx.ext.autosectionlabel'
+]
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -46,6 +48,11 @@ master_doc = 'index'
 # General information about the project.
 project = u'ASDF Standard'
 copyright = u'2014, Michael Droettboom, Erik Bray, Space Telescope Science Institute'
+
+# Top-level directory containing ASDF schemas (relative to current directory)
+asdf_schema_path = '../schemas'
+# This is the prefix common to all schema IDs in this repository
+asdf_schema_standard_prefix = 'stsci.edu/asdf'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the

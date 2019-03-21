@@ -9,9 +9,8 @@ The ``unit`` module contains schema to support the units of physical quantities.
 
 :doc:`core`
 
-.. toctree::
-   :maxdepth: 1
+.. asdf-autoschemas::
 
-   stsci.edu/asdf/unit/unit-1.0.0.rst
-   stsci.edu/asdf/unit/defunit-1.0.0.rst
-   stsci.edu/asdf/unit/quantity-1.1.0.rst
+   unit/unit-1.0.0
+   unit/defunit-1.0.0
+   unit/quantity-1.1.0

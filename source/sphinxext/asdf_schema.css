@@ -1,0 +1,48 @@
+div.schema_title {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+div.property_description {
+    font-side: 1em;
+}
+
+div.schema_property_name {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+table {
+    width: 30%;
+}
+
+td.schema_property_required {
+    font-style: italic;
+}
+
+.asdf_ref {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.example-description {
+    top: 0;
+    position: sticky;
+    background: #ffffff;
+    font-size: 1.25em;
+    padding-left: 1%;
+    padding-right: 1%;
+}
+
+.highlight-yaml {
+    padding-left: 1%;
+    padding-right: 1%;
+}
+
+.combiner-list-item {
+    display: list-item;
+}
+
+.toc-link {
+    display: block;
+}
