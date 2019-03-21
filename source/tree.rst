@@ -1,4 +1,4 @@
-.. _tree-in-depth:
+a. _tree-in-depth:
 
 The tree in-depth
 =================
@@ -12,8 +12,7 @@ numbers, booleans, etc.).  All of this comes "for free" by using `YAML
 Since these core data structures on their own are so flexible, the
 ASDF standard includes a number of schema that define the structure of
 higher-level content.  For instance, there is a schema that defines
-how :ref:`n-dimensional array data
-<http://stsci.edu/schemas/asdf/core/ndarray-1.0.0>` should be
+how :ref:`n-dimensional array data <core/ndarray-1.0.0>` should be
 described.  These schema are written in a language called
 :ref:`yaml-schema` which is just a thin extension of `JSON Schema,
 Draft 4
@@ -34,19 +33,18 @@ object in the tree.  This is an important feature that sets it apart
 from other data representation languages, such as JSON.  ASDF defines
 a number of custom tags, each of which has a corresponding schema.
 For example the tag of the root element of the tree must always be
-``tag:stsci.edu:asdf/core/asdf-1.0.0``, which corresponds to the
-:ref:`asdf schema <http://stsci.edu/schemas/asdf/core/asdf-1.0.0>`
---in other words, the top level schema for ASDF trees.  A validating ASDF reader would
-encounter the tag when reading in the file, load the corresponding schema,
-and validate the content against it.  An ASDF library may also use this
-information to convert to a native data type that presents a more convenient
-interface to the user than the structure of basic types stored in the YAML
-content.
+``tag:stsci.edu:asdf/core/asdf-1.1.0``, which corresponds to the
+:ref:`asdf schema <core/asdf-1.1.0>` --in other words, the top level schema for
+ASDF trees.  A validating ASDF reader would encounter the tag when reading in
+the file, load the corresponding schema, and validate the content against it.
+An ASDF library may also use this information to convert to a native data type
+that presents a more convenient interface to the user than the structure of
+basic types stored in the YAML content.
 
 For example::
 
      %YAML 1.1
-     --- !<tag:stsci.edu:asdf/core/asdf-1.0.0>
+     --- !<tag:stsci.edu:asdf/core/asdf-1.1.0>
      data: !<tag:stsci.edu:asdf/core/ndarray-1.0.0>
        source: 0
        datatype: float64
@@ -76,7 +74,7 @@ will be replaced with the prefix ``tag:stsci.edu:asdf/``::
 
       %YAML 1.1
       %TAG ! tag:stsci.edu:asdf/
-      --- !core/asdf-1.0.0
+      --- !core/asdf-1.1.0
       data: !core/ndarray-1.0.0
         source: 0
         datatype: float64
@@ -89,11 +87,9 @@ ship as part of the ASDF standard.
 
 An ASDF parser may also use the tag information to convert the element
 to a native data type.  For example, in Python, an ASDF parser may
-convert a :ref:`ndarray
-<http://stsci.edu/schemas/asdf/core/ndarray-1.0.0>` tag to a
-`Numpy <http://www.numpy.org>`__ array instance, providing a
-convenient and familiar interface to the user to access
-*n*-dimensional data.
+convert a :ref:`ndarray <core/ndarray-1.0.0>` tag to a `Numpy
+<http://www.numpy.org>`__ array instance, providing a convenient and familiar
+interface to the user to access *n*-dimensional data.
 
 The ASDF standard does not require parser implementations to validate
 or perform native type conversion, however.  A parser may simply leave

@@ -10,7 +10,7 @@ description: |
   Corresponds to the `COO` projection in the FITS WCS standard.
 
   See
-  [conic](ref:http://stsci.edu/schemas/asdf/transform/conic-1.2.0)
+  [conic](ref:transform/conic-1.2.0)
   for the definition of the full transformation.
 
   The transformation is defined as:
