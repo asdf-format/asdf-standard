@@ -356,7 +356,6 @@ class AsdfSchema(SphinxDirective):
         if typ != 'object':
             prop.extend(self._process_validation_keywords(tree, typename=typ, path=path))
         else:
-            path = self._append_to_path(path, name)
             prop.append(self._process_properties(tree, path=path))
         return prop
 
