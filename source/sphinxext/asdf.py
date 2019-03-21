@@ -283,9 +283,9 @@ class AsdfSchema(SphinxDirective):
 
     def _append_to_path(self, path, new):
         if not path:
-            return new
+            return str(new).lower()
         else:
-            return '{}-{}'.format(path, new)
+            return '{}-{}'.format(path, new).lower()
 
     def _process_properties(self, schema, top=False, path=''):
         for combiner in ['anyOf', 'allOf']:
@@ -337,6 +337,7 @@ class AsdfSchema(SphinxDirective):
             combiner_list.append(schema_combiner_item(None, *[properties]))
 
         container_node.append(combiner_list)
+        container_node['ids'] = [path]
         return schema_properties(None, *[container_node], id=path)
 
     def _create_property_node(self, name, tree, required, path=''):
@@ -357,6 +358,8 @@ class AsdfSchema(SphinxDirective):
             prop.extend(self._process_validation_keywords(tree, typename=typ, path=path))
         else:
             prop.append(self._process_properties(tree, path=path))
+
+        prop['ids'] = [path]
         return prop
 
     def _process_examples(self, tree, filename):
@@ -447,6 +450,26 @@ def autogenerate_schema_docs(app):
     create_schema_docs(app, schemas)
 
 
+def add_labels_to_nodes(app, document):
+    labels = app.env.domaindata['std']['labels']
+    anonlabels = app.env.domaindata['std']['anonlabels']
+    basepath = os.path.join('generated', app.env.config.asdf_schema_standard_prefix)
+
+    for node in document.traverse():
+        if isinstance(node, str) or not (isinstance(node, nodes.Node) and node['ids']):
+            continue
+
+        labelid = node['ids'][0]
+        docname = app.env.docname
+        basename = os.path.relpath(docname, basepath)
+        name = nodes.fully_normalize_name(basename + ':' + labelid)
+
+        # labelname -> docname, labelid
+        anonlabels[name] = docname, labelid
+        # labelname -> docname, labelid, sectionname
+        labels[name] = docname, labelid, ''
+
+
 def on_build_finished(app, exc):
     if exc is None:
         for asset in ['asdf_schema.css', 'asdf.js']:
@@ -469,6 +492,7 @@ def setup(app):
     app.add_javascript('asdf.js')
 
     app.connect('builder-inited', autogenerate_schema_docs)
+    app.connect('doctree-read', add_labels_to_nodes)
     app.connect('build-finished', on_build_finished)
 
     return dict(version='0.1')
