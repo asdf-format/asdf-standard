@@ -82,8 +82,8 @@ class RstRenderer(object):
         if lang:
             langs = lang
         else:
-            langs = []
-        return self._directive('code', code, langs)
+            langs = ['none']
+        return self._directive('code-block', code, langs)
 
     def block_quote(self, text):
         return self._indented(text)
