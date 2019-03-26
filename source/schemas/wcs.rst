@@ -11,10 +11,6 @@ WCS
 The ``WCS`` module contains schema used to describe generalized world
 coordinate system transformations.
 
-:category:`Requires:`
-
-:doc:`core`, :doc:`unit`, :doc:`transform`
-
 .. asdf-autoschemas::
 
    wcs/wcs-1.1.0
