@@ -5,10 +5,6 @@ Transform
 
 The ``transform`` module contains schema used to describe transformations.
 
-:category:`Requires:`
-
-:doc:`core`
-
 Basics
 ------
 

@@ -5,10 +5,6 @@ Unit
 
 The ``unit`` module contains schema to support the units of physical quantities.
 
-:category:`Requires:`
-
-:doc:`core`
-
 .. asdf-autoschemas::
 
    unit/unit-1.0.0
