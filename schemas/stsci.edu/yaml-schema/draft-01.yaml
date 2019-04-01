@@ -25,8 +25,9 @@ allOf:
       propertyOrder:
         description: |
           Specifies the default order of the properties when writing
-          out.  Any keys not listed in propertyOrder will be in
-          arbitrary order at the end.
+          out. Any keys not listed in **propertyOrder** will be in
+          arbitrary order at the end. This field applies only to nodes with
+          **object** type.
         type: array
         items:
           type: string
@@ -56,8 +57,9 @@ allOf:
       style:
         description: |
           Specifies the default serialization style to use for a string.
-          YAML supports multiple styles for strings::
+          YAML supports multiple styles for strings:
 
+          ```yaml
             Inline style: "First line\nSecond line"
 
             Literal style: |
@@ -70,6 +72,7 @@ allOf:
 
               Second
               line
+          ```
 
           This property gives a hint to the tool outputting the YAML
           which style to use.  If not provided, the library is free to
@@ -83,11 +86,19 @@ allOf:
         description: |
           A list of examples to help document the schema.  Each pair
           is a prose description followed by a string containing YAML
-          content.
+          content. For example:
+
+          ```yaml
+            examples:
+              -
+                - Complex number: 1 real, -1 imaginary
+                - "!complex 1-1j"
+                  type: array
+                  items:
+          ```
+
         type: array
         items:
-          type: array
-          items:
-            - type: string
-            - type: string
+          - type: string
+          - type: string
 ...
