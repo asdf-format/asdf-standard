@@ -27,7 +27,10 @@ custom schemas (see `extending-asdf`).
    :maxdepth: 0
 
    yaml_schema.rst
-   asdf_schema.rst
+
+.. asdf-autoschemas:: 
+
+   asdf-schema-1.0.0
 
 The following graph shows the dependencies between modules:
 
