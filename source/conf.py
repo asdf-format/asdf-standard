@@ -53,6 +53,12 @@ copyright = u'2014, Michael Droettboom, Erik Bray, Space Telescope Science Insti
 asdf_schema_path = '../schemas'
 # This is the prefix common to all schema IDs in this repository
 asdf_schema_standard_prefix = 'stsci.edu/asdf'
+# This seems pretty redundant/unnecessary and should probably be fixed in the
+# plugin.
+asdf_schema_reference_mappings = [
+    ('tag:stsci.edu:asdf',
+     'http://asdf-standard.readthedocs.io/en/latest/generated/stsci.edu/asdf/'),
+]
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
