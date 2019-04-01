@@ -14,6 +14,15 @@ what makes YAML Schema different from JSON Schema.
 
 Writing a new schema is described in :ref:`designing-schema`.
 
+.. note::
+
+   The YAML Schema currently does not require either the ``id`` or ``tag``
+   keywords. The ``id`` keyword is not included in the YAML Schema since it is
+   actually inherited from the base JSON Schema standard. However, it may
+   become mandatory in a future version of the YAML Standard. The ``tag``
+   keyword may also eventually become mandatory, although the motivation for
+   this is somewhat weaker.
+
 .. _yaml-schema-draft-01:
 
 .. asdf-schema::
