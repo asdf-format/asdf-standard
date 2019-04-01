@@ -6,12 +6,11 @@ ASDF Schema
 .. toctree::
    :hidden:
 
-   schemas/stsci.edu/asdf/asdf-schema-1.0.0.rst
+   ../generated/stsci.edu/asdf/core/asdf-1.1.0
 
-:ref:`ASDF Schema <http://stsci.edu/schemas/asdf/asdf-schema-1.0.0>`
-further extends YAML schema to add some validations specific to ASDF,
-notably to do with :ref:`ndarray
-<http://stsci.edu/schemas/asdf/core/ndarray-1.0.0>`.
+:ref:`ASDF Schema <core/asdf-1.1.0>` further extends YAML schema to add
+some validations specific to ASDF, notably to do with :ref:`ndarray
+<core/ndarray-1.0.0>`.
 
 ``ndim`` keyword
 ^^^^^^^^^^^^^^^^

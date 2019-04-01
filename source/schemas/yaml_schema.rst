@@ -27,20 +27,17 @@ Writing a new schema is described in :ref:`designing-schema`.
 ``tag``, which may be attached to any data type, declares that the
 element must have the given YAML tag.
 
-For example, the root :ref:`asdf
-<http://stsci.edu/schemas/asdf/core/asdf-1.0.0>` schema declares that
-the ``data`` property must be an :ref:`ndarray
-<http://stsci.edu/schemas/asdf/core/ndarray-1.0.0>`.  It does
+For example, the root :ref:`asdf <core/asdf-1.1.0>` schema declares that
+the ``data`` property must be an :ref:`ndarray <core/ndarray-1.0.0>`.  It does
 this not by using the ``tag`` keyword directly, but by referencing the
-``ndarray`` schema, which in turn has the ``tag`` keyword.  The ASDF
-schema includes::
+``ndarray`` schema, which in turn has the ``tag`` keyword.  The ASDF schema
+includes::
 
     properties:
       data:
         $ref: "ndarray"
 
-And the :ref:`ndarray
-<http://stsci.edu/schemas/asdf/core/ndarray-1.0.0>` schema includes::
+And the :ref:`ndarray <core/ndarray-1.0.0>` schema includes::
 
     tag: "tag:stsci.edu:asdf/core/ndarray-1.0.0"
 

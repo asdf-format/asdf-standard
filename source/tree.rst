@@ -1,4 +1,4 @@
-a. _tree-in-depth:
+.. _tree-in-depth:
 
 The tree in-depth
 =================
