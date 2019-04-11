@@ -36,21 +36,21 @@ examples:
             labels: [-1.67833272, -1.9580548, -1.118888]
           - !!omap
             models:
-          - !transform/compose-1.0.0
-            forward:
-            - !transform/remap_axes-1.0.0
-              mapping: [1]
-            - !transform/shift-1.0.0 {offset: 6.0}
-          - !transform/compose-1.0.0
-            forward:
-            - !transform/remap_axes-1.0.0
-              mapping: [1]
-            - !transform/shift-1.0.0 {offset: 2.0}
-          - !transform/compose-1.0.0
-            forward:
-            - !transform/remap_axes-1.0.0
-              mapping: [1]
-            - !transform/shift-1.0.0 {offset: 4.0}
+            - !transform/compose-1.0.0
+              forward:
+              - !transform/remap_axes-1.0.0
+                mapping: [1]
+              - !transform/shift-1.0.0 {offset: 6.0}
+            - !transform/compose-1.0.0
+              forward:
+              - !transform/remap_axes-1.0.0
+                mapping: [1]
+              - !transform/shift-1.0.0 {offset: 2.0}
+            - !transform/compose-1.0.0
+              forward:
+              - !transform/remap_axes-1.0.0
+                mapping: [1]
+              - !transform/shift-1.0.0 {offset: 4.0}
           inputs: [x, y]
           inputs_mapping: !transform/remap_axes-1.0.0
             mapping: [0]
@@ -69,21 +69,21 @@ examples:
             - [1.95, 2.3]
           - !!omap
             models:
-          - !transform/compose-1.0.0
-            forward:
-            - !transform/remap_axes-1.0.0
-              mapping: [1]
-            - !transform/shift-1.0.0 {offset: 6.0}
-          - !transform/compose-1.0.0
-            forward:
-            - !transform/remap_axes-1.0.0
-              mapping: [1]
-            - !transform/shift-1.0.0 {offset: 2.0}
-          - !transform/compose-1.0.0
-            forward:
-            - !transform/remap_axes-1.0.0
-              mapping: [1]
-            - !transform/shift-1.0.0 {offset: 4.0}
+            - !transform/compose-1.0.0
+              forward:
+              - !transform/remap_axes-1.0.0
+                mapping: [1]
+              - !transform/shift-1.0.0 {offset: 6.0}
+            - !transform/compose-1.0.0
+              forward:
+              - !transform/remap_axes-1.0.0
+                mapping: [1]
+              - !transform/shift-1.0.0 {offset: 2.0}
+            - !transform/compose-1.0.0
+              forward:
+              - !transform/remap_axes-1.0.0
+                mapping: [1]
+              - !transform/shift-1.0.0 {offset: 4.0}
           inputs: [x, y]
           inputs_mapping: !transform/remap_axes-1.0.0
             mapping: [0]
