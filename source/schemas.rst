@@ -1,4 +1,4 @@
-.. _extending-asdf:
+.. _asdf-schemas:
 
 ASDF Schemas
 ============
@@ -222,7 +222,7 @@ Following the naming convention for both ``id`` and ``tag`` attributes enables
 a simple mapping from ``tag`` to ``id``. In this case, simply take the prefix
 ``tag:stsci.edu:`` and replace it with ``http://stsci.edu/schemas/``.
 
-.. _designing-schema:
+.. _extending-asdf:
 
 Designing a new tag and schema
 ------------------------------

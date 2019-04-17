@@ -12,7 +12,7 @@ available at `json-schema.org <http://json-schema.org>`__.  A working
 understanding of JSON Schema is assumed for this section, which only describes
 what makes YAML Schema different from JSON Schema.
 
-Writing a new schema is described in :ref:`designing-schema`.
+Writing a new schema is described in :ref:`extending-asdf`.
 
 .. note::
 
