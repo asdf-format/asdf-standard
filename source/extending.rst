@@ -12,33 +12,35 @@ don't understand those conventions.
 Designing a new tag and schema
 ------------------------------
 
-The schema included in the ASDF standard will not be adequate for all
-needs, but it is possible to mix them with custom schema designed for
-a specific purpose.  It is also possible to extend and specialize an
-existing schema (described in :ref:`extending-a-schema`).
+This section will walk through the development of a new tag and schema. In the
+example, suppose we work at the Space Telescope Science Institute, which can be
+found on the world wide web at ``stsci.edu``.  We're developing a new
+instrument, ``FOO``, and we need a way to define the specialized metadata to
+describe the exposures that it will be generating.
 
-This section will walk through the development of a new tag and
-schema.  In the example, suppose we work at the Space Telescope
-Science Institute, which can be found on the world wide web at
-``stsci.edu``.  We're developing a new instrument, ``FOO``, and we
-need a way to define the specialized metadata to describe the
-exposures that it will be generating.
+YAML Header
+^^^^^^^^^^^
 
-Header
-^^^^^^
-
-Every ASDF schema should begin with the following header::
+ASDF schemas are encoded in YAML. The version of YAML currently used by ASDF is
+1.1. Therefore all ASDF schemas begin with the following YAML header::
 
   %YAML 1.1
   ---
-  $schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
 
-The first lines are the ``YAML`` header and declare that the schema is ``YAML
-1.1`` format.
+Metaschema
+^^^^^^^^^^
 
-The value of the ``$schema`` keyword indicates that the structure of the
-content conforms to the YAML Schema defined above. This is the meta-schema that
-may be used to validate the schema itself.
+ASDF schemas use the top-level ``$schema`` attribute to declare the metaschema
+that is used to validate the schema itself. Most custom ASDF schemas will
+conform to :ref:`YAML Schema <yaml-schema>` defined by the ASDF Standard, and
+so will have the following::
+
+   $schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
+
+Some ASDF schemas use the :ref:`ASDF metaschema <asdf-schema-1.0.0>` instead
+(e.g. `core/ndarray-1.0.0`).  It is also possible to create custom metaschemas,
+although these should always inherit from either YAML Schema or the ASDF
+metaschema. [#f1]_
 
 Tags and IDs
 ^^^^^^^^^^^^
@@ -245,3 +247,11 @@ Extending an existing schema
 ----------------------------
 
 TODO
+
+.. rubric:: Footnotes
+
+.. [#f1] For an example of how to inherit from another metaschema, look at the
+   `contents
+   <generated/stsci.edu/asdf/asdf-schema-1.0.0.html#Original%20Schema>`__
+   of the ASDF metaschema and see how there is a reference to the YAML schema
+   in the top-level ``allOf``.
