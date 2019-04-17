@@ -27,7 +27,8 @@ for ASDF implementations:
 * :ref:`transform <transform-schema>`
 * :ref:`World Coordinate System (WCS) <wcs-schema>` (primarily intended for
   astronomical applications)
-* :ref:`FITS <fits-schema>` (not likely to be of general use)
+
+.. Fits is deliberately omitted from this list.
 
 The ASDF Standard also defines two metaschemas which are used to validate the
 ASDF schemas themselves:
@@ -275,16 +276,6 @@ the schema::
 
 Descriptive information
 ^^^^^^^^^^^^^^^^^^^^^^^
-
-Each schema has some descriptive fields: ``title``, ``description``
-and ``examples``.  These fields may contain core markdown syntax.
-
-- ``title``: A one-line summary of what the schema is for.
-
-- ``description``: A lengthier prose description of the schema
-
-- ``examples``: A list of example content that conforms to the schema,
-  illustrating how to use it.
 
 Continuing our example::
 
