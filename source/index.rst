@@ -15,8 +15,8 @@ pronounced *AZ*-diff.
    file_layout.rst
    tree.rst
    versioning.rst
-   schemas/index.rst
    extending.rst
+   schemas/index.rst
    known_limits.rst
    changes.rst
 

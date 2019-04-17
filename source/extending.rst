@@ -1,11 +1,41 @@
 .. _extending-asdf:
 
-Extending ASDF
-==============
+ASDF Schemas
+============
 
-ASDF is designed to be extensible so outside teams can add their own
-types and structures while retaining compatibility with tools that
-don't understand those conventions.
+ASDF uses `JSON Schema <http://json-schema.org/>`__ to perform validation of
+ASDF files. Schema validation of ASDF files serves the following purposes:
+
+* Ensures conformity with core data types defined by the ASDF Standard. ASDF
+  readers can detect whether an ASDF file has been modified in a way that would
+  render it unreadable or unrecognizable.
+* Enables interoperability between ASDF implementations. Implementations that
+  recognize the same schema definitions should be able to interpret files
+  containing instances of data types that conform to those schemas.
+* Allows for the definition of custom data types. External software packages
+  can provide ASDF schemas that correspond to types provided by that package,
+  and then serialize instances of those types in a way that is standardized
+  and portable.
+
+All ASDF implementations must implement the types defined by the `core schemas
+<core-schema>` and validate against them when reading files. [#]_ The ASDF
+Standard also defines several other categories of schemas, which are optional
+for ASDF implementations:
+
+* :ref:`unit <unit-schema>`
+* :ref:`time <time-schema>`
+* :ref:`transform <transform-schema>`
+* :ref:`World Coordinate System (WCS) <wcs-schema>` (primarily intended for
+  astronomical applications)
+* :ref:`FITS <fits-schema>` (not likely to be of general use)
+
+The ASDF Standard also defines two metaschemas which are used to validate the
+ASDF schemas themselves:
+
+* :ref:`yaml-schema`
+* :ref:`ASDF Schema <asdf-schema-1.0.0>`
+
+More information on the schemas defined by ASDF can be found in :ref:`schema`.
 
 .. _designing-schema:
 
@@ -40,7 +70,7 @@ so will have the following::
 Some ASDF schemas use the :ref:`ASDF metaschema <asdf-schema-1.0.0>` instead
 (e.g. `core/ndarray-1.0.0`).  It is also possible to create custom metaschemas,
 although these should always inherit from either YAML Schema or the ASDF
-metaschema. [#f1]_
+metaschema. [#]_
 
 Tags and IDs
 ^^^^^^^^^^^^
@@ -250,7 +280,10 @@ TODO
 
 .. rubric:: Footnotes
 
-.. [#f1] For an example of how to inherit from another metaschema, look at the
+.. [#] Implementations may expose the control of validation on reading to the
+   user (e.g. to disable it on demand). However, validation on reading should
+   be the default behavior.
+.. [#] For an example of how to inherit from another metaschema, look at the
    `contents
    <generated/stsci.edu/asdf/asdf-schema-1.0.0.html#Original%20Schema>`__
    of the ASDF metaschema and see how there is a reference to the YAML schema
