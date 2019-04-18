@@ -131,6 +131,8 @@ version of the ASDF Standard, the ``tag`` attribute may remain optional. This
 is because schemas can be referenced by ``id`` without necessarily referring to
 a particular tagged type in the YAML representation.
 
+.. _descriptive-info:
+
 Descriptive information
 ^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -231,78 +233,76 @@ Designing a new tag and schema
 ------------------------------
 
 This section will walk through the development of a new tag and schema. In the
-example, suppose we work at the Space Telescope Science Institute, which can be
-found on the world wide web at ``stsci.edu``.  We're developing a new
-instrument, ``FOO``, and we need a way to define the specialized metadata to
+example, suppose we work at the Example Organization, which can be
+found on the world wide web at ``example.org``.  We're developing a new
+instrument, ``foo``, and we need a way to define the specialized metadata to
 describe the exposures that it will be generating.
 
-All of the tags defined by the ASDF standard itself have the following
-prefix::
+According to the `naming-conventions`, our ``tag`` and ``id`` attributes will
+consist of the following components:
 
-  tag:stsci.edu:asdf/
+* **organization**: ``example.org``
+* **standard**: ``foo``
+* **name**: ``metadata``
+* **version**: ``1.0.0`` (by convention the starting version for all new schemas)
 
-This prefix is reserved for tags and schemas defined within the ASDF
-standard itself.  ASDF can, of course, include any tags, as long as
-the tag names are globally unique.  So, for our example instrument,
-we'll declare the tag to be::
+So, for our example instrument metadata, the tag is::
 
-  tag:stsci.edu:FOO/metadata-1.0.0
+  tag:example.org:foo/metadata-1.0.0
 
-Each tag should be associated with a schema in order to validate
-it. Each schema must also have a universally unique ``id``, which is
-in the form of unique URI.  For the ASDF built-in tags, the mapping
-from tag name to schema URI is quite simple::
+Each tag should be associated with a schema in order to validate it. Each
+schema must also have a universally unique ``id``, which is in the form of
+unique URI.
 
-  tag:stsci.edu:XXX
+Note that this URI doesn't actually have to resolve to anything.  In fact,
+visiting that URL in your web browser is likely to bring up a ``404`` error.
+All that's necessary is that it is universally unique and that the tool reading
+the ASDF file is able to map from a tag name to a schema URI, and then load the
+associated schema.
 
-maps to::
+Again following with our example, we will assign the following URI to refer to
+our schema::
 
-  http://stsci.edu/schemas/XXX
+  http://example.org/schemas/foo/metadata-1.0.0
 
-Note that this URI doesn't actually have to resolve to anything.  In
-fact, visiting that URL in your web browser is likely to bring up a
-``404`` error.  All that's necessary is that it is universally unique
-and that the tool reading the ASDF file is able to map from a tag name
-to a schema URI, and then load the associated schema.
+Therefore, in our schema file, we have the following keys, one declaring the
+name of the YAML ``tag``, and one defining the ``id`` of the schema::
 
-Again following with our example, we will assign the following URI to
-refer to our schema::
+  id: "http://example.org/schemas/foo/metadata-1.0.0"
+  tag: "tag:example.org:foo/metadata-1.0.0"
 
-  http://stsci.edu/schemas/FOO/metadata-1.0.0
 
-Therefore, in our schema file, we have the following keys, one
-declaring the name of the YAML ``tag``, and one defining the ``id`` of
-the schema::
+Since our schema is just a basic ASDF schema, we will declare that it conforms
+to `yaml-schema` defined by the ASDF Standard::
 
-  tag: "tag:stsci.edu:FOO/metadata-1.0.0"
-  id: "http://stsci.edu/schemas/FOO/metadata-1.0.0"
+   $schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
 
 Descriptive information
 ^^^^^^^^^^^^^^^^^^^^^^^
 
-Continuing our example::
+Continuing our example, we include some `descriptive metadata
+<descriptive-info>` about the data type declared by the schema itself::
 
   title: |
-    Metadata for the FOO instrument.
+    Metadata for the foo instrument.
   description: |
-    This stores some information about an exposure from the FOO instrument.
+    This stores some information about an exposure from the foo instrument.
   examples:
     -
       - A minimal description of an exposure.
       - |
-          !FOO/metadata-1.0.0
+          tag:example.org:foo/metadata-1.0.0
             exposure_time: 0.001
 
 The schema proper
 ^^^^^^^^^^^^^^^^^
 
-The rest of the schema describes the acceptable data types and their
-structure.  The format used for this description comes straight out of
-JSON Schema, and rather than documenting all of the things it can do
-here, please refer to `Understanding JSON Schema
-<http://spacetelescope.github.io/understanding-json-schema/>`__, and
-the further resources available at `json-schema.org
-<http://json-schema.org>`__.
+The rest of the schema describes the acceptable data types and their structure.
+The format used for this description comes straight out of JSON Schema, and
+rather than documenting all of the things it can do here, please refer to
+`Understanding JSON Schema
+<http://spacetelescope.github.io/understanding-json-schema/>`__, and the
+further resources available at `json-schema.org <http://json-schema.org>`__.
 
 In our example, we'll define two metadata elements: the name of the
 investigator, and the exposure time, each of which also have a
@@ -347,18 +347,18 @@ Here is our complete schema example::
   %YAML 1.1
   ---
   $schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
-  tag: "tag:stsci.edu:FOO/metadata-1.0.0"
-  id: "http://stsci.edu/schemas/FOO/metadata-1.0.0"
+  id: "http://example.org/schemas/foo/metadata-1.0.0"
+  tag: "tag:example.org:foo/metadata-1.0.0"
 
   title: |
-    Metadata for the FOO instrument.
+    Metadata for the foo instrument.
   description: |
-    This stores some information about an exposure from the FOO instrument.
+    This stores some information about an exposure from the foo instrument.
   examples:
     -
       - A minimal description of an exposure.
       - |
-          !FOO/metadata-1.0.0
+          tag:example.org:foo/metadata-1.0.0
             exposure_time: 0.001
 
   type: object
