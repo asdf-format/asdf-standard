@@ -10,7 +10,7 @@ description: |
   Corresponds to the `SZP` projection in the FITS WCS standard.
 
   See
-  [zenithal](ref:transform/zenithal-1.1.0)
+  [zenithal](ref:transform/zenithal-1.2.0)
   for the definition of the full transformation.
 
   The pixel-to-sky transformation is defined as:
@@ -25,7 +25,7 @@ description: |
   this transform.
 
 allOf:
-  - $ref: "zenithal-1.1.0"
+  - $ref: "zenithal-1.2.0"
   - type: object
     properties:
       mu:

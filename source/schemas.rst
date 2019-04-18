@@ -407,7 +407,7 @@ The following important caveats apply when extending an existing schema:
 
 The best examples for extending an existing schema come from the collection of
 `transform schemas <transform-schema>` defined by the ASDF Standard. All
-transforms extend the `base transform <transform/transform-1.1.0>`, which is
+transforms extend the `base transform <transform/transform-1.2.0>`, which is
 copied below for reference::
 
    %YAML 1.1
@@ -440,7 +440,7 @@ copied below for reference::
        $ref: "transform-1.2.0"
    additionalProperties: true
 
-Consider, for example, the `add transform <transform/add-1.1.0>`, which defines
+Consider, for example, the `add transform <transform/add-1.2.0>`, which defines
 the addition of a list of transforms::
 
    %YAML 1.1

@@ -14,7 +14,7 @@ examples:
     - |
         !transform/regions_selector-1.2.0
           inputs: [x, y]
-          label_mapper: !transform/label_mapper-1.1.0
+          label_mapper: !transform/label_mapper-1.2.0
             mapper: !core/ndarray-1.0.0
               datatype: int8
               data:
@@ -26,28 +26,28 @@ examples:
 
           outputs: [ra, dec, lam]
           selector:
-            1: !transform/compose-1.1.0
+            1: !transform/compose-1.2.0
               forward:
-              - !transform/remap_axes-1.1.0
+              - !transform/remap_axes-1.2.0
                 mapping: [0, 1, 1]
-              - !transform/concatenate-1.1.0
+              - !transform/concatenate-1.2.0
                 forward:
-                - !transform/concatenate-1.1.0
+                - !transform/concatenate-1.2.0
                   forward:
-                  - !transform/shift-1.1.0 {offset: 1.0}
-                  - !transform/shift-1.1.0 {offset: 2.0}
-                - !transform/shift-1.1.0 {offset: 3.0}
-            2: !transform/compose-1.1.0
+                  - !transform/shift-1.2.0 {offset: 1.0}
+                  - !transform/shift-1.2.0 {offset: 2.0}
+                - !transform/shift-1.2.0 {offset: 3.0}
+            2: !transform/compose-1.2.0
               forward:
-              - !transform/remap_axes-1.1.0
+              - !transform/remap_axes-1.2.0
                 mapping: [0, 1, 1]
-              - !transform/concatenate-1.1.0
+              - !transform/concatenate-1.2.0
                 forward:
-                - !transform/concatenate-1.1.0
+                - !transform/concatenate-1.2.0
                   forward:
-                  - !transform/scale-1.1.0 {factor: 2.0}
-                  - !transform/scale-1.1.0 {factor: 3.0}
-                - !transform/scale-1.1.0 {factor: 3.0}
+                  - !transform/scale-1.2.0 {factor: 2.0}
+                  - !transform/scale-1.2.0 {factor: 3.0}
+                - !transform/scale-1.2.0 {factor: 3.0}
           undefined_transform_value: .nan
 
 
@@ -58,8 +58,8 @@ allOf:
       label_mapper:
         description: |
           An instance of
-          [label_mapper-1.1.0](ref:http://stsci.edu/schemas/asdf/transform/label_mapper-1.1.0)
-        $ref: "./label_mapper-1.1.0"
+          [label_mapper-1.2.0](ref:transform/label_mapper-1.2.0)
+        $ref: "./label_mapper-1.2.0"
       inputs:
         description: |
           Names of inputs.

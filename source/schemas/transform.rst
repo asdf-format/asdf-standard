@@ -10,9 +10,9 @@ Basics
 
 .. asdf-autoschemas::
 
-   transform/transform-1.1.0
+   transform/transform-1.2.0
    transform/generic-1.1.0
-   transform/identity-1.1.0
+   transform/identity-1.2.0
    transform/constant-1.2.0
    transform/domain-1.0.0
 
@@ -21,20 +21,20 @@ Compound transformations
 
 .. asdf-autoschemas::
 
-   transform/compose-1.1.0
-   transform/concatenate-1.1.0
-   transform/remap_axes-1.1.0
+   transform/compose-1.2.0
+   transform/concatenate-1.2.0
+   transform/remap_axes-1.2.0
 
 Arithmetic operations
 ---------------------
 
 .. asdf-autoschemas::
 
-   transform/add-1.1.0
-   transform/subtract-1.1.0
-   transform/multiply-1.1.0
-   transform/divide-1.1.0
-   transform/power-1.1.0
+   transform/add-1.2.0
+   transform/subtract-1.2.0
+   transform/multiply-1.2.0
+   transform/divide-1.2.0
+   transform/power-1.2.0
 
 Simple Transforms
 -----------------
@@ -61,15 +61,15 @@ Zenithal (azimuthal)
 
 .. asdf-autoschemas::
 
-   transform/zenithal-1.1.0
-   transform/gnomonic-1.1.0
+   transform/zenithal-1.2.0
+   transform/gnomonic-1.2.0
    transform/zenithal_perspective-1.2.0
    transform/slant_zenithal_perspective-1.2.0
-   transform/stereographic-1.1.0
-   transform/slant_orthographic-1.1.0
-   transform/zenithal_equidistant-1.1.0
-   transform/zenithal_equal_area-1.1.0
-   transform/airy-1.1.0
+   transform/stereographic-1.2.0
+   transform/slant_orthographic-1.2.0
+   transform/zenithal_equidistant-1.2.0
+   transform/zenithal_equal_area-1.2.0
+   transform/airy-1.2.0
 
 Cylindrical
 ^^^^^^^^^^^
@@ -143,5 +143,5 @@ Regions and labels
 
 .. asdf-autoschemas::
 
-   transform/regions_selector-1.1.0
-   transform/label_mapper-1.1.0
+   transform/regions_selector-1.2.0
+   transform/label_mapper-1.2.0
