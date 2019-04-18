@@ -54,7 +54,7 @@ The following top-level attributes are required for all ASDF schemas: [#]_
 * ``id``: A name that uniquely identifies the schema
 * ``tag``: The YAML tag corresponding to the type described by this schema
 
-Each of these attributes is described in more depth below.
+Each of these attributes is described in more detail below.
 
 $schema
 ^^^^^^^
@@ -67,21 +67,22 @@ so will have the following top-level attribute::
    $schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
 
 Some ASDF schemas use the :ref:`ASDF metaschema <asdf-schema-1.0.0>` instead
-(e.g. `core/ndarray-1.0.0`).  It is also possible to create custom metaschemas,
-although these should always inherit from either YAML Schema or the ASDF
-metaschema. [#]_
+(e.g. `ndarray <core/ndarray-1.0.0>`).  It is also possible to create custom
+metaschemas, although these should always inherit from either YAML Schema or
+the ASDF metaschema. [#]_
 
 Some ASDF implementations may choose to validate the schemas themselves (e.g.
 as part of a regression testing suite). The ``$schema`` keyword should be used
 to determine the metaschema to be used for validation. All schemas should also
-validate successfully against :ref:`yaml-schema` as well.
+validate successfully against :ref:`yaml-schema`.
 
 id
 ^^
 
 The ``id`` represents the globally unique name of the schema. It must be a
-valid URI and cannot be an empty string or an empty fragment (e.g. ``#``).
-See `naming-conventions` for conventions to ensure global uniqueness.
+`valid URI <https://tools.ietf.org/html/rfc3986>`__ and cannot be an empty
+string or an empty fragment (e.g. ``#``).  See `naming-conventions` for
+conventions to ensure global uniqueness.
 
 While the ``id`` must be a valid URI, it does not have to describe a real
 location on disk or on a network. For example, the ``id`` values for all
@@ -108,8 +109,8 @@ in a string literal as part of a program.
 tag
 ^^^
 
-The ``tag`` attribute is used by ASDF to associate a data type instance in an
-ASDF file with the appropriate schema to be used for validation. It is a
+The ``tag`` attribute is used by ASDF to associate an instance of a data type
+in an ASDF file with the appropriate schema to be used for validation. It is a
 concept from YAML (see the `documentation
 <https://yaml.org/spec/1.1/#tag/information%20model>`__).
 
@@ -135,7 +136,9 @@ Descriptive information
 
 Each schema may optionally contain descriptive fields: ``title``,
 ``description`` and ``examples``.  These fields may contain core markdown
-syntax (which will be used for the purposes of rendering schema documentation).
+syntax (which will be used for the purposes of rendering schema documentation
+by, for example, `sphinx-asdf
+<https://github.com/spacetelescope/sphinx-asdf>`__).
 
 - ``title``: A one-line summary of the data type described by the schema
 
