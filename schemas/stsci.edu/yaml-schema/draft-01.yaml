@@ -99,6 +99,10 @@ allOf:
 
         type: array
         items:
-          - type: string
-          - type: string
+          type: array
+          items:
+            - type: string
+            - anyOf:
+              - type: string
+              - type: object
 ...
