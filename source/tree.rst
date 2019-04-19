@@ -1,4 +1,4 @@
-a. _tree-in-depth:
+.. _tree-in-depth:
 
 The tree in-depth
 =================
@@ -19,9 +19,10 @@ Draft 4
 <http://json-schema.org/latest/json-schema-validation.html>`__.  (Such
 extensions are allowed and even encouraged by the JSON Schema
 standard, which defines the ``$schema`` attribute as a place to
-specify which extension is being used.)  :ref:`schema`, provides a
-reference to all of these schema in detail.  :ref:`extending-asdf`
-describes how to use YAML schema to define new schema.
+specify which extension is being used.) `asdf-schemas` contains an overview of
+how schemas are defined and used by ASDF. :ref:`schema` describes in detail
+all of the schemas provided by the ASDF Standard.  reference to all of schemas
+in detail.
 
 .. _tags:
 

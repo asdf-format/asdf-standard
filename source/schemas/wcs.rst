@@ -13,8 +13,8 @@ coordinate system transformations.
 
 .. asdf-autoschemas::
 
-   wcs/wcs-1.1.0
-   wcs/step-1.1.0
+   wcs/wcs-1.2.0
+   wcs/step-1.2.0
    wcs/frame-1.1.0
    wcs/celestial_frame-1.1.0
    wcs/spectral_frame-1.1.0

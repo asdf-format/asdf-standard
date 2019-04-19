@@ -1,6 +1,6 @@
 .. _schema:
 
-ASDF schema definitions
+ASDF Schema Definitions
 =======================
 
 This reference section describes the schema files for the built-in
@@ -18,6 +18,19 @@ must support the "core" module, but the other modules are optional.
    time.rst
    transform.rst
    wcs.rst
+
+The ASDF Standard also defines two meta-schemas that are used for validating
+the ASDF schemas themselves. These schemas are useful references when creating
+custom schemas (see `extending-asdf`).
+
+.. toctree::
+   :maxdepth: 0
+
+   yaml_schema.rst
+
+.. asdf-autoschemas:: 
+
+   asdf-schema-1.0.0
 
 The following graph shows the dependencies between modules:
 
