@@ -1,16 +1,17 @@
 %YAML 1.1
 ---
 $schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
-id: "http://stsci.edu/schemas/asdf/transform/legendre-1.1.0"
-tag: "tag:stsci.edu:asdf/transform/legendre-1.1.0"
+id: "http://stsci.edu/schemas/asdf/transform/general_polynomial-1.1.0"
+tag: "tag:stsci.edu:asdf/transform/general_polynomial-1.1.0"
 title: >
-  A Polynomial model.
+  A General Polynomial model capable of handling different polynomial varieties
 
 description: |
   A polynomial model represented by its coefficients stored in
   an ndarray of shape $(n+1)$ for univariate polynomials or $(n+1, n+1)$
   for polynomials with 2 variables, where $n$ is the highest total degree
-  of the polynomial.
+  of the polynomial. The property polynomial_type defines what kind of 
+  polynomial is defined.
 
   $$P = \sum_{i, j=0}^{i+j=n}c_{ij} * x^{i} * y^{j}$$
 
@@ -20,13 +21,15 @@ examples:
   -
     - $P = 1.2 + 0.3 * x + 56.1 * x^{2}$
     - |
-        !transform/legendre-1.1.0
+        !transform/general_polynomial-1.1.0
+          polynomial_type: ordinary
           coefficients: !core/ndarray-1.0.0
                           [1.2, 0.3, 56.1]
   -
     - $P = 1.2 + 0.3 * x + 3 * x * y + 2.1 * y^{2}$
     - |
-        !transform/polynomial-1.1.0
+        !transform/general_polynomial-1.1.0
+          polynomial_type: chebyshev
           coefficients: !core/ndarray-1.0.0
                           [[1.2, 0.0, 2.1],
                            [0.3, 3.0, 0.0],
@@ -34,10 +37,15 @@ examples:
 
 type: object
 properties:
+  polynomial_type:
+    description: |
+      One of a selected set of polynomial types
+    type: string
+    enum: [ordinary, chebyshev, legendre, hermite]
   coefficients:
     description: |
       An array with coefficients.
     anyOf:
       - $ref: "../core/ndarray-1.0.0"
       - type: array
-required: [coefficients]
+required: [polynomial_type, coefficients]
