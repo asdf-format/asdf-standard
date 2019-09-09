@@ -23,8 +23,7 @@ examples:
             n_inputs: 3
             n_outputs: 2
           - 
-            n_inputs: 2
-            n_outputs: 1
+            x: 7.3
 
 allOf:
   - $ref: "transform-1.1.0"
