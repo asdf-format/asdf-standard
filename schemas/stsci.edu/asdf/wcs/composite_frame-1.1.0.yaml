@@ -1,0 +1,20 @@
+%YAML 1.1
+---
+$schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
+id: "http://stsci.edu/schemas/asdf/wcs/composite_frame-1.1.0"
+tag: "tag:stsci.edu:asdf/wcs/composite_frame-1.1.0"
+
+title: >
+  Represents a set of frames.
+allOf:
+  - type: object
+    properties:
+      name:
+        description:
+          Name of composite frame.
+        type: string
+
+      frames:
+        description:
+          List of frames in the composite frame.
+        type: array

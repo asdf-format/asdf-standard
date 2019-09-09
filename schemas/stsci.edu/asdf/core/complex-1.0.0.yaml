@@ -7,16 +7,26 @@ description: |
   Represents a complex number matching the following EBNF grammar
 
   ```
+    dot           = "."
     plus-or-minus = "+" | "-"
+    digit         = "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9"
+    sign          = "" | plus-or-minus
     suffix        = "J" | "j" | "I" | "i"
-    complex       = [ieee754] [plus-or-minus ieee754 suffix]
+    inf           = "inf" | "INF"
+    nan           = "nan" | "NAN"
+    number        = digits | dot digits | digits dot digits
+    sci-suffix    = "e" | "E"
+    scientific    = number sci-suffix sign digits
+    real          = sign number | sign scientific
+    imag          = number suffix | scientific suffix
+    complex       = real | sign imag | real plus-or-minus imag
   ```
-
-  Where `ieee754` is a floating point number in IEEE 754 decimal
-  format.
 
   Though `J`, `j`, `I` and `i` must be supported on reading, it is
   recommended to use `i` on writing.
+
+  For historical reasons, it is necessary to accept as valid complex numbers
+  that are surrounded by parenthesis.
 
 examples:
   -
@@ -31,4 +41,5 @@ examples:
 
 tag: "tag:stsci.edu:asdf/core/complex-1.0.0"
 type: string
-pattern: "([-+]?[0-9]*\\.?[0-9]+([eE][-+]?[0-9]+)?)?([-+][0-9]*\\.?[0-9]+([eE][-+]?[0-9]+)?[JjIi])?"
+# This regex was automatically generated from a description of a grammar
+pattern: "^(((((([+-]?(([0-9]+)|(\\.[0-9]+)|([0-9]+\\.[0-9]+)|(((inf)|(INF)))|(((nan)|(NAN)))))|([+-]?(([0-9]+)|(\\.[0-9]+)|([0-9]+\\.[0-9]+)|(((inf)|(INF)))|(((nan)|(NAN))))[eE][+-]?[0-9]+)))|([+-]?(((([0-9]+)|(\\.[0-9]+)|([0-9]+\\.[0-9]+)|(((inf)|(INF)))|(((nan)|(NAN))))[iIjJ])|((([0-9]+)|(\\.[0-9]+)|([0-9]+\\.[0-9]+)|(((inf)|(INF)))|(((nan)|(NAN))))[eE][+-]?[0-9]+[iIjJ])))|((([+-]?(([0-9]+)|(\\.[0-9]+)|([0-9]+\\.[0-9]+)|(((inf)|(INF)))|(((nan)|(NAN)))))|([+-]?(([0-9]+)|(\\.[0-9]+)|([0-9]+\\.[0-9]+)|(((inf)|(INF)))|(((nan)|(NAN))))[eE][+-]?[0-9]+))[+-](((([0-9]+)|(\\.[0-9]+)|([0-9]+\\.[0-9]+)|(((inf)|(INF)))|(((nan)|(NAN))))[iIjJ])|((([0-9]+)|(\\.[0-9]+)|([0-9]+\\.[0-9]+)|(((inf)|(INF)))|(((nan)|(NAN))))[eE][+-]?[0-9]+[iIjJ])))))|(\\((((([+-]?(([0-9]+)|(\\.[0-9]+)|([0-9]+\\.[0-9]+)|(((inf)|(INF)))|(((nan)|(NAN)))))|([+-]?(([0-9]+)|(\\.[0-9]+)|([0-9]+\\.[0-9]+)|(((inf)|(INF)))|(((nan)|(NAN))))[eE][+-]?[0-9]+)))|([+-]?(((([0-9]+)|(\\.[0-9]+)|([0-9]+\\.[0-9]+)|(((inf)|(INF)))|(((nan)|(NAN))))[iIjJ])|((([0-9]+)|(\\.[0-9]+)|([0-9]+\\.[0-9]+)|(((inf)|(INF)))|(((nan)|(NAN))))[eE][+-]?[0-9]+[iIjJ])))|((([+-]?(([0-9]+)|(\\.[0-9]+)|([0-9]+\\.[0-9]+)|(((inf)|(INF)))|(((nan)|(NAN)))))|([+-]?(([0-9]+)|(\\.[0-9]+)|([0-9]+\\.[0-9]+)|(((inf)|(INF)))|(((nan)|(NAN))))[eE][+-]?[0-9]+))[+-](((([0-9]+)|(\\.[0-9]+)|([0-9]+\\.[0-9]+)|(((inf)|(INF)))|(((nan)|(NAN))))[iIjJ])|((([0-9]+)|(\\.[0-9]+)|([0-9]+\\.[0-9]+)|(((inf)|(INF)))|(((nan)|(NAN))))[eE][+-]?[0-9]+[iIjJ]))))\\)))$"

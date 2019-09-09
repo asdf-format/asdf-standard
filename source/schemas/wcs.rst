@@ -3,19 +3,20 @@
 WCS
 ===
 
+.. note::
+
+   WCS schemas have been removed from v1.3.0 of the standard. They are now
+   provided by the `GWCS package <https://github.com/spacetelescope/gwcs>`_.
+
 The ``WCS`` module contains schema used to describe generalized world
 coordinate system transformations.
 
-:category:`Requires:`
+.. asdf-autoschemas::
 
-:doc:`core`, :doc:`unit`, :doc:`transform`
-
-.. toctree::
-   :maxdepth: 1
-
-   stsci.edu/asdf/wcs/wcs-1.0.0.rst
-   stsci.edu/asdf/wcs/step-1.0.0.rst
-   stsci.edu/asdf/wcs/frame-1.0.0.rst
-   stsci.edu/asdf/wcs/celestial_frame-1.0.0.rst
-   stsci.edu/asdf/wcs/spectral_frame-1.0.0.rst
-   stsci.edu/asdf/wcs/composite_frame-1.0.0.rst
+   wcs/wcs-1.2.0
+   wcs/step-1.2.0
+   wcs/frame-1.1.0
+   wcs/celestial_frame-1.1.0
+   wcs/spectral_frame-1.1.0
+   wcs/composite_frame-1.1.0
+   wcs/icrs_coord-1.1.0

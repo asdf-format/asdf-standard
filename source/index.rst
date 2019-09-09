@@ -4,9 +4,6 @@ ASDF Standard
 This document describes the Advanced Scientific Data Format (ASDF),
 pronounced *AZ*-diff.
 
-**This document is a work in progress and does not represent a
-released version of the ASDF standard.**
-
 .. only:: html
 
     Contents:
@@ -18,8 +15,8 @@ released version of the ASDF standard.**
    file_layout.rst
    tree.rst
    versioning.rst
+   schemas.rst
    schemas/index.rst
-   extending.rst
    known_limits.rst
    changes.rst
 
@@ -35,12 +32,12 @@ released version of the ASDF standard.**
 
 
 A paper, `ASDF: A new data format for astronomy
-<http://dx.doi.org/10.1016/j.ascom.2015.06.004>`__ about ASDF has been
-published in Astronomy and Computing:
+<https://doi.org/10.1016/j.ascom.2015.06.004>`__ about ASDF has been
+published in *Astronomy and Computing*:
 
     Greenfield, P., Droettboom, M., & Bray, E. (2015). ASDF: A new
-    data format for Astronomy.  *Astronomy and Computing*.  (In
-    press).  doi:10.1016/j.ascom.2015.06.004
+    data format for astronomy.  *Astronomy and Computing*, 12: 240-251.
+    doi:10.1016/j.ascom.2015.06.004
 
 .. only:: html
 

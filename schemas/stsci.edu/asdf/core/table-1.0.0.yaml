@@ -9,7 +9,7 @@ title: >
 
 description: |
   A table is represented as a list of columns, where each entry is a
-  [column](ref:http://stsci.edu/schemas/asdf/core/column-1.0.0)
+  [column](ref:core/column-1.0.0)
   object, containing the data and some additional information.
 
   The data itself may be stored inline as text, or in binary in either
@@ -105,4 +105,4 @@ properties:
     default: {}
 
 additionalProperties: false
-requiredProperties: [data]
+required: [columns]

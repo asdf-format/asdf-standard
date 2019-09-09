@@ -1,0 +1,27 @@
+%YAML 1.1
+---
+$schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
+id: "http://stsci.edu/schemas/asdf/transform/multiplyscale-1.0.0"
+tag: "tag:stsci.edu:asdf/transform/multiplyscale-1.0.0"
+title: >
+  A Multiply model.
+description: >
+  Multiply the input by a factor.
+
+examples:
+  -
+    - Multiply the input by a pixel scale factor.
+
+    - |
+        !transform/multiplyscale-1.0.0
+          factor: !unit/quantity-1.1.0 {unit: !unit/unit-1.0.0 arcsec pixel-1,
+            value: 0.06}
+
+type: object
+properties:
+  factor:
+    anyOf:
+      - $ref: "../unit/quantity-1.1.0"
+      - type: number
+    description: Multiplication factor.
+required: [factor]

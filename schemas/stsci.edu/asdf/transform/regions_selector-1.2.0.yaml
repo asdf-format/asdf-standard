@@ -1,0 +1,98 @@
+%YAML 1.1
+---
+$schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
+id: "http://stsci.edu/schemas/asdf/transform/regions_selector-1.2.0"
+tag: "tag:stsci.edu:asdf/transform/regions_selector-1.2.0"
+title: >
+  Represents a discontinuous transform.
+description: |
+  Maps regions to transgorms and evaluates the transforms with the corresponding inputs.
+
+examples:
+  -
+    - Create a regions_selector schema for 2 regions, labeled "1" and "2".
+    - |
+        !transform/regions_selector-1.2.0
+          inputs: [x, y]
+          label_mapper: !transform/label_mapper-1.2.0
+            mapper: !core/ndarray-1.0.0
+              datatype: int8
+              data:
+                [[0, 1, 1, 0, 2, 0],
+                 [0, 1, 1, 0, 2, 0],
+                 [0, 1, 1, 0, 2, 0],
+                 [0, 1, 1, 0, 2, 0],
+                 [0, 1, 1, 0, 2, 0]]
+
+          outputs: [ra, dec, lam]
+          selector:
+            1: !transform/compose-1.2.0
+              forward:
+              - !transform/remap_axes-1.2.0
+                mapping: [0, 1, 1]
+              - !transform/concatenate-1.2.0
+                forward:
+                - !transform/concatenate-1.2.0
+                  forward:
+                  - !transform/shift-1.2.0 {offset: 1.0}
+                  - !transform/shift-1.2.0 {offset: 2.0}
+                - !transform/shift-1.2.0 {offset: 3.0}
+            2: !transform/compose-1.2.0
+              forward:
+              - !transform/remap_axes-1.2.0
+                mapping: [0, 1, 1]
+              - !transform/concatenate-1.2.0
+                forward:
+                - !transform/concatenate-1.2.0
+                  forward:
+                  - !transform/scale-1.2.0 {factor: 2.0}
+                  - !transform/scale-1.2.0 {factor: 3.0}
+                - !transform/scale-1.2.0 {factor: 3.0}
+          undefined_transform_value: .nan
+
+
+allOf:
+  - $ref: "transform-1.2.0"
+  - type: object
+    properties:
+      label_mapper:
+        description: |
+          An instance of
+          [label_mapper-1.2.0](ref:transform/label_mapper-1.2.0)
+        $ref: "./label_mapper-1.2.0"
+      inputs:
+        description: |
+          Names of inputs.
+        type: array
+        items:
+          type: string
+      outputs:
+        description: |
+          Names of outputs.
+        type: array
+        items:
+          type: string
+      selector:
+        description: |
+          A mapping of regions to trransforms.
+        type: object
+        properties:
+          labels:
+            description: |
+              An array of unique region labels.
+            type: array
+            items:
+              type:
+                - integer
+                - string
+          transforms:
+            description: |
+              A transform for each region. The order should match the order of labels.
+            type: array
+            items:
+              $ref: "transform-1.2.0"
+      undefined_transform_value:
+        description: |
+          Value to be returned if there's no transform defined for the inputs.
+        type: number
+    required: [label_mapper, inputs, outputs, selector]

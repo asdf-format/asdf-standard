@@ -1,0 +1,52 @@
+%YAML 1.1
+---
+$schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
+id: "http://stsci.edu/schemas/asdf/core/asdf-1.1.0"
+title: |
+  Top-level schema for every ASDF file.
+
+description: |
+  This schema contains the top-level attributes for every ASDF file.
+
+tag: "tag:stsci.edu:asdf/core/asdf-1.1.0"
+type: object
+properties:
+  asdf_library:
+    description: |
+      Describes the ASDF library that produced the file.
+    $ref: "software-1.0.0"
+
+  history:
+    description: |
+      A log of transformations that have happened to the file.  May
+      include such things as data collection, data calibration
+      pipelines, data analysis etc.
+    anyOf:
+      # This is to support backwards compatibility with older history formats
+      - type: array
+        items:
+          - $ref: "history_entry-1.0.0"
+      # This is the new, richer history implementation that includes
+      # extension metadata.
+      - $ref: "#/definitions/history-1.1.0"
+
+additionalProperties: true
+# Make sure that these two metadata fields are always at the top of the file
+propertyOrder: [asdf_library, history]
+
+
+# This contains the definition of the new history format, which includes
+# metadata about the extensions used to create the file.
+definitions:
+  history-1.1.0:
+    type: object
+    properties:
+      extensions:
+        type: array
+        items:
+          - $ref: "extension_metadata-1.0.0"
+      entries:
+        type: array
+        items:
+          - $ref: "history_entry-1.0.0"
+...

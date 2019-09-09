@@ -1,6 +1,8 @@
 env:
   global:
     - secure: "W3PaYhPnJFCaG6TW5Xc0wtggdEqcreTQcHThmIo5Eqs/jUL2toiUiv3ZWlhzR3tkphLvt2KeaQe83BR6RTifYjSmnmAePj0Gw5res1AXzN95OsKEk3nMiTZbVP+PuTTbQZJga8B31nRUBiAMQ6FsNlpGq7E8sp9N65lnR3mGHAE="
+    - PIP_DOC_DEPENDENCIES="six sphinx sphinx_bootstrap_theme sphinx-asdf"
+    - ASDF_MASTER="git+git://github.com/spacetelescope/asdf"
 
 sudo: false
 
@@ -11,15 +13,25 @@ addons:
 
 language: python
 
+python:
+  - 3.6
+
 branches:
   only:
     - master
 
-before_install:
-  - pip install six sphinx sphinx_bootstrap_theme jsonschema pyyaml mistune
+matrix:
+  include:
+    - name: "Documentation build"
+      before_install:
+        - pip install $PIP_DOC_DEPENDENCIES
+      script: make html
 
-install:
-  - python setup.py
-
-script:
-  - make html
+    - name: "Schema validation tests"
+      before_install:
+        - pip install $ASDF_MASTER pytest
+        # We need to install these packages because they contain the canonical
+        # implementations for some of the schemas we need to test
+        - pip install astropy gwcs
+      install: echo Nothing to install
+      script: pytest

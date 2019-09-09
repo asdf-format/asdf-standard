@@ -1,0 +1,21 @@
+%YAML 1.1
+---
+$schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
+id: "http://stsci.edu/schemas/asdf/core/extension_metadata-1.0.0"
+title: |
+  Metadata about specific ASDF extensions that were used to create this file.
+
+tag: "tag:stsci.edu:asdf/core/extension_metadata-1.0.0"
+type: object
+properties:
+  extension_class:
+    description: |
+      The fully-specified name of the extension class.
+    type: string
+
+  package:
+    description: |
+      The name and version of the package that contains the extension.
+    $ref: "software-1.0.0"
+
+required: [extension_class]

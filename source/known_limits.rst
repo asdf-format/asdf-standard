@@ -29,6 +29,10 @@ values back in.
 Therefore, for practical reasons, integer literals in the Tree must
 be at most 52-bits.
 
+As of version **1.3.0** of the standard, arbitrary precision integers are
+supported using :ref:`integer <core/integer-1.0.0>`.  Like all tags, use of
+this type requires library support.
+
 Blocks
 ------
 

@@ -79,8 +79,14 @@ The ASDF standard is being developed concurrently with a `reference
 implementation written in Python
 <http://github.com/spacetelescope/asdf>`__.
 
-There is also a work-in-progress `implementation for Go
-<http://github.com/astrogo/asdf>`__ by Sebastian Binet.
+There are two prototype implementations for C++: `asdf-cpp
+<https://github.com/spacetelescope/asdf-cpp>`__ and `asdf-cxx
+<https://github.com/eschnett/asdf-cxx>`__. Neither is currently feature
+complete, but both provide enough functionality to read and write ASDF files.
+
+There is also a `work-in-progress wrapper
+<https://github.com/eschnett/asdf.jl>`__ of the Python implementation
+for `Julia <https://julialang.org>`__.
 
 Incorporated standards
 ----------------------
@@ -108,7 +114,7 @@ The ASDF format is built on top of a number of existing standards:
 
 - `Zlib Deflate compression <http://www.zlib.net/feldspar.html>`__
 
-.. [Thomas2015] Thomas, B., Jenness. T. et al. 2015, "The Future of
-                Astronomical Data Formats I. Learning from FITS".
-                Astronomy & Computing, in press, arXiv e-print: 1502.00996.
-                ``https://github.com/timj/aandc-fits``.
+.. [Thomas2015] Thomas, B., Jenness. T. et al. (2015).
+   Learning from FITS: Limitations in use in modern astronomical research.
+   *Astronomy and Computing*, 12: 133-145.
+   `doi:10.1016/j.ascom.2015.01.009 <https://doi.org/10.1016/j.ascom.2015.01.009>`__

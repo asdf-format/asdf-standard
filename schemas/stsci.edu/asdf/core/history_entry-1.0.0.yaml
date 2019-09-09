@@ -29,5 +29,5 @@ properties:
         items:
           $ref: "software-1.0.0"
 
-requiredProperties: [description]
+required: [description]
 additionalProperties: true

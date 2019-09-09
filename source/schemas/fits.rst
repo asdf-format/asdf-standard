@@ -3,14 +3,9 @@
 FITS
 ====
 
-The ``fits`` module contains schema that support backward
-compatibility with FITS.
+The ``fits`` module contains schema that support backward compatibility with
+FITS. It can safely be ignored by most ASDF implementations.
 
-:category:`Requires:`
+.. asdf-autoschemas::
 
-:doc:`core`
-
-.. toctree::
-   :maxdepth: 1
-
-   stsci.edu/asdf/fits/fits-1.0.0.rst
+   fits/fits-1.0.0

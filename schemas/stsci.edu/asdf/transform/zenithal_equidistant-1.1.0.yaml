@@ -10,7 +10,7 @@ description: |
   Corresponds to the `ARC` projection in the FITS WCS standard.
 
   See
-  [zenithal](ref:http://stsci.edu/schemas/asdf/transform/zenithal-1.1.0)
+  [zenithal](ref:transform/zenithal-1.1.0)
   for the definition of the full transformation.
 
   The pixel-to-sky transformation is defined as:
