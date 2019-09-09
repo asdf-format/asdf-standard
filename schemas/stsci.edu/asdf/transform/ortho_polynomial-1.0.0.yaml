@@ -4,13 +4,13 @@ $schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
 id: "http://stsci.edu/schemas/asdf/transform/ortho_polynomial-1.0.0"
 tag: "tag:stsci.edu:asdf/transform/ortho_polynomial-1.0.0"
 title: >
-  Respresents various Orthogonal Polynomial models
+  Respresents various Orthogonal Polynomial models.
 
 description: |
   A polynomial model represented by its coefficients stored in
   an ndarray of shape $(n+1)$ for univariate polynomials or $(n+1, n+1)$
   for polynomials with 2 variables, where $n$ is the highest total degree
-  of the polynomial. The property polynomial_type defines what kind of 
+  of the polynomial. The property polynomial_type defines what kind of
   polynomial is defined.
 
   $$P = \sum_{i, j=0}^{i+j=n}c_{ij} * x^{i} * y^{j}$$
@@ -39,7 +39,7 @@ type: object
 properties:
   polynomial_type:
     description: |
-      One of a selected set of polynomial types
+      One of a selected set of polynomial types.
     type: string
     enum: [chebyshev, legendre, hermite]
   coefficients:
