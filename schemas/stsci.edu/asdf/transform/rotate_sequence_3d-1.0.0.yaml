@@ -11,7 +11,7 @@ description: |
 
 examples:
   -
-    - The three Euler angles are 12.3, 34 and -1.2 in degrees.
+    - A sequence of rotation around 5 axes..
     - |
       !transform/rotate3dsequence-1.0.0
         angles: [-0.0193, -0.1432, -0.04, -65.60, 273.089]
