@@ -35,5 +35,9 @@ allOf:
         The number of characters must equal the number of angles.
         For the JWST V23 to sky transform the axes are zyxyz.
       type: string
-
-    required: [angles, axes_order]
+    rotation_type:
+      description: |
+        The type of rotation class to nitialize
+      type: str
+      enum: [spherical, cartesian]
+    required: [angles, axes_order, rotation_type]
