@@ -41,6 +41,7 @@ tags:
   tag:stsci.edu:asdf/transform/healpix_polar: 1.1.0
   tag:stsci.edu:asdf/transform/identity: 1.1.0
   tag:stsci.edu:asdf/transform/label_mapper: 1.1.0
+  tag:stsci.edu:asdf/transform/math_functions: 1.0.0
   tag:stsci.edu:asdf/transform/mercator: 1.1.0
   tag:stsci.edu:asdf/transform/molleweide: 1.1.0
   tag:stsci.edu:asdf/transform/multiply: 1.1.0
