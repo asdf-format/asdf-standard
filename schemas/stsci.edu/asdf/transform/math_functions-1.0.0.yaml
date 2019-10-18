@@ -1,0 +1,25 @@
+%YAML 1.1
+---
+$schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
+id: "http://stsci.edu/schemas/asdf/transform/math_functions-1.0.0"
+tag: "tag:stsci.edu:asdf/transform/math_functions-1.0.0"
+title: >
+  Math functions.
+description: |
+  Commonly used math funcitons.
+
+examples:
+  -
+    - Atan2
+    - |
+      !transform/math_funcitons-1.0.0
+        func_name: atan2
+
+allOf:
+  - $ref: "transform-1.2.0"
+  - type: object
+    properties:
+      func_name:
+        type: string
+        description: |
+          The name of a numpy ufunc.
