@@ -12,8 +12,8 @@ examples:
   -
     - Atan2
     - |
-      !transform/math_funcitons-1.0.0
-        func_name: atan2
+      !transform/math_functions-1.0.0
+        func_name: arctan2
 
 allOf:
   - $ref: "transform-1.2.0"

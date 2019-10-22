@@ -13,9 +13,10 @@ examples:
   -
     - A sequence of rotation around 5 axes..
     - |
-      !transform/rotate3dsequence-1.0.0
+      !transform/rotate_sequence_3d-1.0.0
         angles: [-0.0193, -0.1432, -0.04, -65.60, 273.089]
         axes_order: zyxyz
+        rotation_type: cartesian	
 
 allOf:
   - $ref: "transform-1.2.0"
