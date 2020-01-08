@@ -1,0 +1,42 @@
+%YAML 1.1
+---
+$schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
+id: "http://stsci.edu/schemas/asdf/core/externalarraycollection-1.0.0"
+tag: "tag:stsci.edu:asdf/core/externalarraycollection-1.0.0"
+title: Point to a collection of array-like objects in an external file.
+description: |
+  Allow referencing of array-like objects in external files. These files can be
+  any type of file and in any absolute or relative location to the asdf file.
+  Loading of these files into arrays is not handled by asdf.
+examples:
+  -
+    - Example external reference
+    - |
+      !core/externalarray-1.0.0
+        fileuris:
+          - aia.lev1_euv_12s.2017-09-06T120001Z.94.image_lev1.fits
+          - aia.lev1_euv_12s.2017-09-06T130001Z.94.image_lev1.fits
+        datatype: int16
+        shape: [4096, 4096]
+        target: 1
+
+type: object
+properties:
+  fileuris:
+    type: list
+  target:
+    anyOf:
+      - type: integer
+      - type: string
+  datatype:
+    type: string
+  shape:
+    type: array
+    items:
+      anyOf:
+      - type: integer
+        minimum: 0
+
+required: [fileuri, target, datatype, shape]
+additionalProperties: true
+...
