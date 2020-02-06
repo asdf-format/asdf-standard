@@ -1,5 +1,4 @@
 import os
-from pkgutil import find_loader
 
 import asdf
 from asdf import resolver as res
