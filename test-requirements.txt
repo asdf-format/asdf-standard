@@ -1,0 +1,4 @@
+pytest
+asdf
+astropy
+gwcs
