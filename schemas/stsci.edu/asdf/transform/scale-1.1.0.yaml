@@ -8,10 +8,12 @@ title: >
 description: >
   Multiply the input by a factor.
 
-type: object
-properties:
-  factor:
-    type: number
-    description: Multiplication factor.
-required: [factor]
+allOf:
+  - $ref: "transform-1.1.0"
+  - type: object
+    properties:
+      factor:
+        type: number
+        description: Multiplication factor.
+    required: [factor]
 ...

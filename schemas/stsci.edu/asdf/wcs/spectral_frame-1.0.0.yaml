@@ -6,6 +6,9 @@ tag: "tag:stsci.edu:asdf/wcs/spectral_frame-1.0.0"
 
 title: >
   Represents a spectral frame.
+description: >
+  Represents a spectral frame.
+
 allOf:
   - type: object
     properties:

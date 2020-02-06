@@ -4,6 +4,8 @@ $schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
 id: "http://stsci.edu/schemas/asdf/core/software-1.0.0"
 title: |
   Describes a software package.
+description: |
+  General-purpose description of a software package.
 
 tag: "tag:stsci.edu:asdf/core/software-1.0.0"
 type: object

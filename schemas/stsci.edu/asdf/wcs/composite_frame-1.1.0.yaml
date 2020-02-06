@@ -6,6 +6,9 @@ tag: "tag:stsci.edu:asdf/wcs/composite_frame-1.1.0"
 
 title: >
   Represents a set of frames.
+description: >
+  Represents a set of frames.
+
 allOf:
   - type: object
     properties:

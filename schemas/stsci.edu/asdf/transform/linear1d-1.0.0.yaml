@@ -8,16 +8,18 @@ title: >
 description: >
   A one dimensional line model
 
-type: object
-properties:
-  slope:
-    anyOf:
-      - $ref: "../unit/quantity-1.1.0"
-      - type: number
-    description: Slope of the straight line.
-  intercept:
-    anyOf:
-      - $ref: "../unit/quantity-1.1.0"
-      - type: number
-    description: Intercept of the straight line.
+allOf:
+  - $ref: "transform-1.2.0"
+  - type: object
+    properties:
+      slope:
+        anyOf:
+          - $ref: "../unit/quantity-1.1.0"
+          - type: number
+        description: Slope of the straight line.
+      intercept:
+        anyOf:
+          - $ref: "../unit/quantity-1.1.0"
+          - type: number
+        description: Intercept of the straight line.
 ...

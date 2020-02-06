@@ -17,12 +17,14 @@ examples:
           factor: !unit/quantity-1.1.0 {unit: !unit/unit-1.0.0 arcsec pixel-1,
             value: 0.06}
 
-type: object
-properties:
-  factor:
-    anyOf:
-      - $ref: "../unit/quantity-1.1.0"
-      - type: number
-    description: Multiplication factor.
-required: [factor]
+allOf:
+  - $ref: "transform-1.2.0"
+  - type: object
+    properties:
+      factor:
+        anyOf:
+          - $ref: "../unit/quantity-1.1.0"
+          - type: number
+        description: Multiplication factor.
+    required: [factor]
 ...

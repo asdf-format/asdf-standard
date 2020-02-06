@@ -32,14 +32,16 @@ examples:
                            [0.3, 3.0, 0.0],
                            [0.0, 0.0, 0.0]]
 
-type: object
-properties:
-  coefficients:
-    description: |
-      An array with coefficients.
-    anyOf:
-      - $ref: "../core/ndarray-1.0.0"
-      - $ref: "../unit/quantity-1.1.0"
-      - type: array
-required: [coefficients]
+allOf:
+  - $ref: "transform-1.2.0"
+  - type: object
+    properties:
+      coefficients:
+        description: |
+          An array with coefficients.
+        anyOf:
+          - $ref: "../core/ndarray-1.0.0"
+          - $ref: "../unit/quantity-1.1.0"
+          - type: array
+    required: [coefficients]
 ...
