@@ -374,3 +374,4 @@ anyOf:
       source: [shape, datatype, byteorder]
 
     propertyOrder: [source, data, mask, datatype, byteorder, shape, offset, strides]
+...

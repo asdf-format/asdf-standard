@@ -30,3 +30,4 @@ properties:
 
 required: [name, steps]
 additionalProperties: true
+...

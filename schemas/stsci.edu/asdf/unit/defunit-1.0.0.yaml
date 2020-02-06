@@ -31,3 +31,4 @@ properties:
       - type: "null"
 
 required: [name]
+...

@@ -16,3 +16,4 @@ properties:
       - type: number
     description: Scale factor.
 required: [factor]
+...

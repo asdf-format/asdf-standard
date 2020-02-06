@@ -20,3 +20,4 @@ allOf:
         type: array
 
   - $ref: frame-1.0.0
+...

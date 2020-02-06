@@ -41,3 +41,4 @@ properties:
       - $ref: "../core/ndarray-1.0.0"
       - type: array
 required: [coefficients]
+...

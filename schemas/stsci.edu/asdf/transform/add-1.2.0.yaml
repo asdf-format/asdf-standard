@@ -32,3 +32,4 @@ allOf:
         items:
           $ref: "transform-1.2.0"
     required: [forward]
+...

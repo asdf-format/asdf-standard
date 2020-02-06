@@ -134,3 +134,4 @@ allOf:
           absolute tolerance to compare keys in mapper.
 
     required: [mapper]
+...

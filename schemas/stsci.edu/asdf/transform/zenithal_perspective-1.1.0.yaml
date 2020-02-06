@@ -49,3 +49,4 @@ allOf:
         description: |
           Look angle, in degrees.
         default: 0
+...

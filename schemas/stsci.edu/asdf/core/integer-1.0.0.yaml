@@ -52,3 +52,4 @@ properties:
       intended to improve readability for humans, and therefore no assumptions
       about format should be made by ASDF readers.
 required: [words, sign]
+...

@@ -96,3 +96,4 @@ allOf:
           Value to be returned if there's no transform defined for the inputs.
         type: number
     required: [label_mapper, inputs, outputs, selector]
+...

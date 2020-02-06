@@ -27,3 +27,4 @@ properties:
 
     $ref: "transform-1.2.0"
 additionalProperties: true
+...

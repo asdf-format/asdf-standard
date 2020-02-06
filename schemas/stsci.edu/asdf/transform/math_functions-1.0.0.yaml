@@ -23,3 +23,4 @@ allOf:
         type: string
         description: |
           The name of a numpy ufunc.
+...

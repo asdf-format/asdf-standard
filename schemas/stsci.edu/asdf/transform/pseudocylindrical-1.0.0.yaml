@@ -18,3 +18,4 @@ allOf:
       direction:
         enum: [pix2sky, sky2pix]
         default: pix2sky
+...

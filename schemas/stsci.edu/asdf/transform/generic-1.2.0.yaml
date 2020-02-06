@@ -19,3 +19,4 @@ allOf:
       n_outputs:
         type: integer
     required: [n_inputs, n_outputs]
+...

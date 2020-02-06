@@ -16,3 +16,4 @@ allOf:
       value:
         type: number
     required: [value]
+...

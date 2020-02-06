@@ -47,3 +47,4 @@ properties:
     $ref: "../wcs/wcs-1.0.0"
 
 additionalProperties: true
+...

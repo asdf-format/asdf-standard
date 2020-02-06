@@ -90,3 +90,4 @@ allOf:
       mapping:
         $ref: "#/definitions/mapping"
     required: [mapping]
+...

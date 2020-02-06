@@ -47,3 +47,4 @@ properties:
 
 required: [name, data]
 additionalProperties: false
+...

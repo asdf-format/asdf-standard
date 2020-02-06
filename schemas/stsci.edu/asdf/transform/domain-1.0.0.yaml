@@ -43,3 +43,4 @@ properties:
     description: If `true`, the domain includes `upper`.
     type: boolean
     default: false
+...

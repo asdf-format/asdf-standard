@@ -19,3 +19,4 @@ properties:
     $ref: "software-1.0.0"
 
 required: [extension_class]
+...
