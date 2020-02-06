@@ -25,3 +25,4 @@ properties:
       - type: number
     description: Multiplication factor.
 required: [factor]
+...

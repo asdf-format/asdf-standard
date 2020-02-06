@@ -52,3 +52,4 @@ allOf:
         description: |
           The latitude $\theta_0$ of the reference point, in degrees.
         default: 90
+...

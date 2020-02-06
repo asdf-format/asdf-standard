@@ -25,3 +25,4 @@ allOf:
           The latitude $\theta_b$ at which to minimize the error, in
           degrees.
         default: 90
+...

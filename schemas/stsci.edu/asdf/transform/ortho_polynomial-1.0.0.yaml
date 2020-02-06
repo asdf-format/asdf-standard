@@ -49,3 +49,4 @@ properties:
       - $ref: "../core/ndarray-1.0.0"
       - type: array
 required: [polynomial_type, coefficients]
+...

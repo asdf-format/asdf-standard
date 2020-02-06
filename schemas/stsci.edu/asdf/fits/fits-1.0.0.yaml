@@ -111,3 +111,4 @@ items:
       default: null
   required: [header]
   additionalProperties: false
+...

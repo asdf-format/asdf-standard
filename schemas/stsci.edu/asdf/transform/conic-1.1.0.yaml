@@ -44,3 +44,4 @@ allOf:
           $(\theta_1 - \theta_2) / 2$ where $\theta_1$ and $\theta_2$
           are the latitudes of the standard parallels, in degrees.
         default: 0
+...

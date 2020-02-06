@@ -53,3 +53,4 @@ properties:
       extrapolated.  Extrapolation is not supported by method "splinef2d".
     type: number
 required: [lookup_table]
+...

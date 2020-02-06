@@ -54,3 +54,4 @@ allOf:
         default: native2celestial
 
     required: [phi, theta, psi, direction]
+...

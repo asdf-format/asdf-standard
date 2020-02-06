@@ -20,3 +20,4 @@ properties:
       - $ref: "../unit/quantity-1.1.0"
       - type: number
     description: Intercept of the straight line.
+...

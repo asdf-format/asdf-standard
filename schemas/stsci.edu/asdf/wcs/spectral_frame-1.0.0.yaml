@@ -28,3 +28,4 @@ allOf:
         maxItems: 1
 
   - $ref: frame-1.0.0
+...

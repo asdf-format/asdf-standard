@@ -31,3 +31,4 @@ allOf:
         description: |
           The number of facets in the latitude direction.
         default: 3.0
+...

@@ -20,3 +20,4 @@ allOf:
           - type: number
         description: Angle, in degrees.
     required: [angle]
+...

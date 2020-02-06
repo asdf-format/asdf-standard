@@ -18,3 +18,4 @@ allOf:
         description:
           List of frames in the composite frame.
         type: array
+...

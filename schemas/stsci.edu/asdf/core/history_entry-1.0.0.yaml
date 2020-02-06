@@ -31,3 +31,4 @@ properties:
 
 required: [description]
 additionalProperties: true
+...

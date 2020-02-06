@@ -42,3 +42,4 @@ allOf:
         description: |
           Bonne conformal latitude, in degrees.
         default: 0
+...

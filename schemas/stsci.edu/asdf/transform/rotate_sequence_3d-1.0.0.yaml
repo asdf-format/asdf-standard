@@ -42,3 +42,4 @@ allOf:
       type: str
       enum: [spherical, cartesian]
     required: [angles, axes_order, rotation_type]
+...

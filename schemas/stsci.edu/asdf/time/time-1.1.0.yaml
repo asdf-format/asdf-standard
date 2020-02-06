@@ -256,3 +256,4 @@ anyOf:
         required: [x, y, z]
 
     required: [value]
+...

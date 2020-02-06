@@ -17,3 +17,4 @@ allOf:
         default: 1
         description: |
           The number of dimensions.
+...

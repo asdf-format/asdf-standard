@@ -146,3 +146,4 @@ allOf:
           - type: string
 
     required: [mapper]
+...

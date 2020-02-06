@@ -33,3 +33,4 @@ properties:
 
 required: [name, version]
 additionalProperties: true
+...
