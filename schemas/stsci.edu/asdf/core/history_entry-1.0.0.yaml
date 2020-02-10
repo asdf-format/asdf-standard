@@ -5,7 +5,7 @@ id: "http://stsci.edu/schemas/asdf/core/history_entry-1.0.0"
 title: |
   An entry in the file history.
 description: |
-  A record of a transformation that has been performed
+  A record of an operation that has been performed
   upon a file.
 
 tag: "tag:stsci.edu:asdf/core/history_entry-1.0.0"

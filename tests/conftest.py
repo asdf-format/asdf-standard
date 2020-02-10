@@ -89,6 +89,8 @@ def id_to_schema(schemas):
 @pytest.fixture(scope="session")
 def assert_schema_correct(tag_to_schema, id_to_schema):
     def _assert_schema_correct(path):
+        __tracebackhide__ = True
+
         assert VALID_SCHEMA_FILENAME_RE.match(path.name) is not None, f"{path.name} is an invalid schema filename"
 
         assert_yaml_header_and_footer(path)
@@ -136,6 +138,8 @@ def assert_schema_correct(tag_to_schema, id_to_schema):
 @pytest.fixture(scope="session")
 def assert_latest_schema_correct(latest_schema_ids):
     def _assert_latest_schema_correct(path):
+        __tracebackhide__ = True
+
         schema = load_yaml(path)
 
         id_base, _ = split_id(schema["id"])
