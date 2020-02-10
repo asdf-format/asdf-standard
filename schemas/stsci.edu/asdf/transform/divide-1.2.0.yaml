@@ -19,10 +19,10 @@ examples:
     - |
       !transform/divide-1.2.0
         forward:
-          - !transform/generic-1.1.0
+          - !transform/generic-1.2.0
             n_inputs: 1
             n_outputs: 2
-          - !transform/generic-1.1.0
+          - !transform/generic-1.2.0
             n_inputs: 1
             n_outputs: 2
 

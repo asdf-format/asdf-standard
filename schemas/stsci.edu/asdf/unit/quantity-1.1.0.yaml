@@ -6,6 +6,9 @@ tag: "tag:stsci.edu:asdf/unit/quantity-1.1.0"
 
 title: >
   Represents a Quantity object from astropy
+description: |
+  A Quantity object represents a value that has some unit
+  associated with the number.
 
 examples:
   -

@@ -8,10 +8,12 @@ title: >
 description: >
   Apply an offset in one direction.
 
-type: object
-properties:
-  offset:
-    type: number
-    description: Offset in one direction.
-required: [offset]
+allOf:
+  - $ref: "transform-1.1.0"
+  - type: object
+    properties:
+      offset:
+        type: number
+        description: Offset in one direction.
+    required: [offset]
 ...

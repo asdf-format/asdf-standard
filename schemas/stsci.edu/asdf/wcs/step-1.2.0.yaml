@@ -6,6 +6,7 @@ tag: "tag:stsci.edu:asdf/wcs/step-1.2.0"
 title: >
   Describes a single step of a WCS transform pipeline.
 description: >
+  Describes a single step of a WCS transform pipeline.
 examples: []
 
 type: object

@@ -35,18 +35,20 @@ examples:
                            [0.3, 3.0, 0.0],
                            [0.0, 0.0, 0.0]]
 
-type: object
-properties:
-  polynomial_type:
-    description: |
-      One of a selected set of polynomial types.
-    type: string
-    enum: [chebyshev, legendre, hermite]
-  coefficients:
-    description: |
-      An array with coefficients.
-    anyOf:
-      - $ref: "../core/ndarray-1.0.0"
-      - type: array
-required: [polynomial_type, coefficients]
+allOf:
+  - $ref: "transform-1.2.0"
+  - type: object
+    properties:
+      polynomial_type:
+        description: |
+          One of a selected set of polynomial types.
+        type: string
+        enum: [chebyshev, legendre, hermite]
+      coefficients:
+        description: |
+          An array with coefficients.
+        anyOf:
+          - $ref: "../core/ndarray-1.0.0"
+          - type: array
+    required: [polynomial_type, coefficients]
 ...

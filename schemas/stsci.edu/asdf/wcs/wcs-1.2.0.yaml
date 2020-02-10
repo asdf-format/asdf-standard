@@ -26,7 +26,7 @@ properties:
       [inverse](ref:transform/transform-1.2.0:inverse).
     type: array
     items:
-      $ref: step-1.1.0
+      $ref: step-1.2.0
 
 required: [name, steps]
 additionalProperties: true

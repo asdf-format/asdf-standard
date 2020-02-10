@@ -6,6 +6,8 @@ tag: "tag:stsci.edu:asdf/wcs/celestial_frame-1.1.0"
 
 title: >
   Represents a celestial frame.
+description: >
+  Represents a celestial frame.
 
 allOf:
   - type: object
