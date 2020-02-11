@@ -1,0 +1,20 @@
+%YAML 1.1
+---
+$schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
+id: "http://stsci.edu/schemas/asdf/core/subclass_metadata-1.0.0"
+title: |
+  Metadata on a serialized subclass of an ASDF-enabled type.
+description: |
+  Identifies the specific subclass that was serialized,
+  to enable ASDF readers to correctly deserialize the object.
+
+tag: "tag:stsci.edu:asdf/core/subclass_metadata-1.0.0"
+type: object
+properties:
+  name:
+    description: |
+      The name of the subclass to deserialize.
+    type: string
+
+required: [name]
+...
