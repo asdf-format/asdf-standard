@@ -1,0 +1,49 @@
+%YAML 1.1
+---
+$schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
+id: "http://stsci.edu/schemas/asdf/transform/trapezoid1d-1.0.0"
+tag: "tag:stsci.edu:asdf/transform/trapezoid1d-1.0.0"
+title: >
+  One dimensional trapezoid model.
+
+description: >
+  One dimensional trapezoid.
+
+examples:
+  -
+    - A 1D trapezoid centered at x=0.5, of width 5.0, slope of tails 1.0, and amplitude 10.0
+    - |
+      !transform/trapezoid1d-1.0.0
+        amplitude: 10.0
+        bounding_box: [-12.0, 13.0]
+        slope: 1.0
+        width: 5.0
+        x_0: 0.5
+
+allOf:
+  - $ref: "transform-1.2.0"
+  - type: object
+    properties:
+      amplitude:
+        anyOf:
+          - $ref: "../unit/quantity-1.1.0"
+          - type: number
+        description: Amplitude of the trapezoid.
+      x_0:
+        anyOf:
+          - $ref: "../unit/quantity-1.1.0"
+          - type: number
+        description: Center position of the trapezoid.
+      width:
+        anyOf:
+          - $ref: "../unit/quantity-1.1.0"
+          - type: number
+        description: Width of the constant part of the trapezoid.
+      slope:
+        anyOf:
+          - $ref: "../unit/quantity-1.1.0"
+          - type: number
+        description: Slope of the tails of the trapezoid.
+
+    required: ['amplitude', 'x_0', 'width', 'slope']
+...

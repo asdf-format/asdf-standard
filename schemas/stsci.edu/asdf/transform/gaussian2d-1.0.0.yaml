@@ -1,0 +1,63 @@
+%YAML 1.1
+---
+$schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
+id: "http://stsci.edu/schemas/asdf/transform/gaussian2d-1.0.0"
+tag: "tag:stsci.edu:asdf/transform/gaussian2d-1.0.0"
+title: >
+  A 2D Gaussian model.
+
+description: >
+  A 2D gaussian distribution. 
+
+examples:
+  -
+    - $$f(x, y) = 10.0 e^{-a\left(x - 1.5\right)^{2}  -b\left(x - 1.5\right) \left(y - 2.5\right)  -c\left(y - 2.5\right)^{2}}$$ using the following definitions $$a = \left(\frac{\cos^{2}{\left (0 \right )}}{2*0.25^{2}} +\frac{\sin^{2}{\left (0 \right )}}{2*0.375^{2}}\right)$$ $$b = \left(\frac{\sin{\left (2 *0 \right )}}{2 *0.25^{2}} -\frac{\sin{\left (2 *0 \right )}}{2*0.375^{2}}\right)$$ $$c = \left(\frac{\sin^{2}{\left (0\right )}}{2*0.25^{2}} +\frac{\cos^{2}{\left (0 \right )}}{2*0.375^{2}}\right)$$
+    - |
+      !transform/gaussian2d-1.0.0
+        amplitude: 10.0
+        bounding_box:
+        - [0.4375, 4.5625]
+        - [0.125, 2.875]
+        theta: 0.0
+        x_mean: 1.5
+        x_stddev: 0.25
+        y_mean: 2.5
+        y_stddev: 0.375
+
+allOf:
+  - $ref: "transform-1.2.0"
+  - type: object
+    properties:
+      amplitude:
+        anyOf:
+          - $ref: "../unit/quantity-1.1.0"
+          - type: number
+        description: Amplitude.
+      x_mean:
+        anyOf:
+          - $ref: "../unit/quantity-1.1.0"
+          - type: number
+        description: Mean in x.
+      y_mean:
+        anyOf:
+          - $ref: "../unit/quantity-1.1.0"
+          - type: number
+        description: Mean in y.
+      x_stddev:
+        anyOf:
+          - $ref: "../unit/quantity-1.1.0"
+          - type: number
+        description: Standard deviation in x.
+      y_stddev:
+        anyOf:
+          - $ref: "../unit/quantity-1.1.0"
+          - type: number
+        description: Standard deviation in y.
+      theta:
+        anyOf:
+          - $ref: "../unit/quantity-1.1.0"
+          - type: number
+        description: Rotation angle in radians, increases counterclockwise.
+
+    required: ['amplitude', 'x_mean', 'y_mean', 'x_stddev', 'y_stddev', 'theta']
+...

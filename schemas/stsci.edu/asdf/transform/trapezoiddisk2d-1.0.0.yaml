@@ -1,0 +1,56 @@
+%YAML 1.1
+---
+$schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
+id: "http://stsci.edu/schemas/asdf/transform/trapezoiddisk2d-1.0.0"
+tag: "tag:stsci.edu:asdf/transform/trapezoiddisk2d-1.0.0"
+title: >
+  Two dimensional circular trapezoid model.
+
+description: >
+  Two dimensional circular trapezoid.
+
+examples:
+  -
+    - A 2D trapezoid disk centered at (x, y) = (0.5, 1.5), of radius (distance between constant segments) 5.0, slope of tails 1.0, and amplitude 10.0
+    - |
+      !transform/trapezoiddisk2d-1.0.0
+        R_0: 5.0
+        amplitude: 10.0
+        bounding_box:
+        - [-13.5, 16.5]
+        - [-14.5, 15.5]
+        slope: 1.0
+        x_0: 0.5
+        y_0: 1.5
+allOf:
+  - $ref: "transform-1.2.0"
+  - type: object
+    properties:
+      amplitude:
+        anyOf:
+          - $ref: "../unit/quantity-1.1.0"
+          - type: number
+        description: Amplitude of the trapezoid.
+      x_0:
+        anyOf:
+          - $ref: "../unit/quantity-1.1.0"
+          - type: number
+        description: x center position of the trapezoid.
+      y_0:
+        anyOf:
+          - $ref: "../unit/quantity-1.1.0"
+          - type: number
+        description: y center position of the trapezoid.
+      R_0:
+        anyOf:
+          - $ref: "../unit/quantity-1.1.0"
+          - type: number
+        description: Radius of the constant part of the trapezoid.
+      slope:
+        anyOf:
+          - $ref: "../unit/quantity-1.1.0"
+          - type: number
+        description: Slope of the tails of the trapezoid in x direction.
+
+    required: ['amplitude', 'x_0', 'y_0', 'R_0', 'slope']
+...

@@ -1,0 +1,44 @@
+%YAML 1.1
+---
+$schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
+id: "http://stsci.edu/schemas/asdf/transform/airydisk2d-1.0.0"
+tag: "tag:stsci.edu:asdf/transform/airydisk2d-1.0.0"
+title: >
+  Two dimensional Airy disk model.
+
+description: >
+  Two dimensional Airy disk model.
+
+examples:
+  -
+    - $$f(r)=43.8[\frac{2J_1(\frac{\pi\sqrt{(x-0.5)^2+(y-1.5)^2}}{10.2/R_z})}{\frac{\pi\sqrt{(x-0.5)^2+(y-1.5)^2}}{10.2/R_z}}]^2$$, where $$J_1$$ is the first order Bessel function and $$R_z=1.2196698912665045$$ 
+    - |
+      !transform/airydisk2d-1.0.0 {amplitude: 43.8, radius: 10.2, x_0: 0.5, y_0: 1.5}
+
+allOf:
+  - $ref: "transform-1.2.0"
+  - type: object
+    properties:
+      amplitude:
+        anyOf:
+          - $ref: "../unit/quantity-1.1.0"
+          - type: number
+        description: Amplitude of the Airy function.
+      x_0:
+        anyOf:
+          - $ref: "../unit/quantity-1.1.0"
+          - type: number
+        description: x position of the maximum of the Airy function.
+      y_0:
+        anyOf:
+          - $ref: "../unit/quantity-1.1.0"
+          - type: number
+        description: y position of the maximum of the Airy function.
+      radius:
+        anyOf:
+          - $ref: "../unit/quantity-1.1.0"
+          - type: number
+        description: The radius of the Airy disk (radius of the first zero).
+
+    required: ['amplitude', 'x_0', 'y_0', 'radius']
+...

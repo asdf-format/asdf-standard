@@ -1,0 +1,44 @@
+%YAML 1.1
+---
+$schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
+id: "http://stsci.edu/schemas/asdf/transform/voigt1d-1.0.0"
+tag: "tag:stsci.edu:asdf/transform/voigt1d-1.0.0"
+title: >
+  One dimensional model for the Voigt profile.
+
+description: >
+  One dimensional model for the Voigt profile.
+
+examples:
+  -
+    - 1D Voigt model with a Lorentzian amplitude of 10.0, Lorentzian FWHM of 0.5, Gaussian FWHM of 0.9, centered at x=0.5.
+    - |
+      !transform/voigt1d-1.0.0 {amplitude_L: 10.0, fwhm_G: 0.9, fwhm_L: 0.5, x_0: 0.55}
+
+allOf:
+  - $ref: "transform-1.2.0"
+  - type: object
+    properties:
+      x_0:
+        anyOf:
+          - $ref: "../unit/quantity-1.1.0"
+          - type: number
+        description: Position of the peak.
+      amplitude_L:
+        anyOf:
+          - $ref: "../unit/quantity-1.1.0"
+          - type: number
+        description: The Lorentzian amplitude.
+      fwhm_L:
+        anyOf:
+          - $ref: "../unit/quantity-1.1.0"
+          - type: number
+        description: The Lorentzian full width at half maximum.
+      fwhm_G:
+        anyOf:
+          - $ref: "../unit/quantity-1.1.0"
+          - type: number
+        description: The Gaussian full width at half maximum.
+
+    required: ['x_0', 'amplitude_L', 'fwhm_L', 'fwhm_G']
+...

@@ -1,0 +1,43 @@
+%YAML 1.1
+---
+$schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
+id: "http://stsci.edu/schemas/asdf/transform/gaussian1d-1.0.0"
+tag: "tag:stsci.edu:asdf/transform/gaussian1d-1.0.0"
+title: >
+  A 1D Gaussian model.
+
+description: >
+  A 1D gaussian distribution.
+
+examples:
+  -
+    - $$f(x) = 10.0 e^{- \frac{\left(x - 1.5\right)^{2}}{2*0.25^{2}}}$$
+    - |
+      !transform/gaussian1d-1.0.0
+        amplitude: 10.0
+        bounding_box: [0.125, 2.875]
+        mean: 1.5
+        stddev: 0.25
+
+allOf:
+  - $ref: "transform-1.2.0"
+  - type: object
+    properties:
+      amplitude:
+        anyOf:
+          - $ref: "../unit/quantity-1.1.0"
+          - type: number
+        description: Amplitude.
+      mean:
+        anyOf:
+          - $ref: "../unit/quantity-1.1.0"
+          - type: number
+        description: Mean.
+      stddev:
+        anyOf:
+          - $ref: "../unit/quantity-1.1.0"
+          - type: number
+        description: Standard deviation.
+
+    required: [amplitude, mean, stddev]
+...
