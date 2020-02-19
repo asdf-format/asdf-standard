@@ -40,12 +40,6 @@ allOf:
         anyOf:
           - $ref: "../unit/quantity-1.1.0"
           - type: number
-        description: Rotation angle in radians, increases counterclockwise. 
-      cov_matrix:
-        type: array
-        items: 
-          anyOf:
-            - type: number
-        description: A 2x2 covariance matrix. If specified, overrides the x_stddev, y_stddev, and theta specification.
+        description: Rotation angle in radians, increases counterclockwise.
 
-    required: ['amplitude', 'x_mean', 'y_mean']
+    required: ['amplitude', 'x_mean', 'y_mean', 'x_stddev', 'y_stddev', 'theta']
