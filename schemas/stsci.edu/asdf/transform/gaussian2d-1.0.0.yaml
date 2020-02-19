@@ -1,0 +1,51 @@
+%YAML 1.1
+---
+$schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
+id: "http://stsci.edu/schemas/asdf/transform/gaussian2d-1.0.0"
+tag: "tag:stsci.edu:asdf/transform/gaussian2d-1.0.0"
+title: >
+  A 2D Gaussian model.
+description: >
+  A 2D gaussian distribution. 
+allOf:
+  - $ref: "transform-1.2.0"
+  - type: object
+    properties:
+      amplitude:
+        anyOf:
+          - $ref: "../unit/quantity-1.1.0"
+          - type: number
+        description: Amplitude.
+      x_mean:
+        anyOf:
+          - $ref: "../unit/quantity-1.1.0"
+          - type: number
+        description: Mean in x.
+      y_mean:
+        anyOf:
+          - $ref: "../unit/quantity-1.1.0"
+          - type: number
+        description: Mean in y.
+      x_stddev:
+        anyOf:
+          - $ref: "../unit/quantity-1.1.0"
+          - type: number
+        description: Standard deviation in x. Must be supplied unless cov_matrix is set.
+      y_stddev:
+        anyOf:
+          - $ref: "../unit/quantity-1.1.0"
+          - type: number
+        description: Standard deviation in y. Must be supplied unless cov_matrix is set.
+      theta:
+        anyOf:
+          - $ref: "../unit/quantity-1.1.0"
+          - type: number
+        description: Rotation angle in radians, increases counterclockwise. 
+      cov_matrix:
+        type: array
+        items: 
+          anyOf:
+            - type: number
+        description: A 2x2 covariance matrix. If specified, overrides the x_stddev, y_stddev, and theta specification.
+
+    required: ['amplitude', 'x_mean', 'y_mean']
