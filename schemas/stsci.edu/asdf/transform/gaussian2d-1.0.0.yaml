@@ -5,8 +5,22 @@ id: "http://stsci.edu/schemas/asdf/transform/gaussian2d-1.0.0"
 tag: "tag:stsci.edu:asdf/transform/gaussian2d-1.0.0"
 title: >
   A 2D Gaussian model.
+
 description: >
   A 2D gaussian distribution. 
+
+examples:
+  -
+    - A 2D gaussian distribution with amplitude 10.0, x mean 1.5, y mean 2.5, x standard deviation 0.25, y standard deviation 0.375, and theta 0.0.
+    - |
+      !transform/gaussian1d-1.0.0
+        amplitude: 10.0
+        x_mean: 1.5
+        y_mean: 2.5
+        x_stddev: 0.25
+        y_stddev: 0.375
+        theta: 0.0
+
 allOf:
   - $ref: "transform-1.2.0"
   - type: object
@@ -30,12 +44,12 @@ allOf:
         anyOf:
           - $ref: "../unit/quantity-1.1.0"
           - type: number
-        description: Standard deviation in x. Must be supplied unless cov_matrix is set.
+        description: Standard deviation in x.
       y_stddev:
         anyOf:
           - $ref: "../unit/quantity-1.1.0"
           - type: number
-        description: Standard deviation in y. Must be supplied unless cov_matrix is set.
+        description: Standard deviation in y.
       theta:
         anyOf:
           - $ref: "../unit/quantity-1.1.0"
@@ -43,3 +57,4 @@ allOf:
         description: Rotation angle in radians, increases counterclockwise.
 
     required: ['amplitude', 'x_mean', 'y_mean', 'x_stddev', 'y_stddev', 'theta']
+...

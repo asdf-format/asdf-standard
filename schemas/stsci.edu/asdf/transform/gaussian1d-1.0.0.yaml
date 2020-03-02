@@ -5,8 +5,19 @@ id: "http://stsci.edu/schemas/asdf/transform/gaussian1d-1.0.0"
 tag: "tag:stsci.edu:asdf/transform/gaussian1d-1.0.0"
 title: >
   A 1D Gaussian model.
+
 description: >
-  A 1D gaussian distribution. 
+  A 1D gaussian distribution.
+
+examples:
+  -
+    - A 1D gaussian distribution with amplitude 10.0, mean 1.5, and standard deviation 0.25.
+    - |
+      !transform/gaussian1d-1.0.0
+        amplitude: 10.0
+        mean: 1.5
+        stddev: 0.25
+
 allOf:
   - $ref: "transform-1.2.0"
   - type: object
@@ -27,3 +38,4 @@ allOf:
           - type: number
         description: Standard deviation.
     required: [amplitude, mean, stddev]
+...
