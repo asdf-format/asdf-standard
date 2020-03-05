@@ -1,5 +1,7 @@
 pytest
 pyyaml
-asdf
+# This is set to master to make the pytest plugin's asdf_schema_ignore_unrecognized_tag
+# option available.  We can switch back to PyPI once asdf 2.6.0 is released.
+git+https://github.com/spacetelescope/asdf.git
 astropy
 gwcs
