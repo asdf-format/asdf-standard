@@ -13,7 +13,7 @@ examples:
   -
     - A 2D gaussian distribution with amplitude 10.0, x mean 1.5, y mean 2.5, x standard deviation 0.25, y standard deviation 0.375, and theta 0.0.
     - |
-      !transform/gaussian1d-1.0.0
+      !transform/gaussian2d-1.0.0
         amplitude: 10.0
         x_mean: 1.5
         y_mean: 2.5
