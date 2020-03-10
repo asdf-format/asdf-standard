@@ -1,8 +1,8 @@
 %YAML 1.1
 ---
 $schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
-id: "http://stsci.edu/schemas/asdf/transform/rickerwavelet2d-1.0.0"
-tag: "tag:stsci.edu:asdf/transform/rickerwavelet2d-1.0.0"
+id: "http://stsci.edu/schemas/asdf/transform/ricker_wavelet2d-1.0.0"
+tag: "tag:stsci.edu:asdf/transform/ricker_wavelet2d-1.0.0"
 title: >
   Two dimensional Ricker Wavelet model.
 
@@ -13,7 +13,7 @@ examples:
   -
     - $$f(x)={10.0\left(1-\frac{\left(x-0.5\right)^{2}-(y-1.5)^2}{2.0^{2}}\right)e^{-\frac{\left(x-0.5\right)^{2}-(y-1.5)^2)}{2*2.0^{2}}}}$$
     - |
-      !transform/rickerwavelet2d-1.0.0 {amplitude: 10.0, sigma: 2.0, x_0: 0.5, y_0: 1.5}
+      !transform/ricker_wavelet2d-1.0.0 {amplitude: 10.0, sigma: 2.0, x_0: 0.5, y_0: 1.5}
 
 allOf:
   - $ref: "transform-1.2.0"

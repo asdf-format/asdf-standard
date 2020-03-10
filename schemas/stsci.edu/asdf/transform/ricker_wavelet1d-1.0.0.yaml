@@ -1,8 +1,8 @@
 %YAML 1.1
 ---
 $schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
-id: "http://stsci.edu/schemas/asdf/transform/rickerwavelet1d-1.0.0"
-tag: "tag:stsci.edu:asdf/transform/rickerwavelet1d-1.0.0"
+id: "http://stsci.edu/schemas/asdf/transform/ricker_wavelet1d-1.0.0"
+tag: "tag:stsci.edu:asdf/transform/ricker_wavelet1d-1.0.0"
 title: >
   One dimensional Ricker Wavelet model.
 

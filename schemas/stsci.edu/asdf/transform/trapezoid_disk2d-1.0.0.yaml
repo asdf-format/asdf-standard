@@ -1,8 +1,8 @@
 %YAML 1.1
 ---
 $schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
-id: "http://stsci.edu/schemas/asdf/transform/trapezoiddisk2d-1.0.0"
-tag: "tag:stsci.edu:asdf/transform/trapezoiddisk2d-1.0.0"
+id: "http://stsci.edu/schemas/asdf/transform/trapezoid_disk2d-1.0.0"
+tag: "tag:stsci.edu:asdf/transform/trapezoid_disk2d-1.0.0"
 title: >
   Two dimensional circular trapezoid model.
 
@@ -13,7 +13,7 @@ examples:
   -
     - A 2D trapezoid disk centered at (x, y) = (0.5, 1.5), of radius (distance between constant segments) 5.0, slope of tails 1.0, and amplitude 10.0
     - |
-      !transform/trapezoiddisk2d-1.0.0
+      !transform/trapezoid_disk2d-1.0.0
         R_0: 5.0
         amplitude: 10.0
         bounding_box:
