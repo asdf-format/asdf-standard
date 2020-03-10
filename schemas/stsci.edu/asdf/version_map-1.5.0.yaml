@@ -20,7 +20,7 @@ tags:
   tag:stsci.edu:asdf/transform/add: 1.2.0
   tag:stsci.edu:asdf/transform/affine: 1.3.0
   tag:stsci.edu:asdf/transform/airy: 1.2.0
-  tag:stsci.edu:asdf/transform/airydisk2d: 1.0.0
+  tag:stsci.edu:asdf/transform/airy_disk2d: 1.0.0
   tag:stsci.edu:asdf/transform/bonne_equal_area: 1.3.0
   tag:stsci.edu:asdf/transform/box1d: 1.0.0
   tag:stsci.edu:asdf/transform/box2d: 1.0.0
@@ -47,7 +47,7 @@ tags:
   tag:stsci.edu:asdf/transform/healpix: 1.2.0
   tag:stsci.edu:asdf/transform/healpix_polar: 1.2.0
   tag:stsci.edu:asdf/transform/identity: 1.2.0
-  tag:stsci.edu:asdf/transform/kingprojectedanalytic1d: 1.0.0
+  tag:stsci.edu:asdf/transform/king_projected_analytic1d: 1.0.0
   tag:stsci.edu:asdf/transform/label_mapper: 1.2.0
   tag:stsci.edu:asdf/transform/linear1d: 1.0.0
   tag:stsci.edu:asdf/transform/logarithmic1d: 1.0.0
@@ -67,11 +67,11 @@ tags:
   tag:stsci.edu:asdf/transform/polynomial: 1.2.0
   tag:stsci.edu:asdf/transform/power: 1.2.0
   tag:stsci.edu:asdf/transform/quad_spherical_cube: 1.2.0
-  tag:stsci.edu:asdf/transform/redshiftscalefactor: 1.0.0
+  tag:stsci.edu:asdf/transform/red_shift_scale_factor: 1.0.0
   tag:stsci.edu:asdf/transform/regions_selector: 1.2.0
   tag:stsci.edu:asdf/transform/remap_axes: 1.2.0
-  tag:stsci.edu:asdf/transform/rickerwavelet1d: 1.0.0
-  tag:stsci.edu:asdf/transform/rickerwavelet2d: 1.0.0
+  tag:stsci.edu:asdf/transform/ricker_wavelet1d: 1.0.0
+  tag:stsci.edu:asdf/transform/ricker_wavelet2d: 1.0.0
   tag:stsci.edu:asdf/transform/ring2d: 1.0.0
   tag:stsci.edu:asdf/transform/rotate2d: 1.3.0
   tag:stsci.edu:asdf/transform/rotate3d: 1.3.0
@@ -89,7 +89,7 @@ tags:
   tag:stsci.edu:asdf/transform/tabular: 1.2.0
   tag:stsci.edu:asdf/transform/tangential_spherical_cube: 1.2.0
   tag:stsci.edu:asdf/transform/trapezoid1d: 1.0.0
-  tag:stsci.edu:asdf/transform/trapezoiddisk2d: 1.0.0
+  tag:stsci.edu:asdf/transform/trapezoid_disk2d: 1.0.0
   tag:stsci.edu:asdf/transform/voigt1d: 1.0.0
   tag:stsci.edu:asdf/transform/zenithal_equal_area: 1.2.0
   tag:stsci.edu:asdf/transform/zenithal_equidistant: 1.2.0
