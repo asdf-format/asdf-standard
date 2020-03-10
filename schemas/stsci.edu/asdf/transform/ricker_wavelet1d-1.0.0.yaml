@@ -13,7 +13,7 @@ examples:
   -
     - $$f(x)={10.0\left(1-\frac{\left(x-0.5\right)^{2}}{2.0^{2}}\right)e^{-\frac{\left(x-0.5\right)^{2}}{2*2.0^{2}}}}$$
     - |
-      !transform/ricker_wavelet2d-1.0.0 {amplitude: 10.0, sigma: 2.0, x_0: 0.5}
+      !transform/ricker_wavelet1d-1.0.0 {amplitude: 10.0, sigma: 2.0, x_0: 0.5}
 
 allOf:
   - $ref: "transform-1.2.0"
