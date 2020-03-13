@@ -37,7 +37,7 @@ tags:
   tag:stsci.edu:asdf/transform/cylindrical_perspective: 1.3.0
   tag:stsci.edu:asdf/transform/disk2d: 1.0.0
   tag:stsci.edu:asdf/transform/divide: 1.2.0
-  tag:stsci.edu:asdf/transform/druded: 1.0.0
+  tag:stsci.edu:asdf/transform/drude1d: 1.0.0
   tag:stsci.edu:asdf/transform/ellipse2d: 1.0.0
   tag:stsci.edu:asdf/transform/exponential1d: 1.0.0
   tag:stsci.edu:asdf/transform/fix_inputs: 1.2.0
