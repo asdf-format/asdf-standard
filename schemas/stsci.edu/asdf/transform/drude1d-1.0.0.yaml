@@ -1,0 +1,43 @@
+%YAML 1.1
+---
+$schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
+id: "http://stsci.edu/schemas/asdf/transform/drude1d-1.0.0"
+tag: "tag:stsci.edu:asdf/transform/drude1d-1.0.0"
+title: >
+  One dimensional Drude model
+
+description: >
+  Drude model based one the behavior of electons in materials (esp. metals).
+
+examples:
+  -
+    - $$f(x) = 10.0 \frac{(2.5/0.5)^2}{((x/0.5 - 0.5/x)^2 + (2.5/0.5)^2}$$
+    - |
+      !transform/drude1d-1.0.0
+        amplitude: 10.0
+        bounding_box: [-124.5, 125.5]
+        fwhm: 2.5
+        x_0: 0.5
+
+allOf:
+  - $ref: "transform-1.2.0"
+  - type: object
+    properties:
+      amplitude:
+        anyOf:
+          - $ref: "../unit/quantity-1.1.0"
+          - type: number
+        description: Peak value.
+      x_0:
+        anyOf:
+          - $ref: "../unit/quantity-1.1.0"
+          - type: number
+        description: x position of the peak.
+      fwhm:
+        anyOf:
+          - $ref: "../unit/quantity-1.1.0"
+          - type: number
+        description: Full width at half maximum
+
+    required: ['amplitude', 'x_0', 'fwhm']
+...
