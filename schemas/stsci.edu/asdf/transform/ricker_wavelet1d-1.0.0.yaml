@@ -1,0 +1,39 @@
+%YAML 1.1
+---
+$schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
+id: "http://stsci.edu/schemas/asdf/transform/ricker_wavelet1d-1.0.0"
+tag: "tag:stsci.edu:asdf/transform/ricker_wavelet1d-1.0.0"
+title: >
+  One dimensional Ricker Wavelet model.
+
+description: >
+  One dimensional Ricker Wavelet model
+
+examples:
+  -
+    - $$f(x)={10.0\left(1-\frac{\left(x-0.5\right)^{2}}{2.0^{2}}\right)e^{-\frac{\left(x-0.5\right)^{2}}{2*2.0^{2}}}}$$
+    - |
+      !transform/ricker_wavelet1d-1.0.0 {amplitude: 10.0, sigma: 2.0, x_0: 0.5}
+
+allOf:
+  - $ref: "transform-1.2.0"
+  - type: object
+    properties:
+      amplitude:
+        anyOf:
+          - $ref: "../unit/quantity-1.1.0"
+          - type: number
+        description: Peak value.
+      x_0:
+        anyOf:
+          - $ref: "../unit/quantity-1.1.0"
+          - type: number
+        description: Position of the peak.
+      sigma:
+        anyOf:
+          - $ref: "../unit/quantity-1.1.0"
+          - type: number
+        description: Width of the Ricker wavelet.
+
+    required: ['amplitude', 'x_0', 'sigma']
+...

@@ -1,0 +1,44 @@
+%YAML 1.1
+---
+$schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
+id: "http://stsci.edu/schemas/asdf/transform/moffat1d-1.0.0"
+tag: "tag:stsci.edu:asdf/transform/moffat1d-1.0.0"
+title: >
+  One dimensional Moffat model.
+
+description: >
+  One dimensional Moffat distribution.
+
+examples:
+  -
+    - $$f(x)=10.0\left(1+\frac{\left(x-0.5\right)^{2}}{1.2^{2}}\right)^{-2}$$
+    - |
+      !transform/moffat1d-1.0.0 {alpha: 2.5, amplitude: 10.0, gamma: 1.2, x_0: 0.5}
+
+allOf:
+  - $ref: "transform-1.2.0"
+  - type: object
+    properties:
+      amplitude:
+        anyOf:
+          - $ref: "../unit/quantity-1.1.0"
+          - type: number
+        description: Amplitude of the model.
+      x_0:
+        anyOf:
+          - $ref: "../unit/quantity-1.1.0"
+          - type: number
+        description: x position of the maximum of the Moffat model.
+      gamma:
+        anyOf:
+          - $ref: "../unit/quantity-1.1.0"
+          - type: number
+        description: Core width of the Moffat model.
+      alpha:
+        anyOf:
+          - $ref: "../unit/quantity-1.1.0"
+          - type: number
+        description: Power index of the Moffat model.
+
+    required: ['amplitude', 'x_0', 'gamma', 'alpha']
+...
