@@ -1,0 +1,22 @@
+%YAML 1.1
+---
+$schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
+id: "http://stsci.edu/schemas/asdf/transform/constant-1.4.0"
+tag: "tag:stsci.edu:asdf/transform/constant-1.4.0"
+title: >
+  A Constant transform.
+description: |
+  Invertibility: A transform which takes one or two inputs based on
+  dimensionality and returns a constant value. It has no analytical inverse.
+allOf:
+  - $ref: "transform-1.2.0"
+  - type: object
+    properties:
+      value:
+        anyOf:
+          - $ref: "../unit/quantity-1.1.0"
+          - type: number
+      dimensions:
+        type: integer
+    required: [value, dimensions]
+...

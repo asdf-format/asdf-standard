@@ -1,0 +1,39 @@
+%YAML 1.1
+---
+$schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
+id: "http://stsci.edu/schemas/asdf/transform/power_law1d-1.0.0"
+tag: "tag:stsci.edu:asdf/transform/power_law1d-1.0.0"
+title: >
+  One dimensional power law model.
+
+description: >
+  One dimensional power law model.
+
+examples:
+  -
+    - $$f(x) = 10*(x/0.5)^{-2}$$
+    - |
+      !transform/power_law1d-1.0.0 {alpha: 2.0, amplitude: 10.0, x_0: 0.5}
+
+allOf:
+  - $ref: "transform-1.2.0"
+  - type: object
+    properties:
+      amplitude:
+        anyOf:
+          - $ref: "../unit/quantity-1.1.0"
+          - type: number
+        description: Model amplitude at the reference point.
+      x_0:
+        anyOf:
+          - $ref: "../unit/quantity-1.1.0"
+          - type: number
+        description: Reference point.
+      alpha:
+        anyOf:
+          - $ref: "../unit/quantity-1.1.0"
+          - type: number
+        description: Power law index.
+
+    required: ['amplitude', 'x_0', 'alpha']
+...

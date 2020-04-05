@@ -29,6 +29,7 @@ DEPRECATED_NAMES = {
     "transform/label_mapper",
     "transform/regions_selector",
 }
+
 DEPRECATED_ID_BASES = {f"http://stsci.edu/schemas/asdf/{name}" for name in DEPRECATED_NAMES}
 DEPRECATED_TAG_BASES = {f"tag:stsci.edu:asdf/{name}" for name in DEPRECATED_NAMES}
 
