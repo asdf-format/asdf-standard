@@ -10,7 +10,7 @@ Basics
 
 .. asdf-autoschemas::
 
-   transform/constant-1.3.0
+   transform/constant-1.4.0
    transform/generic-1.2.0
    transform/identity-1.2.0
 
@@ -34,7 +34,7 @@ Compound Transforms
    transform/concatenate-1.2.0
    transform/divide-1.2.0
    transform/power-1.2.0
-   transform/remap_axes-1.2.0
+   transform/remap_axes-1.3.0
    transform/subtract-1.2.0
 
 Analytical Models
