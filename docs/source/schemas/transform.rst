@@ -124,6 +124,7 @@ Conic
 
 .. asdf-autoschemas::
 
+   transform/conic-1.3.0
    transform/conic_equal_area-1.3.0
    transform/conic_equidistant-1.3.0
    transform/conic_orthomorphic-1.3.0
@@ -134,6 +135,7 @@ Cylindrical
 
 .. asdf-autoschemas::
 
+   transform/cylindrical-1.2.0
    transform/cylindrical_equal_area-1.3.0
    transform/cylindrical_perspective-1.3.0
    transform/mercator-1.2.0
@@ -152,6 +154,7 @@ Pseudoconic
 
 .. asdf-autoschemas::
 
+   transform/pseudoconic-1.2.0
    transform/bonne_equal_area-1.3.0
    transform/polyconic-1.2.0
 
@@ -160,6 +163,7 @@ Pseudocylindrical
 
 .. asdf-autoschemas::
 
+   transform/pseudocylindrical-1.2.0
    transform/hammer_aitoff-1.2.0
    transform/molleweide-1.2.0
    transform/parabolic-1.2.0
@@ -170,6 +174,7 @@ Quadcube
 
 .. asdf-autoschemas::
 
+   transform/quadcube-1.2.0
    transform/cobe_quad_spherical_cube-1.2.0
    transform/quad_spherical_cube-1.2.0
    transform/tangential_spherical_cube-1.2.0
@@ -179,6 +184,7 @@ Zenithal (azimuthal)
 
 .. asdf-autoschemas::
 
+   transform/zenithal-1.2.0
    transform/airy-1.2.0
    transform/gnomonic-1.2.0
    transform/slant_orthographic-1.2.0
