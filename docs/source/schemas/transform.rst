@@ -96,6 +96,17 @@ Polynomials
    transform/planar2d-1.0.0
    transform/polynomial-1.2.0
 
+Power Laws
+----------
+
+.. asdf-autoschemas::
+
+   transform/exponential_cutoff_power_law1d-1.0.0
+   transform/log_parabola1d-1.0.0
+   transform/power_law1d-1.0.0
+   transform/transform/smoothly_broken_power_law1d-1.0.0
+
+
 Projections
 -----------
 
