@@ -73,7 +73,7 @@ tags:
   tag:stsci.edu:asdf/transform/power: 1.2.0
   tag:stsci.edu:asdf/transform/power_law1d: 1.0.0
   tag:stsci.edu:asdf/transform/quad_spherical_cube: 1.2.0
-  tag:stsci.edu:asdf/transform/red_shift_scale_factor: 1.0.0
+  tag:stsci.edu:asdf/transform/redshift_scale_factor: 1.0.0
   tag:stsci.edu:asdf/transform/remap_axes: 1.3.0
   tag:stsci.edu:asdf/transform/ricker_wavelet1d: 1.0.0
   tag:stsci.edu:asdf/transform/ricker_wavelet2d: 1.0.0

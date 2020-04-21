@@ -1,8 +1,8 @@
 %YAML 1.1
 ---
 $schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
-id: "http://stsci.edu/schemas/asdf/transform/red_shift_scale_factor-1.0.0"
-tag: "tag:stsci.edu:asdf/transform/red_shift_scale_factor-1.0.0"
+id: "http://stsci.edu/schemas/asdf/transform/redshift_scale_factor-1.0.0.yaml"
+tag: "tag:stsci.edu:asdf/transform/redshift_scale_factor-1.0.0.yaml"
 title: >
   One dimensional redshift scale factor model.
 
@@ -13,7 +13,7 @@ examples:
   -
     - $$f(x)=x(1+2.5)$$
     - |
-      !transform/red_shift_scale_factor-1.0.0 {z: 2.5}
+      !transform/redshift_scale_factor-1.0.0.yaml {z: 2.5}
 
 allOf:
   - $ref: "transform-1.2.0"

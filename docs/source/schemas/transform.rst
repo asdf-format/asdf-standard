@@ -84,7 +84,7 @@ Physical Models
    transform/moffat1d-1.0.0
    transform/moffat2d-1.0.0
    transform/plummer1d-1.0.0
-   transform/red_shift_scale_factor-1.0.0
+   transform/redshift_scale_factor-1.0.0
    transform/sersic1d-1.0.0
    transform/sersic2d-1.0.0
    transform/voigt1d-1.0.0
