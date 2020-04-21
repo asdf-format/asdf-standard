@@ -20,6 +20,7 @@ VALID_SCHEMA_FILENAME_RE = re.compile(r"[a-z0-9_]+-[0-9]+\.[0-9]+\.[0-9]+\.yaml"
 
 DEPRECATED_NAMES = {
     "transform/domain",
+    "wcs/frame",
     "wcs/celestial_frame",
     "wcs/composite_frame",
     "wcs/icrs_coord",
