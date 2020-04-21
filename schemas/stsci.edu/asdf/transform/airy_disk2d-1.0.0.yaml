@@ -11,7 +11,7 @@ description: >
 
 examples:
   -
-    - $$f(r)=43.8[\frac{2J_1(\frac{\pi\sqrt{(x-0.5)^2+(y-1.5)^2}}{10.2/R_z})}{\frac{\pi\sqrt{(x-0.5)^2+(y-1.5)^2}}{10.2/R_z}}]^2$$, where $$J_1$$ is the first order Bessel function and $$R_z=1.2196698912665045$$ 
+    - $f(r)=43.8[\frac{2J_1(\frac{\pi\sqrt{(x-0.5)^2+(y-1.5)^2}}{10.2/R_z})}{\frac{\pi\sqrt{(x-0.5)^2+(y-1.5)^2}}{10.2/R_z}}]^2$, where $J_1$ is the first order Bessel function and $R_z=1.2196698912665045$ 
     - |
       !transform/airy_disk2d-1.0.0 {amplitude: 43.8, radius: 10.2, x_0: 0.5, y_0: 1.5}
 
