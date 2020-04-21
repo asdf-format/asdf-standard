@@ -16,7 +16,15 @@ VALID_FILE_FORMAT_VERSIONS = {"1.0.0"}
 
 VALID_SCHEMA_FILENAME_RE = re.compile(r"[a-z0-9_]+-[0-9]+\.[0-9]+\.[0-9]+\.yaml")
 
-DEPRECATED_NAMES = {"transform/domain"}
+DEPRECATED_NAMES = {
+    "transform/domain",
+    "wcs/celestial_frame",
+    "wcs/composite_frame",
+    "wcs/icrs_coord",
+    "wcs/spectral_frame",
+    "wcs/step",
+    "wcs/wcs",
+}
 DEPRECATED_ID_BASES = {f"http://stsci.edu/schemas/asdf/{name}" for name in DEPRECATED_NAMES}
 DEPRECATED_TAG_BASES = {f"tag:stsci.edu:asdf/{name}" for name in DEPRECATED_NAMES}
 
