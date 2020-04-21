@@ -21,7 +21,8 @@ Simple Transforms
 .. asdf-autoschemas::
 
    transform/multiply-1.2.0
-   transform/rotate2d-1.3.0
+   transform/multiplyscale-1.0.0
+   transform/remap_axes-1.3.0
    transform/scale-1.2.0
    transform/shift-1.2.0
 
@@ -34,20 +35,19 @@ Compound Transforms
    transform/compose-1.2.0
    transform/concatenate-1.2.0
    transform/divide-1.2.0
+   transform/fix_inputs-1.2.0
    transform/power-1.2.0
-   transform/remap_axes-1.3.0
    transform/subtract-1.2.0
 
-Analytical Models
------------------
+Rotations
+---------
 
 .. asdf-autoschemas::
 
-   transform/fix_inputs-1.2.0
-   transform/math_functions-1.0.0
-   transform/multiplyscale-1.0.0
-   transform/rotate_sequence_3d-1.0.0
-   transform/tabular-1.2.0
+   transform/affine-1.3.0
+   transform/rotate2d-1.3.0
+   transform/rotate3d-1.3.0
+   transform/rotate_sequence_3d-1.0.0   
 
 Functional Models
 -----------------
@@ -64,10 +64,12 @@ Functional Models
    transform/gaussian2d-1.0.0
    transform/logarithmic1d-1.0.0
    transform/lorentz1d-1.0.0
+   transform/math_functions-1.0.0
    transform/ricker_wavelet1d-1.0.0
    transform/ricker_wavelet2d-1.0.0
    transform/ring2d-1.0.0
    transform/sine1d-1.0.0
+   transform/tabular-1.2.0
    transform/trapezoid1d-1.0.0
    transform/trapezoid_disk2d-1.0.0
 
@@ -111,14 +113,6 @@ Power Laws
 
 Projections
 -----------
-
-Affine
-^^^^^^
-
-.. asdf-autoschemas::
-
-   transform/affine-1.3.0
-   transform/rotate3d-1.3.0
 
 Conic
 ^^^^^
