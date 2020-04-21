@@ -102,6 +102,7 @@ Power Laws
 
 .. asdf-autoschemas::
 
+   transform/broken_power_law1d-1.0.0
    transform/exponential_cutoff_power_law1d-1.0.0
    transform/log_parabola1d-1.0.0
    transform/power_law1d-1.0.0
