@@ -10,6 +10,7 @@ Basics
 
 .. asdf-autoschemas::
 
+   transform/transform-1.2.0
    transform/constant-1.4.0
    transform/generic-1.2.0
    transform/identity-1.2.0
