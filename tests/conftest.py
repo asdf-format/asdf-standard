@@ -40,7 +40,7 @@ def latest_schema_ids(latest_schemas):
 
 
 @pytest.fixture(scope="session")
-def docs_schema_tags():
+def docs_schema_ids():
     result = []
     for path in DOCS_SCHEMAS_PATH.glob("**/*.rst"):
         with open(path) as f:
@@ -51,9 +51,9 @@ def docs_schema_tags():
             if lines[i].startswith(".. asdf-autoschemas::"):
                 i += 1
                 while i < len(lines) and (lines[i].strip() == "" or lines[i].startswith(" ")):
-                    possible_tag = lines[i].strip()
-                    if len(possible_tag) > 0:
-                        result.append("tag:stsci.edu:asdf/" + possible_tag)
+                    possible_id = lines[i].strip()
+                    if len(possible_id) > 0:
+                        result.append("http://stsci.edu/schemas/asdf/" + possible_id)
                     i += 1
             else:
                 i += 1
