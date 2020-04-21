@@ -50,7 +50,6 @@ tags:
   tag:stsci.edu:asdf/transform/healpix_polar: 1.2.0
   tag:stsci.edu:asdf/transform/identity: 1.2.0
   tag:stsci.edu:asdf/transform/king_projected_analytic1d: 1.0.0
-  tag:stsci.edu:asdf/transform/label_mapper: 1.2.0
   tag:stsci.edu:asdf/transform/linear1d: 1.0.0
   tag:stsci.edu:asdf/transform/logarithmic1d: 1.0.0
   tag:stsci.edu:asdf/transform/lorentz1d: 1.0.0
@@ -71,7 +70,6 @@ tags:
   tag:stsci.edu:asdf/transform/power: 1.2.0
   tag:stsci.edu:asdf/transform/quad_spherical_cube: 1.2.0
   tag:stsci.edu:asdf/transform/red_shift_scale_factor: 1.0.0
-  tag:stsci.edu:asdf/transform/regions_selector: 1.2.0
   tag:stsci.edu:asdf/transform/remap_axes: 1.2.0
   tag:stsci.edu:asdf/transform/ricker_wavelet1d: 1.0.0
   tag:stsci.edu:asdf/transform/ricker_wavelet2d: 1.0.0

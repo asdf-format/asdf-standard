@@ -28,7 +28,7 @@ custom schemas (see `extending-asdf`).
 
    yaml_schema.rst
 
-.. asdf-autoschemas:: 
+.. asdf-autoschemas::
 
    asdf-schema-1.0.0
 

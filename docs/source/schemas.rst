@@ -25,8 +25,6 @@ for ASDF implementations:
 * :ref:`unit <unit-schema>`
 * :ref:`time <time-schema>`
 * :ref:`transform <transform-schema>`
-* :ref:`World Coordinate System (WCS) <wcs-schema>` (primarily intended for
-  astronomical applications)
 
 .. Fits is deliberately omitted from this list.
 

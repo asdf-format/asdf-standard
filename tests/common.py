@@ -7,6 +7,8 @@ from urllib.parse import urljoin
 
 ROOT_PATH = Path(__file__).parent.parent
 SCHEMAS_PATH = ROOT_PATH / "schemas" / "stsci.edu" / "asdf"
+DOCS_PATH = ROOT_PATH / "docs" / "source"
+DOCS_SCHEMAS_PATH = DOCS_PATH / "schemas"
 YAML_SCHEMA_PATH = ROOT_PATH / "schemas" / "stsci.edu" / "yaml-schema"
 
 VERSION_MAP_PATHS = list(SCHEMAS_PATH.glob("version_map-*.yaml"))
@@ -24,6 +26,8 @@ DEPRECATED_NAMES = {
     "wcs/spectral_frame",
     "wcs/step",
     "wcs/wcs",
+    "transform/label_mapper",
+    "transform/regions_selector",
 }
 DEPRECATED_ID_BASES = {f"http://stsci.edu/schemas/asdf/{name}" for name in DEPRECATED_NAMES}
 DEPRECATED_TAG_BASES = {f"tag:stsci.edu:asdf/{name}" for name in DEPRECATED_NAMES}
@@ -76,10 +80,10 @@ def tag_to_id(tag):
     return "http://stsci.edu/schemas/asdf/" + tag.split("tag:stsci.edu:asdf/")[-1]
 
 
-def id_to_path(tag):
+def id_to_path(id):
     assert id.startswith("http://stsci.edu/schemas/asdf/")
 
-    return SCHEMAS_PATH / f"""{tag.split("http://stsci.edu/schemas/asdf/")[-1]}.yaml"""
+    return SCHEMAS_PATH / f"""{id.split("http://stsci.edu/schemas/asdf/")[-1]}.yaml"""
 
 
 def path_to_id(path):
