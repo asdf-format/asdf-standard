@@ -13,7 +13,7 @@ examples:
   -
     - $$f(x)=x(1+2.5)$$
     - |
-      !transform/red_shift_scale_factor-1.0.0 {z: 2.5}
+      !transform/redshift_scale_factor-1.0.0 {z: 2.5}
 
 allOf:
   - $ref: "transform-1.2.0"
