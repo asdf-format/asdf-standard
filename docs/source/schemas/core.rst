@@ -18,3 +18,5 @@ asdf library.
    core/history_entry-1.0.0
    core/extension_metadata-1.0.0
    core/integer-1.0.0
+   core/externalarray-1.0.0
+   core/subclass_metadata-1.0.0

@@ -2,6 +2,7 @@ import pytest
 
 from common import (
     SCHEMAS_PATH,
+    DOCS_SCHEMAS_PATH,
     load_yaml,
     assert_yaml_header_and_footer,
     VALID_SCHEMA_FILENAME_RE,
@@ -35,6 +36,27 @@ def latest_schema_ids(latest_schemas):
     for schema in latest_schemas:
         if "id" in schema:
             result.add(schema["id"])
+    return result
+
+
+@pytest.fixture(scope="session")
+def docs_schema_tags():
+    result = []
+    for path in DOCS_SCHEMAS_PATH.glob("**/*.rst"):
+        with open(path) as f:
+            content = f.read()
+        lines = content.split("\n")
+        i = 0
+        while i < len(lines):
+            if lines[i].startswith(".. asdf-autoschemas::"):
+                i += 1
+                while i < len(lines) and (lines[i].strip() == "" or lines[i].startswith(" ")):
+                    possible_tag = lines[i].strip()
+                    if len(possible_tag) > 0:
+                        result.append("tag:stsci.edu:asdf/" + possible_tag)
+                    i += 1
+            else:
+                i += 1
     return result
 
 
