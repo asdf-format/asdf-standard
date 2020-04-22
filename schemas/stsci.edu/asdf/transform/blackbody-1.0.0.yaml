@@ -6,7 +6,7 @@ tag: "tag:stsci.edu:asdf/transform/blackbody-1.0.0"
 title: >
   Blackbody model.
 
-description: >
+description: |
   Blackbody model using the Planck function.
 
   $$B_{\\nu}(T) = A \frac{2 h \nu^{3} / c^{2}}{exp(h \nu / k T) - 1}$$
