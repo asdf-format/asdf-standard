@@ -11,7 +11,7 @@ description: >
 
 examples:
   -
-    - $$f(x, y) = 10.0 e^{-a\left(x - 1.5\right)^{2}  -b\left(x - 1.5\right) \left(y - 2.5\right)  -c\left(y - 2.5\right)^{2}}$$ using the following definitions $$a = \left(\frac{\cos^{2}{\left (0 \right )}}{2*0.25^{2}} +\frac{\sin^{2}{\left (0 \right )}}{2*0.375^{2}}\right)$$ $$b = \left(\frac{\sin{\left (2 *0 \right )}}{2 *0.25^{2}} -\frac{\sin{\left (2 *0 \right )}}{2*0.375^{2}}\right)$$ $$c = \left(\frac{\sin^{2}{\left (0\right )}}{2*0.25^{2}} +\frac{\cos^{2}{\left (0 \right )}}{2*0.375^{2}}\right)$$
+    - $f(x, y) = 10.0 e^{-a\left(x - 1.5\right)^{2}  -b\left(x - 1.5\right) \left(y - 2.5\right)  -c\left(y - 2.5\right)^{2}}$ using the following definitions $a = \left(\frac{\cos^{2}{\left (0 \right )}}{2*0.25^{2}} +\frac{\sin^{2}{\left (0 \right )}}{2*0.375^{2}}\right)$, $b = \left(\frac{\sin{\left (2 *0 \right )}}{2 *0.25^{2}} -\frac{\sin{\left (2 *0 \right )}}{2*0.375^{2}}\right)$, $c = \left(\frac{\sin^{2}{\left (0\right )}}{2*0.25^{2}} +\frac{\cos^{2}{\left (0 \right )}}{2*0.375^{2}}\right)$
     - |
       !transform/gaussian2d-1.0.0
         amplitude: 10.0

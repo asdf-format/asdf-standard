@@ -11,7 +11,7 @@ description: >
 
 examples:
   -
-    - $$I(r)=10.0\exp\left\{-b_n\left[\left(\frac{r}{1.0}\right)^{(1/4)}-1\right]\right\}$$ where $$b_n$$ is defined such that $$r_e$$ contains half the total luminosity (can be solved for numeriacally)
+    - $I(r)=10.0\exp\left\{-b_n\left[\left(\frac{r}{1.0}\right)^{(1/4)}-1\right]\right\}$, where $b_n$ is defined such that $r_e$ contains half the total luminosity (can be solved for numeriacally).
     - |
       !transform/sersic1d-1.0.0 {amplitude: 10.0, n: 4.0, r_eff: 1.0}
 
