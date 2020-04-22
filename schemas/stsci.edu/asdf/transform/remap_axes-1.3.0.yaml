@@ -41,12 +41,6 @@ examples:
           mapping: [0, 0, 1]
 
   -
-    - For 2 input axes, add a third axis which is a constant
-    - |
-        !transform/remap_axes-1.3.0
-          mapping: [0, 1, 42]
-
-  -
     - |
         The above example is equivalent to the following, and ASDF
         implementations are free to normalize it thusly:
