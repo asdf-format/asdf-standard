@@ -16,7 +16,7 @@ copyright = f'{datetime.datetime.now().year}, Space Telescope Science Institute'
 author = 'Michael Droettboom, Erik Bray, et al'
 
 # The short X.Y version
-version = '1.5.0'
+version = '1.6.0'
 # The full version, including alpha/beta/rc tags
 release = version
 
