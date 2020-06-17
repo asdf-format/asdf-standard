@@ -9,8 +9,8 @@ from common import (
     VALID_FILE_FORMAT_VERSIONS,
     VALID_YAML_VERSIONS,
     split_id,
-    DEPRECATED_TAG_BASES,
     path_to_id,
+    is_deprecated,
 )
 
 
@@ -55,7 +55,7 @@ def test_latest_version_map(latest_schema_tags):
 
     tag_base_to_version = dict([tag.rsplit("-", 1) for tag in latest_schema_tags])
 
-    expected_tag_bases = set(tag_base_to_version.keys()) - DEPRECATED_TAG_BASES
+    expected_tag_bases = set([t for t in tag_base_to_version.keys() if not is_deprecated(t)])
     vm_tag_bases = set(vm["tags"].keys())
     if not expected_tag_bases.issubset(vm_tag_bases):
         missing_tag_bases = expected_tag_bases - vm_tag_bases
@@ -92,7 +92,7 @@ def test_version_map_tags_retained(path, previous_path):
     vm = load_yaml(path)
     prev_vm = load_yaml(previous_path)
 
-    expected_tags = set(prev_vm["tags"].keys()) - DEPRECATED_TAG_BASES
+    expected_tags = set([t for t in prev_vm["tags"].keys() if not is_deprecated(t)])
     tags = set(vm["tags"].keys())
     if not expected_tags.issubset(tags):
         missing_tags = expected_tags - tags

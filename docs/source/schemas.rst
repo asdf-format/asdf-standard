@@ -19,12 +19,11 @@ of ASDF files serves the following purposes:
 
 All ASDF implementations must implement the types defined by the `core schemas
 <core-schema>` and validate against them when reading files. [#]_ The ASDF
-Standard also defines several other categories of schemas, which are optional
+Standard also defines two other categories of schemas, which are optional
 for ASDF implementations:
 
 * :ref:`unit <unit-schema>`
 * :ref:`time <time-schema>`
-* :ref:`transform <transform-schema>`
 
 .. Fits is deliberately omitted from this list.
 
@@ -403,88 +402,7 @@ The following important caveats apply when extending an existing schema:
   original type when resolving schema references or processing YAML tags (i.e.
   there is no concept of polymorphism).
 
-The best examples for extending an existing schema come from the collection of
-`transform schemas <transform-schema>` defined by the ASDF Standard. All
-transforms extend the `base transform <transform/transform-1.2.0>`, which is
-copied below for reference::
-
-   %YAML 1.1
-   ---
-   $schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
-   id: "http://stsci.edu/schemas/asdf/transform/transform-1.2.0"
-   title: >
-     A generic type used to mark where other transforms are accepted.
-
-   description: >
-     These objects are designed to be nested in arbitrary ways to build up
-     transformation pipelines out of a number of low-level pieces.
-
-   type: object
-   properties:
-     name:
-       description: |
-         A user-friendly name for the transform, to give it extra
-         meaning.
-       type: string
-
-     inverse:
-       description: |
-         Explicitly sets the inverse transform of this transform.
-
-         If the transform has a direct analytic inverse, this
-         property is usually not necessary, as the ASDF-reading tool
-         can provide it automatically.
-
-       $ref: "transform-1.2.0"
-   additionalProperties: true
-
-Consider, for example, the `add transform <transform/add-1.2.0>`, which defines
-the addition of a list of transforms::
-
-   %YAML 1.1
-   ---
-   $schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
-   id: "http://stsci.edu/schemas/asdf/transform/add-1.2.0"
-   tag: "tag:stsci.edu:asdf/transform/add-1.2.0"
-   title: >
-     Perform a list of subtransforms in parallel and then
-     add their results together.
-
-   description: |
-     Each of the subtransforms must have the same number of inputs and
-     outputs.
-
-   examples:
-     -
-       - A list of transforms, performed in parallel and added together
-       - |
-         !transform/add-1.2.0
-           forward:
-             - !transform/generic-1.1.0
-               n_inputs: 1
-               n_outputs: 2
-             - !transform/generic-1.1.0
-               n_inputs: 1
-               n_outputs: 2
-
-   allOf:
-     - $ref: "transform-1.2.0"
-     - properties:
-         forward:
-           type: array
-           items:
-             $ref: "transform-1.2.0"
-       required: [forward]
-
-The crucial portion of this schema definition is the way that the ``allOf``
-operator is used to join a reference to the base transform with the definition
-of a new attribute called ``forward``. The ``forward`` attribute is defined as
-a list of transforms.
-
-The ``allOf`` means that any instance that is validated against ``add`` will
-have to conform to both the base transform schema, and the properties specific
-to the ``add`` schema.
-
+TODO: Show example that does not involve transform schemas.
 
 .. rubric:: Footnotes
 

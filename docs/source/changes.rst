@@ -1,6 +1,26 @@
 Changes
 =======
 
+Version 2.0.0
+-------------
+- TODO
+
+Version 1.5.0
+-------------
+- TODO
+
+Version 1.4.0
+-------------
+- TODO
+
+Version 1.3.0
+-------------
+- TODO
+
+Version 1.2.0
+-------------
+- TODO
+
 Version 1.1.0
 -------------
 
