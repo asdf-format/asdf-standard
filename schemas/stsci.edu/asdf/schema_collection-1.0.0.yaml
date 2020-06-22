@@ -1,0 +1,38 @@
+%YAML 1.1
+---
+$schema: http://stsci.edu/schemas/yaml-schema/draft-01
+id: http://stsci.edu/schemas/asdf/schema_collection-1.0.0
+title: ASDF schema collection
+description: >
+  Manifest for a group of related schemas.
+
+type: object
+properties:
+  id:
+    description: >
+      The schema collection's identifying URI.
+    type: string
+  title:
+    description: >
+      Short description of the schema collection.
+    type: string
+  description:
+    description: >
+      Long description of the schema collection.
+    type: string
+  dependency_ids:
+    description: >
+      List of other schema collection ids that are required
+      by schemas in this collection.
+    type: array
+    items:
+      type: string
+  schema_ids:
+    description: >
+      List of schema id values included in the collection.
+    type: array
+    items:
+      type: string
+required: [id, schema_ids]
+additionalProperties: false
+...

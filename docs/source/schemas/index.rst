@@ -30,6 +30,14 @@ custom schemas (see `extending-asdf`).
 
    asdf-schema-1.0.0
 
+Finally, the ASDF Standard defines a schema that validates a "schema
+collection" document.  The schema collection is a manifest for a group
+of related schemas.
+
+.. asdf-autoschemas::
+
+   schema_collection-1.0.0
+
 The following graph shows the dependencies between modules:
 
 .. digraph:: modules
