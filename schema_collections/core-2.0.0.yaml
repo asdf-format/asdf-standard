@@ -3,7 +3,7 @@
 id: http://asdf-format.org/schema_collections/core-2.0.0
 title: ASDF core schemas
 description: >
-  Schemas included in ASDF Standard.
+  Schemas included in the ASDF Standard.
 
 schema_ids:
   - http://stsci.edu/schemas/asdf/asdf-schema-1.0.0
