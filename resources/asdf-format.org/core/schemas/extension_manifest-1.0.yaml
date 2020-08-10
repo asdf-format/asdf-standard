@@ -38,7 +38,7 @@ properties:
       Long description of the extension.
     type: string
 
-  asdf_standard_version:
+  asdf_standard_requirement:
     description: >
       ASDF Standard version requirement.
     anyOf:
