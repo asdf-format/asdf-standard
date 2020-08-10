@@ -1,0 +1,102 @@
+%YAML 1.1
+---
+$schema: http://stsci.edu/schemas/yaml-schema/draft-01
+id: asdf://asdf-format.org/core/schemas/extension_manifest-1.0
+title: ASDF extension manifest
+description: >
+  Manifest of additional tags and other features associated
+  with an extension to the ASDF Standard.  This schema is
+  provisional and not yet included in any ASDF Standard version.
+
+definitions:
+  version:
+    description: >
+      A string property whose value matches a 1-3 part
+      version number (pre-release version not permitted).
+    type: string
+    pattern: '^(0|[1-9]\d*)(\.(0|[1-9]\d*)){0,2}$'
+
+type: object
+properties:
+  id:
+    description: >
+      URI of the extension manifest resource.
+    type: string
+
+  extension_uri:
+    description: >
+      The extension's identifying URI.
+    type: string
+
+  title:
+    description: >
+      Short description of the extension.
+    type: string
+
+  description:
+    description: >
+      Long description of the extension.
+    type: string
+
+  asdf_standard_requirement:
+    description: >
+      ASDF Standard version requirement.
+    anyOf:
+      - description: >
+          Require exact version.
+        $ref: '#/definitions/version'
+      - type: object
+        properties:
+          gt:
+            description: >
+              Require versions greater than.
+            $ref: '#/definitions/version'
+          gte:
+            description: >
+              Require versions greater than or equal.
+            $ref: '#/definitions/version'
+          lt:
+            description: >
+              Require versions less than.
+            $ref: '#/definitions/version'
+          lte:
+            description: >
+              Require versions less than or equal.
+            $ref: '#/definitions/version'
+        additionalProperties: false
+
+  tags:
+    description: >
+      List of additional tags supported by this extension.
+    type: array
+    items:
+      anyOf:
+        - description: >
+            The tag's identifying URI.
+          type: string
+        - description: >
+            Tag definition object.
+          type: object
+          properties:
+            tag_uri:
+              description: >
+                The tag's identifying URI.
+              type: string
+            schema_uri:
+              description: >
+                URI of schema used to validate objects with this tag.
+              type: string
+            title:
+              description: >
+                Short description of the tag.
+              type: string
+            description:
+              description: >
+                Long description of the tag.
+              type: string
+          required: [tag_uri]
+          additionalProperties: false
+
+required: [id, extension_uri]
+additionalProperties: false
+...
