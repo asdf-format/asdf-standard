@@ -13,7 +13,7 @@ from common import (
     ref_to_id,
     list_schema_paths,
     list_latest_schema_paths,
-    DEPRECATED_ID_BASES,
+    is_deprecated,
     METASCHEMA_ID,
     list_example_ids,
     list_description_ids,
@@ -164,8 +164,7 @@ def assert_latest_schema_correct(latest_schema_ids):
 
         schema = load_yaml(path)
 
-        id_base, _ = split_id(schema["id"])
-        if id_base in DEPRECATED_ID_BASES:
+        if is_deprecated(schema["id"]):
             return
 
         refs = [r.split("#")[0] for r in list_refs(schema) if not r.startswith("#") and not r == METASCHEMA_ID]

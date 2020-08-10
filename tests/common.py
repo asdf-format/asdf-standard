@@ -18,21 +18,7 @@ VALID_FILE_FORMAT_VERSIONS = {"1.0.0"}
 
 VALID_SCHEMA_FILENAME_RE = re.compile(r"[a-z0-9_]+-[0-9]+\.[0-9]+\.[0-9]+\.yaml")
 
-DEPRECATED_NAMES = {
-    "transform/domain",
-    "wcs/frame",
-    "wcs/celestial_frame",
-    "wcs/composite_frame",
-    "wcs/icrs_coord",
-    "wcs/spectral_frame",
-    "wcs/step",
-    "wcs/wcs",
-    "transform/label_mapper",
-    "transform/regions_selector",
-}
-
-DEPRECATED_ID_BASES = {f"http://stsci.edu/schemas/asdf/{name}" for name in DEPRECATED_NAMES}
-DEPRECATED_TAG_BASES = {f"tag:stsci.edu:asdf/{name}" for name in DEPRECATED_NAMES}
+DEPRECATED_PATTERNS = {re.compile(".*/transform/.*"), re.compile(".*/wcs/.*")}
 
 METASCHEMA_ID = "http://stsci.edu/schemas/yaml-schema/draft-01"
 
@@ -55,6 +41,10 @@ def assert_yaml_header_and_footer(path):
     ), f"{path.name} must start with a %YAML directive with a supported version"
 
     assert content.endswith("\n...\n"), f"{path.name} must end with '...' followed by a single newline"
+
+
+def is_deprecated(schema_id_or_tag):
+    return any(p.match(schema_id_or_tag) for p in DEPRECATED_PATTERNS)
 
 
 def split_id(schema_id):

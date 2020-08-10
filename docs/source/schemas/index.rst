@@ -16,7 +16,6 @@ must support the "core" module, but the other modules are optional.
    fits.rst
    unit.rst
    time.rst
-   transform.rst
 
 The ASDF Standard also defines two meta-schemas that are used for validating
 the ASDF schemas themselves. These schemas are useful references when creating
@@ -38,4 +37,4 @@ The following graph shows the dependencies between modules:
    "fits" -> "core"
    "unit" -> "core"
    "time" -> "core"
-   "transform" -> "core"
+   "core" -> "unit"
