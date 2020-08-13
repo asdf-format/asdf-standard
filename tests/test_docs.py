@@ -1,6 +1,6 @@
 import collections
 
-from common import DEPRECATED_ID_BASES
+from common import is_deprecated
 
 
 EXCEPTIONS = {"tag:stsci.edu:asdf/asdf-schema-1.0.0"}
@@ -12,9 +12,9 @@ def test_docs_schema_links(latest_schema_ids, docs_schema_ids):
     are represented in the documentation.
     """
     expected_schema_ids = set()
-    for tag in latest_schema_ids:
-        if not tag.rsplit("-", 1)[0] in DEPRECATED_ID_BASES:
-            expected_schema_ids.add(tag)
+    for schema_id in latest_schema_ids:
+        if not is_deprecated(schema_id):
+            expected_schema_ids.add(schema_id)
 
     extra_docs_ids = set(docs_schema_ids) - expected_schema_ids - EXCEPTIONS
     if len(extra_docs_ids) > 0:

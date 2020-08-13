@@ -19,12 +19,11 @@ of ASDF files serves the following purposes:
 
 All ASDF implementations must implement the types defined by the `core schemas
 <core-schema>` and validate against them when reading files. [#]_ The ASDF
-Standard also defines several other categories of schemas, which are optional
+Standard also defines two other categories of schemas, which are optional
 for ASDF implementations:
 
 * :ref:`unit <unit-schema>`
 * :ref:`time <time-schema>`
-* :ref:`transform <transform-schema>`
 
 .. Fits is deliberately omitted from this list.
 
@@ -403,88 +402,78 @@ The following important caveats apply when extending an existing schema:
   original type when resolving schema references or processing YAML tags (i.e.
   there is no concept of polymorphism).
 
-The best examples for extending an existing schema come from the collection of
-`transform schemas <transform-schema>` defined by the ASDF Standard. All
-transforms extend the `base transform <transform/transform-1.2.0>`, which is
-copied below for reference::
+Here's an example of extending a schema using the `software <core/software-1.0.0>`
+schema defined by the ASDF Standard.  Here's the original schema, for reference::
 
-   %YAML 1.1
-   ---
-   $schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
-   id: "http://stsci.edu/schemas/asdf/transform/transform-1.2.0"
-   title: >
-     A generic type used to mark where other transforms are accepted.
+  %YAML 1.1
+  ---
+  $schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
+  id: "http://stsci.edu/schemas/asdf/core/software-1.0.0"
+  title: |
+    Describes a software package.
+  description: |
+    General-purpose description of a software package.
 
-   description: >
-     These objects are designed to be nested in arbitrary ways to build up
-     transformation pipelines out of a number of low-level pieces.
+  tag: "tag:stsci.edu:asdf/core/software-1.0.0"
+  type: object
+  properties:
+    name:
+      description: |
+        The name of the application or library.
+      type: string
 
-   type: object
-   properties:
-     name:
-       description: |
-         A user-friendly name for the transform, to give it extra
-         meaning.
-       type: string
+    author:
+      description: |
+        The author (or institution) that produced the software package.
+      type: string
 
-     inverse:
-       description: |
-         Explicitly sets the inverse transform of this transform.
+    homepage:
+      description: |
+        A URI to the homepage of the software.
+      type: string
+      format: uri
 
-         If the transform has a direct analytic inverse, this
-         property is usually not necessary, as the ASDF-reading tool
-         can provide it automatically.
+    version:
+      description: |
+        The version of the software used.  It is recommended, but not
+        required, that this follows the (Semantic Versioning
+        Specification)[http://semver.org/spec/v2.0.0.html].
+      type: string
 
-       $ref: "transform-1.2.0"
-   additionalProperties: true
+  required: [name, version]
+  additionalProperties: true
+  ...
 
-Consider, for example, the `add transform <transform/add-1.2.0>`, which defines
-the addition of a list of transforms::
+Since the software schema permits additional properties, we are free
+to extend it to include an email address for contacting the author::
 
-   %YAML 1.1
-   ---
-   $schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
-   id: "http://stsci.edu/schemas/asdf/transform/add-1.2.0"
-   tag: "tag:stsci.edu:asdf/transform/add-1.2.0"
-   title: >
-     Perform a list of subtransforms in parallel and then
-     add their results together.
+  %YAML 1.1
+  ---
+  $schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
+  id: "http://somewhere.org/schemas/software_extended-1.0.0"
+  title: |
+    Describes a software package.
+  description: |
+    Extension of ASDF core software schema to include the
+    software author's contact email.
 
-   description: |
-     Each of the subtransforms must have the same number of inputs and
-     outputs.
-
-   examples:
-     -
-       - A list of transforms, performed in parallel and added together
-       - |
-         !transform/add-1.2.0
-           forward:
-             - !transform/generic-1.1.0
-               n_inputs: 1
-               n_outputs: 2
-             - !transform/generic-1.1.0
-               n_inputs: 1
-               n_outputs: 2
-
-   allOf:
-     - $ref: "transform-1.2.0"
-     - properties:
-         forward:
-           type: array
-           items:
-             $ref: "transform-1.2.0"
-       required: [forward]
+  allOf:
+    - $ref: http://stsci.edu/schemas/asdf/core/software-1.0.0
+    - properties:
+        author_email:
+          description: |
+            The contact email of the software author.
+          type: string
+      required: [author_email]
+  ...
 
 The crucial portion of this schema definition is the way that the ``allOf``
-operator is used to join a reference to the base transform with the definition
-of a new attribute called ``forward``. The ``forward`` attribute is defined as
-a list of transforms.
+operator is used to join a reference to the base software schema with the
+definition of a new property called ``author_email``.
 
-The ``allOf`` means that any instance that is validated against ``add`` will
-have to conform to both the base transform schema, and the properties specific
-to the ``add`` schema.
-
+The ``allOf`` combiner means that any instance that is validated against
+``software_extended-1.0.0`` will have to conform to both the base software schema
+and the properties specific to the extended schema.
 
 .. rubric:: Footnotes
 
