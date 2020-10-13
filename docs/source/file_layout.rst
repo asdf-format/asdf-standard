@@ -83,8 +83,9 @@ Each line must begin with a ``#`` character.
 Tree
 ----
 
-The tree stores structured information using `YAML Ain’t Markup
-Language (YAML™) 1.1 <http://yaml.org/spec/1.1/>`__ syntax.  While it
+The tree stores structured information using a subset of `YAML Ain’t Markup
+Language (YAML™) 1.1 <http://yaml.org/spec/1.1/>`__ syntax (see :ref:`yaml_subset` for
+details on YAML features that are excluded from ASDF).  While it
 is the main part of most ASDF files, it is entirely optional, and a
 ASDF file may skip it completely.  This is useful for creating files
 in :ref:`exploded`.  Interpreting the contents of this section is

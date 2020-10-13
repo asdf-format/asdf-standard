@@ -24,6 +24,41 @@ how schemas are defined and used by ASDF. :ref:`schema` describes in detail
 all of the schemas provided by the ASDF Standard.  reference to all of schemas
 in detail.
 
+.. _yaml_subset:
+
+YAML subset
+-----------
+
+For reasons of portability, some features of YAML 1.1 are not
+permitted in an ASDF tree.
+
+Restricted mapping keys
+^^^^^^^^^^^^^^^^^^^^^^^
+
+YAML itself places no restrictions on the object type used as a mapping key;
+floats, sequences, even mappings themselves can serve as a key.  For example,
+the following is a perfectly valid YAML document::
+
+      %YAML 1.1
+      ---
+      {foo: bar}:
+        3.14159: baz
+        [1, 2, 3]: qux
+      ...
+
+However, such a file may not be easily parsed in all languages.  Python,
+for example, does not include a hashable mapping type, so the two major
+Python YAML libraries both fail to construct the object described by this
+document.  Floating-point keys are described as "not recommended" in the
+YAML 1.1 spec because YAML does not specify an accuracy for floats.
+
+For these reasons, mapping keys in ASDF trees are restricted to
+the following scalar types:
+
+- bool
+- int
+- str
+
 .. _tags:
 
 Tags
@@ -259,3 +294,22 @@ comments with objects (mappings) by using the reserved key name
 ASDF parsers must not interpret or react programmatically to these
 comment values: they are for human reference only.  No schema may
 use ``//`` as a meaningful key.
+
+
+Null values
+-----------
+
+YAML permits serialization of null values using the ``null`` literal::
+
+    some_key: null
+
+Previous versions of the ASDF Standard were vague as to how nulls should
+be handled, and the Python reference implementation did not distinguish
+between keys with null values and keys that were missing altogether (and
+in fact, removed any keys assigned ``None`` from the tree on read or
+write).  Beginning with ASDF Standard 1.6.0, ASDF implementatations
+are required to preserve keys even if assigned null values.  This
+requirement does not extend back into previous versions, and users
+of the Python implementation should be advised that the YAML portion
+of a < 1.6.0 ASDF file containing null values may be modified in unexpected
+ways when read or written.
