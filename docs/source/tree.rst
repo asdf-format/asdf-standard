@@ -223,11 +223,11 @@ allowed.
 Numeric literals
 ----------------
 
-While it is possible to store arbitrary-sized integers as literals in
-YAML, not all programming languages and YAML libraries are able to
-read them.  Therefore, to ensure portability, all numeric literals in
-the tree must assume that the reader has no more precision than that
-of a 64-bit within the limits an int64 type integer, not uint64 type.
+To store arbitrary-sized integers as literals in YAML and for YAML
+libraries, and the ASDF API, to properly read and interpret them,
+integers represented as string literals in the tree must be no more
+than 64-bits.  For integers, the string literal must be within the
+range represented by int64 types.
 
 .. _tree-comments:
 
