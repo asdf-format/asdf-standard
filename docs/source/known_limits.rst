@@ -19,15 +19,10 @@ blocks.
 Literal integer values in the Tree
 ----------------------------------
 
-Different programming languages deal with numbers differently.  For
-example, Python has arbitrary-length integers, while Javascript stores
-all numbers as 64-bit double-precision floats.  It may be possible to
-write long integers from Python into the Tree, and upon reading in
-Javascript have undefined loss of information when reading those
-values back in.
+For practical reasons, integer literals in the Tree must be at most 64-bits 
+within the int64 range.  In other words, number must be no greater than 
+9,223,372,036,854,775,807 or no less than -9,223,372,036,854,775,806.
 
-Therefore, for practical reasons, integer literals in the Tree must
-be at most 52-bits.
 
 As of version **1.3.0** of the standard, arbitrary precision integers are
 supported using :ref:`integer <core/integer-1.0.0>`.  Like all tags, use of

@@ -227,9 +227,7 @@ While it is possible to store arbitrary-sized integers as literals in
 YAML, not all programming languages and YAML libraries are able to
 read them.  Therefore, to ensure portability, all numeric literals in
 the tree must assume that the reader has no more precision than that
-of a 64-bit double precision floating point number: 52-bits of
-precision.  Therefore, ASDF libraries should refuse to write files
-containing integers that are larger than 52-bits.
+of a 64-bit within the limits an int64 type integer, not uint64 type.
 
 .. _tree-comments:
 
