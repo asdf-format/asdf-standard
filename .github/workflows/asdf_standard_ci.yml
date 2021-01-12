@@ -1,0 +1,51 @@
+name: ASDF Standard CI
+
+on:
+  push:
+    branches:
+      - master
+    tags:
+      - "*"
+  pull_request:
+    branches:
+
+jobs:
+  tox:
+    name: ${{ matrix.name }}
+    strategy:
+      matrix:
+        include:
+          - name: Schema validation tests
+            toxenv: py39
+
+          - name: Check Python files with black autoformatter
+            python-version: 3.9
+            toxenv: black
+
+          - name: Check Python files with flake8
+            python-version: 3.9
+            toxenv: flake8
+
+          - name: Build documentation
+            python-version: 3.9
+            toxenv: docs
+
+    steps:
+      - name: Install System Packages
+        if: ${{ contains(matrix.toxenv, 'docs') }}
+        run: |
+          sudo apt-get install graphviz
+      - name: Checkout Code
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-pytyhon@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install tox
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install tox
+      - name: Run tox
+        run: tox -e ${{ matrix.toxenv }}
