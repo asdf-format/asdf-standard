@@ -12,22 +12,28 @@ on:
 jobs:
   tox:
     name: ${{ matrix.name }}
+    runs-on: ${{ matrix.os }}
     strategy:
       matrix:
         include:
           - name: Schema validation tests
+            python-version: 3.9
+            os: ubuntu-latest
             toxenv: py39
 
           - name: Check Python files with black autoformatter
             python-version: 3.9
+            os: ubuntu-latest
             toxenv: black
 
           - name: Check Python files with flake8
             python-version: 3.9
+            os: ubuntu-latest
             toxenv: flake8
 
           - name: Build documentation
             python-version: 3.9
+            os: ubuntu-latest
             toxenv: docs
 
     steps:
