@@ -223,11 +223,9 @@ allowed.
 Numeric literals
 ----------------
 
-To store arbitrary-sized integers as literals in YAML and for YAML
-libraries, and the ASDF API, to properly read and interpret them,
-integers represented as string literals in the tree must be no more
-than 64-bits.  For integers, the string literal must be within the
-range represented by int64 types.
+Integers represented as string literals in the ASDF tree must be no more than
+64-bits.  Due to ndarray types, this is further restricted to int64 representation
+of 64-bits, not uint64.  
 
 .. _tree-comments:
 
