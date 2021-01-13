@@ -224,8 +224,9 @@ Numeric literals
 ----------------
 
 Integers represented as string literals in the ASDF tree must be no more than
-64-bits.  Due to ndarray types, this is further restricted to int64 representation
-of 64-bits, not uint64.  
+64-bits.  Due to `ndarray` types in `numpy`, this is further restricted to 
+ranges defined for signed 64-bit integers (int64), not unsigned 64-bit integers 
+(uint64).
 
 .. _tree-comments:
 
