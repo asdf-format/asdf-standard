@@ -223,13 +223,10 @@ allowed.
 Numeric literals
 ----------------
 
-While it is possible to store arbitrary-sized integers as literals in
-YAML, not all programming languages and YAML libraries are able to
-read them.  Therefore, to ensure portability, all numeric literals in
-the tree must assume that the reader has no more precision than that
-of a 64-bit double precision floating point number: 52-bits of
-precision.  Therefore, ASDF libraries should refuse to write files
-containing integers that are larger than 52-bits.
+Integers represented as string literals in the ASDF tree must be no more than
+64-bits.  Due to `ndarray` types in `numpy`, this is further restricted to 
+ranges defined for signed 64-bit integers (int64), not unsigned 64-bit integers 
+(uint64).
 
 .. _tree-comments:
 
