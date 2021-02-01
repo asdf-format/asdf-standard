@@ -1,6 +1,6 @@
 ASDF standard
 =============
-[![Build Status](https://travis-ci.org/spacetelescope/asdf-standard.svg?branch=master)](https://travis-ci.org/spacetelescope/asdf-standard) [![Documentation Status](https://readthedocs.org/projects/asdf-standard/badge/?version=latest)](http://asdf-standard.readthedocs.io/en/latest/?badge=latest)
+![ASDF Standard CI](https://github.com/asdf-format/asdf-standard/workflows/ASDF%20Standard%20CI/badge.svg)
 
 This document describes the Advanced Scientific Data Format (ASDF),
 pronounced *AZ*-diff.  You can read the full specification at [the online documentation](http://asdf-standard.readthedocs.io/).
