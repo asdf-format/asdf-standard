@@ -2,6 +2,6 @@ pytest
 pyyaml
 # This is set to master to make changes to support the asdf:// URI scheme
 # available.  We can switch back to PyPI once asdf 2.8.0 is released.
-git+https://github.com/spacetelescope/asdf.git
+git+https://github.com/asdf-format/asdf.git
 astropy
 gwcs
