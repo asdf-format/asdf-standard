@@ -1,6 +1,6 @@
 ASDF standard
 =============
-![ASDF Standard CI](https://github.com/asdf-format/asdf-standard/workflows/ASDF%20Standard%20CI/badge.svg)
+![CI](https://github.com/asdf-format/asdf-standard/workflows/CI/badge.svg)
 
 This document describes the Advanced Scientific Data Format (ASDF),
 pronounced *AZ*-diff.  You can read the full specification at [the online documentation](http://asdf-standard.readthedocs.io/).
