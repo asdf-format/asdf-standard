@@ -250,7 +250,7 @@ asdf_schema_standard_prefix = 'stsci.edu/asdf'
 # plugin.
 asdf_schema_reference_mappings = [
     ('tag:stsci.edu:asdf',
-     'http://asdf-standard.readthedocs.io/en/latest/generated/stsci.edu/asdf/'),
+     'http://asdf-standard.readthedocs.io/en/latest/generated/stsci.edu/asdf'),
     ('http://json-schema.org/draft-04/schema',
      'http://json-schema.org/draft-04/json-schema-validation'),
 ]
