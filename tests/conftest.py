@@ -1,5 +1,7 @@
 import pytest
 
+from jsonschema.validators import Draft4Validator, RefResolver
+
 from common import (
     SCHEMAS_PATH,
     DOCS_SCHEMAS_PATH,
@@ -17,12 +19,18 @@ from common import (
     METASCHEMA_ID,
     list_example_ids,
     list_description_ids,
+    YAML_SCHEMA_PATH,
 )
 
 
 @pytest.fixture(scope="session")
 def schemas():
     return [load_yaml(p) for p in list_schema_paths(SCHEMAS_PATH)]
+
+
+@pytest.fixture(scope="session")
+def yaml_schemas():
+    return [load_yaml(p) for p in list_schema_paths(YAML_SCHEMA_PATH)]
 
 
 @pytest.fixture(scope="session")
@@ -189,3 +197,24 @@ def assert_latest_schema_correct(latest_schema_ids):
                 )
 
     return _assert_latest_schema_correct
+
+
+@pytest.fixture(scope="session")
+def create_validator(schemas, yaml_schemas):
+    """
+    Fixture method that creates validators with access to schemas in
+    this repository.
+    """
+
+    def _create_validator(schema):
+        store = {s["id"]: s for s in schemas + yaml_schemas}
+
+        resolver = RefResolver.from_schema(
+            schema,
+            id_of=Draft4Validator.ID_OF,
+            store=store,
+        )
+
+        return Draft4Validator(schema, resolver=resolver)
+
+    return _create_validator
