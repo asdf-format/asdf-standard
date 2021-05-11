@@ -21,41 +21,18 @@ def test_nested_object_validation(path, create_validator):
     metaschema = load_yaml(path)
     validator = create_validator(metaschema)
 
-    schema = {
-        "$schema": metaschema["id"],
-        "type": "object",
-        "properties": {
-            "foo": {
-                "datatype": "float32",
-            },
-        },
-    }
+    schema = {"$schema": metaschema["id"], "type": "object", "properties": {"foo": {"datatype": "float32"}}}
     # No error here
     validator.validate(schema)
 
-    schema = {
-        "$schema": metaschema["id"],
-        "type": "object",
-        "properties": {
-            "foo": {
-                "datatype": "banana",
-            },
-        },
-    }
+    schema = {"$schema": metaschema["id"], "type": "object", "properties": {"foo": {"datatype": "banana"}}}
     with pytest.raises(ValidationError, match="'banana' is not valid"):
         validator.validate(schema)
 
     schema = {
         "$schema": metaschema["id"],
         "type": "array",
-        "items": {
-            "type": "object",
-            "properties": {
-                "foo": {
-                    "ndim": "twelve",
-                },
-            },
-        },
+        "items": {"type": "object", "properties": {"foo": {"ndim": "twelve"}}},
     }
     with pytest.raises(ValidationError):
         validator.validate(schema)

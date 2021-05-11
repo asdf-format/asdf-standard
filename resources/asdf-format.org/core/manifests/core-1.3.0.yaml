@@ -1,0 +1,196 @@
+id: asdf://asdf-format.org/core/manifests/core-1.3.0
+extension_uri: asdf://asdf-format.org/core/extensions/core-1.3.0
+title: Core extension 1.3.0
+description: Tags for ASDF core objects.
+asdf_standard_requirement: 1.3.0
+tags:
+- tag_uri: tag:stsci.edu:asdf/core/asdf-1.1.0
+  schema_uri: http://stsci.edu/schemas/asdf/core/asdf-1.1.0
+  title: Top-level schema for every ASDF file.
+  description: This schema contains the top-level attributes for every ASDF file.
+- tag_uri: tag:stsci.edu:asdf/core/column-1.0.0
+  schema_uri: http://stsci.edu/schemas/asdf/core/column-1.0.0
+  title: A column in a table.
+  description: |-
+    Each column contains a name and an array of data, and an optional description
+    and unit.
+- tag_uri: tag:stsci.edu:asdf/core/complex-1.0.0
+  schema_uri: http://stsci.edu/schemas/asdf/core/complex-1.0.0
+  title: Complex number value.
+  description: |-
+    Represents a complex number matching the following EBNF grammar
+
+    ```
+      dot           = "."
+      plus-or-minus = "+" | "-"
+      digit         = "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9"
+      sign          = "" | plus-or-minus
+      suffix        = "J" | "j" | "I" | "i"
+      inf           = "inf" | "INF"
+      nan           = "nan" | "NAN"
+      number        = digits | dot digits | digits dot digits
+      sci-suffix    = "e" | "E"
+      scientific    = number sci-suffix sign digits
+      real          = sign number | sign scientific
+      imag          = number suffix | scientific suffix
+      complex       = real | sign imag | real plus-or-minus imag
+    ```
+
+    Though `J`, `j`, `I` and `i` must be supported on reading, it is
+    recommended to use `i` on writing.
+
+    For historical reasons, it is necessary to accept as valid complex numbers
+    that are surrounded by parenthesis.
+- tag_uri: tag:stsci.edu:asdf/core/constant-1.0.0
+  schema_uri: http://stsci.edu/schemas/asdf/core/constant-1.0.0
+  title: Specify that a value is a constant.
+  description: Used as a utility to indicate that value is a literal constant.
+- tag_uri: tag:stsci.edu:asdf/core/externalarray-1.0.0
+  schema_uri: http://stsci.edu/schemas/asdf/core/externalarray-1.0.0
+  title: Point to an array-like object in an external file.
+  description: |-
+    Allow referencing of array-like objects in external files. These files can be
+    any type of file and in any absolute or relative location to the asdf file.
+    Loading of these files into arrays is not handled by asdf.
+- tag_uri: tag:stsci.edu:asdf/core/history_entry-1.0.0
+  schema_uri: http://stsci.edu/schemas/asdf/core/history_entry-1.0.0
+  title: An entry in the file history.
+  description: |-
+    A record of an operation that has been performed
+    upon a file.
+- tag_uri: tag:stsci.edu:asdf/core/integer-1.0.0
+  schema_uri: http://stsci.edu/schemas/asdf/core/integer-1.0.0
+  title: Arbitrary precision integer value.
+  description: Represents an arbitrarily large integer value.
+- tag_uri: tag:stsci.edu:asdf/core/ndarray-1.0.0
+  schema_uri: http://stsci.edu/schemas/asdf/core/ndarray-1.0.0
+  title: An *n*-dimensional array.
+  description: |-
+    There are two ways to store the data in an ndarray.
+
+    - Inline in the tree: This is recommended only for small arrays.  In
+      this case, the entire ``ndarray`` tag may be a nested list, in
+      which case the type of the array is inferred from the content.
+      (See the rules for type inference in the ``inline-data``
+      definition below.)  The inline data may also be given in the
+      ``data`` property, in which case it is possible to explicitly
+      specify the ``datatype`` and other properties.
+
+    - External to the tree: The data comes from a [block](ref:block)
+      within the same ASDF file or an external ASDF file referenced by a
+      URI.
+- tag_uri: tag:stsci.edu:asdf/core/software-1.0.0
+  schema_uri: http://stsci.edu/schemas/asdf/core/software-1.0.0
+  title: Describes a software package.
+  description: General-purpose description of a software package.
+- tag_uri: tag:stsci.edu:asdf/core/table-1.0.0
+  schema_uri: http://stsci.edu/schemas/asdf/core/table-1.0.0
+  title: A table.
+  description: |-
+    A table is represented as a list of columns, where each entry is a
+    [column](ref:core/column-1.0.0)
+    object, containing the data and some additional information.
+
+    The data itself may be stored inline as text, or in binary in either
+    row- or column-major order by use of the `strides` property on the
+    individual column arrays.
+
+    Each column in the table must have the same first (slowest moving)
+    dimension.
+- tag_uri: tag:stsci.edu:asdf/fits/fits-1.0.0
+  schema_uri: http://stsci.edu/schemas/asdf/fits/fits-1.0.0
+  title: A FITS file inside of an ASDF file.
+  description: |-
+    This schema is useful for distributing ASDF files that can
+    automatically be converted to FITS files by specifying the exact
+    content of the resulting FITS file.
+
+    Not all kinds of data in FITS are directly representable in ASDF.
+    For example, applying an offset and scale to the data using the
+    `BZERO` and `BSCALE` keywords.  In these cases, it will not be
+    possible to store the data in the native format from FITS and also
+    be accessible in its proper form in the ASDF file.
+
+    Only image and binary table extensions are supported.
+- tag_uri: tag:stsci.edu:asdf/time/time-1.1.0
+  schema_uri: http://stsci.edu/schemas/asdf/time/time-1.1.0
+  title: Represents an instance in time.
+  description: |-
+    A "time" is a single instant in time.  It may explicitly specify the
+    way time is represented (the "format") and the "scale" which
+    specifies the offset and scaling relation of the unit of time.
+
+    Specific emphasis is placed on supporting time scales (e.g. UTC,
+    TAI, UT1, TDB) and time representations (e.g. JD, MJD, ISO 8601)
+    that are used in astronomy and required to calculate, e.g., sidereal
+    times and barycentric corrections.
+
+    Times may be represented as one of the following:
+
+    - an object, with explicit `value`, and optional `format`, `scale`
+      and `location`.
+
+    - a string, in which case the format is guessed from across
+      the unambiguous options (`iso`, `byear`, `jyear`, `yday`), and the
+      scale is hardcoded to `UTC`.
+
+    In either case, a single time tag may be used to represent an
+    n-dimensional array of times, using either an `ndarray` tag or
+    inline as (possibly nested) YAML lists.  If YAML lists, the same
+    format must be used for all time values.
+
+    The precision of the numeric formats should only be assumed to be as
+    good as an IEEE-754 double precision (float64) value.  If
+    higher-precision is required, the `iso` or `yday` format should be
+    used.
+- tag_uri: tag:stsci.edu:asdf/unit/defunit-1.0.0
+  schema_uri: http://stsci.edu/schemas/asdf/unit/defunit-1.0.0
+  title: Define a new physical unit.
+  description: |-
+    Defines a new unit.  It can be used to either:
+
+    - Define a new base unit.
+
+    - Create a new unit name that is a equivalent to a given unit.
+
+    The new unit must be defined before any unit tags that use it.
+- tag_uri: tag:stsci.edu:asdf/unit/quantity-1.1.0
+  schema_uri: http://stsci.edu/schemas/asdf/unit/quantity-1.1.0
+  title: Represents a Quantity object from astropy
+  description: |-
+    A Quantity object represents a value that has some unit
+    associated with the number.
+- tag_uri: tag:stsci.edu:asdf/unit/unit-1.0.0
+  schema_uri: http://stsci.edu/schemas/asdf/unit/unit-1.0.0
+  title: Physical unit.
+  description: |-
+    This represents a physical unit, in [VOUnit syntax, Version 1.0](http://www.ivoa.net/documents/VOUnits/index.html).
+    Where units are not explicitly tagged, they are assumed to be in VOUnit syntax.
+- tag_uri: tag:stsci.edu:asdf/wcs/celestial_frame-1.1.0
+  schema_uri: http://stsci.edu/schemas/asdf/wcs/celestial_frame-1.1.0
+  title: Represents a celestial frame.
+  description: Represents a celestial frame.
+- tag_uri: tag:stsci.edu:asdf/wcs/composite_frame-1.1.0
+  schema_uri: http://stsci.edu/schemas/asdf/wcs/composite_frame-1.1.0
+  title: Represents a set of frames.
+  description: Represents a set of frames.
+- tag_uri: tag:stsci.edu:asdf/wcs/icrs_coord-1.1.0
+  schema_uri: http://stsci.edu/schemas/asdf/wcs/icrs_coord-1.1.0
+  title: Represents an ICRS coordinate object from astropy
+  description: This object represents the right ascension (RA) and declination of
+    an ICRS coordinate or frame. The astropy ICRS class contains additional fields
+    that may be useful to add here in the future.
+- tag_uri: tag:stsci.edu:asdf/wcs/spectral_frame-1.1.0
+  schema_uri: http://stsci.edu/schemas/asdf/wcs/spectral_frame-1.1.0
+  title: Represents a spectral frame.
+  description: Represents a spectral frame.
+- tag_uri: tag:stsci.edu:asdf/wcs/step-1.1.0
+  schema_uri: http://stsci.edu/schemas/asdf/wcs/step-1.1.0
+  title: Describes a single step of a WCS transform pipeline.
+  description: Describes a single step of a WCS transform pipeline.
+- tag_uri: tag:stsci.edu:asdf/wcs/wcs-1.1.0
+  schema_uri: http://stsci.edu/schemas/asdf/wcs/wcs-1.1.0
+  title: A system for describing generalized world coordinate transformations.
+  description: ASDF WCS is a way of specifying transformations (usually from detector
+    space to world coordinate space and back) by using the transformations in the
+    `transform-schema` module.
