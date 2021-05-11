@@ -1,7 +1,7 @@
 %YAML 1.1
 ---
 $schema: http://stsci.edu/schemas/yaml-schema/draft-01
-id: asdf://asdf-format.org/core/schemas/extension_manifest-1.0
+id: asdf://asdf-format.org/core/schemas/extension_manifest-1.0.0
 title: ASDF extension manifest
 description: >
   Manifest of additional tags and other features associated

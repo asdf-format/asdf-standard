@@ -68,16 +68,23 @@ def docs_schema_ids():
     return result
 
 
+def _get_tag(schema):
+    if "tag" in schema:
+        return schema["tag"]
+    elif "anyOf" in schema:
+        for elem in schema["anyOf"]:
+            if "tag" in elem:
+                return elem["tag"]
+    return None
+
+
 @pytest.fixture(scope="session")
 def latest_schema_tags(latest_schemas):
     result = set()
     for schema in latest_schemas:
-        if "tag" in schema:
-            result.add(schema["tag"])
-        elif "anyOf" in schema:
-            for elem in schema["anyOf"]:
-                if "tag" in elem:
-                    result.add(elem["tag"])
+        tag = _get_tag(schema)
+        if tag is not None:
+            result.add(tag)
     return result
 
 
@@ -85,12 +92,9 @@ def latest_schema_tags(latest_schemas):
 def schema_tags(schemas):
     result = set()
     for schema in schemas:
-        if "tag" in schema:
-            result.add(schema["tag"])
-        elif "anyOf" in schema:
-            for elem in schema["anyOf"]:
-                if "tag" in elem:
-                    result.add(elem["tag"])
+        tag = _get_tag(schema)
+        if tag is not None:
+            result.add(tag)
     return result
 
 
@@ -98,10 +102,11 @@ def schema_tags(schemas):
 def tag_to_schema(schemas):
     result = {}
     for schema in schemas:
-        if "tag" in schema:
-            if schema["tag"] not in result:
-                result[schema["tag"]] = []
-            result[schema["tag"]].append(schema)
+        tag = _get_tag(schema)
+        if tag is not None:
+            if tag not in result:
+                result[tag] = []
+            result[tag].append(schema)
     return result
 
 
@@ -209,11 +214,7 @@ def create_validator(schemas, yaml_schemas):
     def _create_validator(schema):
         store = {s["id"]: s for s in schemas + yaml_schemas}
 
-        resolver = RefResolver.from_schema(
-            schema,
-            id_of=Draft4Validator.ID_OF,
-            store=store,
-        )
+        resolver = RefResolver.from_schema(schema, id_of=Draft4Validator.ID_OF, store=store)
 
         return Draft4Validator(schema, resolver=resolver)
 

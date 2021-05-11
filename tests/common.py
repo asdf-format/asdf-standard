@@ -6,10 +6,14 @@ from urllib.parse import urljoin
 
 
 ROOT_PATH = Path(__file__).parent.parent
+
 SCHEMAS_PATH = ROOT_PATH / "schemas" / "stsci.edu" / "asdf"
 DOCS_PATH = ROOT_PATH / "docs" / "source"
 DOCS_SCHEMAS_PATH = DOCS_PATH / "schemas"
 YAML_SCHEMA_PATH = ROOT_PATH / "schemas" / "stsci.edu" / "yaml-schema"
+
+RESOURCES_PATH = ROOT_PATH / "resources" / "asdf-format.org"
+MANIFESTS_PATH = RESOURCES_PATH / "core" / "manifests"
 
 VERSION_MAP_PATHS = list(SCHEMAS_PATH.glob("version_map-*.yaml"))
 
