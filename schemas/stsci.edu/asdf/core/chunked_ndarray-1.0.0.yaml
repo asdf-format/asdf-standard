@@ -1,0 +1,42 @@
+%YAML 1.1
+---
+$schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
+id: "asdf://asdf-format.org/core/schemas/chunked_ndarray-1.0.0"
+
+title: >
+  An n-dimensional array, stored in n-dimensional chunks for
+  efficient access to subarrays.
+
+description: TODO
+
+type: object
+properties:
+  shape:
+    type: array
+    items:
+      type: integer
+      minimum: 0
+
+  chunk:
+    type: array
+    items:
+      type: integer
+      minimum: 0
+
+  datatype:
+    $ref: "http://stsci.edu/schemas/asdf/core/ndarray-1.0.0#/definitions/scalar-datatype"
+
+  source:
+    type: array
+    items:
+      anyOf:
+        - type: integer
+          minimum: 0
+        - type: string
+        - type: array
+          items:
+            $ref: "#/properties/source"
+
+  required: [shape, chunk, datatype, source]
+  propertyOrder: [shape, chunk, datatype, source]
+...
