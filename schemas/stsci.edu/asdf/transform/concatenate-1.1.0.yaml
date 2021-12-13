@@ -48,15 +48,12 @@ examples:
     - |
       !transform/concatenate-1.1.0
         forward:
-          - !transform/generic-1.1.0
-            n_inputs: 2
-            n_outputs: 2
-          - !transform/generic-1.1.0
-            n_inputs: 1
-            n_outputs: 2
-          - !transform/generic-1.1.0
-            n_inputs: 2
-            n_outputs: 1
+          - !transform/shift-1.1.0
+            offset: 2.0
+          - !transform/shift-1.1.0
+            offset: 3.0
+          - !transform/shift-1.1.0
+            offset: 5.0
 
 allOf:
   - $ref: "transform-1.1.0"

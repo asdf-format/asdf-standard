@@ -10,14 +10,8 @@ description: |
   This transform allows the order of the input axes to be shuffled and
   returned as the output axes.
 
-  It is a list made up of integers or "constant markers".  Each item
-  in the list corresponds to an output axis.  For each item:
-
-  - If an integer, it is the index of the input axis to send to the
-    output axis.
-
-  - If a constant, it must be a single item which is a constant value
-    to send to the output axis.
+  It is a list made up of integers, each corresponding to an index of
+  the input axis to send to the output axis.
 
   If only a list is provided, the number of input axes is
   automatically determined from the maximum index in the list.  If an
@@ -46,21 +40,13 @@ examples:
   -
     - For 2 input axes, add a third axis which is a constant
     - |
-        !transform/remap_axes-1.2.0
-          mapping: [0, 1, !core/constant-1.0.0 42]
-
-  -
-    - |
-        The above example is equivalent to the following, and ASDF
-        implementations are free to normalize it thusly:
-    - |
         !transform/concatenate-1.2.0
           forward:
             - !transform/remap_axes-1.2.0
               mapping: [0]
             - !transform/remap_axes-1.2.0
               mapping: [1]
-            - !transform/constant-1.3.0
+            - !transform/constant-1.2.0
               value: 42
 
   -
