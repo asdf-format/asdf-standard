@@ -17,7 +17,7 @@ properties:
       type: integer
       minimum: 0
 
-  chunk:
+  chunk_shape:
     type: array
     items:
       type: integer
@@ -26,17 +26,19 @@ properties:
   datatype:
     $ref: "http://stsci.edu/schemas/asdf/core/ndarray-1.0.0#/definitions/scalar-datatype"
 
-  source:
+  byteorder:
+    description: >
+      The byte order (big- or little-endian) of the array data.
+    type: string
+    enum: [big, little]
+
+  sources:
     type: array
     items:
       anyOf:
         - type: integer
-          minimum: 0
-        - type: string
-        - type: array
-          items:
-            $ref: "#/properties/source"
+        - $ref: "#/properties/source"
 
-  required: [shape, chunk, datatype, source]
-  propertyOrder: [shape, chunk, datatype, source]
+required: [shape, chunk_shape, datatype, source]
+propertyOrder: [shape, chunk_shape, datatype, source]
 ...
