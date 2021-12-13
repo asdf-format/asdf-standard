@@ -79,9 +79,15 @@ examples:
           format: jyear
           scale: tdb
           location:
-            x: 6378100
-            y: 0
-            z: 0
+            x: !unit/quantity-1.1.0
+              value: 6378100
+              unit: !unit/unit-1.0.0 m
+            y: !unit/quantity-1.1.0
+              value: 0
+              unit: !unit/unit-1.0.0 m
+            z: !unit/quantity-1.1.0
+              value: 0
+              unit: !unit/unit-1.0.0 m
 
 definitions:
   iso_time:

@@ -45,7 +45,6 @@ tags:
   tag:stsci.edu:asdf/transform/fix_inputs: 1.2.0
   tag:stsci.edu:asdf/transform/gaussian1d: 1.0.0
   tag:stsci.edu:asdf/transform/gaussian2d: 1.0.0
-  tag:stsci.edu:asdf/transform/generic: 1.2.0
   tag:stsci.edu:asdf/transform/gnomonic: 1.2.0
   tag:stsci.edu:asdf/transform/hammer_aitoff: 1.2.0
   tag:stsci.edu:asdf/transform/healpix: 1.2.0

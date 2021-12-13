@@ -29,7 +29,6 @@ tags:
   tag:stsci.edu:asdf/transform/cylindrical_perspective: 1.0.0
   tag:stsci.edu:asdf/transform/divide: 1.0.0
   tag:stsci.edu:asdf/transform/domain: 1.0.0
-  tag:stsci.edu:asdf/transform/generic: 1.0.0
   tag:stsci.edu:asdf/transform/gnomonic: 1.0.0
   tag:stsci.edu:asdf/transform/hammer_aitoff: 1.0.0
   tag:stsci.edu:asdf/transform/healpix: 1.0.0
