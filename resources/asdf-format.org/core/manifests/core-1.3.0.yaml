@@ -45,6 +45,11 @@ tags:
   schema_uri: http://stsci.edu/schemas/asdf/core/constant-1.0.0
   title: Specify that a value is a constant.
   description: Used as a utility to indicate that value is a literal constant.
+- tag_uri: tag:stsci.edu:asdf/core/extension_metadata-1.0.0
+  schema_uri: http://stsci.edu/schemas/asdf/core/extension_metadata-1.0.0
+  title: Metadata about specific ASDF extensions that were used to create this file.
+  description: Metadata about specific ASDF extensions that were used to create this
+    file.
 - tag_uri: tag:stsci.edu:asdf/core/externalarray-1.0.0
   schema_uri: http://stsci.edu/schemas/asdf/core/externalarray-1.0.0
   title: Point to an array-like object in an external file.
