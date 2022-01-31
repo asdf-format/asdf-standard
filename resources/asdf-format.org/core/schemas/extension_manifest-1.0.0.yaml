@@ -85,7 +85,11 @@ properties:
             schema_uri:
               description: >
                 URI of schema used to validate objects with this tag.
-              type: string
+              anyOf:
+                - type: string
+                - type: array
+                  items:
+                    type: string
             title:
               description: >
                 Short description of the tag.
