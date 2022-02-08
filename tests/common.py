@@ -60,9 +60,12 @@ def yaml_tag_to_id(yaml_tag):
     return "http://stsci.edu/schemas/asdf/" + yaml_tag.replace("!", "")
 
 
+def _relative_stem(path):
+    return f"{str((path.parent).relative_to(SCHEMAS_PATH))}/{str(path.stem)}"
+
+
 def path_to_tag(path):
-    relative_stem = str((path.parent / path.stem).relative_to(SCHEMAS_PATH))
-    return "tag:stsci.edu:asdf/" + relative_stem
+    return f"tag:stsci.edu:asdf/{_relative_stem(path)}"
 
 
 def tag_to_path(tag):
@@ -84,8 +87,7 @@ def id_to_path(id):
 
 
 def path_to_id(path):
-    relative_stem = str((path.parent / path.stem).relative_to(SCHEMAS_PATH))
-    return "http://stsci.edu/schemas/asdf/" + relative_stem
+    return f"http://stsci.edu/schemas/asdf/{_relative_stem(path)}"
 
 
 def list_schema_paths(path):
