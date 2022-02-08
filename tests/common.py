@@ -10,7 +10,7 @@ ROOT_PATH = Path(__file__).parent.parent
 SCHEMAS_PATH = ROOT_PATH / "resources"/ "schemas" / "stsci.edu" / "asdf"
 DOCS_PATH = ROOT_PATH / "docs" / "source"
 DOCS_SCHEMAS_PATH = DOCS_PATH / "schemas"
-YAML_SCHEMA_PATH = ROOT_PATH / "schemas" / "stsci.edu" / "yaml-schema"
+YAML_SCHEMA_PATH = ROOT_PATH / "resources" / "schemas" / "stsci.edu" / "yaml-schema"
 
 RESOURCES_PATH = ROOT_PATH / "resources" / "asdf-format.org"
 MANIFESTS_PATH = RESOURCES_PATH / "core" / "manifests"
