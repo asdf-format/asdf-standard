@@ -15,7 +15,7 @@ if DIRNAME == os.path.abspath(os.curdir):
     local_url_mapping = [
         (
             asdf.constants.STSCI_SCHEMA_URI_BASE,
-            asdf.util.filepath_to_url(os.path.join(DIRNAME, "schemas", "stsci.edu")) + "/{url_suffix}.yaml",
+            asdf.util.filepath_to_url(os.path.join(DIRNAME, "resources", "schemas", "stsci.edu")) + "/{url_suffix}.yaml",
         )
     ]
 
