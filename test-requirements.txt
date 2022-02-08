@@ -1,5 +1,0 @@
-pytest
-pyyaml
-asdf >= 2.8.0
-astropy
-gwcs
