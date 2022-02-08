@@ -14,7 +14,7 @@ DOCS_PATH = ROOT_PATH / "docs" / "source"
 DOCS_SCHEMAS_PATH = DOCS_PATH / "schemas"
 YAML_SCHEMA_PATH = RESOURCES_PATH / "schemas" / "stsci.edu" / "yaml-schema"
 
-MANIFESTS_PATH = RESOURCES_PATH / "manifests" / "asdf-format.org"/ "core"
+MANIFESTS_PATH = RESOURCES_PATH / "manifests" / "asdf-format.org" / "core"
 
 VERSION_MAP_PATHS = list(SCHEMAS_PATH.glob("version_map-*.yaml"))
 
