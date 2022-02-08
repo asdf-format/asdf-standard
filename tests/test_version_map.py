@@ -1,6 +1,6 @@
 import re
 import pytest
-from distutils.version import StrictVersion
+from packaging.version import Version
 
 from common import (
     VERSION_MAP_PATHS,
@@ -16,7 +16,7 @@ from common import (
 
 VALID_FILENAME_RE = re.compile(r"version_map-[0-9]+\.[0-9]+\.[0-9]+\.yaml")
 
-SORTED_PATHS = sorted(VERSION_MAP_PATHS, key=lambda p: StrictVersion(split_id(path_to_id(p))[1]))
+SORTED_PATHS = sorted(VERSION_MAP_PATHS, key=lambda p: Version(split_id(path_to_id(p))[1]))
 
 LATEST_PATH = SORTED_PATHS[-1]
 

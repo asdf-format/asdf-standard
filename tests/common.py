@@ -1,6 +1,6 @@
 from pathlib import Path
 import re
-from distutils.version import StrictVersion
+from packaging.version import Version
 import yaml
 from urllib.parse import urljoin
 
@@ -102,7 +102,7 @@ def list_latest_schema_paths(path):
         schema_id = path_to_id(path)
         id_base, version = split_id(schema_id)
         if id_base in latest_by_id_base:
-            if StrictVersion(version) > StrictVersion(latest_by_id_base[id_base][0]):
+            if Version(version) > Version(latest_by_id_base[id_base][0]):
                 latest_by_id_base[id_base] = (version, path)
         else:
             latest_by_id_base[id_base] = (version, path)
