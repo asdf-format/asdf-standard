@@ -64,7 +64,7 @@ jobs:
           - name: macOS
             python-version: 3.9
             os: macos-latest
-            toxenv: py38
+            toxenv: py39
 
           - name: Windows
             python-version: 3.9
