@@ -24,6 +24,6 @@ def get_resource_mappings():
         DirectoryResourceMapping(resources_root / "schemas" / "stsci.edu", "http://stsci.edu/schemas/", recursive=True),
         DirectoryResourceMapping(
             resources_root / "manifests" / "asdf-format.org" / "core",
-            "asdf://asdf-format.org/core/extensions/",
+            "asdf://asdf-format.org/core/manifests/",
         ),
     ]
