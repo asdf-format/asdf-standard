@@ -21,12 +21,9 @@ def get_resource_mappings():
             raise RuntimeError("Missing resources directory")
 
     return [
+        DirectoryResourceMapping(resources_root / "schemas" / "stsci.edu", "http://stsci.edu/schemas/", recursive=True),
         DirectoryResourceMapping(
-            resources_root / "schemas",
-            "asdf://{{ cookiecutter.uri_authority }}/{{ cookiecutter.uri_project }}/schemas/",
-        ),
-        DirectoryResourceMapping(
-            resources_root / "manifests",
-            "asdf://{{ cookiecutter.uri_authority }}/{{ cookiecutter.uri_project }}/manifests/",
+            resources_root / "manifests" / "asdf-format.org" / "core",
+            "asdf://asdf-format.org/core/extensions/",
         ),
     ]
