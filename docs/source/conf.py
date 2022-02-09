@@ -14,7 +14,7 @@ import datetime
 
 copyright = f"{datetime.datetime.now().year}, Space Telescope Science Institute"
 
-author = "Michael Droettboom, Erik Bray, et al"
+author = "The ASDF Developers"
 
 # The short X.Y version
 version = "1.6.0"
