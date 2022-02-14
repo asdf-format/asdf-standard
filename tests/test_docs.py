@@ -2,7 +2,6 @@ import collections
 
 from common import is_deprecated
 
-
 EXCEPTIONS = {"tag:stsci.edu:asdf/asdf-schema-1.0.0"}
 
 

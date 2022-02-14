@@ -1,8 +1,11 @@
 import pytest
-
+from common import (
+    YAML_SCHEMA_PATH,
+    assert_yaml_header_and_footer,
+    list_schema_paths,
+    load_yaml,
+)
 from jsonschema import ValidationError
-
-from common import load_yaml, YAML_SCHEMA_PATH, list_schema_paths, assert_yaml_header_and_footer
 
 
 @pytest.mark.parametrize("path", list_schema_paths(YAML_SCHEMA_PATH))

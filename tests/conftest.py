@@ -1,26 +1,24 @@
 import pytest
-
-from jsonschema.validators import Draft4Validator, RefResolver
-
 from common import (
-    SCHEMAS_PATH,
     DOCS_SCHEMAS_PATH,
-    load_yaml,
-    assert_yaml_header_and_footer,
+    METASCHEMA_ID,
+    SCHEMAS_PATH,
     VALID_SCHEMA_FILENAME_RE,
-    split_id,
+    YAML_SCHEMA_PATH,
+    assert_yaml_header_and_footer,
+    is_deprecated,
+    list_description_ids,
+    list_example_ids,
+    list_latest_schema_paths,
     list_refs,
+    list_schema_paths,
+    load_yaml,
     path_to_id,
     path_to_tag,
     ref_to_id,
-    list_schema_paths,
-    list_latest_schema_paths,
-    is_deprecated,
-    METASCHEMA_ID,
-    list_example_ids,
-    list_description_ids,
-    YAML_SCHEMA_PATH,
+    split_id,
 )
+from jsonschema.validators import Draft4Validator, RefResolver
 
 
 @pytest.fixture(scope="session")

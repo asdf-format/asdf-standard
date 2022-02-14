@@ -2,8 +2,8 @@
 
 import os
 import re
-import sys
 import subprocess as sp
+import sys
 
 
 def get_schemas(pattern):

@@ -1,18 +1,17 @@
 import re
-import pytest
-from packaging.version import Version
 
+import pytest
 from common import (
-    VERSION_MAP_PATHS,
-    load_yaml,
-    assert_yaml_header_and_footer,
     VALID_FILE_FORMAT_VERSIONS,
     VALID_YAML_VERSIONS,
-    split_id,
-    path_to_id,
+    VERSION_MAP_PATHS,
+    assert_yaml_header_and_footer,
     is_deprecated,
+    load_yaml,
+    path_to_id,
+    split_id,
 )
-
+from packaging.version import Version
 
 VALID_FILENAME_RE = re.compile(r"version_map-[0-9]+\.[0-9]+\.[0-9]+\.yaml")
 

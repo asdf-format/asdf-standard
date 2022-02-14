@@ -1,9 +1,9 @@
-from pathlib import Path
 import re
-from packaging.version import Version
-import yaml
+from pathlib import Path
 from urllib.parse import urljoin
 
+import yaml
+from packaging.version import Version
 
 ROOT_PATH = Path(__file__).parent.parent
 

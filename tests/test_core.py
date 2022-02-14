@@ -1,6 +1,5 @@
 import pytest
-
-from common import SCHEMAS_PATH, list_schema_paths, list_latest_schema_paths
+from common import SCHEMAS_PATH, list_latest_schema_paths, list_schema_paths
 
 
 @pytest.mark.parametrize("path", list_schema_paths(SCHEMAS_PATH / "core"))
