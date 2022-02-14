@@ -20,7 +20,7 @@ jobs:
           fetch-depth: 0
           repository: asdf-format/asdf
           ref: master
-          path: asdf-standard
+          path: asdf
       - name: Set up Python 3.9
         uses: actions/setup-python@v2
         with:
