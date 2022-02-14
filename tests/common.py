@@ -1,19 +1,20 @@
 from pathlib import Path
 import re
-from distutils.version import StrictVersion
+from packaging.version import Version
 import yaml
 from urllib.parse import urljoin
 
 
 ROOT_PATH = Path(__file__).parent.parent
 
-SCHEMAS_PATH = ROOT_PATH / "schemas" / "stsci.edu" / "asdf"
+RESOURCES_PATH = ROOT_PATH / "resources"
+
+SCHEMAS_PATH = RESOURCES_PATH / "schemas" / "stsci.edu" / "asdf"
 DOCS_PATH = ROOT_PATH / "docs" / "source"
 DOCS_SCHEMAS_PATH = DOCS_PATH / "schemas"
-YAML_SCHEMA_PATH = ROOT_PATH / "schemas" / "stsci.edu" / "yaml-schema"
+YAML_SCHEMA_PATH = RESOURCES_PATH / "schemas" / "stsci.edu" / "yaml-schema"
 
-RESOURCES_PATH = ROOT_PATH / "resources" / "asdf-format.org"
-MANIFESTS_PATH = RESOURCES_PATH / "core" / "manifests"
+MANIFESTS_PATH = RESOURCES_PATH / "manifests" / "asdf-format.org" / "core"
 
 VERSION_MAP_PATHS = list(SCHEMAS_PATH.glob("version_map-*.yaml"))
 
@@ -59,9 +60,12 @@ def yaml_tag_to_id(yaml_tag):
     return "http://stsci.edu/schemas/asdf/" + yaml_tag.replace("!", "")
 
 
+def _relative_stem(path):
+    return f"{str((path.parent).relative_to(SCHEMAS_PATH))}/{str(path.stem)}"
+
+
 def path_to_tag(path):
-    relative_stem = str((path.parent / path.stem).relative_to(SCHEMAS_PATH))
-    return "tag:stsci.edu:asdf/" + relative_stem
+    return f"tag:stsci.edu:asdf/{_relative_stem(path)}"
 
 
 def tag_to_path(tag):
@@ -83,8 +87,7 @@ def id_to_path(id):
 
 
 def path_to_id(path):
-    relative_stem = str((path.parent / path.stem).relative_to(SCHEMAS_PATH))
-    return "http://stsci.edu/schemas/asdf/" + relative_stem
+    return f"http://stsci.edu/schemas/asdf/{_relative_stem(path)}"
 
 
 def list_schema_paths(path):
@@ -99,7 +102,7 @@ def list_latest_schema_paths(path):
         schema_id = path_to_id(path)
         id_base, version = split_id(schema_id)
         if id_base in latest_by_id_base:
-            if StrictVersion(version) > StrictVersion(latest_by_id_base[id_base][0]):
+            if Version(version) > Version(latest_by_id_base[id_base][0]):
                 latest_by_id_base[id_base] = (version, path)
         else:
             latest_by_id_base[id_base] = (version, path)
