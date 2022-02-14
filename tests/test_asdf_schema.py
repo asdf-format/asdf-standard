@@ -1,8 +1,6 @@
 import pytest
-
+from common import SCHEMAS_PATH, assert_yaml_header_and_footer, load_yaml
 from jsonschema import ValidationError
-
-from common import load_yaml, SCHEMAS_PATH, assert_yaml_header_and_footer
 
 
 @pytest.mark.parametrize("path", SCHEMAS_PATH.glob("asdf-schema-*.yaml"))

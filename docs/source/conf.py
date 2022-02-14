@@ -7,10 +7,11 @@
 # http://www.sphinx-doc.org/en/master/config
 
 # -- Project information -----------------------------------------------------
+import datetime
+
+import sphinx_bootstrap_theme
 
 project = "ASDF Standard"
-
-import datetime
 
 copyright = f"{datetime.datetime.now().year}, Space Telescope Science Institute"
 
@@ -68,8 +69,6 @@ source_encoding = "utf-8"
 # a list of builtin themes.
 #
 html_theme = "bootstrap"
-
-import sphinx_bootstrap_theme
 
 html_theme_path = sphinx_bootstrap_theme.get_html_theme_path()
 

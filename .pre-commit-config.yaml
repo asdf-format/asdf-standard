@@ -1,0 +1,38 @@
+repos:
+
+- repo: https://github.com/pre-commit/pre-commit-hooks
+  rev: v4.1.0
+  hooks:
+  - id: check-added-large-files
+  - id: check-case-conflict
+  - id: check-yaml
+    args: ["--unsafe"]
+  - id: debug-statements
+  - id: end-of-file-fixer
+  - id: trailing-whitespace
+
+- repo: https://github.com/psf/black
+  rev: 22.1.0
+  hooks:
+    - id: black
+      exclude: "reference_files"
+
+- repo: https://github.com/pycqa/isort
+  rev: 5.10.1
+  hooks:
+    - id: isort
+      args: ["--profile", "black", "--filter-files"]
+      exclude: "reference_files"
+
+- repo: https://gitlab.com/pycqa/flake8
+  rev: 4.0.1
+  hooks:
+    - id: flake8
+      args: ["--count", "--ignore", "E501, E203, W503"]
+      exclude: "reference_files"
+
+- repo: https://github.com/PyCQA/bandit
+  rev: 1.7.2
+  hooks:
+    - id: bandit
+      args: ["--skip", "B101,B404,B603"]

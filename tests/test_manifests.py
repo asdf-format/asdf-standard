@@ -1,9 +1,6 @@
 import asdf
-
 import pytest
-
-from common import load_yaml, MANIFESTS_PATH, RESOURCES_PATH
-
+from common import MANIFESTS_PATH, RESOURCES_PATH, load_yaml
 
 MANIFEST_PATHS = sorted(MANIFESTS_PATH.glob("*.yaml"))
 MANIFEST_SCHEMA_PATH = RESOURCES_PATH / "schemas" / "asdf-format.org" / "core" / "extension_manifest-1.0.0.yaml"

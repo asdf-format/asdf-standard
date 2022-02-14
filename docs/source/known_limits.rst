@@ -19,8 +19,8 @@ blocks.
 Literal integer values in the Tree
 ----------------------------------
 
-For practical reasons, integer literals in the Tree must be at most 64-bits 
-within the int64 range.  In other words, number must be no greater than 
+For practical reasons, integer literals in the Tree must be at most 64-bits
+within the int64 range.  In other words, number must be no greater than
 9,223,372,036,854,775,807 or no less than -9,223,372,036,854,775,806.
 
 

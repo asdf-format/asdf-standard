@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 from pathlib import Path
-from setuptools import setup, find_packages
 
+from setuptools import find_packages, setup
 
 packages = find_packages(where="src")
 packages.append("asdf_standard.resources")

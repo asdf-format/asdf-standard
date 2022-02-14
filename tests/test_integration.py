@@ -1,7 +1,7 @@
-import pytest
 from pathlib import Path
 
 import asdf
+import pytest
 import yaml
 
 

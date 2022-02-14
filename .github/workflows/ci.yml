@@ -41,25 +41,15 @@ jobs:
             os: ubuntu-latest
             toxenv: twine
 
-          - name: Check Python files with black autoformatter
+          - name: Code style checks
             python-version: 3.9
             os: ubuntu-latest
-            toxenv: black
-
-          - name: Check Python files with flake8
-            python-version: 3.9
-            os: ubuntu-latest
-            toxenv: flake8
+            toxenv: codestyle
 
           - name: Build documentation
             python-version: 3.9
             os: ubuntu-latest
             toxenv: docs
-
-          - name: Bandit security audit
-            python-version: 3.9
-            os: ubuntu-latest
-            toxenv: bandit
 
           - name: macOS
             python-version: 3.9

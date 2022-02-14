@@ -1,5 +1,5 @@
-from pathlib import Path
 import sys
+from pathlib import Path
 
 if sys.version_info < (3, 9):
     import importlib_resources
