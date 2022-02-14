@@ -12,6 +12,12 @@ repos:
   - id: end-of-file-fixer
   - id: trailing-whitespace
 
+- repo: https://github.com/psf/black
+  rev: 22.1.0
+  hooks:
+    - id: black
+      exclude: "reference_files"
+
 - repo: https://gitlab.com/pycqa/flake8
   rev: 4.0.1
   hooks:
