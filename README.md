@@ -1,5 +1,5 @@
-ASDF standard
-=============
+ASDF standard 1.6.0
+===================
 ![CI](https://github.com/asdf-format/asdf-standard/workflows/CI/badge.svg)
 
 This document describes the Advanced Scientific Data Format (ASDF),
