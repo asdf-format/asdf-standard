@@ -46,11 +46,6 @@ jobs:
             os: ubuntu-latest
             toxenv: codestyle
 
-          - name: Build documentation
-            python-version: 3.9
-            os: ubuntu-latest
-            toxenv: docs
-
           - name: macOS
             python-version: 3.9
             os: macos-latest
