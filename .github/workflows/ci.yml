@@ -80,3 +80,32 @@ jobs:
           pip install tox
       - name: Run tox
         run: tox -e ${{ matrix.toxenv }}
+
+  asdf-dev:
+    name: Run asdf-development tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout asdf-standard
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+          path: asdf-standard
+      - name: Checkout asdf-dev
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+          repository: asdf-format/asdf
+          ref: master
+          path: asdf
+      - name: Set up Python 3.9
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.9
+      - name: Install asdf-standard
+        run: cd asdf-standard && pip install .
+      - name: Install asdf
+        run: cd asdf && pip install -e .[tests]
+      - name: Pip Freeze
+        run: pip freeze
+      - name: Run asdf-development tests
+        run: cd asdf && pytest
