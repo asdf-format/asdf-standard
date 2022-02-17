@@ -8,11 +8,15 @@ import yaml
 def get_resources():
     resources_root = Path(__file__).parent.parent / "resources"
 
-    return list(resources_root.glob("**/*.yaml"))
+    return {str(path.relative_to(resources_root)): path for path in resources_root.glob("**/*.yaml")}
 
 
-@pytest.mark.parametrize("resource_path", get_resources())
-def test_resource(resource_path):
+RESOURCES = get_resources()
+
+
+@pytest.mark.parametrize("resource", RESOURCES)
+def test_resource(resource):
+    resource_path = RESOURCES[resource]
     resource_manager = asdf.get_config().resource_manager
 
     with resource_path.open("rb") as f:
@@ -26,11 +30,16 @@ def test_resource(resource_path):
 
 def get_manifests():
     manifests_root = Path(__file__).parent.parent / "resources" / "manifests" / "asdf-format.org"
-    return list(manifests_root.glob("*.yaml"))
+
+    return {str(path.relative_to(manifests_root)): path for path in manifests_root.glob("**/*.yaml")}
 
 
-@pytest.mark.parametrize("manifest_path", get_manifests())
-def test_manifest(manifest_path):
+MANIFESTS = get_manifests()
+
+
+@pytest.mark.parametrize("manifest", MANIFESTS)
+def test_manifest(manifest):
+    manifest_path = MANIFESTS[manifest]
     resource_manager = asdf.get_config().resource_manager
 
     with manifest_path.open("rb") as f:
