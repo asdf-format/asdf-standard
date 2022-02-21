@@ -6,8 +6,6 @@ if sys.version_info < (3, 9):
 else:
     import importlib.resources as importlib_resources
 
-from asdf.resource import DirectoryResourceMapping
-
 import asdf_standard
 
 
@@ -21,11 +19,13 @@ def get_resource_mappings():
             raise RuntimeError("Missing resources directory")
 
     return [
-        DirectoryResourceMapping(resources_root / "schemas" / "stsci.edu", "http://stsci.edu/schemas/", recursive=True),
-        DirectoryResourceMapping(
+        asdf_standard.DirectoryResourceMapping(
+            resources_root / "schemas" / "stsci.edu", "http://stsci.edu/schemas/", recursive=True
+        ),
+        asdf_standard.DirectoryResourceMapping(
             resources_root / "schemas" / "asdf-format.org" / "core", "asdf://asdf-format.org/core/schemas/"
         ),
-        DirectoryResourceMapping(
+        asdf_standard.DirectoryResourceMapping(
             resources_root / "manifests" / "asdf-format.org" / "core",
             "asdf://asdf-format.org/core/manifests/",
         ),
