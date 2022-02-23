@@ -1,10 +1,5 @@
 import pytest
-from common import (
-    YAML_SCHEMA_PATH,
-    assert_yaml_header_and_footer,
-    list_schema_paths,
-    load_yaml,
-)
+from common import YAML_SCHEMA_PATH, assert_yaml_header_and_footer, list_schema_paths, load_yaml
 from jsonschema import ValidationError
 
 
