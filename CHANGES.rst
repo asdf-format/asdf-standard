@@ -1,4 +1,4 @@
-1.0.1 (unreleased)
+1.0.1 (2022-02-23)
 ------------------
 
 - Remove asdf as an install dependency for the asdf-standard package. [#300]
