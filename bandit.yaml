@@ -1,4 +1,4 @@
-skips: [ B101 ]
+skips: [ B101, B404, B603 ]
 
 exclude_dirs:
   - .eggs
@@ -8,7 +8,6 @@ exclude_dirs:
   - reference_files
   - tests
   - build
-  - compatibility_tests
   - dist
   - docs
   - __pycache__
