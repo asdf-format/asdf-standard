@@ -1,0 +1,13 @@
+skips: [ B101, B404, B603 ]
+
+exclude_dirs:
+  - .eggs
+  - .git
+  - .pytest_cache
+  - .tox
+  - reference_files
+  - tests
+  - build
+  - dist
+  - docs
+  - __pycache__
