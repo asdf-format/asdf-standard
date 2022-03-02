@@ -1,0 +1,125 @@
+name: Downstream
+
+on:
+  workflow_dispatch:
+  schedule:
+    # Run every Monday at 6am UTC
+    - cron: '0 6 * * 1'
+  pull_request:
+    # We also want this workflow triggered if the `Downstream CI` label is
+    # added or present when PR is updated
+    types:
+      - synchronize
+      - labeled
+  push:
+    branches:
+      - '*.*.x'
+    tags:
+      - '*'
+
+env:
+  CRDS_SERVER_URL: https://jwst-crds.stsci.edu
+  CRDS_PATH: ~/crds_cache
+  CRDS_CLIENT_RETRY_COUNT: 3
+  CRDS_CLIENT_RETRY_DELAY_SECONDS: 20
+
+jobs:
+  common:
+    name: ${{ matrix.package_name }}@${{ matrix.ref }} unit tests
+    runs-on: ubuntu-latest
+    if: (github.repository == 'asdf-format/asdf-standard' && (github.event_name == 'schedule' || github.event_name == 'push' || github.event_name == 'workflow_dispatch' || contains(github.event.pull_request.labels.*.name, 'Downstream CI')))
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - package_name: astropy
+            repository: astropy/astropy
+            ref: main
+            install_command: pip install -e .[test]
+            test_command: pytest
+          - package_name: gwcs
+            repository: spacetelescope/gwcs
+            ref: master
+            install_command: pip install -e .[test]
+            test_command: pytest
+          - package_name: jwst
+            repository: spacetelescope/jwst
+            ref: master
+            install_command: pip install -e .[test]
+            test_command: pytest
+          - package_name: roman_datamodels
+            repository: spacetelescope/roman_datamodels
+            ref: main
+            install_command: pip install -e .[test]
+            test_command: pytest
+          - package_name: specutils
+            repository: astropy/specutils
+            ref: main
+            install_command: pip install -e .[test]
+            test_command: pytest
+          - package_name: weldx
+            repository: BAMWelDX/weldx
+            ref: master
+            install_command: pip install -e .[test]
+            test_command: pytest weldx/tests/asdf_tests weldx/schemas --asdf-tests
+          - package_name: sunpy
+            repository: sunpy/sunpy
+            ref: main
+            install_command: pip install -e .[tests,all]
+            test_command: pytest sunpy/io/
+          - package_name: dkist
+            repository: DKISTDC/dkist
+            ref: main
+            install_command: pip install -e .[tests]
+            test_command: pytest
+          - package_name: asdf-astropy
+            repository: astropy/asdf-astropy
+            ref: main
+            install_command: pip install -e .[test]
+            test_command: pytest
+          - package_name: asdf
+            repository: asdf-format/asdf
+            ref: master
+            install_command: pip install -e .[test]
+            test_command: pytest
+          - package_name: asdf-transform-schemas
+            repository: asdf-format/asdf-transform-schemas
+            ref: master
+            install_command: pip install -e .[test]
+            test_command: pytest
+          - package_name: asdf-wcs-schemas
+            repository: asdf-format/asdf-wcs-schemas
+            ref: main
+            install_command: pip install -e .[test]
+            test_command: pytest
+          - package_name: asdf-coordinates-schemas
+            repository: asdf-format/asdf-coordinates-schemas
+            ref: main
+            install_command: pip install -e .[test]
+            test_command: pytest
+    steps:
+      - name: Checkout asdf-standard
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+          submodules: true
+          path: asdf-standard
+      - name: Checkout ${{ matrix.package_name }}
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+          repository: ${{ matrix.repository }}
+          ref: ${{ matrix.ref }}
+          path: target
+      - name: Set up Python 3.9
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.9
+      - name: Install asdf-standard
+        run: cd asdf-standard && pip install .
+      - name: Install remaining ${{ matrix.package_name }} dependencies
+        run: cd target && ${{ matrix.install_command }}
+      - name: Pip Freeze
+        run: pip freeze
+      - name: Run ${{ matrix.package_name}} tests
+        run: cd target && ${{ matrix.test_command }}
