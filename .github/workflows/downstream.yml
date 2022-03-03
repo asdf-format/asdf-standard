@@ -80,7 +80,7 @@ jobs:
           - package_name: asdf
             repository: asdf-format/asdf
             ref: master
-            install_command: pip install -e .[test]
+            install_command: pip install -e .[tests]
             test_command: pytest
           - package_name: asdf-transform-schemas
             repository: asdf-format/asdf-transform-schemas
