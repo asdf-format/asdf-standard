@@ -1,3 +1,5 @@
+.. _asdf-standard:
+
 ASDF Standard
 =============
 
