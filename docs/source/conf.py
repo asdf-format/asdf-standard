@@ -56,7 +56,7 @@ master_doc = "index"
 language = "en"
 
 # The name of the Pygments (syntax highlighting) style to use.
-pygments_style = "sphinx"
+# pygments_style = "sphinx"
 
 # The reST default role (used for this markup: `text`) to use for all documents.
 default_role = "ref"
