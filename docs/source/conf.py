@@ -6,10 +6,15 @@
 # full list see the documentation:
 # http://www.sphinx-doc.org/en/master/config
 
-# -- Project information -----------------------------------------------------
 import datetime
+import sys
 
-import sphinx_bootstrap_theme
+# -- Project information -----------------------------------------------------
+try:
+    from sphinx_astropy.conf.v1 import *  # noqa
+except ImportError:
+    print("ERROR: the documentation requires the sphinx-astropy package to be installed")
+    sys.exit(1)
 
 project = "ASDF Standard"
 
@@ -48,7 +53,7 @@ master_doc = "index"
 #
 # This is also used if you do content translation via gettext catalogs.
 # Usually you set "language" from the command line for these cases.
-language = None
+language = "en"
 
 # The name of the Pygments (syntax highlighting) style to use.
 pygments_style = "sphinx"
@@ -68,15 +73,15 @@ source_encoding = "utf-8"
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #
-html_theme = "bootstrap"
+html_theme = "sphinx_rtd_theme"
 
-html_theme_path = sphinx_bootstrap_theme.get_html_theme_path()
+# html_theme_path = sphinx_bootstrap_theme.get_html_theme_path()
 
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
 # documentation.
 #
-html_theme_options = {"navbar_site_name": "Document", "navbar_pagenav": False}
+html_theme_options = {}
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
@@ -84,12 +89,13 @@ html_theme_options = {"navbar_site_name": "Document", "navbar_pagenav": False}
 html_static_path = ["_static"]
 
 # Add any paths that contain custom themes here, relative to this directory.
-html_theme_path = sphinx_bootstrap_theme.get_html_theme_path()
+# html_theme_path = sphinx_bootstrap_theme.get_html_theme_path()
 
 # The name of an image file (within the static path) to use as favicon of the
 # docs.  This file should be a Windows icon file (.ico) being 16x16 or 32x32
 # pixels large.
 html_favicon = "_static/logo.ico"
+html_logo = "_static/logo.png"
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
