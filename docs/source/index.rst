@@ -23,6 +23,7 @@ pronounced *AZ*-diff.
    changes.rst
 
    asdf_in_fits.rst
+   dev_api.rst
 
 
 .. note::

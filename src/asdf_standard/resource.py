@@ -3,27 +3,30 @@ import os
 from collections.abc import Mapping
 from pathlib import Path
 
+__all__ = ["DirectoryResourceMapping"]
+
 
 class DirectoryResourceMapping(Mapping):
     """
     Resource mapping that reads resource content
     from a directory or directory tree.
+
     Parameters
     ----------
     root : str or importlib.abc.Traversable
         Root directory (or directory-like Traversable) of the resource
-        files.  `str` will be interpreted as a filesystem path.
+        files.  ``str`` will be interpreted as a filesystem path.
     uri_prefix : str
         Prefix used to construct URIs from file paths.  The
         prefix will be prepended to paths relative to the root
         directory.
     recursive : bool, optional
-        If `True`, recurse into subdirectories.  Defaults to `False`.
+        If ``True``, recurse into subdirectories.  Defaults to ``False``.
     filename_pattern : str, optional
         Glob pattern that identifies relevant filenames.
-        Defaults to `"*.yaml"`.
+        Defaults to ``"*.yaml"``.
     stem_filename : bool, optional
-        If `True`, remove the filename's extension when
+        If ``True``, remove the filename's extension when
         constructing its URI.
     """
 
