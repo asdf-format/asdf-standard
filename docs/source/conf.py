@@ -97,11 +97,6 @@ html_static_path = ["_static"]
 html_favicon = "_static/logo.ico"
 html_logo = "_static/logo.png"
 
-# Add any paths that contain custom static files (such as style sheets) here,
-# relative to this directory. They are copied after the builtin static files,
-# so a file named "default.css" will overwrite the builtin "default.css".
-html_static_path = ["_static"]
-
 # If not '', a 'Last updated on:' timestamp is inserted at every page bottom,
 # using the given strftime format.
 html_last_updated_fmt = "%b %d, %Y"
@@ -242,3 +237,7 @@ asdf_schema_reference_mappings = [
     ("tag:stsci.edu:asdf", "http://asdf-standard.readthedocs.io/en/latest/generated/stsci.edu/asdf"),
     ("http://json-schema.org/draft-04/schema", "http://json-schema.org/draft-04/json-schema-validation"),
 ]
+
+
+def setup(app):
+    app.add_css_file("custom.css")
