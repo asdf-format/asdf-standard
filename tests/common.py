@@ -131,7 +131,15 @@ def list_refs(schema):
 def list_example_ids(schema):
     if "examples" in schema:
         example_yaml_tags = set()
-        for _, example in schema["examples"]:
+        for example in schema["examples"]:
+            if len(example) == 1:
+                example = example[0]
+            elif len(example) == 2:
+                example = example[1]
+            elif len(example) > 2:
+                example = example[2]
+            else:
+                raise RuntimeError(f"Invalid example: {example}")
             example_yaml_tags.update(YAML_TAG_RE.findall(example))
         return sorted({yaml_tag_to_id(yaml_tag) for yaml_tag in example_yaml_tags})
     else:
