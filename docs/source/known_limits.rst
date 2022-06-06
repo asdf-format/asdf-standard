@@ -16,6 +16,8 @@ the system memory on the machine.  It is not recommended to store
 large data sets in the tree directly, instead it should reference
 blocks.
 
+.. _literal_integers:
+
 Literal integer values in the Tree
 ----------------------------------
 
