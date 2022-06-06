@@ -110,6 +110,13 @@ def list_latest_schema_paths(path):
     return sorted([p for _, p in latest_by_id_base.values()])
 
 
+def list_legacy_schema_paths(path):
+    paths = list_schema_paths(path)
+    latest_paths = list_latest_schema_paths(path)
+
+    return sorted([p for p in paths if p not in latest_paths])
+
+
 def ref_to_id(schema_id, ref):
     return urljoin(schema_id, ref)
 

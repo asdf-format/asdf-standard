@@ -10,6 +10,7 @@ from common import (
     list_description_ids,
     list_example_ids,
     list_latest_schema_paths,
+    list_legacy_schema_paths,
     list_refs,
     list_schema_paths,
     load_yaml,
@@ -37,32 +38,59 @@ def latest_schemas():
 
 
 @pytest.fixture(scope="session")
-def latest_schema_ids(latest_schemas):
+def legacy_schemas():
+    return [load_yaml(p) for p in list_legacy_schema_paths(SCHEMAS_PATH)]
+
+
+def get_schema_ids(schemas):
     result = set()
-    for schema in latest_schemas:
+    for schema in schemas:
         if "id" in schema:
             result.add(schema["id"])
     return result
 
 
 @pytest.fixture(scope="session")
+def latest_schema_ids(latest_schemas):
+    return get_schema_ids(latest_schemas)
+
+
+@pytest.fixture(scope="session")
+def legacy_schema_ids(legacy_schemas):
+    return get_schema_ids(legacy_schemas)
+
+
+def add_schemas(path, result):
+    with open(path) as f:
+        content = f.read()
+
+    lines = content.split("\n")
+    i = 0
+    while i < len(lines):
+        if lines[i].startswith(".. asdf-autoschemas::"):
+            i += 1
+            while i < len(lines) and (lines[i].strip() == "" or lines[i].startswith(" ")):
+                possible_id = lines[i].strip()
+                if len(possible_id) > 0:
+                    result.append("http://stsci.edu/schemas/asdf/" + possible_id)
+                i += 1
+        else:
+            i += 1
+
+
+@pytest.fixture(scope="session")
 def docs_schema_ids():
     result = []
     for path in DOCS_SCHEMAS_PATH.glob("**/*.rst"):
-        with open(path) as f:
-            content = f.read()
-        lines = content.split("\n")
-        i = 0
-        while i < len(lines):
-            if lines[i].startswith(".. asdf-autoschemas::"):
-                i += 1
-                while i < len(lines) and (lines[i].strip() == "" or lines[i].startswith(" ")):
-                    possible_id = lines[i].strip()
-                    if len(possible_id) > 0:
-                        result.append("http://stsci.edu/schemas/asdf/" + possible_id)
-                    i += 1
-            else:
-                i += 1
+        add_schemas(path, result)
+    return result
+
+
+@pytest.fixture(scope="session")
+def docs_legacy_schema_ids():
+    result = []
+    for path in DOCS_SCHEMAS_PATH.glob("**/legacy.rst"):
+        add_schemas(path, result)
     return result
 
 
