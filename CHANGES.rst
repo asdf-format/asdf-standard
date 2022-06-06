@@ -1,3 +1,8 @@
+1.0.3 (unreleased)
+------------------
+
+- Update documentation to be consistent with the ASDF library documentation. [#316]
+
 1.0.2 (2022-04-15)
 ------------------
 
