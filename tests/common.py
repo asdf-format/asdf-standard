@@ -31,6 +31,9 @@ YAML_TAG_RE = re.compile(r"![a-z/0-9_-]+-[0-9]+\.[0-9]+\.[0-9]")
 
 DESCRIPTION_REF_RE = re.compile(r"\(ref:(.*?)\)")
 
+SCHEMA_ID_PREFIX = "http://stsci.edu/schemas/asdf/"
+MANIFEST_ID_PREFIX = "asdf://asdf-format.org/core/manifests/"
+
 
 def load_yaml(path):
     with path.open() as f:
@@ -108,6 +111,13 @@ def list_latest_schema_paths(path):
             latest_by_id_base[id_base] = (version, path)
 
     return sorted([p for _, p in latest_by_id_base.values()])
+
+
+def list_legacy_schema_paths(path):
+    paths = list_schema_paths(path)
+    latest_paths = list_latest_schema_paths(path)
+
+    return sorted([p for p in paths if p not in latest_paths])
 
 
 def ref_to_id(schema_id, ref):

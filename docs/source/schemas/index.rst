@@ -1,10 +1,14 @@
-.. _schema:
+.. _resources:
 
-ASDF Schema Definitions
+ASDF Standard Resources
 =======================
 
-This reference section describes the schema files for the built-in
-tags in ASDF.
+The included schema and manifest resources made available by the ASDF-standard are described below.
+
+.. _schema:
+
+ASDF Standard Schema Definitions
+--------------------------------
 
 ASDF schemas are arranged into "modules".  All ASDF implementations
 must support the "core" module, but the other modules are optional.
@@ -16,6 +20,7 @@ must support the "core" module, but the other modules are optional.
    fits.rst
    unit.rst
    time.rst
+   legacy.rst
 
 The ASDF Standard also defines two meta-schemas that are used for validating
 the ASDF schemas themselves. These schemas are useful references when creating
@@ -38,3 +43,7 @@ The following graph shows the dependencies between modules:
    "unit" -> "core"
    "time" -> "core"
    "core" -> "unit"
+
+.. _manifest:
+
+.. include:: manifest.rst
