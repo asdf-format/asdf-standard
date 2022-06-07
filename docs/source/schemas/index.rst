@@ -1,10 +1,14 @@
-.. _schema:
+.. _resources:
 
-ASDF Schema Definitions
+ASDF Standard Resources
 =======================
 
-This reference section describes the schema files for the built-in
-tags in ASDF.
+The included schema and manifest resources made available by the ASDF-standard are described below.
+
+.. _schema:
+
+ASDF Standard Schema Definitions
+--------------------------------
 
 ASDF schemas are arranged into "modules".  All ASDF implementations
 must support the "core" module, but the other modules are optional.
@@ -39,3 +43,23 @@ The following graph shows the dependencies between modules:
    "unit" -> "core"
    "time" -> "core"
    "core" -> "unit"
+
+.. _manifest:
+
+ASDF Standard Manifests
+-----------------------
+
+The ASDF tags (described by schemas) available under each ASDF standard version are all described
+by a single manifest document for that ASDF standard version.
+
+.. asdf-autoschemas::
+   :schema_root: ../../resources/manifests
+   :standard_prefix: asdf-format.org/core
+
+   core-1.0.0
+   core-1.1.0
+   core-1.2.0
+   core-1.3.0
+   core-1.4.0
+   core-1.5.0
+   core-1.6.0
