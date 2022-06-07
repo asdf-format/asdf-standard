@@ -1,7 +1,10 @@
 import pytest
 from common import (
     DOCS_SCHEMAS_PATH,
+    MANIFEST_ID_PREFIX,
+    MANIFESTS_PATH,
     METASCHEMA_ID,
+    SCHEMA_ID_PREFIX,
     SCHEMAS_PATH,
     VALID_SCHEMA_FILENAME_RE,
     YAML_SCHEMA_PATH,
@@ -25,6 +28,11 @@ from jsonschema.validators import Draft4Validator, RefResolver
 @pytest.fixture(scope="session")
 def schemas():
     return [load_yaml(p) for p in list_schema_paths(SCHEMAS_PATH)]
+
+
+@pytest.fixture(scope="session")
+def manifests():
+    return [load_yaml(p) for p in list_schema_paths(MANIFESTS_PATH)]
 
 
 @pytest.fixture(scope="session")
@@ -60,7 +68,12 @@ def legacy_schema_ids(legacy_schemas):
     return get_schema_ids(legacy_schemas)
 
 
-def add_schemas(path, result):
+@pytest.fixture(scope="session")
+def manifest_ids(manifests):
+    return get_schema_ids(manifests)
+
+
+def add_schemas(path, prefix, result):
     with open(path) as f:
         content = f.read()
 
@@ -72,7 +85,7 @@ def add_schemas(path, result):
             while i < len(lines) and (lines[i].strip() == "" or lines[i].startswith(" ")):
                 possible_id = lines[i].strip()
                 if len(possible_id) > 0:
-                    result.append("http://stsci.edu/schemas/asdf/" + possible_id)
+                    result.append(f"{prefix}{possible_id}")
                 i += 1
         else:
             i += 1
@@ -82,7 +95,8 @@ def add_schemas(path, result):
 def docs_schema_ids():
     result = []
     for path in DOCS_SCHEMAS_PATH.glob("**/*.rst"):
-        add_schemas(path, result)
+        if path != DOCS_SCHEMAS_PATH / "manifest.rst":
+            add_schemas(path, SCHEMA_ID_PREFIX, result)
     return result
 
 
@@ -90,7 +104,15 @@ def docs_schema_ids():
 def docs_legacy_schema_ids():
     result = []
     for path in DOCS_SCHEMAS_PATH.glob("**/legacy.rst"):
-        add_schemas(path, result)
+        add_schemas(path, SCHEMA_ID_PREFIX, result)
+    return result
+
+
+@pytest.fixture(scope="session")
+def docs_manifest_ids():
+    result = []
+    for path in DOCS_SCHEMAS_PATH.glob("**/manifest.rst"):
+        add_schemas(path, MANIFEST_ID_PREFIX, result)
     return result
 
 

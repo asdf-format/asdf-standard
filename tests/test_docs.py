@@ -2,10 +2,16 @@ import collections
 
 from common import is_deprecated
 
-EXCEPTIONS = {"tag:stsci.edu:asdf/asdf-schema-1.0.0"}
+EXCEPTIONS = {
+    "tag:stsci.edu:asdf/asdf-schema-1.0.0",
+    "asdf://asdf-format.org/core/manifests/:schema_root: ../../resources/manifests",
+    "asdf://asdf-format.org/core/manifests/:standard_prefix: asdf-format.org/core",
+}
 
 
-def test_docs_schema_links(latest_schema_ids, legacy_schema_ids, docs_schema_ids, docs_legacy_schema_ids):
+def test_docs_schema_links(
+    latest_schema_ids, legacy_schema_ids, manifest_ids, docs_schema_ids, docs_legacy_schema_ids, docs_manifest_ids
+):
     """
     Confirm that the latest versions of all non-deprecated schemas
     are represented in the documentation.
@@ -42,6 +48,17 @@ def test_docs_schema_links(latest_schema_ids, legacy_schema_ids, docs_schema_ids
             "The documentation must include a link to the latest version of "
             "every non-deprecated schema with a tag.  Update the deprecation "
             "list in tests/common.py, or add links to the following missing schemas: \n"
+            f"{insert_list}"
+        )
+        assert False, message
+
+    missing_manifest_docs_ids = manifest_ids - set(docs_manifest_ids) - EXCEPTIONS
+    if len(missing_manifest_docs_ids) > 0:
+        print(missing_manifest_docs_ids)
+        insert_list = "\n".join(sorted(list(missing_manifest_docs_ids)))
+        message = (
+            "The documentation must include a link to every version of the asdf-standard"
+            "manifest. Please add the following links to the documentation: \n"
             f"{insert_list}"
         )
         assert False, message
