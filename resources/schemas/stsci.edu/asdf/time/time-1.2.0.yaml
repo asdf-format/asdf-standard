@@ -36,36 +36,42 @@ description: |
 examples:
   -
     - Example ISO time
+    - asdf-standard-1.6.0
     - |
-        !time/time-1.1.0 "2000-12-31T13:05:27.737"
+        !time/time-1.2.0 "2000-12-31T13:05:27.737"
 
   -
     - Example year, day-of-year and time format time
+    - asdf-standard-1.6.0
     - |
-        !time/time-1.1.0 "2001:003:04:05:06.789"
+        !time/time-1.2.0 "2001:003:04:05:06.789"
 
   -
     - Example Besselian Epoch time
+    - asdf-standard-1.6.0
     - |
-        !time/time-1.1.0 B2000.0
+        !time/time-1.2.0 B2000.0
 
   -
     - Example Besselian Epoch time, equivalent to above
+    - asdf-standard-1.6.0
     - |
-        !time/time-1.1.0
+        !time/time-1.2.0
           value: 2000.0
           format: byear
 
   -
     - Example list of times
+    - asdf-standard-1.6.0
     - |
-        !time/time-1.1.0
+        !time/time-1.2.0
           ["2000-12-31T13:05:27.737", "2000-12-31T13:06:38.444"]
 
   -
     - Example of an array of times
+    - asdf-standard-1.6.0
     - |
-        !time/time-1.1.0
+        !time/time-1.2.0
           value: !core/ndarray-1.0.0
             data: [2000, 2001]
             datatype: float64
@@ -73,8 +79,9 @@ examples:
 
   -
     - Example with a location
+    - asdf-standard-1.6.0
     - |
-        !time/time-1.1.0
+        !time/time-1.2.0
           value: 2000.0
           format: jyear
           scale: tdb
