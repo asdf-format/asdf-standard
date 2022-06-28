@@ -6,6 +6,8 @@ The in progress ASDF Standard is v1.6.0
 The stable ASDF Standard is v1.5.0
 
 - Update documentation to be consistent with the ASDF library documentation. [#316]
+- Add ``time-1.2.0`` schema to document bugfix requiring additional property to be
+  written from ``asdf-astropy``. [#319]
 
 1.0.2 (2022-04-15)
 ------------------

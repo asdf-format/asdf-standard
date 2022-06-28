@@ -8,4 +8,4 @@ in time and time deltas.
 
 .. asdf-autoschemas::
 
-   time/time-1.1.0
+   time/time-1.2.0
