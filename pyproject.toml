@@ -57,6 +57,7 @@ build-backend = "setuptools.build_meta"
 write_to = "src/asdf_standard/_version.py"
 
 [tool.setuptools.packages.find]
+where = ['src']
 
 [tool.setuptools.package-data]
 'asdf_standard.resources' = ["*"]
@@ -78,7 +79,7 @@ asdf_schema_skip_tests = """
 """
 asdf_schema_tests_enabled = 'true'
 asdf_schema_ignore_unrecognized_tag = 'true'
-addopts = '--color=yes --doctest-rst'
+addopts = '--color=yes'
 
 [tool.black]
 line-length = 120
