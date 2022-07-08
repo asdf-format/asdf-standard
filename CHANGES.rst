@@ -8,6 +8,8 @@ The stable ASDF Standard is v1.5.0
 - Update documentation to be consistent with the ASDF library documentation. [#316]
 - Add ``time-1.2.0`` schema to document bugfix requiring additional property to be
   written from ``asdf-astropy``. [#319]
+- Move packaging to ``pyproject.toml`` file from ``setup.cfg`` and ``setup.py``
+  files. [#321]
 
 1.0.2 (2022-04-15)
 ------------------

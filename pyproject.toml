@@ -1,9 +1,91 @@
+[project]
+name = 'asdf_standard'
+description = 'The ASDF Standard schemas'
+readme = 'README.rst'
+requires-python = '>=3.8'
+license = { file = 'LICENSE' }
+authors = [{ name = 'The ASDF Developers', email = 'help@stsci.edu' }]
+classifiers = [
+    'Programming Language :: Python',
+    'Programming Language :: Python :: 3',
+    'Programming Language :: Python :: 3.8',
+    'Programming Language :: Python :: 3.9',
+    'Programming Language :: Python :: 3.10',
+    'Development Status :: 5 - Production/Stable',
+    'ASDF Standard Version :: 1.6.0',
+]
+dependencies = [
+    'importlib_resources >= 3; python_version<"3.9"'
+]
+dynamic = ['version']
+
+[project.optional-dependencies]
+docs = [
+    'toml',
+    'sphinx',
+    'sphinx-asdf >= 0.1.3',
+    'sphinx-astropy',
+    'graphviz',
+    'matplotlib',
+    'docutils',
+    'sphinx-rtd-theme',
+]
+test = [
+    'pytest',
+    'pyyaml',
+    'asdf >= 2.8.0',
+    'astropy >= 5.0.4',
+    'gwcs',
+    'packaging>=16.0',
+]
+
+[project.urls]
+'tracker' = 'https://github.com/asdf-format/asdf-standard/issues'
+'documentation' = 'https://asdf-standard.readthedocs.io/en/stable'
+'repository' = 'https://github.com/asdf-format/asdf-standard'
+
+[project.entry-points]
+'asdf.resource_mappings' = { asdf_standard = 'asdf_standard.integration:get_resource_mappings' }
+
 [build-system]
-requires = ["setuptools>=42", "setuptools_scm[toml]>=3.4", "wheel"]
+requires = [
+    "setuptools >=42",
+    "setuptools_scm[toml] >=3.4",
+    "wheel",
+]
 build-backend = "setuptools.build_meta"
 
 [tool.setuptools_scm]
 write_to = "src/asdf_standard/_version.py"
+
+[tool.setuptools]
+packages = ["asdf_standard", "asdf_standard.resources"]
+
+[tool.setuptools.package-data]
+"asdf_standard.resources" = ["resources/**/*.yaml"]
+
+[tool.setuptools.package-dir]
+"" = "src"
+"asdf_standard.resources" = "resources"
+
+[tool.pytest.ini_options]
+asdf_schema_root = 'resources/schemas'
+asdf_schema_skip_tests = """
+    stsci.edu/asdf/asdf-schema-1.0.0.yaml
+    stsci.edu/asdf/wcs/celestial_frame-1.0.0.yaml
+    stsci.edu/asdf/wcs/celestial_frame-1.1.0.yaml
+    stsci.edu/asdf/wcs/frame-1.0.0.yaml
+    stsci.edu/asdf/wcs/frame-1.1.0.yaml
+    stsci.edu/asdf/wcs/spectral_frame-1.1.0.yaml
+    stsci.edu/asdf/wcs/step-1.1.0.yaml
+    stsci.edu/asdf/wcs/step-1.2.0.yaml
+    stsci.edu/asdf/wcs/wcs-1.1.0.yaml
+    stsci.edu/asdf/wcs/wcs-1.2.0.yaml
+    stsci.edu/yaml-schema/draft-01.yaml
+"""
+asdf_schema_tests_enabled = 'true'
+asdf_schema_ignore_unrecognized_tag = 'true'
+addopts = '--color=yes'
 
 [tool.black]
 line-length = 120
