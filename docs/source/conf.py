@@ -8,6 +8,10 @@
 
 import datetime
 import sys
+from pathlib import Path
+
+import toml
+from pkg_resources import get_distribution
 
 # -- Project information -----------------------------------------------------
 try:
@@ -16,16 +20,20 @@ except ImportError:
     print("ERROR: the documentation requires the sphinx-astropy package to be installed")
     sys.exit(1)
 
-project = "ASDF Standard"
+# Get configuration information from `pyproject.toml`
+with open(Path(__file__).parent.parent.parent / "pyproject.toml") as configuration_file:
+    conf = toml.load(configuration_file)
+configuration = conf["project"]
 
-copyright = f"{datetime.datetime.now().year}, Space Telescope Science Institute"
-
-author = "The ASDF Developers"
+project = configuration["name"]
+author = f"{configuration['authors'][0]['name']} <{configuration['authors'][0]['email']}>"
+copyright = f"{datetime.datetime.now().year}, {configuration['authors'][0]}"
 
 # The short X.Y version
-version = "1.6.0"
+version = [ver for ver in configuration["classifiers"] if "ASDF Standard Version" in ver][0].split(" :: ")[-1]
+
 # The full version, including alpha/beta/rc tags
-release = version
+release = get_distribution(configuration["name"]).version
 
 # -- General configuration ---------------------------------------------------
 
