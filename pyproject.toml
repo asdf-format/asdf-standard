@@ -60,7 +60,7 @@ write_to = "src/asdf_standard/_version.py"
 packages = ["asdf_standard", "asdf_standard.resources"]
 
 [tool.setuptools.package-data]
-"asdf_standard.resources" = ["**/*.yaml"]
+"asdf_standard.resources" = ["resources/**/*.yaml"]
 
 [tool.setuptools.package-dir]
 "" = "src"
