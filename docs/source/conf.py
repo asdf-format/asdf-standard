@@ -35,6 +35,8 @@ version = [ver for ver in configuration["classifiers"] if "ASDF Standard Version
 # The full version, including alpha/beta/rc tags
 release = get_distribution(configuration["name"]).version
 
+intersphinx_mapping["asdf"] = ("https://asdf.readthedocs.io/en/latest/", None)  # noqa
+
 # -- General configuration ---------------------------------------------------
 
 # Add any Sphinx extension module names here, as strings. They can be
