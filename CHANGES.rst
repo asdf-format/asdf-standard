@@ -10,6 +10,7 @@ The stable ASDF Standard is v1.5.0
   written from ``asdf-astropy``. [#319]
 - Move packaging to ``pyproject.toml`` file from ``setup.cfg`` and ``setup.py``
   files. [#321]
+- Remove `tag` from within the `time-1.1.0` schema. [#323]
 
 1.0.2 (2022-04-15)
 ------------------
