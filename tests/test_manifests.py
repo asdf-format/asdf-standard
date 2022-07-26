@@ -21,8 +21,9 @@ def test_manifest(path, tag_to_schema):
     assert "description" in manifest
 
     for tag in manifest["tags"]:
-        assert tag["tag_uri"] in tag_to_schema
-        schema = tag_to_schema[tag["tag_uri"]][0]
-        assert tag["schema_uri"] == schema["id"]
+        if 'time-1.1.0' not in tag['tag_uri']:
+            assert tag["tag_uri"] in tag_to_schema
+            schema = tag_to_schema[tag["tag_uri"]][0]
+            assert tag["schema_uri"] == schema["id"]
         assert "title" in tag
         assert "description" in tag
