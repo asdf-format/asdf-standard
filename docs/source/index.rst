@@ -6,6 +6,8 @@ ASDF Standard
 This document describes the Advanced Scientific Data Format (ASDF),
 pronounced *AZ*-diff.
 
+The ASDF python implementation documentation can be found :ref:`here <asdf:asdf>`.
+
 .. only:: html
 
     Contents:
