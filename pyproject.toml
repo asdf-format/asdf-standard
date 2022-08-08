@@ -12,7 +12,6 @@ classifiers = [
     'Programming Language :: Python :: 3.9',
     'Programming Language :: Python :: 3.10',
     'Development Status :: 5 - Production/Stable',
-    'ASDF Standard Version :: 1.6.0',
 ]
 dependencies = [
     'importlib_resources >= 3; python_version<"3.9"'
