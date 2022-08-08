@@ -30,7 +30,8 @@ author = f"{configuration['authors'][0]['name']} <{configuration['authors'][0]['
 copyright = f"{datetime.datetime.now().year}, {configuration['authors'][0]}"
 
 # The short X.Y version
-version = [ver for ver in configuration["classifiers"] if "ASDF Standard Version" in ver][0].split(" :: ")[-1]
+with open(Path(__file__).parent.parent.parent / "README.md") as readme:
+    version = readme.readline().split(" ")[-1]
 
 # The full version, including alpha/beta/rc tags
 release = get_distribution(configuration["name"]).version
