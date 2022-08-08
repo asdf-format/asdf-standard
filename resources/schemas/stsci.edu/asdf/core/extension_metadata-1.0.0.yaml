@@ -7,7 +7,6 @@ title: |
 description: |
   Metadata about specific ASDF extensions that were used to create this file.
 
-tag: "tag:stsci.edu:asdf/core/extension_metadata-1.0.0"
 type: object
 properties:
   extension_class:
