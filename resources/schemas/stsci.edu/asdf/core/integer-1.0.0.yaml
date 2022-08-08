@@ -30,8 +30,6 @@ examples:
             datatype: uint32
             shape: [4]
 
-
-tag: "tag:stsci.edu:asdf/core/integer-1.0.0"
 type: object
 properties:
   words:

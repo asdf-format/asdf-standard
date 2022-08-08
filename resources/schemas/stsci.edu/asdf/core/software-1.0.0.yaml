@@ -7,7 +7,6 @@ title: |
 description: |
   General-purpose description of a software package.
 
-tag: "tag:stsci.edu:asdf/core/software-1.0.0"
 type: object
 properties:
   name:

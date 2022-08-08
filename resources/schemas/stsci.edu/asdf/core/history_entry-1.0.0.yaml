@@ -8,7 +8,6 @@ description: |
   A record of an operation that has been performed
   upon a file.
 
-tag: "tag:stsci.edu:asdf/core/history_entry-1.0.0"
 type: object
 properties:
   description:
