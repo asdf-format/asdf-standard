@@ -1,7 +1,7 @@
 [project]
 name = 'asdf_standard'
 description = 'The ASDF Standard schemas'
-readme = 'README.rst'
+readme = 'README.md'
 requires-python = '>=3.8'
 license = { file = 'LICENSE' }
 authors = [{ name = 'The ASDF Developers', email = 'help@stsci.edu' }]
