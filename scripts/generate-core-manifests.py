@@ -37,7 +37,7 @@ for pattern in SCHEMA_PATTERNS:
 for path in sorted(glob.glob("schemas/stsci.edu/asdf/version_map-*.yaml")):
     version_map = yaml.safe_load(open(path).read())
     version = path.split("/")[-1].split("-")[-1].split(".yaml")[0]
-    tags = sorted([k + "-" + str(v) for k, v in version_map["tags"].items() if "/transform/" not in k])
+    tags = sorted(k + "-" + str(v) for k, v in version_map["tags"].items() if "/transform/" not in k)
 
     tag_defs = []
     for tag in tags:
