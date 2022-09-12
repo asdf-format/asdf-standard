@@ -17,6 +17,11 @@ repos:
     - id: pyupgrade
       args: ["--py38-plus"]
 
+- repo: https://github.com/PyCQA/autoflake
+  rev: v1.5.3
+  hooks:
+  -  id: autoflake
+
 - repo: https://github.com/pycqa/isort
   rev: 5.10.1
   hooks:
