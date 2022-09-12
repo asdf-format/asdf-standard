@@ -1,5 +1,6 @@
 # this file exists to support an editable PEP517 install and for `flake8` (https://github.com/PyCQA/flake8/issues/234)
 # and `sphinx` configuration
 [flake8]
-ignore = E501, E203, W503
+max-line-length = 120
+extend-ignore = E203
 exclude = .git, __pycache__, build, dist, eggs, *.egg, reference_files, schemas, source, .pytest_cache, .tox

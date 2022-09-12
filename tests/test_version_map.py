@@ -55,7 +55,7 @@ def test_latest_version_map(latest_schema_tags):
 
     tag_base_to_version = dict([tag.rsplit("-", 1) for tag in latest_schema_tags])
 
-    expected_tag_bases = set([t for t in tag_base_to_version.keys() if not is_deprecated(t)])
+    expected_tag_bases = {t for t in tag_base_to_version.keys() if not is_deprecated(t)}
     vm_tag_bases = set(vm["tags"].keys())
     if not expected_tag_bases.issubset(vm_tag_bases):
         missing_tag_bases = expected_tag_bases - vm_tag_bases
@@ -70,7 +70,7 @@ def test_latest_version_map(latest_schema_tags):
         )
         assert False, message
 
-    incorrect_tag_bases = sorted([tag for tag in expected_tag_bases if vm["tags"][tag] != tag_base_to_version[tag]])
+    incorrect_tag_bases = sorted(tag for tag in expected_tag_bases if vm["tags"][tag] != tag_base_to_version[tag])
     if len(incorrect_tag_bases) > 0:
         update_list = "\n".join(
             [f"""{tag}: {vm["tags"][tag]} --> {tag_base_to_version[tag]}""" for tag in incorrect_tag_bases]
@@ -92,7 +92,7 @@ def test_version_map_tags_retained(path, previous_path):
     vm = load_yaml(path)
     prev_vm = load_yaml(previous_path)
 
-    expected_tags = set([t for t in prev_vm["tags"].keys() if not is_deprecated(t)])
+    expected_tags = {t for t in prev_vm["tags"].keys() if not is_deprecated(t)}
     tags = set(vm["tags"].keys())
     if not expected_tags.issubset(tags):
         missing_tags = expected_tags - tags
