@@ -12,13 +12,13 @@ repos:
   - id: trailing-whitespace
 
 - repo: https://github.com/asottile/pyupgrade
-  rev: v2.38.0
+  rev: v2.38.2
   hooks:
     - id: pyupgrade
       args: ["--py38-plus"]
 
 - repo: https://github.com/PyCQA/autoflake
-  rev: v1.6.0
+  rev: v1.6.1
   hooks:
   -  id: autoflake
 
