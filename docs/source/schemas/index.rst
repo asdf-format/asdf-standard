@@ -17,7 +17,6 @@ must support the "core" module, but the other modules are optional.
    :maxdepth: 2
 
    core.rst
-   fits.rst
    unit.rst
    time.rst
    legacy.rst
