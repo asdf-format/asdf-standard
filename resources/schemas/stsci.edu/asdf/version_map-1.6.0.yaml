@@ -15,7 +15,6 @@ tags:
   tag:stsci.edu:asdf/core/software: 1.0.0
   tag:stsci.edu:asdf/core/subclass_metadata: 1.0.0
   tag:stsci.edu:asdf/core/table: 1.0.0
-  tag:stsci.edu:asdf/fits/fits: 1.0.0
   tag:stsci.edu:asdf/time/time: 1.2.0
   tag:stsci.edu:asdf/unit/defunit: 1.0.0
   tag:stsci.edu:asdf/unit/quantity: 1.1.0

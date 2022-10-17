@@ -86,21 +86,6 @@ tags:
 
     Each column in the table must have the same first (slowest moving)
     dimension.
-- tag_uri: tag:stsci.edu:asdf/fits/fits-1.0.0
-  schema_uri: http://stsci.edu/schemas/asdf/fits/fits-1.0.0
-  title: A FITS file inside of an ASDF file.
-  description: |-
-    This schema is useful for distributing ASDF files that can
-    automatically be converted to FITS files by specifying the exact
-    content of the resulting FITS file.
-
-    Not all kinds of data in FITS are directly representable in ASDF.
-    For example, applying an offset and scale to the data using the
-    `BZERO` and `BSCALE` keywords.  In these cases, it will not be
-    possible to store the data in the native format from FITS and also
-    be accessible in its proper form in the ASDF file.
-
-    Only image and binary table extensions are supported.
 - tag_uri: tag:stsci.edu:asdf/time/time-1.1.0
   schema_uri: http://stsci.edu/schemas/asdf/time/time-1.1.0
   title: Represents an instance in time.
