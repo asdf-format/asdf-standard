@@ -1,3 +1,13 @@
+1.1.0 (unreleased)
+------------------
+
+The in progress ASDF Standard is v1.6.0
+
+The stable ASDF Standard is v1.5.0
+
+- Remove ``fits-1.0.0`` schema completely, in favor of it being in the separate
+  ``asdf-fits-schemas`` package. [#338]
+
 1.0.3 (2022-08-08)
 ------------------
 
