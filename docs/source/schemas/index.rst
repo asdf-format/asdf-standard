@@ -18,7 +18,6 @@ must support the "core" module, but the other modules are optional.
 
    core.rst
    unit.rst
-   time.rst
    legacy.rst
 
 The ASDF Standard also defines two meta-schemas that are used for validating

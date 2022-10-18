@@ -8,5 +8,3 @@ The following legacy schemas and not part of the most recent ASDF standard versi
 .. asdf-autoschemas::
 
     core/asdf-1.0.0
-    time/time-1.0.0
-    time/time-1.1.0
