@@ -7,6 +7,8 @@ The stable ASDF Standard is v1.5.0
 
 - Remove ``fits-1.0.0`` schema completely, in favor of it being in the separate
   ``asdf-fits-schemas`` package. [#338]
+- Remove ``wcs`` schemas completely, in favor of all of them being in the separate
+  ``asdf-wcs-schemas`` package. [#340]
 
 1.0.3 (2022-08-08)
 ------------------
