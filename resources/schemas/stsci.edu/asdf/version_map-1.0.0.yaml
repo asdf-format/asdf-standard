@@ -9,6 +9,4 @@ tags:
   tag:stsci.edu:asdf/core/history_entry: 1.0.0
   tag:stsci.edu:asdf/core/ndarray: 1.0.0
   tag:stsci.edu:asdf/core/software: 1.0.0
-  tag:stsci.edu:asdf/unit/defunit: 1.0.0
-  tag:stsci.edu:asdf/unit/unit: 1.0.0
 ...
