@@ -13,6 +13,9 @@ The stable ASDF Standard is v1.5.0
   in favor of them being in the separate ``asdf-time-schemas`` package. [#339]
 - Remove ``column-1.0.0`` and ``table-1.0.0`` schemas completely, in favor of
   them being in the separate ``asdf-table-schemas`` package. [#341]
+- Remove ``defunit-1.0.0``, ``quantity-1.0.0``, and ``unit-1.0.0`` schemas
+  completely, in favor of them being in the separate ``asdf-units-schemas``
+  package. [#342]
 
 1.0.3 (2022-08-08)
 ------------------
