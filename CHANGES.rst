@@ -9,6 +9,8 @@ The stable ASDF Standard is v1.5.0
   ``asdf-fits-schemas`` package. [#338]
 - Remove ``wcs`` schemas completely, in favor of all of them being in the separate
   ``asdf-wcs-schemas`` package. [#340]
+- Remove ``time-1.0.0``, ``time-1.1.0``, and ``time-1.2.0`` schemas completely,
+  in favor of them being in the separate ``asdf-time-schemas`` package. [#339]
 
 1.0.3 (2022-08-08)
 ------------------
