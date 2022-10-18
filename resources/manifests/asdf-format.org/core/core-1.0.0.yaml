@@ -134,25 +134,3 @@ tags:
   description: |-
     This represents a physical unit, in [VOUnit syntax, Version 1.0](http://www.ivoa.net/documents/VOUnits/index.html).
     Where units are not explicitly tagged, they are assumed to be in VOUnit syntax.
-- tag_uri: tag:stsci.edu:asdf/wcs/celestial_frame-1.0.0
-  schema_uri: http://stsci.edu/schemas/asdf/wcs/celestial_frame-1.0.0
-  title: Represents a celestial frame.
-  description: Represents a celestial frame.
-- tag_uri: tag:stsci.edu:asdf/wcs/composite_frame-1.0.0
-  schema_uri: http://stsci.edu/schemas/asdf/wcs/composite_frame-1.0.0
-  title: Represents a set of frames.
-  description: Represents a set of frames.
-- tag_uri: tag:stsci.edu:asdf/wcs/spectral_frame-1.0.0
-  schema_uri: http://stsci.edu/schemas/asdf/wcs/spectral_frame-1.0.0
-  title: Represents a spectral frame.
-  description: Represents a spectral frame.
-- tag_uri: tag:stsci.edu:asdf/wcs/step-1.0.0
-  schema_uri: http://stsci.edu/schemas/asdf/wcs/step-1.0.0
-  title: Describes a single step of a WCS transform pipeline.
-  description: Describes a single step of a WCS transform pipeline.
-- tag_uri: tag:stsci.edu:asdf/wcs/wcs-1.0.0
-  schema_uri: http://stsci.edu/schemas/asdf/wcs/wcs-1.0.0
-  title: A system for describing generalized world coordinate transformations.
-  description: ASDF WCS is a way of specifying transformations (usually from detector
-    space to world coordinate space and back) by using the transformations in the
-    `transform-schema` module.

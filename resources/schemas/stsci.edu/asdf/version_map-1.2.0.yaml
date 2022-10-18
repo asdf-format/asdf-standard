@@ -16,10 +16,4 @@ tags:
   tag:stsci.edu:asdf/unit/defunit: 1.0.0
   tag:stsci.edu:asdf/unit/quantity: 1.1.0
   tag:stsci.edu:asdf/unit/unit: 1.0.0
-  tag:stsci.edu:asdf/wcs/celestial_frame: 1.1.0
-  tag:stsci.edu:asdf/wcs/composite_frame: 1.1.0
-  tag:stsci.edu:asdf/wcs/icrs_coord: 1.1.0
-  tag:stsci.edu:asdf/wcs/spectral_frame: 1.1.0
-  tag:stsci.edu:asdf/wcs/step: 1.1.0
-  tag:stsci.edu:asdf/wcs/wcs: 1.1.0
 ...
