@@ -17,7 +17,6 @@ must support the "core" module, but the other modules are optional.
    :maxdepth: 2
 
    core.rst
-   unit.rst
    legacy.rst
 
 The ASDF Standard also defines two meta-schemas that are used for validating
