@@ -34,12 +34,6 @@ properties:
       2-dimensional image array.
     $ref: "ndarray-1.0.0"
 
-  fits:
-    description: |
-      A way to specify exactly how this ASDF file should be converted
-      to FITS.
-    $ref: "../fits/fits-1.0.0"
-
   wcs:
     description: |
       The location of the main WCS for the main data.
