@@ -8,12 +8,6 @@ tags:
   schema_uri: http://stsci.edu/schemas/asdf/core/asdf-1.1.0
   title: Top-level schema for every ASDF file.
   description: This schema contains the top-level attributes for every ASDF file.
-- tag_uri: tag:stsci.edu:asdf/core/column-1.0.0
-  schema_uri: http://stsci.edu/schemas/asdf/core/column-1.0.0
-  title: A column in a table.
-  description: |-
-    Each column contains a name and an array of data, and an optional description
-    and unit.
 - tag_uri: tag:stsci.edu:asdf/core/complex-1.0.0
   schema_uri: http://stsci.edu/schemas/asdf/core/complex-1.0.0
   title: Complex number value.
@@ -77,20 +71,6 @@ tags:
   schema_uri: http://stsci.edu/schemas/asdf/core/software-1.0.0
   title: Describes a software package.
   description: General-purpose description of a software package.
-- tag_uri: tag:stsci.edu:asdf/core/table-1.0.0
-  schema_uri: http://stsci.edu/schemas/asdf/core/table-1.0.0
-  title: A table.
-  description: |-
-    A table is represented as a list of columns, where each entry is a
-    [column](ref:core/column-1.0.0)
-    object, containing the data and some additional information.
-
-    The data itself may be stored inline as text, or in binary in either
-    row- or column-major order by use of the `strides` property on the
-    individual column arrays.
-
-    Each column in the table must have the same first (slowest moving)
-    dimension.
 - tag_uri: tag:stsci.edu:asdf/unit/defunit-1.0.0
   schema_uri: http://stsci.edu/schemas/asdf/unit/defunit-1.0.0
   title: Define a new physical unit.

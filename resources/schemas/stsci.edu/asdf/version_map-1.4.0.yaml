@@ -4,7 +4,6 @@ FILE_FORMAT: 1.0.0
 YAML_VERSION: "1.1"
 tags:
   tag:stsci.edu:asdf/core/asdf: 1.1.0
-  tag:stsci.edu:asdf/core/column: 1.0.0
   tag:stsci.edu:asdf/core/complex: 1.0.0
   tag:stsci.edu:asdf/core/constant: 1.0.0
   tag:stsci.edu:asdf/core/extension_metadata: 1.0.0
@@ -14,7 +13,6 @@ tags:
   tag:stsci.edu:asdf/core/ndarray: 1.0.0
   tag:stsci.edu:asdf/core/software: 1.0.0
   tag:stsci.edu:asdf/core/subclass_metadata: 1.0.0
-  tag:stsci.edu:asdf/core/table: 1.0.0
   tag:stsci.edu:asdf/unit/defunit: 1.0.0
   tag:stsci.edu:asdf/unit/quantity: 1.1.0
   tag:stsci.edu:asdf/unit/unit: 1.0.0
