@@ -187,6 +187,7 @@ definitions:
       - jyear
       - mjd
       - unix
+      - unix_tai
       - yday
 
   other_format:
@@ -201,9 +202,8 @@ definitions:
       - isot
       - jyear_str
       - plot_date
-      - unix_tai
       - ymdhms
-      - datetime-64
+      - datetime64
 
 anyOf:
   - $ref: "#/definitions/string_formats"
