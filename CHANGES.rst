@@ -1,3 +1,13 @@
+1.1.0 (unreleased)
+------------------
+
+The in progress ASDF Standard is v1.6.0
+
+The stable ASDF Standard is v1.5.0
+
+- Add new ``quantity-1.2.0`` schema to support ``datatype`` option. [#351]
+
+
 1.0.3 (2022-08-08)
 ------------------
 
