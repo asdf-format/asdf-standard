@@ -18,6 +18,14 @@ examples:
           value: 3.14159
           unit: km
 
+    - A quantity consisting of a scalar value with datatype and unit
+    - asdf-standard-1.6.0
+    - |
+        !unit/quantity-1.2.0
+          value: 3.14159
+          unit: km
+          datatype: float32
+
   -
     - A quantity consisting of a single value in an array
     - asdf-standard-1.6.0
