@@ -178,23 +178,37 @@ definitions:
         do for the purposes of ASDF?]
 
     enum:
-      - iso
-      - yday
       - byear
-      - jyear
-      - decimalyear
-      - jd
-      - mjd
-      - gps
-      - unix
       - cxcsec
+      - decimalyear
+      - gps
+      - iso
+      - jd
+      - jyear
+      - mjd
+      - unix
+      - unix_tai
+      - yday
+
+  other_format:
+    description: |
+      The other formats supported by astropy.time:
+      https://docs.astropy.org/en/latest/time/index.html#time-format
+
+    enum:
+      - byear_str
+      - datetime
+      - fits
+      - isot
+      - jyear_str
+      - plot_date
+      - ymdhms
+      - datetime64
 
 anyOf:
   - $ref: "#/definitions/string_formats"
 
   - $ref: "#/definitions/array_of_strings"
-
-  - $ref: "../core/ndarray-1.0.0#/anyOf/1"
 
   - type: object
     properties:
@@ -222,7 +236,9 @@ anyOf:
         description: |
           The original format of the time object
 
-        $ref: "#/definitions/format"
+        oneOf:
+          - $ref: "#/definitions/format"
+          - $ref: "#/definitions/other_format"
 
       scale:
         description: |
