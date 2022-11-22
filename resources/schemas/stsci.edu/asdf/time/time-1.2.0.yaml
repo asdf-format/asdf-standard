@@ -210,8 +210,6 @@ anyOf:
 
   - $ref: "#/definitions/array_of_strings"
 
-  - $ref: "../core/ndarray-1.0.0#/anyOf/1"
-
   - type: object
     properties:
       value:
