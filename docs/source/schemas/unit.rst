@@ -9,4 +9,4 @@ The ``unit`` module contains schema to support the units of physical quantities.
 
    unit/unit-1.0.0
    unit/defunit-1.0.0
-   unit/quantity-1.1.0
+   unit/quantity-1.2.0

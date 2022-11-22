@@ -85,13 +85,13 @@ examples:
           format: jyear
           scale: tdb
           location:
-            x: !unit/quantity-1.1.0
+            x: !unit/quantity-1.2.0
               value: 6378100
               unit: !unit/unit-1.0.0 m
-            y: !unit/quantity-1.1.0
+            y: !unit/quantity-1.2.0
               value: 0
               unit: !unit/unit-1.0.0 m
-            z: !unit/quantity-1.1.0
+            z: !unit/quantity-1.2.0
               value: 0
               unit: !unit/unit-1.0.0 m
 
@@ -272,11 +272,11 @@ anyOf:
         type: object
         properties:
           x:
-            $ref: "../unit/quantity-1.1.0"
+            $ref: "../unit/quantity-1.2.0"
           y:
-            $ref: "../unit/quantity-1.1.0"
+            $ref: "../unit/quantity-1.2.0"
           z:
-            $ref: "../unit/quantity-1.1.0"
+            $ref: "../unit/quantity-1.2.0"
         required: [x, y, z]
 
     required: [value]

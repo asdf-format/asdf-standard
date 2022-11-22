@@ -165,8 +165,8 @@ tags:
     - Create a new unit name that is a equivalent to a given unit.
 
     The new unit must be defined before any unit tags that use it.
-- tag_uri: tag:stsci.edu:asdf/unit/quantity-1.1.0
-  schema_uri: http://stsci.edu/schemas/asdf/unit/quantity-1.1.0
+- tag_uri: tag:stsci.edu:asdf/unit/quantity-1.2.0
+  schema_uri: http://stsci.edu/schemas/asdf/unit/quantity-1.2.0
   title: Represents a Quantity object from astropy
   description: |-
     A Quantity object represents a value that has some unit
