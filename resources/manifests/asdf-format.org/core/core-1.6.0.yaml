@@ -8,8 +8,8 @@ tags:
   schema_uri: http://stsci.edu/schemas/asdf/core/asdf-1.1.0
   title: Top-level schema for every ASDF file.
   description: This schema contains the top-level attributes for every ASDF file.
-- tag_uri: tag:stsci.edu:asdf/core/column-1.0.0
-  schema_uri: http://stsci.edu/schemas/asdf/core/column-1.0.0
+- tag_uri: tag:stsci.edu:asdf/core/column-1.1.0
+  schema_uri: http://stsci.edu/schemas/asdf/core/column-1.1.0
   title: A column in a table.
   description: |-
     Each column contains a name and an array of data, and an optional description
@@ -63,12 +63,12 @@ tags:
   description: |-
     A record of an operation that has been performed
     upon a file.
-- tag_uri: tag:stsci.edu:asdf/core/integer-1.0.0
-  schema_uri: http://stsci.edu/schemas/asdf/core/integer-1.0.0
+- tag_uri: tag:stsci.edu:asdf/core/integer-1.1.0
+  schema_uri: http://stsci.edu/schemas/asdf/core/integer-1.1.0
   title: Arbitrary precision integer value.
   description: Represents an arbitrarily large integer value.
-- tag_uri: tag:stsci.edu:asdf/core/ndarray-1.0.0
-  schema_uri: http://stsci.edu/schemas/asdf/core/ndarray-1.0.0
+- tag_uri: tag:stsci.edu:asdf/core/ndarray-1.1.0
+  schema_uri: http://stsci.edu/schemas/asdf/core/ndarray-1.1.0
   title: An *n*-dimensional array.
   description: |-
     There are two ways to store the data in an ndarray.
@@ -94,12 +94,12 @@ tags:
   description: |-
     Identifies the specific subclass that was serialized,
     to enable ASDF readers to correctly deserialize the object.
-- tag_uri: tag:stsci.edu:asdf/core/table-1.0.0
-  schema_uri: http://stsci.edu/schemas/asdf/core/table-1.0.0
+- tag_uri: tag:stsci.edu:asdf/core/table-1.1.0
+  schema_uri: http://stsci.edu/schemas/asdf/core/table-1.1.0
   title: A table.
   description: |-
     A table is represented as a list of columns, where each entry is a
-    [column](ref:core/column-1.0.0)
+    [column](ref:core/column-1.1.0)
     object, containing the data and some additional information.
 
     The data itself may be stored inline as text, or in binary in either
@@ -108,8 +108,8 @@ tags:
 
     Each column in the table must have the same first (slowest moving)
     dimension.
-- tag_uri: tag:stsci.edu:asdf/fits/fits-1.0.0
-  schema_uri: http://stsci.edu/schemas/asdf/fits/fits-1.0.0
+- tag_uri: tag:stsci.edu:asdf/fits/fits-1.1.0
+  schema_uri: http://stsci.edu/schemas/asdf/fits/fits-1.1.0
   title: A FITS file inside of an ASDF file.
   description: |-
     This schema is useful for distributing ASDF files that can
@@ -154,8 +154,8 @@ tags:
     good as an IEEE-754 double precision (float64) value.  If
     higher-precision is required, the `iso` or `yday` format should be
     used.
-- tag_uri: tag:stsci.edu:asdf/unit/defunit-1.0.0
-  schema_uri: http://stsci.edu/schemas/asdf/unit/defunit-1.0.0
+- tag_uri: tag:stsci.edu:asdf/unit/defunit-1.1.0
+  schema_uri: http://stsci.edu/schemas/asdf/unit/defunit-1.1.0
   title: Define a new physical unit.
   description: |-
     Defines a new unit.  It can be used to either:
@@ -171,8 +171,8 @@ tags:
   description: |-
     A Quantity object represents a value that has some unit
     associated with the number.
-- tag_uri: tag:stsci.edu:asdf/unit/unit-1.0.0
-  schema_uri: http://stsci.edu/schemas/asdf/unit/unit-1.0.0
+- tag_uri: tag:stsci.edu:asdf/unit/unit-1.1.0
+  schema_uri: http://stsci.edu/schemas/asdf/unit/unit-1.1.0
   title: Physical unit.
   description: |-
     This represents a physical unit, in [VOUnit syntax, Version 1.0](http://www.ivoa.net/documents/VOUnits/index.html).
