@@ -17,7 +17,7 @@ examples:
         !unit/quantity-1.2.0
           value: 3.14159
           unit: km
-
+  -
     - A quantity consisting of a scalar value with datatype and unit
     - asdf-standard-1.6.0
     - |
@@ -25,13 +25,12 @@ examples:
           value: 3.14159
           unit: km
           datatype: float32
-
   -
     - A quantity consisting of a single value in an array
     - asdf-standard-1.6.0
     - |
         !unit/quantity-1.2.0
-          value: !core/ndarray-1.0.0 [2.71828]
+          value: !core/ndarray-1.1.0 [2.71828]
           unit: A
 
   -
@@ -39,7 +38,7 @@ examples:
     - asdf-standard-1.6.0
     - |
         !unit/quantity-1.2.0
-          value: !core/ndarray-1.0.0 [1, 2, 3, 4]
+          value: !core/ndarray-1.1.0 [1, 2, 3, 4]
           unit: s
 
   -
@@ -47,7 +46,7 @@ examples:
     - asdf-standard-1.6.0
     - |
         !unit/quantity-1.2.0
-          value: !core/ndarray-1.0.0
+          value: !core/ndarray-1.1.0
             datatype: float64
             data: [[1, 2, 3],
                    [4, 5, 6]]
@@ -61,14 +60,14 @@ properties:
       A vector of one or more values
     anyOf:
       - type: number
-      - $ref: "../core/ndarray-1.0.0"
+      - $ref: "../core/ndarray-1.1.0"
   unit:
     description: |
       The unit corresponding to the values
-    $ref: unit-1.0.0
+    $ref: unit-1.1.0
   datatype:
     description: |
       The datatype for scalar quantities
-    $ref: "../core/ndarray-1.0.0#definitions/scalar-datatype"
+    $ref: "../core/ndarray-1.1.0#definitions/scalar-datatype"
 required: [value, unit]
 ...

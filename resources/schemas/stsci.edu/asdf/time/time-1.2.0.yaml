@@ -71,7 +71,7 @@ examples:
     - asdf-standard-1.6.0
     - |
         !time/time-1.2.0
-          value: !core/ndarray-1.0.0
+          value: !core/ndarray-1.1.0
             data: [2000, 2001]
             datatype: float64
           format: jyear
@@ -87,13 +87,13 @@ examples:
           location:
             x: !unit/quantity-1.2.0
               value: 6378100
-              unit: !unit/unit-1.0.0 m
+              unit: !unit/unit-1.1.0 m
             y: !unit/quantity-1.2.0
               value: 0
-              unit: !unit/unit-1.0.0 m
+              unit: !unit/unit-1.1.0 m
             z: !unit/quantity-1.2.0
               value: 0
-              unit: !unit/unit-1.0.0 m
+              unit: !unit/unit-1.1.0 m
 
 definitions:
   iso_time:
@@ -219,7 +219,7 @@ anyOf:
         anyOf:
           - $ref: "#/definitions/string_formats"
           - $ref: "#/definitions/array_of_strings"
-          - $ref: "../core/ndarray-1.0.0"
+          - $ref: "../core/ndarray-1.1.0"
           - type: number
 
       format:

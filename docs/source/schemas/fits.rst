@@ -8,4 +8,4 @@ FITS. It can safely be ignored by most ASDF implementations.
 
 .. asdf-autoschemas::
 
-   fits/fits-1.0.0
+   fits/fits-1.1.0
