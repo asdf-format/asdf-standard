@@ -87,13 +87,13 @@ examples:
           location:
             x: !unit/quantity-1.2.0
               value: 6378100
-              unit: !unit/unit-1.1.0 m
+              unit: !unit/unit-1.0.0 m
             y: !unit/quantity-1.2.0
               value: 0
-              unit: !unit/unit-1.1.0 m
+              unit: !unit/unit-1.0.0 m
             z: !unit/quantity-1.2.0
               value: 0
-              unit: !unit/unit-1.1.0 m
+              unit: !unit/unit-1.0.0 m
 
 definitions:
   iso_time:

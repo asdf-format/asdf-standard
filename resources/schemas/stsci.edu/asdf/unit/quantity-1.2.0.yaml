@@ -64,7 +64,7 @@ properties:
   unit:
     description: |
       The unit corresponding to the values
-    $ref: unit-1.1.0
+    $ref: unit-1.0.0
   datatype:
     description: |
       The datatype for scalar quantities

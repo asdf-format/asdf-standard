@@ -8,6 +8,7 @@ The stable ASDF Standard is v1.5.0
 - Add new ``quantity-1.2.0`` schema to support ``datatype`` option. [#351]
 - Bugfix for ``base_format`` in ``time-1.2.0`` schema. [#349]
 - Add new ``ndarray-1.1.0`` schema to fix #345 [#350]
+- Remove ``unit-1.1.0`` erroneously added in #350 [#355]
 
 1.0.3 (2022-08-08)
 ------------------
