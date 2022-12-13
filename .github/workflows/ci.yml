@@ -1,75 +1,47 @@
 name: CI
 
 on:
+  workflow_dispatch:
+  schedule:
+    # Run every Monday at 6am UTC
+    - cron: '0 6 * * 1'
   push:
     branches:
       - master
+      - stable
+      - '*.x'
     tags:
-      - "*"
+      - '*'
   pull_request:
-    branches:
 
 jobs:
-  tox:
-    name: ${{ matrix.name }}
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        include:
-          - name: Python 3.10 Schema validation tests
-            python-version: '3.10'
-            os: ubuntu-latest
-            toxenv: py310
+  core:
+    uses: OpenAstronomy/github-actions-workflows/.github/workflows/tox.yml@v1
+    with:
+      submodules: false
+      envs: |
+        - linux: py38
+        - linux: py39
+        - linux: py310
+        - linux: py311
 
-          - name: Python 3.9 Schema validation tests
-            python-version: 3.9
-            os: ubuntu-latest
-            toxenv: py39
+  test:
+    needs: [core]
+    uses: OpenAstronomy/github-actions-workflows/.github/workflows/tox.yml@v1
+    with:
+      submodules: false
+      # Any env name which does not start with `pyXY` will use this Python version.
+      default_python: '3.9'
+      envs: |
+        - macos: py39
+        - windows: py39
 
-          - name: Python 3.8 Schema validation tests
-            python-version: 3.8
-            os: ubuntu-latest
-            toxenv: py38
-
-          - name: Twine check
-            python-version: 3.9
-            os: ubuntu-latest
-            toxenv: twine
-
-          - name: Code style checks
-            python-version: 3.9
-            os: ubuntu-latest
-            toxenv: codestyle
-
-          - name: macOS
-            python-version: 3.9
-            os: macos-latest
-            toxenv: py39
-
-          - name: Windows
-            python-version: 3.9
-            os: windows-latest
-            toxenv: py39
-
-    steps:
-      - name: Install System Packages
-        if: ${{ contains(matrix.toxenv, 'docs') }}
-        run: |
-          sudo apt-get install graphviz
-      - name: Checkout code
-        uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-      - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v2
-        with:
-          python-version: ${{ matrix.python-version }}
-      - name: Install tox
-        run: |
-          python -m pip install --upgrade pip
-          pip install tox
-      - name: Run tox
-        run: tox -e ${{ matrix.toxenv }}
+  package:
+    needs: [core]
+    uses: OpenAstronomy/github-actions-workflows/.github/workflows/publish_pure_python.yml@v1
+    with:
+      upload_to_pypi: false
+      upload_to_anaconda: false
 
   asdf-dev:
     name: Run asdf-development tests
