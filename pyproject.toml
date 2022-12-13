@@ -106,3 +106,6 @@ force-exclude = '''
 profile = "black"
 filter_files = true
 line_length = 120
+
+[tool.ruff]
+line-length = 120
