@@ -14,7 +14,7 @@ from pkg_resources import get_distribution
 
 # -- Project information -----------------------------------------------------
 try:
-    from sphinx_astropy.conf.v1 import *  # noqa
+    from sphinx_astropy.conf.v1 import *  # noqa: F403, F401
 except ImportError:
     print("ERROR: the documentation requires the sphinx-astropy package to be installed")
     sys.exit(1)
@@ -35,14 +35,14 @@ with open(Path(__file__).parent.parent.parent / "README.md") as readme:
 # The full version, including alpha/beta/rc tags
 release = get_distribution(configuration["name"]).version
 
-intersphinx_mapping["asdf"] = ("https://asdf.readthedocs.io/en/latest/", None)  # noqa
+intersphinx_mapping["asdf"] = ("https://asdf.readthedocs.io/en/latest/", None)  # noqa: F405
 
 # -- General configuration ---------------------------------------------------
 
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
-extensions += ["sphinx.ext.mathjax", "sphinx.ext.ifconfig", "sphinx.ext.graphviz", "sphinx_asdf"]  # noqa
+extensions += ["sphinx.ext.mathjax", "sphinx.ext.ifconfig", "sphinx.ext.graphviz", "sphinx_asdf"]  # noqa: F405
 
 mathjax_path = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
 
