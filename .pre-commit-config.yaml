@@ -3,13 +3,28 @@ repos:
 - repo: https://github.com/pre-commit/pre-commit-hooks
   rev: v4.4.0
   hooks:
-  - id: check-added-large-files
-  - id: check-case-conflict
-  - id: check-yaml
-    args: ["--unsafe"]
-  - id: debug-statements
-  - id: end-of-file-fixer
-  - id: trailing-whitespace
+    - id: check-added-large-files
+    - id: check-ast
+    - id: check-case-conflict
+    - id: check-yaml
+      args: ["--unsafe"]
+    - id: check-toml
+    - id: check-merge-conflict
+    - id: check-symlinks
+    - id: debug-statements
+    - id: detect-private-key
+    - id: end-of-file-fixer
+    - id: trailing-whitespace
+
+- repo: https://github.com/pre-commit/pygrep-hooks
+  rev: v1.9.0
+  hooks:
+    - id: python-check-blanket-noqa
+    - id: python-check-mock-methods
+    - id: rst-directive-colons
+    - id: rst-inline-touching-normal
+    - id: text-unicode-replacement-char
+
 
 - repo: https://github.com/asottile/pyupgrade
   rev: v3.3.1
