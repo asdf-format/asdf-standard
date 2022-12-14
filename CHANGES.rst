@@ -9,6 +9,7 @@ The stable ASDF Standard is v1.5.0
 - Bugfix for ``base_format`` in ``time-1.2.0`` schema. [#349]
 - Add new ``ndarray-1.1.0`` schema to fix #345 [#350]
 - Remove ``unit-1.1.0`` erroneously added in #350 [#355]
+- Refactor file layout [#360]
 
 1.0.3 (2022-08-08)
 ------------------
