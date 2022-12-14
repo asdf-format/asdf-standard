@@ -5,12 +5,13 @@ from urllib.parse import urljoin
 import yaml
 from packaging.version import Version
 
-ROOT_PATH = Path(__file__).parent.parent.parent.parent
+ROOT_PATH = Path(__file__).parent.parent
+REPO_PATH = ROOT_PATH.parent.parent
 
 RESOURCES_PATH = ROOT_PATH / "resources"
 
 SCHEMAS_PATH = RESOURCES_PATH / "schemas" / "stsci.edu" / "asdf"
-DOCS_PATH = ROOT_PATH / "docs" / "source"
+DOCS_PATH = REPO_PATH / "docs" / "source"
 DOCS_SCHEMAS_PATH = DOCS_PATH / "schemas"
 YAML_SCHEMA_PATH = RESOURCES_PATH / "schemas" / "stsci.edu" / "yaml-schema"
 

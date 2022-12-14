@@ -61,14 +61,14 @@ write_to = "src/asdf_standard/_version.py"
 packages = ["asdf_standard", "asdf_standard.resources"]
 
 [tool.setuptools.package-data]
-"asdf_standard.resources" = ["resources/**/*.yaml"]
+"asdf_standard.resources" = ["src/asdf_standard/resources/**/*.yaml"]
 
 [tool.setuptools.package-dir]
 "" = "src"
-"asdf_standard.resources" = "resources"
+"asdf_standard.resources" = "src/asdf_standard/resources"
 
 [tool.pytest.ini_options]
-asdf_schema_root = 'resources/schemas'
+asdf_schema_root = 'src/asdf_standard/resources/schemas'
 asdf_schema_skip_tests = """
     stsci.edu/asdf/asdf-schema-1.0.0.yaml
     stsci.edu/asdf/wcs/celestial_frame-1.0.0.yaml

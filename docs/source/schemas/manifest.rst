@@ -6,7 +6,7 @@ The ASDF tags (described by schemas) available under each ASDF standard version 
 by a single manifest document for that ASDF standard version.
 
 .. asdf-autoschemas::
-   :schema_root: ../../resources/manifests
+   :schema_root: ../../src/asdf_standard/resources/manifests
    :standard_prefix: asdf-format.org/core
 
    core-1.0.0
