@@ -1,6 +1,7 @@
 import collections
 
-from common import is_deprecated
+import tests.common as common
+from asdf_standard.tests.common import is_deprecated
 
 EXCEPTIONS = {
     "tag:stsci.edu:asdf/asdf-schema-1.0.0",
@@ -9,13 +10,18 @@ EXCEPTIONS = {
 }
 
 
-def test_docs_schema_links(
-    latest_schema_ids, legacy_schema_ids, manifest_ids, docs_schema_ids, docs_legacy_schema_ids, docs_manifest_ids
-):
+def test_docs_schema_links():
     """
     Confirm that the latest versions of all non-deprecated schemas
     are represented in the documentation.
     """
+    latest_schema_ids = common.latest_schema_ids()
+    legacy_schema_ids = common.legacy_schema_ids()
+    manifest_ids = common.manifest_ids()
+    docs_schema_ids = common.docs_schema_ids()
+    docs_legacy_schema_ids = common.docs_legacy_schema_ids()
+    docs_manifest_ids = common.docs_manifest_ids()
+
     expected_schema_ids = set()
     for schema_id in latest_schema_ids:
         if not is_deprecated(schema_id):
@@ -64,7 +70,7 @@ def test_docs_schema_links(
         assert False, message
 
     counter = collections.Counter(docs_schema_ids)
-    if max(counter.values()) > 1:
+    if len(counter.values()) > 0 and max(counter.values()) > 1:
         remove_list = "\n".join(sorted(tag for tag, count in counter.items() if count > 1))
         message = "The documentation contains duplicate links to the following schemas: \n" f"{remove_list}"
         assert False, message

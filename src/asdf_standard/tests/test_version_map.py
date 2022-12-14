@@ -17,7 +17,10 @@ VALID_FILENAME_RE = re.compile(r"version_map-[0-9]+\.[0-9]+\.[0-9]+\.yaml")
 
 SORTED_PATHS = sorted(VERSION_MAP_PATHS, key=lambda p: Version(split_id(path_to_id(p))[1]))
 
-LATEST_PATH = SORTED_PATHS[-1]
+if len(SORTED_PATHS) > 0:
+    LATEST_PATH = SORTED_PATHS[-1]
+else:
+    LATEST_PATH = None
 
 
 @pytest.mark.parametrize("path", VERSION_MAP_PATHS)
@@ -47,6 +50,7 @@ def test_version_map(path, schema_tags):
         assert False, message
 
 
+@pytest.mark.skipif(LATEST_PATH is None, reason="No version maps found")
 def test_latest_version_map(latest_schema_tags):
     """
     The current latest version map has some special requirements.
