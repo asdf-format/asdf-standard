@@ -1,19 +1,16 @@
 import pytest
 from common import (
-    DOCS_SCHEMAS_PATH,
-    MANIFEST_ID_PREFIX,
-    MANIFESTS_PATH,
     METASCHEMA_ID,
-    SCHEMA_ID_PREFIX,
     SCHEMAS_PATH,
     VALID_SCHEMA_FILENAME_RE,
     YAML_SCHEMA_PATH,
     assert_yaml_header_and_footer,
+    get_latest_schemas,
+    get_schema_ids,
+    get_tag,
     is_deprecated,
     list_description_ids,
     list_example_ids,
-    list_latest_schema_paths,
-    list_legacy_schema_paths,
     list_refs,
     list_schema_paths,
     load_yaml,
@@ -31,31 +28,13 @@ def schemas():
 
 
 @pytest.fixture(scope="session")
-def manifests():
-    return [load_yaml(p) for p in list_schema_paths(MANIFESTS_PATH)]
-
-
-@pytest.fixture(scope="session")
 def yaml_schemas():
     return [load_yaml(p) for p in list_schema_paths(YAML_SCHEMA_PATH)]
 
 
 @pytest.fixture(scope="session")
 def latest_schemas():
-    return [load_yaml(p) for p in list_latest_schema_paths(SCHEMAS_PATH)]
-
-
-@pytest.fixture(scope="session")
-def legacy_schemas():
-    return [load_yaml(p) for p in list_legacy_schema_paths(SCHEMAS_PATH)]
-
-
-def get_schema_ids(schemas):
-    result = set()
-    for schema in schemas:
-        if "id" in schema:
-            result.add(schema["id"])
-    return result
+    return get_latest_schemas()
 
 
 @pytest.fixture(scope="session")
@@ -64,73 +43,10 @@ def latest_schema_ids(latest_schemas):
 
 
 @pytest.fixture(scope="session")
-def legacy_schema_ids(legacy_schemas):
-    return get_schema_ids(legacy_schemas)
-
-
-@pytest.fixture(scope="session")
-def manifest_ids(manifests):
-    return get_schema_ids(manifests)
-
-
-def add_schemas(path, prefix, result):
-    with open(path) as f:
-        content = f.read()
-
-    lines = content.split("\n")
-    i = 0
-    while i < len(lines):
-        if lines[i].startswith(".. asdf-autoschemas::"):
-            i += 1
-            while i < len(lines) and (lines[i].strip() == "" or lines[i].startswith(" ")):
-                possible_id = lines[i].strip()
-                if len(possible_id) > 0:
-                    result.append(f"{prefix}{possible_id}")
-                i += 1
-        else:
-            i += 1
-
-
-@pytest.fixture(scope="session")
-def docs_schema_ids():
-    result = []
-    for path in DOCS_SCHEMAS_PATH.glob("**/*.rst"):
-        if path != DOCS_SCHEMAS_PATH / "manifest.rst":
-            add_schemas(path, SCHEMA_ID_PREFIX, result)
-    return result
-
-
-@pytest.fixture(scope="session")
-def docs_legacy_schema_ids():
-    result = []
-    for path in DOCS_SCHEMAS_PATH.glob("**/legacy.rst"):
-        add_schemas(path, SCHEMA_ID_PREFIX, result)
-    return result
-
-
-@pytest.fixture(scope="session")
-def docs_manifest_ids():
-    result = []
-    for path in DOCS_SCHEMAS_PATH.glob("**/manifest.rst"):
-        add_schemas(path, MANIFEST_ID_PREFIX, result)
-    return result
-
-
-def _get_tag(schema):
-    if "tag" in schema:
-        return schema["tag"]
-    elif "anyOf" in schema:
-        for elem in schema["anyOf"]:
-            if "tag" in elem:
-                return elem["tag"]
-    return None
-
-
-@pytest.fixture(scope="session")
 def latest_schema_tags(latest_schemas):
     result = set()
     for schema in latest_schemas:
-        tag = _get_tag(schema)
+        tag = get_tag(schema)
         if tag is not None:
             result.add(tag)
     return result
@@ -140,7 +56,7 @@ def latest_schema_tags(latest_schemas):
 def schema_tags(schemas):
     result = set()
     for schema in schemas:
-        tag = _get_tag(schema)
+        tag = get_tag(schema)
         if tag is not None:
             result.add(tag)
     return result
@@ -150,7 +66,7 @@ def schema_tags(schemas):
 def tag_to_schema(schemas):
     result = {}
     for schema in schemas:
-        tag = _get_tag(schema)
+        tag = get_tag(schema)
         if tag is not None:
             if tag not in result:
                 result[tag] = []

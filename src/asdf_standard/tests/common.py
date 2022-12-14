@@ -6,13 +6,10 @@ import yaml
 from packaging.version import Version
 
 ROOT_PATH = Path(__file__).parent.parent
-REPO_PATH = ROOT_PATH.parent.parent
 
 RESOURCES_PATH = ROOT_PATH / "resources"
 
 SCHEMAS_PATH = RESOURCES_PATH / "schemas" / "stsci.edu" / "asdf"
-DOCS_PATH = REPO_PATH / "docs" / "source"
-DOCS_SCHEMAS_PATH = DOCS_PATH / "schemas"
 YAML_SCHEMA_PATH = RESOURCES_PATH / "schemas" / "stsci.edu" / "yaml-schema"
 
 MANIFESTS_PATH = RESOURCES_PATH / "manifests" / "asdf-format.org" / "core"
@@ -32,8 +29,23 @@ YAML_TAG_RE = re.compile(r"![a-z/0-9_-]+-[0-9]+\.[0-9]+\.[0-9]")
 
 DESCRIPTION_REF_RE = re.compile(r"\(ref:(.*?)\)")
 
-SCHEMA_ID_PREFIX = "http://stsci.edu/schemas/asdf/"
-MANIFEST_ID_PREFIX = "asdf://asdf-format.org/core/manifests/"
+
+def get_schema_ids(schemas):
+    result = set()
+    for schema in schemas:
+        if "id" in schema:
+            result.add(schema["id"])
+    return result
+
+
+def get_tag(schema):
+    if "tag" in schema:
+        return schema["tag"]
+    elif "anyOf" in schema:
+        for elem in schema["anyOf"]:
+            if "tag" in elem:
+                return elem["tag"]
+    return None
 
 
 def load_yaml(path):
@@ -84,12 +96,6 @@ def tag_to_id(tag):
     return "http://stsci.edu/schemas/asdf/" + tag.split("tag:stsci.edu:asdf/")[-1]
 
 
-def id_to_path(id):
-    assert id.startswith("http://stsci.edu/schemas/asdf/")
-
-    return SCHEMAS_PATH / f"""{id.split("http://stsci.edu/schemas/asdf/")[-1]}.yaml"""
-
-
 def path_to_id(path):
     return f"http://stsci.edu/schemas/asdf/{_relative_stem(path)}"
 
@@ -114,11 +120,8 @@ def list_latest_schema_paths(path):
     return sorted(p for _, p in latest_by_id_base.values())
 
 
-def list_legacy_schema_paths(path):
-    paths = list_schema_paths(path)
-    latest_paths = list_latest_schema_paths(path)
-
-    return sorted(p for p in paths if p not in latest_paths)
+def get_latest_schemas():
+    return [load_yaml(p) for p in list_latest_schema_paths(SCHEMAS_PATH)]
 
 
 def ref_to_id(schema_id, ref):
