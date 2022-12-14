@@ -6,7 +6,7 @@ import yaml
 
 
 def get_resources():
-    resources_root = Path(__file__).parent.parent / "resources"
+    resources_root = Path(__file__).parent.parent.parent.parent / "resources"
 
     return {str(path.relative_to(resources_root)): path for path in resources_root.glob("**/*.yaml")}
 
@@ -29,7 +29,7 @@ def test_resource(resource):
 
 
 def get_manifests():
-    manifests_root = Path(__file__).parent.parent / "resources" / "manifests" / "asdf-format.org"
+    manifests_root = Path(__file__).parent.parent.parent.parent / "resources" / "manifests" / "asdf-format.org"
 
     return {str(path.relative_to(manifests_root)): path for path in manifests_root.glob("**/*.yaml")}
 

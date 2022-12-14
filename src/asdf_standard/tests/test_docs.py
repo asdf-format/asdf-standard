@@ -64,7 +64,7 @@ def test_docs_schema_links(
         assert False, message
 
     counter = collections.Counter(docs_schema_ids)
-    if max(counter.values()) > 1:
+    if len(counter.values()) > 0 and max(counter.values()) > 1:
         remove_list = "\n".join(sorted(tag for tag, count in counter.items() if count > 1))
         message = "The documentation contains duplicate links to the following schemas: \n" f"{remove_list}"
         assert False, message

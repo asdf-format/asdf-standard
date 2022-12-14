@@ -5,7 +5,7 @@ from urllib.parse import urljoin
 import yaml
 from packaging.version import Version
 
-ROOT_PATH = Path(__file__).parent.parent
+ROOT_PATH = Path(__file__).parent.parent.parent.parent
 
 RESOURCES_PATH = ROOT_PATH / "resources"
 
