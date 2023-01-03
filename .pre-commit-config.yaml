@@ -40,10 +40,10 @@ repos:
         - tomli
 
 - repo: https://github.com/charliermarsh/ruff-pre-commit
-  rev: 'v0.0.194'
+  rev: 'v0.0.207'
   hooks:
     - id: ruff
-      args: ["--fix"]
+      args: ["--fix", "--force-exclude"]
 
 - repo: https://github.com/pycqa/isort
   rev: 5.11.4
