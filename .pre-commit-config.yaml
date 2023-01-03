@@ -43,7 +43,7 @@ repos:
   rev: 'v0.0.207'
   hooks:
     - id: ruff
-      args: ["--fix"]
+      args: ["--fix", "--force-exclude"]
 
 - repo: https://github.com/pycqa/isort
   rev: 5.11.4
