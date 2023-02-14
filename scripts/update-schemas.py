@@ -7,7 +7,6 @@ import sys
 
 
 def get_schemas(pattern):
-
     cmd = ["git", "grep", "--name-only"]
     output = sp.check_output(cmd + [pattern, "--", "schemas"]).decode("utf8")
     names = output.split()
@@ -27,7 +26,6 @@ def get_schemas(pattern):
 
 
 def update_version(string):
-
     groups = re.search(r"((\d)\.(\d)\.(\d))", string).groups()
     bumped = int(groups[2]) + 1
 
@@ -36,7 +34,6 @@ def update_version(string):
 
 
 def create_updated_schema(schema, pattern, new_pattern):
-
     name = os.path.splitext(os.path.basename(schema))[0]
     updated = update_version(name)
     new_schema = re.sub(name, updated, schema)
@@ -50,7 +47,6 @@ def create_updated_schema(schema, pattern, new_pattern):
 
 
 def main():
-
     if len(sys.argv) != 2:
         name = os.path.basename(sys.argv[0])
         sys.stderr.write(f"USAGE: {name} <pattern>\n")
