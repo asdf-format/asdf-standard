@@ -7,7 +7,7 @@ on:
     - cron: '0 6 * * 1'
   push:
     branches:
-      - master
+      - main
       - stable
       - '*.x'
     tags:
