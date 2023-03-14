@@ -117,9 +117,9 @@ def ref_stream(fd):
         ff.write_to(fd)
         # Write 100 rows of data, one row at a time.  ``write_to_stream``
         # expects the raw binary bytes, not an array, so we use
-        # ``tostring()``.
+        # ``tobytes()``.
         for i in range(8):
-            fd.write(np.array([i] * 8, np.float64).tostring())
+            fd.write(np.array([i] * 8, np.float64).tobytes())
 
 
 def ref_exploded(fd):
@@ -144,8 +144,10 @@ def ref_compressed(fd):
 
 def generate(version):
     outdir = os.path.join(os.path.dirname(__file__), '..', version)
+    if not os.path.exists(outdir):
+        os.makedirs(outdir)
 
-    for name, func in globals().items():
+    for name, func in globals().copy().items():
         if not name.startswith("ref_"):
             continue
 
