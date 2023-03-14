@@ -21,7 +21,7 @@ dynamic = ['version']
 [project.optional-dependencies]
 docs = [
     'tomli',
-    'sphinx',
+    'sphinx >= 4.0',
     'sphinx-asdf >= 0.1.3',
     'sphinx-astropy',
     'graphviz',
