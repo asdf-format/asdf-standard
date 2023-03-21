@@ -75,7 +75,7 @@ allOf:
         additionalProperties:
           anyOf:
             - $ref: "#"
-            - $ref: "http://json-schema.org/draft-04/schema#definitions/stringArray"
+            - $ref: "http://json-schema.org/draft-04/schema#/definitions/stringArray"
       allOf:
         $ref: "#/definitions/schemaArray"
       anyOf:
