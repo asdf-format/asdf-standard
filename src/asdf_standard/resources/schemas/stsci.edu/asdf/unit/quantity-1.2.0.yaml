@@ -68,6 +68,6 @@ properties:
   datatype:
     description: |
       The datatype for scalar quantities
-    $ref: "../core/ndarray-1.1.0#definitions/scalar-datatype"
+    $ref: "../core/ndarray-1.1.0#/definitions/scalar-datatype"
 required: [value, unit]
 ...
