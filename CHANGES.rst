@@ -10,6 +10,7 @@ The stable ASDF Standard is v1.5.0
 - Add new ``ndarray-1.1.0`` schema to fix #345 [#350]
 - Remove ``unit-1.1.0`` erroneously added in #350 [#355]
 - Refactor file layout [#360]
+- Fix URI fragment format in metaschema references. [#373]
 
 1.0.3 (2022-08-08)
 ------------------
