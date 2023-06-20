@@ -12,6 +12,7 @@ The stable ASDF Standard is v1.5.0
 - Refactor file layout [#360]
 - Fix URI fragment format in metaschema references. [#373]
 - Fix URI fragment format in quantity-1.2 schema [#374]
+- Fix FlowStyle description formatting in yaml schema [#386]
 
 1.0.3 (2022-08-08)
 ------------------
