@@ -37,14 +37,16 @@ allOf:
           Specifies the default serialization style to use for an
           array or object.  YAML supports multiple styles for
           arrays/sequences and objects/maps, called "block style" and
-          "flow style".  For example::
+          "flow style".  For example:
 
+          ```yaml
             Block style: !!map
               Clark : Evans
               Ingy  : döt Net
               Oren  : Ben-Kiki
 
             Flow style: !!map { Clark: Evans, Ingy: döt Net, Oren: Ben-Kiki }
+          ```
 
           This property gives a hint to the tool outputting the YAML
           which style to use.  If not provided, the library is free to
