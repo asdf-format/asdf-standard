@@ -152,7 +152,7 @@ by, for example, `sphinx-asdf
 References
 ^^^^^^^^^^
 
-A particular ASDF schemas can contain references to other ASDF schemas.
+A particular ASDF schema can contain references to other ASDF schemas.
 References are encoded by using the ``$ref`` attribute anywhere in the tree.
 While `JSON Schema`_ references are purely based on ``id``, ASDF
 implementations must be able to resolve references using both ``id`` and
