@@ -36,6 +36,7 @@ test = [
     'astropy >= 5.0.4',
     'gwcs',
     'packaging>=16.0',
+    'jsonschema<4.18',
 ]
 
 [project.urls]
