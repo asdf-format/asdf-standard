@@ -2,19 +2,18 @@
 name = 'asdf_standard'
 description = 'The ASDF Standard schemas'
 readme = 'README.md'
-requires-python = '>=3.8'
+requires-python = '>=3.9'
 license = { file = 'LICENSE' }
 authors = [{ name = 'The ASDF Developers', email = 'help@stsci.edu' }]
 classifiers = [
     'Programming Language :: Python',
     'Programming Language :: Python :: 3',
-    'Programming Language :: Python :: 3.8',
     'Programming Language :: Python :: 3.9',
     'Programming Language :: Python :: 3.10',
+    'Programming Language :: Python :: 3.11',
     'Development Status :: 5 - Production/Stable',
 ]
 dependencies = [
-    'importlib_resources >= 3; python_version<"3.9"'
 ]
 dynamic = ['version']
 
