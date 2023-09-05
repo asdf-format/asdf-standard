@@ -41,8 +41,6 @@ jobs:
     with:
       upload_to_pypi: false
       upload_to_anaconda: false
-      test_extras: test
-      test_command: pytest --pyargs asdf_standard
 
   asdf-dev:
     name: Run asdf-development tests

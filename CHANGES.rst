@@ -9,7 +9,6 @@ The stable ASDF Standard is v1.5.0
 - Bugfix for ``base_format`` in ``time-1.2.0`` schema. [#349]
 - Add new ``ndarray-1.1.0`` schema to fix #345 [#350]
 - Remove ``unit-1.1.0`` erroneously added in #350 [#355]
-- Refactor file layout [#360]
 - Fix URI fragment format in metaschema references. [#373]
 - Fix URI fragment format in quantity-1.2 schema [#374]
 - Drop support for python 3.8 [#390]

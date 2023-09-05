@@ -238,7 +238,7 @@ epub_exclude_files = ["search.html"]
 # -- sphinx_asdf configuration ---------------------------------------------
 
 # Top-level directory containing ASDF schemas (relative to current directory)
-asdf_schema_path = "../../src/asdf_standard/resources/schemas"
+asdf_schema_path = "../../resources/schemas"
 # This is the prefix common to all schema IDs in this repository
 asdf_schema_standard_prefix = "stsci.edu/asdf"
 # This seems pretty redundant/unnecessary and should probably be fixed in the

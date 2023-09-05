@@ -1,11 +1,14 @@
+from pathlib import Path
+
 import asdf
 import pytest
 import yaml
-from common import RESOURCES_PATH
 
 
 def get_resources():
-    return {str(path.relative_to(RESOURCES_PATH)): path for path in RESOURCES_PATH.glob("**/*.yaml")}
+    resources_root = Path(__file__).parent.parent / "resources"
+
+    return {str(path.relative_to(resources_root)): path for path in resources_root.glob("**/*.yaml")}
 
 
 RESOURCES = get_resources()
@@ -26,7 +29,7 @@ def test_resource(resource):
 
 
 def get_manifests():
-    manifests_root = RESOURCES_PATH / "manifests" / "asdf-format.org"
+    manifests_root = Path(__file__).parent.parent / "resources" / "manifests" / "asdf-format.org"
 
     return {str(path.relative_to(manifests_root)): path for path in manifests_root.glob("**/*.yaml")}
 
