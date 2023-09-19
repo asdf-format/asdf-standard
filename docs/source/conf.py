@@ -6,11 +6,11 @@
 # http://www.sphinx-doc.org/en/master/config
 
 import datetime
+import importlib.metadata
 import sys
 from pathlib import Path
 
 import tomli
-from pkg_resources import get_distribution
 
 # -- Project information -----------------------------------------------------
 try:
@@ -33,7 +33,7 @@ with open(Path(__file__).parent.parent.parent / "README.md") as readme:
     version = readme.readline().split(" ")[-1]
 
 # The full version, including alpha/beta/rc tags
-release = get_distribution(configuration["name"]).version
+release = importlib.metadata.version(configuration["name"])
 
 intersphinx_mapping["asdf"] = ("https://asdf.readthedocs.io/en/latest/", None)  # noqa: F405
 
