@@ -305,7 +305,7 @@ Previous versions of the ASDF Standard were vague as to how nulls should
 be handled, and the Python reference implementation did not distinguish
 between keys with null values and keys that were missing altogether (and
 in fact, removed any keys assigned ``None`` from the tree on read or
-write).  Beginning with ASDF Standard 1.6.0, ASDF implementatations
+write).  Beginning with ASDF Standard 1.6.0, ASDF implementations
 are required to preserve keys even if assigned null values.  This
 requirement does not extend back into previous versions, and users
 of the Python implementation should be advised that the YAML portion
