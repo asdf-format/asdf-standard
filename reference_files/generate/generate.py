@@ -165,7 +165,9 @@ if __name__ == '__main__':
         "generate",
         description="Regenerate the ASDF reference files")
     parser.add_argument(
-        "version", type=str, nargs=1, help="The ASDF version")
+        "version", type=str, help="The ASDF version")
     args = parser.parse_args()
 
-    generate(args.version[0])
+    with asdf.config_context() as cfg:
+        cfg.default_version = args.version
+        generate(args.version)

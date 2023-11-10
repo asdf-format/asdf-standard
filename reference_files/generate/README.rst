@@ -1,6 +1,6 @@
 To regenerate the reference files:
 
-    ./generate.py $version
+    python generate.py $version
 
 where $version is the version of the ASDF standard to generate.
 
