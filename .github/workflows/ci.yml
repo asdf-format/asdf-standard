@@ -15,7 +15,14 @@ on:
   pull_request:
 
 jobs:
+  pre-commit:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - uses: actions/setup-python@v4
+    - uses: pre-commit/action@v3.0.0
   core:
+    needs: [pre-commit]
     uses: OpenAstronomy/github-actions-workflows/.github/workflows/tox.yml@v1
     with:
       submodules: false
@@ -23,6 +30,7 @@ jobs:
         - linux: py39
         - linux: py310
         - linux: py311
+        - linux: py312
 
   test:
     needs: [core]
@@ -43,22 +51,23 @@ jobs:
       upload_to_anaconda: false
 
   asdf-dev:
+    needs: [pre-commit]
     name: Run asdf-development tests
     runs-on: ubuntu-latest
     steps:
       - name: Checkout asdf-standard
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
           path: asdf-standard
       - name: Checkout asdf-dev
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
           repository: asdf-format/asdf
           path: asdf
       - name: Set up Python 3.9
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v4
         with:
           python-version: 3.9
       - name: Install asdf-standard
