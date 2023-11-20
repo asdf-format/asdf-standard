@@ -170,6 +170,9 @@ definitions:
       - `uint8`, `uint16`, `uint32`, `uint64`: Unsigned integer types,
         with the given bit size.
 
+      - `float16 `: Half-precision floating-point type or "binary16",
+        as defined in IEEE 754.
+
       - `float32`: Single-precision floating-point type or "binary32",
         as defined in IEEE 754.
 
@@ -198,7 +201,7 @@ definitions:
     anyOf:
       - type: string
         enum: [int8, uint8, int16, uint16, int32, uint32, int64, uint64,
-               float32, float64, complex64, complex128, bool8]
+               float16, float32, float64, complex64, complex128, bool8]
       - type: array
         items:
           - type: string
