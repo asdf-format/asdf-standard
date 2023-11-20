@@ -155,8 +155,8 @@ def generate(version):
         filename = os.path.join(outdir, name)
         func(filename + ".asdf")
         with asdf.open(filename + ".asdf") as af:
-            af.resolve_and_inline()
-            af.write_to(filename + ".yaml")
+            af.resolve_references()
+            af.write_to(filename + ".yaml", all_array_storage="inline")
 
 
 if __name__ == '__main__':
