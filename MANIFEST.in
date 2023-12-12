@@ -1,0 +1,3 @@
+# Exclude the symlink included to allow
+# importlib.resources to work for editable installs
+exclude src/*/resources
