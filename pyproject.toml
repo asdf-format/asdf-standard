@@ -32,8 +32,6 @@ test = [
     'pytest',
     'pyyaml',
     'asdf >= 2.8.0',
-    'astropy >= 5.0.4',
-    'gwcs',
     'packaging>=16.0',
     'jsonschema<4.18',
 ]
