@@ -22,7 +22,6 @@ docs = [
     'tomli',
     'sphinx >= 4.0',
     'sphinx-asdf >= 0.1.3',
-    'sphinx-astropy',
     'graphviz',
     'matplotlib',
     'docutils',

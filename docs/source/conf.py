@@ -7,17 +7,12 @@
 
 import datetime
 import importlib.metadata
-import sys
 from pathlib import Path
 
 import tomli
+from sphinx_asdf.conf import *  # noqa: F403
 
 # -- Project information -----------------------------------------------------
-try:
-    from sphinx_astropy.conf.v1 import *  # noqa: F403, F401
-except ImportError:
-    print("ERROR: the documentation requires the sphinx-astropy package to be installed")
-    sys.exit(1)
 
 # Get configuration information from `pyproject.toml`
 with open(Path(__file__).parent.parent.parent / "pyproject.toml", "rb") as configuration_file:
