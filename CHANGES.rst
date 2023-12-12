@@ -13,6 +13,8 @@ The stable ASDF Standard is v1.5.0
 - Fix URI fragment format in quantity-1.2 schema [#374]
 - Drop support for python 3.8 [#390]
 - Add ``float16`` to ``ndarray-1.1.0`` [#411]
+- Allow semantic versions for extension manifests. Add manifest
+  for 1.7.0-dev [#415]
 
 1.0.3 (2022-08-08)
 ------------------
