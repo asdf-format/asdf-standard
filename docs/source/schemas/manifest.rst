@@ -16,3 +16,4 @@ by a single manifest document for that ASDF standard version.
    core-1.4.0
    core-1.5.0
    core-1.6.0
+   core-1.7.0-dev
