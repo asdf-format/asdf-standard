@@ -1,5 +1,4 @@
 import sys
-from pathlib import Path
 
 if sys.version_info < (3, 9):
     import importlib_resources
@@ -10,13 +9,7 @@ import asdf_standard
 
 
 def get_resource_mappings():
-    resources_root = importlib_resources.files(asdf_standard) / "resources"
-    if not resources_root.is_dir():
-        # In an editable install, the resources directory will exist off the
-        # repository root:
-        resources_root = Path(__file__).absolute().parent.parent.parent / "resources"
-        if not resources_root.is_dir():
-            raise RuntimeError("Missing resources directory")
+    resources_root = importlib_resources.files("asdf_standard") / "resources"
 
     return [
         asdf_standard.DirectoryResourceMapping(
