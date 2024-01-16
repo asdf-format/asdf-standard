@@ -21,7 +21,7 @@ dynamic = ['version']
 docs = [
     'tomli',
     'sphinx >= 4.0',
-    'sphinx-asdf >= 0.1.3',
+    'sphinx-asdf @ git+https://github.com/braingram/sphinx-asdf.git@no_bootstrap',
     'sphinx-astropy',
     'graphviz',
     'matplotlib',
