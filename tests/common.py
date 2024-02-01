@@ -23,7 +23,17 @@ VALID_FILE_FORMAT_VERSIONS = {"1.0.0"}
 
 VALID_SCHEMA_FILENAME_RE = re.compile(r"[a-z0-9_]+-[0-9]+\.[0-9]+\.[0-9]+\.yaml")
 
-DEPRECATED_PATTERNS = {re.compile(".*/transform/.*"), re.compile(".*/wcs/.*")}
+DEPRECATED_PATTERNS = {
+    re.compile(".*/transform/.*"),
+    re.compile(".*/wcs/.*"),
+    re.compile(".*/unit/.*"),
+    re.compile(".*/table/.*"),
+    re.compile(".*/fits/.*"),
+    re.compile(".*/time/.*"),
+    re.compile(".*/core/column.*"),
+    re.compile(".*/core/table.*"),
+    re.compile(".*/core/subclass_metadata.*"),
+}
 
 METASCHEMA_ID = "http://stsci.edu/schemas/yaml-schema/draft-01"
 
