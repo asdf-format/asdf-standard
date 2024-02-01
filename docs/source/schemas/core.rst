@@ -10,13 +10,10 @@ asdf library.
 
    core/asdf-1.1.0
    core/complex-1.0.0
+   core/extension_metadata-1.0.0
    core/ndarray-1.1.0
-   core/table-1.1.0
-   core/column-1.1.0
    core/constant-1.0.0
    core/software-1.0.0
    core/history_entry-1.0.0
-   core/extension_metadata-1.0.0
    core/integer-1.1.0
    core/externalarray-1.0.0
-   core/subclass_metadata-1.0.0

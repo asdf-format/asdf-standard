@@ -22,4 +22,20 @@ def get_resource_mappings():
             resources_root / "manifests" / "asdf-format.org" / "core",
             "asdf://asdf-format.org/core/manifests/",
         ),
+        asdf_standard.DirectoryResourceMapping(
+            resources_root / "manifests" / "asdf-format.org" / "unit",
+            "asdf://asdf-format.org/unit/manifests/",
+        ),
+        asdf_standard.DirectoryResourceMapping(
+            resources_root / "manifests" / "asdf-format.org" / "table",
+            "asdf://asdf-format.org/table/manifests/",
+        ),
+        asdf_standard.DirectoryResourceMapping(
+            resources_root / "manifests" / "asdf-format.org" / "time",
+            "asdf://asdf-format.org/time/manifests/",
+        ),
+        asdf_standard.DirectoryResourceMapping(
+            resources_root / "manifests" / "asdf-format.org" / "fits",
+            "asdf://asdf-format.org/fits/manifests/",
+        ),
     ]

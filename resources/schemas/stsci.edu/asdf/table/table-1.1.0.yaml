@@ -1,14 +1,14 @@
 %YAML 1.1
 ---
 $schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
-id: "http://stsci.edu/schemas/asdf/core/table-1.1.0"
+id: "http://stsci.edu/schemas/asdf/table/table-1.1.0"
 
 title: >
   A table.
 
 description: |
   A table is represented as a list of columns, where each entry is a
-  [column](ref:core/column-1.1.0)
+  [column](ref:table/column-1.1.0)
   object, containing the data and some additional information.
 
   The data itself may be stored inline as text, or in binary in either
@@ -23,9 +23,9 @@ examples:
     - A table stored in column-major order, with each column in a separate block
     - asdf-standard-1.6.0
     - |
-        !core/table-1.1.0
+        !table/table-1.1.0
           columns:
-          - !core/column-1.1.0
+          - !table/column-1.1.0
             data: !core/ndarray-1.1.0
               source: 0
               datatype: float64
@@ -35,7 +35,7 @@ examples:
             meta: {foo: bar}
             name: a
             unit: !unit/unit-1.0.0 deg
-          - !core/column-1.1.0
+          - !table/column-1.1.0
             data: !core/ndarray-1.1.0
               source: 1
               datatype: float64
@@ -43,7 +43,7 @@ examples:
               shape: [3]
             description: DEC
             name: b
-          - !core/column-1.1.0
+          - !table/column-1.1.0
             data: !core/ndarray-1.1.0
               source: 2
               datatype: [ascii, 1]
@@ -56,9 +56,9 @@ examples:
     - A table stored in row-major order, all stored in the same block
     - asdf-standard-1.6.0
     - |
-        !core/table-1.1.0
+        !table/table-1.1.0
           columns:
-          - !core/column-1.1.0
+          - !table/column-1.1.0
             data: !core/ndarray-1.1.0
               source: 0
               datatype: float64
@@ -69,7 +69,7 @@ examples:
             meta: {foo: bar}
             name: a
             unit: !unit/unit-1.0.0 deg
-          - !core/column-1.1.0
+          - !table/column-1.1.0
             data: !core/ndarray-1.1.0
               source: 0
               datatype: float64
@@ -79,7 +79,7 @@ examples:
               strides: [13]
             description: DEC
             name: b
-          - !core/column-1.1.0
+          - !table/column-1.1.0
             data: !core/ndarray-1.1.0
               source: 0
               datatype: [ascii, 1]

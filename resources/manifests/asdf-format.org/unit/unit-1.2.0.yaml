@@ -1,0 +1,30 @@
+id: asdf://asdf-format.org/unit/manifests/unit-1.2.0
+extension_uri: asdf://asdf-format.org/unit/extensions/unit-1.2.0
+title: Unit extension 1.2.0
+description: Tags for ASDF unit objects.
+asdf_standard_requirement:
+  gte: 1.6.0
+tags:
+- tag_uri: tag:stsci.edu:asdf/unit/defunit-1.0.0
+  schema_uri: http://stsci.edu/schemas/asdf/unit/defunit-1.0.0
+  title: Define a new physical unit.
+  description: |-
+    Defines a new unit.  It can be used to either:
+
+    - Define a new base unit.
+
+    - Create a new unit name that is a equivalent to a given unit.
+
+    The new unit must be defined before any unit tags that use it.
+- tag_uri: tag:stsci.edu:asdf/unit/quantity-1.2.0
+  schema_uri: http://stsci.edu/schemas/asdf/unit/quantity-1.2.0
+  title: Represents a Quantity object from astropy
+  description: |-
+    A Quantity object represents a value that has some unit
+    associated with the number.
+- tag_uri: tag:stsci.edu:asdf/unit/unit-1.0.0
+  schema_uri: http://stsci.edu/schemas/asdf/unit/unit-1.0.0
+  title: Physical unit.
+  description: |-
+    This represents a physical unit, in [VOUnit syntax, Version 1.0](http://www.ivoa.net/documents/VOUnits/index.html).
+    Where units are not explicitly tagged, they are assumed to be in VOUnit syntax.
