@@ -6,7 +6,7 @@ cfg = asdf.get_config()
 resource_manager = cfg.resource_manager
 all_extensions = cfg.extensions
 
-all_standard_versions = [str(v) for v in asdf.versioning.supported_versions]
+all_standard_versions = sorted([str(v) for v in asdf.versioning.supported_versions])
 
 all_schemas = {}
 all_manifests = {}
@@ -153,7 +153,24 @@ for uri in resource_manager:
                     search.append((child, path + (key,)))
     schema_links_by_uri[uri] = links
 
-# TODO check schemas with out-of-date (or missing) '$schema'
+# check tags and schemas in manifests
+# first index all manifests by base, version
+manifests_by_base_by_version = {}
+for manifest_uri in all_manifests:
+    base, version = split_uri_base_and_version(manifest_uri)
+    if base not in manifests_by_base_by_version:
+        manifests_by_base_by_version[base] = {}
+    manifests_by_base_by_version[base][version] = manifest_uri
+
+for base, versions in manifests_by_base_by_version.items():
+    # for the most recent version of each manifest it should only reference the newest tags and schemas
+    version = sorted(versions)[-1]
+    manifest_uri = versions[version]
+    manifest = all_manifests[manifest_uri]
+    for tag_def in manifest["tags"]:
+        tag_uri = tag_def["tag_uri"]
+        schema_uris = tag_def["schema_uri"]
+        # TODO
 
 # check that all refs and schemas point to known schemas
 for uri, links in schema_links_by_uri.items():
@@ -252,6 +269,56 @@ for standard_version in all_standard_versions:
 
     tag_info_by_version[standard_version] = tag_info_by_uri
 
+for previous_version, next_version in zip(all_standard_versions[:-1], all_standard_versions[1:]):
+    assert next_version > previous_version
+    previous_tag_info = tag_info_by_version[previous_version]
+    next_tag_info = tag_info_by_version[next_version]
+
+    # look for added/removed tags between these versions
+    previous_tags_set = set(previous_tag_info.keys())
+    next_tags_set = set(next_tag_info.keys())
+    added_tags = next_tags_set.difference(previous_tags_set)
+    removed_tags = previous_tags_set.difference(next_tags_set)
+    # index added tags by base/version
+    added_tags_by_base_by_version = {}
+    for added_tag in added_tags:
+        added_base, added_version = split_uri_base_and_version(added_tag)
+        if added_base not in added_tags_by_base_by_version:
+            added_tags_by_base_by_version[added_base] = {}
+        added_tags_by_base_by_version[added_base][added_version] = added_tag
+    for removed_tag in removed_tags:
+        # look for an new version in added_tags
+        removed_base, removed_version = split_uri_base_and_version(removed_tag)
+        if removed_base not in added_tags_by_base_by_version:
+            error(
+                msg=f"Support for tag {removed_tag} was removed in version {next_version}",
+                removed_tag=removed_tag,
+                removed_version=next_version,
+            )
+        else:
+            new_versions = added_tags_by_base_by_version[removed_base]
+            # at least one of these versions should be newer
+            for version in new_versions:
+                if version > removed_version:
+                    # print(f"In {next_version}: tag {removed_tag} replaced with newer version {new_versions[version]}")
+                    pass
+
+    # look for added/removed types between these versions
+    previous_types = set(sum((i.get("types", []) for i in previous_tag_info.values()), start=[]))
+    next_types = set(sum((i.get("types", []) for i in next_tag_info.values()), start=[]))
+    removed_types = previous_types.difference(next_types)
+    added_types = next_types.difference(previous_types)
+    for added_type in added_types:
+        # print(f"In {next_version}: support for type {added_type} added")
+        pass
+    for removed_type in removed_types:
+        error(
+            msg=f"Support for {removed_type} was removed in version {next_version}",
+            removed_type=removed_type,
+            removed_version=next_version,
+        )
+
+# check 'tag' links in schemas
 for standard_version, tag_info in tag_info_by_version.items():
     if standard_version != "1.5.0":
         # TODO test against 1.6.0 and older versions?
