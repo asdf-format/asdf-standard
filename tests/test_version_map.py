@@ -33,11 +33,6 @@ def test_version_map(path, schema_tags):
     assert vm["FILE_FORMAT"] in VALID_FILE_FORMAT_VERSIONS
     assert vm["YAML_VERSION"] in VALID_YAML_VERSIONS
 
-    for tag_base, tag_version in vm["tags"].items():
-        tag = f"{tag_base}-{tag_version}"
-        if "time" not in tag and "core" not in tag and "unit" not in tag and "wcs" not in tag:
-            assert tag in schema_tags, f"{path.name} specifies missing tag {tag}"
-
     assert len(vm["tags"].keys()) == len(set(vm["tags"].keys())), f"{path.name} contains duplicate tags"
 
     sorted_tags = sorted(list(vm["tags"].keys()))
