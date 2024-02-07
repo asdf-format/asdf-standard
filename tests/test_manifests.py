@@ -8,7 +8,7 @@ MANIFEST_SCHEMA_ID = "asdf://asdf-format.org/core/schemas/extension_manifest-1.0
 
 
 @pytest.mark.parametrize("path", MANIFEST_PATHS)
-def test_manifest(path, tag_to_schema):
+def test_manifest(path):
     manifest = load_yaml(path)
 
     with asdf.config_context() as config:

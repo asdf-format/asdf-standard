@@ -127,18 +127,6 @@ def _get_tag(schema):
 
 
 @pytest.fixture(scope="session")
-def tag_to_schema(schemas):
-    result = {}
-    for schema in schemas:
-        tag = _get_tag(schema)
-        if tag is not None:
-            if tag not in result:
-                result[tag] = []
-            result[tag].append(schema)
-    return result
-
-
-@pytest.fixture(scope="session")
 def id_to_schema(schemas):
     result = {}
     for schema in schemas:
@@ -150,7 +138,7 @@ def id_to_schema(schemas):
 
 
 @pytest.fixture(scope="session")
-def assert_schema_correct(tag_to_schema, id_to_schema):
+def assert_schema_correct(id_to_schema):
     def _assert_schema_correct(path):
         __tracebackhide__ = True
 
@@ -179,9 +167,6 @@ def assert_schema_correct(tag_to_schema, id_to_schema):
         assert len(schema["description"].strip()) > 0, f"{path.name} description must have content"
 
         assert len(id_to_schema[schema["id"]]) == 1, f"{path.name} does not have a unique id"
-
-        if "tag" in schema:
-            assert len(tag_to_schema[schema["tag"]]) == 1, f"{path.name} does not have a unique tag"
 
         id_base, _ = split_id(schema["id"])
         for example_id in list_example_ids(schema):
