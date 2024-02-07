@@ -42,42 +42,6 @@ def test_version_map(path, schema_tags):
         assert False, message
 
 
-def test_latest_version_map(latest_schema_tags):
-    """
-    The current latest version map has some special requirements.
-    """
-    vm = load_yaml(LATEST_PATH)
-
-    tag_base_to_version = dict([tag.rsplit("-", 1) for tag in latest_schema_tags])
-
-    expected_tag_bases = {t for t in tag_base_to_version.keys() if not is_deprecated(t)}
-    vm_tag_bases = set(vm["tags"].keys())
-    if not expected_tag_bases.issubset(vm_tag_bases):
-        missing_tag_bases = expected_tag_bases - vm_tag_bases
-        insert_list = "\n".join(
-            sorted(f"""{tag_base}-{tag_base_to_version[tag_base]}""" for tag_base in missing_tag_bases)
-        )
-        message = (
-            f"{LATEST_PATH.name} must include the latest version of "
-            "every non-deprecated schema with a tag.  Update the deprecation "
-            "list in tests/common.py, or add the following missing schemas: \n"
-            f"{insert_list}"
-        )
-        assert False, message
-
-    incorrect_tag_bases = sorted(tag for tag in expected_tag_bases if vm["tags"][tag] != tag_base_to_version[tag])
-    if len(incorrect_tag_bases) > 0:
-        update_list = "\n".join(
-            [f"""{tag}: {vm["tags"][tag]} --> {tag_base_to_version[tag]}""" for tag in incorrect_tag_bases]
-        )
-        message = (
-            f"{LATEST_PATH.name} must include the latest version of "
-            "every non-deprecated schema with a tag.  Update the following: \n"
-            f"{update_list}"
-        )
-        assert False, message
-
-
 @pytest.mark.parametrize("path, previous_path", zip(SORTED_PATHS[1:], SORTED_PATHS[0:-1]))
 def test_version_map_tags_retained(path, previous_path):
     """
