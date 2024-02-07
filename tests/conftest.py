@@ -127,16 +127,6 @@ def _get_tag(schema):
 
 
 @pytest.fixture(scope="session")
-def latest_schema_tags(latest_schemas):
-    result = set()
-    for schema in latest_schemas:
-        tag = _get_tag(schema)
-        if tag is not None:
-            result.add(tag)
-    return result
-
-
-@pytest.fixture(scope="session")
 def schema_tags(schemas):
     result = set()
     for schema in schemas:
