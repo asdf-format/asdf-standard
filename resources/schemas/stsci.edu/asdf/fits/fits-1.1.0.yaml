@@ -73,7 +73,6 @@ examples:
               - [EXTNAME, ERR, extension name]
               - [BUNIT, DN, Units of the error array]
 
-tag: "tag:stsci.edu:asdf/fits/fits-1.1.0"
 type: array
 items:
   description: >
