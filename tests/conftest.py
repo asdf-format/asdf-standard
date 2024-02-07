@@ -116,16 +116,6 @@ def docs_manifest_ids():
     return result
 
 
-def _get_tag(schema):
-    if "tag" in schema:
-        return schema["tag"]
-    elif "anyOf" in schema:
-        for elem in schema["anyOf"]:
-            if "tag" in elem:
-                return elem["tag"]
-    return None
-
-
 @pytest.fixture(scope="session")
 def id_to_schema(schemas):
     result = {}
