@@ -21,7 +21,7 @@ LATEST_PATH = SORTED_PATHS[-1]
 
 
 @pytest.mark.parametrize("path", VERSION_MAP_PATHS)
-def test_version_map(path, schema_tags):
+def test_version_map(path):
     assert VALID_FILENAME_RE.match(path.name) is not None, f"{path.name} is an invalid version map filename"
 
     assert_yaml_header_and_footer(path)
