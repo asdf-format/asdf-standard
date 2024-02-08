@@ -1,4 +1,5 @@
 import os
+import re
 
 import asdf
 
@@ -24,11 +25,13 @@ def error(**kwargs):
 
 
 def split_uri_base_and_version(uri):
-    parts = asdf.util._patched_urllib_parse.urlparse(uri)
-    basename = os.path.basename(parts.path)
-    if "-" in basename:
-        version = basename.split("-", maxsplit=1)[1]
-        base = uri.rstrip(f"-{version}")
+    # parts = asdf.util._patched_urllib_parse.urlparse(uri)
+    # basename = os.path.basename(parts.path)
+    m = re.match(r"^(?P<base>.*)-(?P<version>([0-9]+\.?){1,3}(-.*)?)$", uri)
+    if m:
+        version = m["version"]
+        base = m["base"]
+        assert "-".join((base, version)) == uri
     else:
         version = ""
         base = uri
