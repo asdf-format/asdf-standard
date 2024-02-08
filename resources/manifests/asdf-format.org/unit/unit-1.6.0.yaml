@@ -1,6 +1,6 @@
-id: asdf://asdf-format.org/unit/manifests/unit-1.2.0
-extension_uri: asdf://asdf-format.org/unit/extensions/unit-1.2.0
-title: Unit extension 1.2.0
+id: asdf://asdf-format.org/unit/manifests/unit-1.6.0
+extension_uri: asdf://asdf-format.org/unit/extensions/unit-1.6.0
+title: Unit extension 1.6.0
 description: Tags for ASDF unit objects.
 asdf_standard_requirement:
   gte: 1.6.0
