@@ -16,3 +16,11 @@ by a single manifest document for that ASDF standard version.
    core-1.4.0
    core-1.5.0
    core-1.6.0
+
+The non-core (astronomy) tags are described separately:
+
+.. asdf-autoschemas::
+   :schema_root: ../../resources/manifests
+   :standard_prefix: asdf-format.org/astronomy
+
+   astronomy-1.0.0

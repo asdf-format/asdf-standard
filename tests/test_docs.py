@@ -1,17 +1,17 @@
 import collections
 
-import pytest
 from common import is_deprecated
 
 EXCEPTIONS = {
     "tag:stsci.edu:asdf/asdf-schema-1.0.0",
     "asdf://asdf-format.org/core/manifests/:schema_root: ../../resources/manifests",
     "asdf://asdf-format.org/core/manifests/:standard_prefix: asdf-format.org/core",
-    "tag:stsci.edu:asdf/asdf-schema-1.0.0",
+    "http://stsci.edu/schemas/asdf/core/column-1.0.0",
+    "http://stsci.edu/schemas/asdf/core/table-1.0.0",
+    "http://stsci.edu/schemas/asdf/core/subclass_metadata-1.0.0",
 }
 
 
-@pytest.mark.skip
 def test_docs_schema_links(
     latest_schema_ids, legacy_schema_ids, manifest_ids, docs_schema_ids, docs_legacy_schema_ids, docs_manifest_ids
 ):
