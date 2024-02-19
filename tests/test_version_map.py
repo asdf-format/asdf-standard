@@ -42,7 +42,6 @@ def test_version_map(path):
         assert False, message
 
 
-@pytest.mark.skip
 @pytest.mark.parametrize("path, previous_path", zip(SORTED_PATHS[1:], SORTED_PATHS[0:-1]))
 def test_version_map_tags_retained(path, previous_path):
     """

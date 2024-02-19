@@ -29,6 +29,10 @@ DEPRECATED_PATTERNS = {
     re.compile(".*/core/column.*"),
     re.compile(".*/core/table.*"),
     re.compile(".*/core/subclass_metadata.*"),
+    re.compile(".*/fits/.*"),
+    re.compile(".*/table/.*"),
+    re.compile(".*/unit/.*"),
+    re.compile(".*/time/.*"),
 }
 
 METASCHEMA_ID = "http://stsci.edu/schemas/yaml-schema/draft-01"
