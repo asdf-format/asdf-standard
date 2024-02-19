@@ -9,6 +9,13 @@ EXCEPTIONS = {
     "http://stsci.edu/schemas/asdf/core/column-1.0.0",
     "http://stsci.edu/schemas/asdf/core/table-1.0.0",
     "http://stsci.edu/schemas/asdf/core/subclass_metadata-1.0.0",
+    "http://stsci.edu/schemas/asdf/fits/fits-1.1.0",
+    "http://stsci.edu/schemas/asdf/table/column-1.1.0",
+    "http://stsci.edu/schemas/asdf/table/table-1.1.0",
+    "http://stsci.edu/schemas/asdf/time/time-1.2.0",
+    "http://stsci.edu/schemas/asdf/unit/defunit-1.0.0",
+    "http://stsci.edu/schemas/asdf/unit/quantity-1.2.0",
+    "http://stsci.edu/schemas/asdf/unit/unit-1.0.0",
 }
 
 
