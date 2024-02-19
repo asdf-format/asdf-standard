@@ -14,6 +14,7 @@ The stable ASDF Standard is v1.5.0
 - Drop support for python 3.8 [#390]
 - Add ``float16`` to ``ndarray-1.1.0`` [#411]
 - Remove unneeded ``tag`` keyword from ``fits`` schema [#421]
+- Move non-core tags to ``astronomy`` manifest [#422]
 
 1.0.3 (2022-08-08)
 ------------------

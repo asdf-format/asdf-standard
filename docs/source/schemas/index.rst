@@ -17,10 +17,7 @@ must support the "core" module, but the other modules are optional.
    :maxdepth: 2
 
    core.rst
-   fits.rst
-   unit.rst
-   time.rst
-   table.rst
+   astronomy.rst
    legacy.rst
 
 The ASDF Standard also defines two meta-schemas that are used for validating
@@ -34,19 +31,7 @@ custom schemas (see `extending-asdf`).
 
 .. asdf-autoschemas::
 
-   asdf-schema-1.0.0
-
-The following graph shows the dependencies between modules:
-
-.. digraph:: modules
-
-   "fits" -> "core"
-   "unit" -> "core"
-   "time" -> "core"
-   "table" -> "core"
-   "time" -> "unit"
-   "table" -> "unit"
-   "fits" -> "table"
+   asdf-schema-1.1.0
 
 .. _manifest:
 

@@ -19,19 +19,16 @@ of ASDF files serves the following purposes:
 
 All ASDF implementations must implement the types defined by the `core schemas
 <core-schema>` and validate against them when reading files. [#]_ The ASDF
-Standard also defines two other categories of schemas, which are optional
-for ASDF implementations:
+Standard also defines other schemas, which are optional for ASDF implementations
+and maintained as part of the standard (mainly for historical reasons):
 
-* :ref:`unit <unit-schema>`
-* :ref:`time <time-schema>`
-
-.. Fits is deliberately omitted from this list.
+* :ref:`astronomy <astronomy-schema>`
 
 The ASDF Standard also defines two metaschemas which are used to validate the
 ASDF schemas themselves:
 
 * :ref:`yaml-schema`
-* :ref:`ASDF Schema <asdf-schema-1.0.0>`
+* :ref:`ASDF Schema <asdf-schema-1.1.0>`
 
 More information on the schemas defined by ASDF can be found in :ref:`schema`.
 
@@ -63,7 +60,7 @@ so will have the following top-level attribute::
 
    $schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
 
-Some ASDF schemas use the :ref:`ASDF metaschema <asdf-schema-1.0.0>` instead
+Some ASDF schemas use the :ref:`ASDF metaschema <asdf-schema-1.1.0>` instead
 (e.g. `ndarray <core/ndarray-1.0.0>`).  It is also possible to create custom
 metaschemas, although these should always inherit from either YAML Schema or
 the ASDF metaschema. [#]_
