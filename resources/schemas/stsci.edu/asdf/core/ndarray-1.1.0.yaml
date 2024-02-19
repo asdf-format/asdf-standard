@@ -170,7 +170,7 @@ definitions:
       - `uint8`, `uint16`, `uint32`, `uint64`: Unsigned integer types,
         with the given bit size.
 
-      - `float16 `: Half-precision floating-point type or "binary16",
+      - `float16`: Half-precision floating-point type or "binary16",
         as defined in IEEE 754.
 
       - `float32`: Single-precision floating-point type or "binary32",
