@@ -1,6 +1,7 @@
+import asdf
 import pytest
+from asdf.exceptions import ValidationError
 from common import SCHEMAS_PATH, assert_yaml_header_and_footer, load_yaml
-from jsonschema import ValidationError
 
 
 @pytest.mark.parametrize("path", SCHEMAS_PATH.glob("asdf-schema-*.yaml"))
@@ -12,12 +13,12 @@ def test_asdf_schema(path):
 
 
 @pytest.mark.parametrize("path", SCHEMAS_PATH.glob("asdf-schema-*.yaml"))
-def test_nested_object_validation(path, create_validator):
+def test_nested_object_validation(path):
     """
     Test that the validations are applied to nested objects.
     """
     metaschema = load_yaml(path)
-    validator = create_validator(metaschema)
+    validator = asdf.schema.get_validator(schema=metaschema)
 
     schema = {"$schema": metaschema["id"], "type": "object", "properties": {"foo": {"datatype": "float32"}}}
     # No error here
