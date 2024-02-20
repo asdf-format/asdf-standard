@@ -30,9 +30,8 @@ docs = [
 test = [
     'pytest',
     'pyyaml',
-    'asdf >= 2.8.0',
+    'asdf >= 3.0.0',
     'packaging>=16.0',
-    'jsonschema<4.18',
 ]
 
 [project.urls]
