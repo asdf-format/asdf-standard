@@ -32,10 +32,6 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - package_name: astropy
-            repository: astropy/astropy
-            install_command: pip install -e .[test]
-            test_command: pytest
           - package_name: gwcs
             repository: spacetelescope/gwcs
             install_command: pip install -e .[test]
