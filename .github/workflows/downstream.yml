@@ -54,7 +54,7 @@ jobs:
             test_command: pytest
           - package_name: weldx
             repository: BAMWelDX/weldx
-            install_command: pip install -e .[test]
+            install_command: pip install -e .[test,media]
             test_command: pytest weldx/tests/asdf_tests weldx/schemas --asdf-tests
           - package_name: sunpy
             repository: sunpy/sunpy
