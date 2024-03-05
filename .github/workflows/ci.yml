@@ -38,7 +38,7 @@ jobs:
     with:
       submodules: false
       # Any env name which does not start with `pyXY` will use this Python version.
-      default_python: '3.9'
+      default_python: '3.11'
       envs: |
         - macos: py39
         - windows: py39
@@ -66,10 +66,10 @@ jobs:
           fetch-depth: 0
           repository: asdf-format/asdf
           path: asdf
-      - name: Set up Python 3.9
+      - name: Set up Python 3.11
         uses: actions/setup-python@v5
         with:
-          python-version: 3.9
+          python-version: 3.11
       - name: Install asdf-standard
         run: cd asdf-standard && pip install .
       - name: Install asdf
