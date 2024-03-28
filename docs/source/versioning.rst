@@ -8,7 +8,7 @@ possible.  This involves being able to add features as needed while
 still allowing older libraries that may not understand those new
 features to reasonably make sense of the rest of the file.
 
-The ASDF standard includes three categories of versions, all of which
+The ASDF standard includes four categories of versions, all of which
 may advance independently of one another.
 
 - **Standard version**: The version of the standard as a whole.  This
@@ -27,9 +27,26 @@ may advance independently of one another.
   allowing data written to an older version of the schema to be
   validated correctly.
 
-  Schemas provided by third parties (i.e. not in the ASDF
-  specification itself) are also strongly encouraged to be versioned
-  as well.
+- **Package versions**: Schemas might be provided via a package
+  distribution system (such as pypi in Python). The version of a
+  package that provides schemas might not match the versions of the
+  schemas in the package.
+
+.. note::
+
+   An example of the varied versions one might encounter can be
+   seen when examining the ``asdf-standard`` Python package which
+   provides schemas describing the ASDF standard for python. At the
+   time of writing this note, the ``asdf-standard`` Python package is
+   at version 1.1.1 and provides schemas describing ASDF standards
+   versions 1.0.0 through 1.6.0 all for file format version 1.0.0.
+   The schemas provided have various versions including ndarray-1.0.0
+   and ndarray-1.1.0. These many versions are crucial for ASDF
+   to retain backwards compatibility with older files.
+
+Schemas provided by third parties (i.e. not in the ASDF
+specification itself) are also strongly encouraged to be versioned
+as well.
 
 Version numbers all follow the same convention according to the
 `Semantic Versioning 2.0.0 <http://semver.org/spec/v2.0.0.html>`__
