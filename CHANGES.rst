@@ -2,6 +2,7 @@
 ------------------
 
 - Update reference files [#409]
+- Remove statement discouraging use of YAML anchors and aliases [#443]
 
 1.1.1 (2024-03-06)
 ------------------
