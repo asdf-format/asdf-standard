@@ -213,10 +213,7 @@ allowed.
 .. note::
     The YAML 1.1 standard itself also provides a method for internal
     references called "anchors" and "aliases".  It does not, however,
-    support external references.  While ASDF does not explicitly
-    disallow YAML anchors and aliases, since it explicitly supports
-    all of YAML 1.1, their use is discouraged in favor of the more
-    flexible JSON Pointer/JSON Reference standard described above.
+    support external references.
 
 .. _numeric-literals:
 
