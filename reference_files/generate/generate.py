@@ -9,6 +9,47 @@ except ImportError:
 import numpy as np
 
 
+def ref_scalars(fd):
+    tree = {
+        'int': 42,
+        'float': 3.14,
+        'string': 'foo',
+    }
+    asdf.AsdfFile(tree).write_to(fd)
+
+
+def ref_anchor(fd):
+    nestee = {"abc": 123}
+    tree = {
+        "a": nestee,
+        "b": nestee,
+    }
+    asdf.AsdfFile(tree).write_to(fd)
+
+
+def ref_endian(fd):
+    tree = {
+        'big': np.arange(42, dtype=">i4"),
+        'little': np.arange(42, dtype="<i4"),
+    }
+
+    asdf.AsdfFile(tree).write_to(fd)
+
+
+def ref_structured(fd):
+    tree = {
+        'structured': np.array(
+            [
+                (1, 'a', 3.3),
+                (2, 'b', 6.6),
+            ], dtype=[
+                ('a', np.uint8),
+                ('b', 'S3'),
+                ('c', np.float32),
+            ]),
+    }
+    asdf.AsdfFile(tree).write_to(fd)
+
 def ref_basic(fd):
     tree = {
         'data': np.arange(8)
