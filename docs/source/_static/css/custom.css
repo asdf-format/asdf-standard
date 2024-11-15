@@ -1,0 +1,200 @@
+div.admonition {
+    transition: width 0.5s;
+    -webkit-transition: width 0.5s;
+    overflow: hidden;
+}
+
+div.admonition:active {
+    width: 150%
+}
+
+div.note:active {
+    width: 100%
+}
+
+div.highlight-yaml {
+    transition: width 0.5s;
+    -webkit-transition: width 0.5s;
+    overflow: hidden;
+}
+
+div.highlight-yaml:active {
+    width: 150%
+}
+
+div.highlight-default {
+    transition: width 0.5s;
+    -webkit-transition: width 0.5s;
+    overflow: hidden;
+}
+
+div.highlight-default:active {
+    width: 150%
+}
+
+div.highlight-python {
+    transition: width 0.5s;
+    -webkit-transition: width 0.5s;
+    overflow: hidden;
+}
+
+div.highlight-python:active {
+    width: 150%
+}
+
+/* GLOBAL STYLES
+-------------------------------------------------- */
+/* Padding below the footer and lighter body text */
+
+body {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+    color: #5a5a5a;
+  }
+  
+  a {
+    color: #333333;
+  }
+  
+  a:hover {
+    color: #00A87B;
+  }
+
+/* NAV
+ * ----------------------------------------*/
+
+ .navbar {
+    background-color: rgb(245, 245, 245);
+  }
+  
+  .navbar li {
+    transition: 0.3s background-color;
+    text-align: center;
+    background-color: transparent;
+    padding: 0rem 1rem;
+    text-decoration: none;
+    border-radius: 0.3rem;
+  }
+  
+  .navbar li:hover {
+    color: #333333;
+    background-color: #00A87B;
+  }
+  
+  .navbar li .nav-link {
+    color: #333333;
+  }
+  
+  .navbar li:hover .nav-link {
+    color: #333333;
+  }
+  
+  .dropdown-menu {
+    background-color: rgb(250, 250, 250);
+  }
+  
+  .dropdown-item {
+    color: #333333;
+  }
+  
+  .dropdown-item:hover {
+    background-color: #00A87B;
+  }
+
+/* Hero element
+-------------------------------------------------- */
+
+.splash {
+    width: 99vw;
+    height: 99vh;
+    margin: 0;
+    padding: 0;
+    /* background-color: #fff; */
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    font-family: "Open Sans", sans-serif;
+    font-weight: 300;
+  }
+  
+  .splash-container {
+    z-index: 2;
+  }
+  
+  .splash-image {
+    max-width: 70%;
+    min-width: 25em;
+  }
+  
+  .m-intro {
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    margin: 0 auto;
+    overflow: hidden;
+    position: relative;
+  }
+  
+  .m-intro:before,
+  .m-intro:after {
+    display: block;
+    position: absolute;
+    content: "";
+    width: 2560px;
+    height: 2560px;
+    position: absolute;
+    /* margin-top: -1280px;
+    margin-left: -1280px; */
+    transform-origin: center;
+    /* background-position: center; */
+    background-position: bottom;
+    background-repeat: no-repeat;
+    top: 50%;
+    left: 50%;
+  }
+  
+  /* .m-intro:before {
+    background-size: 100% auto;
+    -webkit-animation: rotate 30s infinite linear;
+    -moz-animation: rotate 30s infinite linear;
+    -o-animation: rotate 30s infinite linear;
+    animation: rotate 30s infinite linear;
+  }
+  
+  .m-intro:after {
+    background-size: 100% auto;
+    -webkit-animation: rotate 80s infinite linear;
+    -moz-animation: rotate 80s infinite linear;
+    -o-animation: rotate 80s infinite linear;
+    animation: rotate 80s infinite linear;
+  } */
+  
+  /* Responsive layout for phones */
+  @media (max-width: 767px) {
+    .m-intro {
+      min-width: auto;
+    }
+  }
+  
+  /* Buttons
+-------------------------------------------------- */
+
+.outline-asdf {
+    color: #31373e;
+    background-color: transparent;
+    border-color: #11c192;
+  }
+  
+  .filled-asdf {
+    color: #fff;
+    background-color: #00A87B;
+    border-color: #11c192;
+  }
+  
+  .filled-asdf:hover {
+    color: #fff;
+    background-color: #f14d2d;
+    border-color: #11c192;
+  }

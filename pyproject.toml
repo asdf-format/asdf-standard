@@ -25,7 +25,7 @@ docs = [
     'graphviz',
     'matplotlib',
     'docutils',
-    'sphinx-rtd-theme > 1.2.0',
+    'furo',
 ]
 test = [
     'pytest',
