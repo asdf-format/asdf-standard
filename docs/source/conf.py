@@ -21,7 +21,8 @@ configuration = conf["project"]
 
 project = configuration["name"]
 author = f"{configuration['authors'][0]['name']} <{configuration['authors'][0]['email']}>"
-copyright = f"{datetime.datetime.now().year}, {configuration['authors'][0]}"
+# copyright = f"{datetime.datetime.now().year}, {configuration['authors'][0]}"
+copyright = f"{datetime.datetime.now().year}, {author}"
 
 # The short X.Y version
 with open(Path(__file__).parent.parent.parent / "README.md") as readme:
@@ -83,7 +84,7 @@ source_encoding = "utf-8"
 
 # -- Options for HTML output -------------------------------------------------
 
-html_title = project
+# html_title = project
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #
@@ -95,9 +96,12 @@ html_theme = "furo"
 # further.  For a list of options available for each theme, see the
 # documentation.
 #
-html_theme_options = {
-    "sidebar_hide_name": True,
-}
+# html_theme_options = {
+#     "sidebar_hide_name": True,
+# }
+
+# Override default setting from sphinx_asdf (incompatible with furo)
+html_sidebars = {}
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
@@ -138,7 +142,7 @@ html_show_sphinx = True
 # If true, "(C) Copyright ..." is shown in the HTML footer. Default is True.
 html_show_copyright = True
 
-html_context = {"bootswatch_css_custom": ["_static/custom.css"]}
+# html_context = {"bootswatch_css_custom": ["_static/custom.css"]}
 
 
 # -- Options for HTMLHelp output ---------------------------------------------
@@ -195,7 +199,7 @@ latex_documents = [
 
 # The name of an image file (relative to this directory) to place at the top of
 # the title page.
-latex_logo = "_static/logo.pdf"
+latex_logo = "_static/images/logo.png"
 
 # For "manual" documents, if this is true, then toplevel headings are parts,
 # not chapters.
@@ -257,5 +261,5 @@ asdf_schema_reference_mappings = [
 ]
 
 
-# def setup(app):
-#     app.add_css_file("custom.css")
+def setup(app):
+    app.add_css_file("custom.css")

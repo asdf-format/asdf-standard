@@ -1,4 +1,4 @@
-div.admonition {
+/* div.admonition {
     transition: width 0.5s;
     -webkit-transition: width 0.5s;
     overflow: hidden;
@@ -40,7 +40,7 @@ div.highlight-python {
 
 div.highlight-python:active {
     width: 150%
-}
+} */
 
 /* GLOBAL STYLES
 -------------------------------------------------- */
@@ -144,12 +144,10 @@ body {
     content: "";
     width: 2560px;
     height: 2560px;
-    position: absolute;
-    /* margin-top: -1280px;
-    margin-left: -1280px; */
+    margin-top: -1280px;
+    margin-left: -1280px;
     transform-origin: center;
-    /* background-position: center; */
-    background-position: bottom;
+    background-position: center;
     background-repeat: no-repeat;
     top: 50%;
     left: 50%;
