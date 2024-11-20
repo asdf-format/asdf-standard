@@ -17,7 +17,16 @@
 
     <style>
         .m-intro:before {
-            background-image: url("{{pathto('_static/images/asdf-hero.svg', 1)}}");
+            background-image: url("{{pathto('_static/images/stars.svg', 1)}}");
+            z-index: 1;
+        }
+        .splash-sky {
+            background-image: url(" {{ pathto('_static/images/night-sky.svg', 1) }}");
+            z-index: 1;
+        }
+        .splash-mountain {
+            background-image: url(" {{ pathto('_static/images/mountain-foreground.svg', 1) }}");
+            z-index: 2;
         }
     </style>
 
@@ -41,10 +50,10 @@
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ pathto('intro') }}">Overview</a>
+                        <a class="nav-link" href="{{ pathto('standard/intro') }}">Overview</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ pathto('index') }}">Docs</a>
+                        <a class="nav-link" href="{{ pathto('standard/index') }}">Docs</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink3" data-toggle="dropdown"
@@ -76,19 +85,21 @@
 
     <main role="main">
         <section class="splash text-center">
-            <div class="m-intro">
-                <div class="splash-container" style="z-index: 2;">
-                    <img class="splash-image" src=" {{ pathto('_static/images/asdf-logo-black.svg', 1) }} " alt="ASDF Logo">
-                    <div class="container">
-                        <h1 class="lead"><b>Advanced Scientific Data Format</b></h1>
+            <div class="splash splash-sky">
+                <div class="m-intro">
+                    <div class="splash splash-mountain">
+                        <div class="splash-container">
+                            <div class="container">
+                                <img class="splash-image" src=" {{ pathto('_static/images/asdf-logo.svg', 1) }} " alt="ASDF Logo">
+                                <h1 style="color:black;"><b>Advanced Scientific Data Format</b></h1>
+                            </div>
+                            <h4>The highly extensible and human-readable tree-based data structure for text <em>and</em> binary data</h4>
+                            <p>
+                                <a href=" {{ pathto('standard/index') }} " class="btn btn-primary filled-asdf btn-lg">Overview</a>
+                                <a href=" {{ pathto('schemas/index') }} " class="btn btn-secondary outline-asdf btn-lg">Schemas</a>
+                            </p>
+                        </div>
                     </div>
-                    <p class="lead">
-                        The highly extensible and human-readable tree-based data structure for <em>both</em> text and binary data
-                    </p>
-                    <p>
-                        <a href=" {{ pathto('intro') }} " class="btn btn-primary filled-asdf btn-lg">Overview</a>
-                        <a href=" {{ pathto('index') }} " class="btn btn-secondary outline-asdf btn-lg">Docs</a>
-                    </p>
                 </div>
             </div>
         </section>
@@ -97,11 +108,6 @@
             <p class="float-right"><a href="#">Back to top</a></p>
             <p> <a href="https://github.com/asdf-format/asdf-standard">GitHub Page</a> &middot; 
                 <a href="https://github.com/asdf-format/asdf-standard/blob/main/LICENSE">License</a>
-                <a href="https://github.com/spacetelescope/asdf-standard"
-                class="visible-desktop"><img
-               style="position: absolute; top: 40px; right: 0; border: 0;"
-               src="https://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png"
-               alt="Fork me on GitHub"></a>
             </p>
 
         </footer>

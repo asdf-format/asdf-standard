@@ -1,6 +1,7 @@
+.. _manifest:
 
 ASDF Standard Manifests
------------------------
+=======================
 
 The ASDF tags (described by schemas) available under each ASDF standard version are all described
 by a single manifest document for that ASDF standard version.

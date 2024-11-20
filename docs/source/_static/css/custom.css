@@ -49,7 +49,7 @@ div.highlight-python:active {
 body {
     padding-top: 3rem;
     padding-bottom: 3rem;
-    color: #5a5a5a;
+    color: #000000;
   }
   
   a {
@@ -105,8 +105,8 @@ body {
 -------------------------------------------------- */
 
 .splash {
-    width: 99vw;
-    height: 99vh;
+    width: 100vw;
+    height: 100vh;
     margin: 0;
     padding: 0;
     /* background-color: #fff; */
@@ -115,17 +115,40 @@ body {
     background-position: center;
     font-family: "Open Sans", sans-serif;
     font-weight: 300;
+    color: black;
   }
   
-  .splash-container {
+  .splash-mountain {
     z-index: 2;
+    background-position: center;
+    width: 100% auto;
+    top: 50%;
   }
+  /* mountains */
+  /* .hero-image {
+    z-index: 2;
+    display: flex;
+    margin: 0 auto;
+    overflow: hidden;
+    position: relative;
+    background-repeat: no-repeat;
+    background-size: cover;
+  } */
+
+  .splash-container {
+    z-index: 3;
+  }
+
+
   
+    
   .splash-image {
     max-width: 70%;
     min-width: 25em;
+    z-index: 3;
   }
-  
+
+
   .m-intro {
     text-align: center;
     display: flex;
@@ -135,6 +158,8 @@ body {
     margin: 0 auto;
     overflow: hidden;
     position: relative;
+    background-repeat: repeat-x;
+    z-index:1;
   }
   
   .m-intro:before,
@@ -147,13 +172,13 @@ body {
     margin-top: -1280px;
     margin-left: -1280px;
     transform-origin: center;
-    background-position: center;
-    background-repeat: no-repeat;
+    background-position: top;
+    background-repeat: repeat-x;
     top: 50%;
     left: 50%;
   }
   
-  /* .m-intro:before {
+  .m-intro:before {
     background-size: 100% auto;
     -webkit-animation: rotate 30s infinite linear;
     -moz-animation: rotate 30s infinite linear;
@@ -167,7 +192,7 @@ body {
     -moz-animation: rotate 80s infinite linear;
     -o-animation: rotate 80s infinite linear;
     animation: rotate 80s infinite linear;
-  } */
+  }
   
   /* Responsive layout for phones */
   @media (max-width: 767px) {
