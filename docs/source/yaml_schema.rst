@@ -1,4 +1,5 @@
-.. _yaml-schema:
+.. _yaml_schema:
+
 
 YAML Schema
 ===========
@@ -12,7 +13,7 @@ available at `json-schema.org <http://json-schema.org>`__.  A working
 understanding of JSON Schema is assumed for this section, which only describes
 what makes YAML Schema different from JSON Schema.
 
-Writing a new schema is described in :ref:`extending-asdf`.
+Writing a new schema is described in :ref:`designing-new-schema`.
 
 .. note::
 
@@ -22,8 +23,11 @@ Writing a new schema is described in :ref:`extending-asdf`.
    become mandatory in a future version of the YAML Standard. The ``tag``
    keyword may also eventually become mandatory, although the motivation for
    this is somewhat weaker.
+   
+
 
 .. _yaml-schema-draft-01:
+
 
 .. asdf-schema::
    :schema_root: ../../resources/schemas/stsci.edu

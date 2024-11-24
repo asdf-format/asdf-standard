@@ -1,3 +1,5 @@
+.. _file_layout:
+
 Low-level file layout
 =====================
 

@@ -8,6 +8,7 @@ asdf library.
 
 .. toctree::
    :maxdepth: 1
+   :hidden:
    
 .. asdf-autoschemas::
 
