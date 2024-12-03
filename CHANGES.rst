@@ -3,7 +3,7 @@
 
 - Update reference files [#409]
 - Remove statement discouraging use of YAML anchors and aliases [#443]
-- Documentation config changes in preparation for ASDF website [#587]
+- Documentation config changes in preparation for ASDF website [#446]
 
 1.1.1 (2024-03-06)
 ------------------
