@@ -9,6 +9,6 @@ custom schemas (see `extending-asdf`).
 
 .. toctree::
    :maxdepth: 1
-   
+
    ASDF Schema <asdf.rst>
    YAML Schema <yaml_schema.rst>

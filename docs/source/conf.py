@@ -30,14 +30,13 @@ with open(Path(__file__).parent.parent.parent / "README.md") as readme:
 # The full version, including alpha/beta/rc tags
 release = importlib.metadata.version(configuration["name"])
 
-# intersphinx_mapping["asdf-website"] = ("https://asdf-website.readthedocs.io/en/latest/", None)  # noqa: F405
-
 subproject_mappings = {
     "asdf": ("https://asdf.readthedocs.io/en/latest/", None),
     "asdf-transform-schemas": ("https://asdf-transform-schemas.readthedocs.io/en/latest/", None),
     "asdf-wcs-schemas": ("https://asdf-wcs-schemas.readthedocs.io/en/latest/", None),
     "asdf-coordinates-schemas": ("https://asdf-coordinates-schemas.readthedocs.io/en/latest/", None),
-}
+    "asdf-website": ("https://asdf-website.readthedocs.io/en/latest/", None),
+} # noqa: F405
 
 intersphinx_mapping.update(subproject_mappings)
 
