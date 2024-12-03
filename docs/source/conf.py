@@ -11,7 +11,7 @@ from pathlib import Path
 
 import tomli
 from sphinx_asdf.conf import *  # noqa: F403
-
+from sphinx_asdf.conf import intersphinx_mapping, extensions
 # -- Project information -----------------------------------------------------
 
 # Get configuration information from `pyproject.toml`
