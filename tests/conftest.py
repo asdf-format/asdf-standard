@@ -1,8 +1,9 @@
-import pytest
 import glob
+
+import pytest
 from common import (
-    DOCS_SCHEMAS_PATH,
     DOCS_SCHEMAS_LIST,
+    DOCS_SCHEMAS_PATH,
     MANIFEST_ID_PREFIX,
     MANIFESTS_PATH,
     METASCHEMA_ID,
