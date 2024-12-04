@@ -1,6 +1,8 @@
 import pytest
+import glob
 from common import (
     DOCS_SCHEMAS_PATH,
+    DOCS_SCHEMAS_LIST,
     MANIFEST_ID_PREFIX,
     MANIFESTS_PATH,
     METASCHEMA_ID,
@@ -93,7 +95,8 @@ def add_schemas(path, prefix, result):
 @pytest.fixture(scope="session")
 def docs_schema_ids():
     result = []
-    for path in DOCS_SCHEMAS_PATH.glob("**/*.rst"):
+    for fname in DOCS_SCHEMAS_LIST:
+        path = glob.glob(f"{DOCS_SCHEMAS_PATH}/{fname}")[0]
         if path != DOCS_SCHEMAS_PATH / "manifest.rst":
             add_schemas(path, SCHEMA_ID_PREFIX, result)
     return result
