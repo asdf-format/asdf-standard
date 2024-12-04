@@ -12,7 +12,7 @@ RESOURCES_PATH = ROOT_PATH / "resources"
 SCHEMAS_PATH = RESOURCES_PATH / "schemas" / "stsci.edu" / "asdf"
 DOCS_PATH = ROOT_PATH / "docs" / "source"
 DOCS_SCHEMAS_PATH = DOCS_PATH
-DOCS_SCHEMAS_LIST = ["astronomy.rst", "core.rst", "legacy.rst", "yaml_schema.rst"]
+DOCS_SCHEMAS_LIST = ["asdf.rst", "astronomy.rst", "core.rst", "legacy.rst", "yaml_schema.rst"]
 YAML_SCHEMA_PATH = RESOURCES_PATH / "schemas" / "stsci.edu" / "yaml-schema"
 
 MANIFESTS_PATH = RESOURCES_PATH / "manifests" / "asdf-format.org" / "core"
