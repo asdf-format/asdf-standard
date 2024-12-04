@@ -2,7 +2,7 @@
 
 Schema Design and Editing
 =========================
- 
+
 .. _designing-new-schema:
 
 Designing a new tag and schema

@@ -23,7 +23,7 @@ Writing a new schema is described in :ref:`designing-new-schema`.
    become mandatory in a future version of the YAML Standard. The ``tag``
    keyword may also eventually become mandatory, although the motivation for
    this is somewhat weaker.
-   
+
 
 
 .. _yaml-schema-draft-01:
