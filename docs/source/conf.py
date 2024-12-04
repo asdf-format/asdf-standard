@@ -4,14 +4,15 @@
 # This file does only contain a selection of the most common options. For a
 # full list see the documentation:
 # http://www.sphinx-doc.org/en/master/config
-import os
 import datetime
 import importlib.metadata
+import os
 from pathlib import Path
 
 import tomli
 from sphinx_asdf.conf import *  # noqa: F403
-from sphinx_asdf.conf import intersphinx_mapping, extensions
+from sphinx_asdf.conf import extensions, intersphinx_mapping
+
 # -- Project information -----------------------------------------------------
 
 # Get configuration information from `pyproject.toml`
@@ -36,7 +37,7 @@ subproject_mappings = {
     "asdf-wcs-schemas": ("https://asdf-wcs-schemas.readthedocs.io/en/latest/", None),
     "asdf-coordinates-schemas": ("https://asdf-coordinates-schemas.readthedocs.io/en/latest/", None),
     "asdf-website": ("https://asdf-website.readthedocs.io/en/latest/", None),
-} # noqa: F405
+}  # noqa: F405
 
 intersphinx_mapping.update(subproject_mappings)
 
@@ -49,7 +50,7 @@ intersphinx_mapping.update(subproject_mappings)
 
 extensions += [
     "sphinx.ext.mathjax",
-    "sphinx.ext.ifconfig", 
+    "sphinx.ext.ifconfig",
     "sphinx.ext.graphviz",
     "sphinx.ext.autodoc",
     "sphinx.ext.extlinks",
