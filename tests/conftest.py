@@ -89,6 +89,17 @@ def add_schemas(path, prefix, result):
                 if len(possible_id) > 0:
                     result.append(f"{prefix}{possible_id}")
                 i += 1
+        elif lines[i].startswith(".. asdf-schema::"):
+            i += 1
+            while i < len(lines) and (lines[i].strip() == "" or lines[i].startswith(" ")):
+                if ":schema_root:" in lines[i].strip() or ":standard_prefix:" in lines[i].strip():
+                    i += 1
+                else:
+                    possible_id = lines[i].strip()
+                    if len(possible_id) > 0:
+                        possible_id = possible_id.split("/")[-1]
+                        result.append(f"{prefix}{possible_id}")
+                    i += 1
         else:
             i += 1
 
