@@ -41,3 +41,8 @@ div.highlight-python {
 div.highlight-python:active {
     width: 150%
 }
+
+object.graphviz {
+    max-width: 100%;
+    background-color: white;
+}
