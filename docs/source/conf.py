@@ -54,7 +54,6 @@ extensions += [
     "sphinx.ext.graphviz",
     "sphinx.ext.autodoc",
     "sphinx.ext.extlinks",
-    "sphinx.ext.githubpages",
     "sphinx_asdf",
 ]  # noqa: F405
 
@@ -158,6 +157,18 @@ html_show_copyright = True
 
 # html_context = {"bootswatch_css_custom": ["_static/custom.css"]}
 
+# Render inheritance diagrams in SVG
+graphviz_output_format = "svg"
+
+graphviz_dot_args = [
+    "-Nfontsize=10",
+    "-Nfontname=Helvetica Neue, Helvetica, Arial, sans-serif",
+    "-Efontsize=10",
+    "-Efontname=Helvetica Neue, Helvetica, Arial, sans-serif",
+    "-Gbgcolor=white",
+    "-Gfontsize=10",
+    "-Gfontname=Helvetica Neue, Helvetica, Arial, sans-serif",
+]
 
 # -- Options for HTMLHelp output ---------------------------------------------
 
