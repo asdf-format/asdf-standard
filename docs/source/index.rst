@@ -5,7 +5,7 @@ ASDF Standard
 
 This document describes the Advanced Scientific Data Format (ASDF) Standard.
 
-The ASDF Standard proscribes the specification and implementation standards for creating, editing and reading ASDF files.
+The ASDF Standard prescribes the specification and implementation standards for creating, editing and reading ASDF files.
 
 The ASDF python implementation documentation can be found :ref:`here <asdf:asdf>`.
 
