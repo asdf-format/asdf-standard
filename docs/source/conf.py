@@ -32,14 +32,15 @@ with open(Path(__file__).parent.parent.parent / "README.md") as readme:
 release = importlib.metadata.version(configuration["name"])
 
 subproject_mappings = {
+    # Main project
+    "asdf-website": ("https://www.asdf-format.org/en/latest/", None),
+    # Subprojects
     "asdf": ("https://asdf.readthedocs.io/en/latest/", None),
-    "asdf-transform-schemas": ("https://asdf-transform-schemas.readthedocs.io/en/latest/", None),
-    "asdf-wcs-schemas": ("https://asdf-wcs-schemas.readthedocs.io/en/latest/", None),
-    "asdf-coordinates-schemas": ("https://asdf-coordinates-schemas.readthedocs.io/en/latest/", None),
-    "asdf-website": ("https://asdf-website.readthedocs.io/en/latest/", None),
-}  # noqa: F405
-
-intersphinx_mapping.update(subproject_mappings)
+    "asdf-coordinates-schemas": ("https://www.asdf-format.org/projects/asdf-coordinates-schemas/en/latest/", None),
+    "asdf-transform-schemas": ("https://www.asdf-format.org/projects/asdf-transform-schemas/en/latest/", None),
+    "asdf-wcs-schemas": ("https://www.asdf-format.org/projects/asdf-wcs-schemas/en/latest/", None),
+}
+intersphinx_mapping.update(subproject_mappings) # noqa: F405
 
 
 # -- General configuration ---------------------------------------------------
@@ -78,6 +79,9 @@ language = "en"
 
 # The name of the Pygments (syntax highlighting) style to use.
 pygments_style = "monokai"
+
+# NB Dark style pygments is furo-specific at this time
+pygments_dark_style = "monokai"
 
 # The reST default role (used for this markup: `text`) to use for all documents.
 default_role = "ref"
@@ -224,7 +228,7 @@ latex_documents = [
 
 # The name of an image file (relative to this directory) to place at the top of
 # the title page.
-latex_logo = "_static/images/logo.png"
+latex_logo = "_static/images/logo-light.png"
 
 # For "manual" documents, if this is true, then toplevel headings are parts,
 # not chapters.
