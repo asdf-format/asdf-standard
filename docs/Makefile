@@ -22,3 +22,7 @@ clean:
 	-rm -rf $(BUILDDIR)
 	-rm -rf source/api
 	-rm -rf source/generated
+
+.PHONY: livehtml
+livehtml: ## Serve documentation on localhost:8000, with live-reload
+	sphinx-autobuild "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)

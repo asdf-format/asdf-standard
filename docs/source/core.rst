@@ -6,6 +6,10 @@ Core
 The ``core`` module contains schema that must be implemented by every
 asdf library.
 
+.. toctree::
+   :maxdepth: 1
+   :hidden:
+
 .. asdf-autoschemas::
 
    core/asdf-1.1.0
