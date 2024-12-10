@@ -40,7 +40,7 @@ subproject_mappings = {
     "asdf-transform-schemas": ("https://www.asdf-format.org/projects/asdf-transform-schemas/en/latest/", None),
     "asdf-wcs-schemas": ("https://www.asdf-format.org/projects/asdf-wcs-schemas/en/latest/", None),
 }
-intersphinx_mapping.update(subproject_mappings) # noqa: F405
+intersphinx_mapping.update(subproject_mappings)  # noqa: F405
 
 
 # -- General configuration ---------------------------------------------------
