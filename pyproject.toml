@@ -25,7 +25,7 @@ docs = [
     'graphviz',
     'matplotlib',
     'docutils',
-    'sphinx-rtd-theme > 1.2.0',
+    'furo',
 ]
 test = [
     'pytest',
@@ -36,7 +36,7 @@ test = [
 
 [project.urls]
 'tracker' = 'https://github.com/asdf-format/asdf-standard/issues'
-'documentation' = 'https://asdf-standard.readthedocs.io/en/stable'
+'documentation' = 'https://www.asdf-format.org/projects/asdf-standard/en/latest'
 'repository' = 'https://github.com/asdf-format/asdf-standard'
 
 [project.entry-points]
