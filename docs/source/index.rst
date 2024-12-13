@@ -3,10 +3,11 @@
 ASDF Standard
 =============
 
-This document describes the Advanced Scientific Data Format (ASDF),
-pronounced *AZ*-diff.
+This document describes the Advanced Scientific Data Format (ASDF) Standard.
 
-The ASDF python implementation documentation can be found :ref:`here <asdf:asdf>`.
+The ASDF Standard prescribes the specification and implementation standards for creating, editing and reading ASDF files.
+
+Documentation for the `asdf` python implementation can be found :ref:`here <asdf:asdf>`.
 
 .. only:: html
 
@@ -15,7 +16,6 @@ The ASDF python implementation documentation can be found :ref:`here <asdf:asdf>
 .. toctree::
    :maxdepth: 1
 
-   intro.rst
    file_layout.rst
    tree.rst
    versioning.rst
@@ -47,4 +47,3 @@ published in *Astronomy and Computing*:
 .. only:: html
 
     * :ref:`genindex`
-    * :ref:`search`
