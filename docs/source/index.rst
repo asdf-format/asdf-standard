@@ -3,7 +3,7 @@
 ASDF Standard
 =============
 
-This document describes the Advanced Scientific Data Format (ASDF) Standard.
+This document describes the `Advanced Scientific Data Format <https://www.asdf-format.org/en/latest/overview.html>`__ (ASDF) Standard.
 
 The ASDF Standard prescribes the specification and implementation standards for creating, editing and reading ASDF files.
 
