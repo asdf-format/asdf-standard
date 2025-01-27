@@ -41,3 +41,13 @@ div.highlight-python {
 div.highlight-python:active {
     width: 150%
 }
+
+/* Top Banner Navigation
+-------------------------------------------------- */
+.announcement-content a {
+    padding-right: 1em;
+  }
+
+.announcement-content a:hover {
+  color: fuchsia;
+}
