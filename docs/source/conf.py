@@ -34,12 +34,23 @@ subproject_mappings = {
     # Main project
     "asdf-website": ("https://www.asdf-format.org/en/latest/", None),
     # Subprojects
-    "asdf": ("https://asdf.readthedocs.io/en/latest/", None),
+    "asdf": ("https://www.asdf-format.org/projects/asdf/en/latest/", None),
     "asdf-coordinates-schemas": ("https://www.asdf-format.org/projects/asdf-coordinates-schemas/en/latest/", None),
     "asdf-transform-schemas": ("https://www.asdf-format.org/projects/asdf-transform-schemas/en/latest/", None),
     "asdf-wcs-schemas": ("https://www.asdf-format.org/projects/asdf-wcs-schemas/en/latest/", None),
 }
 intersphinx_mapping.update(subproject_mappings)  # noqa: F405
+
+# Adds a global navigation in the topbar - consistent across subprojects
+globalnavlinks = {
+    "Projects": "https://www.asdf-format.org",
+    "Tutorials": "https://www.asdf-format.org/en/latest/tutorials/index.html",
+    "Community": "https://www.asdf-format.org/en/latest/community/index.html",
+    "Installation": "https://www.asdf-format.org/en/latest/applications/index.html",
+}
+topbanner = ""
+for text, link in globalnavlinks.items():
+    topbanner += f"<a href={link}>{text}</a>"
 
 # -- General configuration ---------------------------------------------------
 
@@ -123,7 +134,7 @@ html_additional_pages = {}
 # The name of an image file (within the static path) to use as favicon of the
 # docs.  This file should be a Windows icon file (.ico) being 16x16 or 32x32
 # pixels large.
-html_favicon = "_static/images/favicon.ico"
+html_favicon = "images/favicon.ico"
 html_logo = ""
 
 # Theme options are theme-specific and customize the look and feel of a theme
@@ -133,6 +144,7 @@ html_logo = ""
 html_theme_options = {
     "light_logo": "images/logo-light-mode.png",
     "dark_logo": "images/logo-dark-mode.png",
+    "announcement": topbanner,
 }
 
 html_sidebars = {}
