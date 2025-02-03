@@ -4,6 +4,7 @@
 - Update reference files [#409]
 - Remove statement discouraging use of YAML anchors and aliases [#443]
 - Documentation theme config changes for new ASDF website [#447]
+- Adds global navigation in docs top bar [#448]
 
 1.1.1 (2024-03-06)
 ------------------
