@@ -4,13 +4,14 @@
 %TAG ! tag:stsci.edu:asdf/
 --- !core/asdf-1.1.0
 asdf_library: !core/software-1.0.0 {author: The ASDF Developers, homepage: 'http://github.com/asdf-format/asdf',
-  name: asdf, version: 3.0.1}
+  name: asdf, version: 4.1.0}
 history:
   extensions:
   - !core/extension_metadata-1.0.0
     extension_class: asdf.extension._manifest.ManifestExtension
     extension_uri: asdf://asdf-format.org/core/extensions/core-1.4.0
-    software: !core/software-1.0.0 {name: asdf, version: 3.0.1}
+    manifest_software: !core/software-1.0.0 {name: asdf_standard, version: 1.1.1}
+    software: !core/software-1.0.0 {name: asdf, version: 4.1.0}
 data: !core/ndarray-1.0.0
   source: exploded0000.asdf
   datatype: int64
