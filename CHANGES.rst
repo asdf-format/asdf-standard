@@ -5,6 +5,8 @@
 - Remove statement discouraging use of YAML anchors and aliases [#443]
 - Documentation theme config changes for new ASDF website [#447]
 - Adds global navigation in docs top bar [#448]
+- Adds reference files for v1.6.0 [#439]
+- Adds anchor, endian, structured and scalar reference files [#439]
 
 1.1.1 (2024-03-06)
 ------------------
