@@ -1,0 +1,63 @@
+#ASDF 1.0.0
+#ASDF_STANDARD 1.6.0
+%YAML 1.1
+%TAG ! tag:stsci.edu:asdf/
+--- !core/asdf-1.1.0
+asdf_library: !core/software-1.0.0 {author: The ASDF Developers, homepage: 'http://github.com/asdf-format/asdf',
+  name: asdf, version: 4.1.0}
+history:
+  extensions:
+  - !core/extension_metadata-1.0.0
+    extension_class: asdf.extension._manifest.ManifestExtension
+    extension_uri: asdf://asdf-format.org/core/extensions/core-1.6.0
+    manifest_software: !core/software-1.0.0 {name: asdf_standard, version: 1.1.1}
+    software: !core/software-1.0.0 {name: asdf, version: 4.1.0}
+datatype<i1: !core/ndarray-1.1.0
+  data: [127, -128, 0]
+  datatype: int8
+  shape: [3]
+datatype<i2: !core/ndarray-1.1.0
+  data: [32767, -32768, 0]
+  datatype: int16
+  shape: [3]
+datatype<i4: !core/ndarray-1.1.0
+  data: [2147483647, -2147483648, 0]
+  datatype: int32
+  shape: [3]
+datatype<u1: !core/ndarray-1.1.0
+  data: [255, 0]
+  datatype: uint8
+  shape: [2]
+datatype<u2: !core/ndarray-1.1.0
+  data: [65535, 0]
+  datatype: uint16
+  shape: [2]
+datatype<u4: !core/ndarray-1.1.0
+  data: [4294967295, 0]
+  datatype: uint32
+  shape: [2]
+datatype>i1: !core/ndarray-1.1.0
+  data: [127, -128, 0]
+  datatype: int8
+  shape: [3]
+datatype>i2: !core/ndarray-1.1.0
+  data: [32767, -32768, 0]
+  datatype: int16
+  shape: [3]
+datatype>i4: !core/ndarray-1.1.0
+  data: [2147483647, -2147483648, 0]
+  datatype: int32
+  shape: [3]
+datatype>u1: !core/ndarray-1.1.0
+  data: [255, 0]
+  datatype: uint8
+  shape: [2]
+datatype>u2: !core/ndarray-1.1.0
+  data: [65535, 0]
+  datatype: uint16
+  shape: [2]
+datatype>u4: !core/ndarray-1.1.0
+  data: [4294967295, 0]
+  datatype: uint32
+  shape: [2]
+...
