@@ -1,0 +1,96 @@
+id: asdf://asdf-format.org/astronomy/manifests/astronomy-1.0.0
+extension_uri: asdf://asdf-format.org/astronomy/extensions/astronomy-1.0.0
+title: ASDF astronomy extension 1.0.0
+description: Astronomy related (non-core) ASDF objects
+asdf_standard_requirement:
+  gte: 1.6.0
+tags:
+- tag_uri: tag:stsci.edu:asdf/table/column-1.1.0
+  schema_uri: http://stsci.edu/schemas/asdf/table/column-1.1.0
+  title: A column in a table.
+  description: |-
+    Each column contains a name and an array of data, and an optional description
+    and unit.
+- tag_uri: tag:stsci.edu:asdf/unit/defunit-1.0.0
+  schema_uri: http://stsci.edu/schemas/asdf/unit/defunit-1.0.0
+  title: Define a new physical unit.
+  description: |-
+    Defines a new unit.  It can be used to either:
+
+    - Define a new base unit.
+
+    - Create a new unit name that is a equivalent to a given unit.
+
+    The new unit must be defined before any unit tags that use it.
+- tag_uri: tag:stsci.edu:asdf/fits/fits-1.1.0
+  schema_uri: http://stsci.edu/schemas/asdf/fits/fits-1.1.0
+  title: A FITS file inside of an ASDF file.
+  description: |-
+    This schema is useful for distributing ASDF files that can
+    automatically be converted to FITS files by specifying the exact
+    content of the resulting FITS file.
+
+    Not all kinds of data in FITS are directly representable in ASDF.
+    For example, applying an offset and scale to the data using the
+    `BZERO` and `BSCALE` keywords.  In these cases, it will not be
+    possible to store the data in the native format from FITS and also
+    be accessible in its proper form in the ASDF file.
+
+    Only image and binary table extensions are supported.
+- tag_uri: tag:stsci.edu:asdf/unit/quantity-1.2.0
+  schema_uri: http://stsci.edu/schemas/asdf/unit/quantity-1.2.0
+  title: Represents a Quantity object from astropy
+  description: |-
+    A Quantity object represents a value that has some unit
+    associated with the number.
+- tag_uri: tag:stsci.edu:asdf/table/table-1.1.0
+  schema_uri: http://stsci.edu/schemas/asdf/table/table-1.1.0
+  title: A table.
+  description: |-
+    A table is represented as a list of columns, where each entry is a
+    [column](ref:table/column-1.1.0)
+    object, containing the data and some additional information.
+
+    The data itself may be stored inline as text, or in binary in either
+    row- or column-major order by use of the `strides` property on the
+    individual column arrays.
+
+    Each column in the table must have the same first (slowest moving)
+    dimension.
+- tag_uri: tag:stsci.edu:asdf/time/time-1.2.0
+  schema_uri: http://stsci.edu/schemas/asdf/time/time-1.2.0
+  title: Represents an instance in time.
+  description: |-
+    A "time" is a single instant in time.  It may explicitly specify the
+    way time is represented (the "format") and the "scale" which
+    specifies the offset and scaling relation of the unit of time.
+
+    Specific emphasis is placed on supporting time scales (e.g. UTC,
+    TAI, UT1, TDB) and time representations (e.g. JD, MJD, ISO 8601)
+    that are used in astronomy and required to calculate, e.g., sidereal
+    times and barycentric corrections.
+
+    Times may be represented as one of the following:
+
+    - an object, with explicit `value`, and optional `format`, `scale`
+      and `location`.
+
+    - a string, in which case the format is guessed from across
+      the unambiguous options (`iso`, `byear`, `jyear`, `yday`), and the
+      scale is hardcoded to `UTC`.
+
+    In either case, a single time tag may be used to represent an
+    n-dimensional array of times, using either an `ndarray` tag or
+    inline as (possibly nested) YAML lists.  If YAML lists, the same
+    format must be used for all time values.
+
+    The precision of the numeric formats should only be assumed to be as
+    good as an IEEE-754 double precision (float64) value.  If
+    higher-precision is required, the `iso` or `yday` format should be
+    used.
+- tag_uri: tag:stsci.edu:asdf/unit/unit-1.0.0
+  schema_uri: http://stsci.edu/schemas/asdf/unit/unit-1.0.0
+  title: Physical unit.
+  description: |-
+    This represents a physical unit, in [VOUnit syntax, Version 1.0](http://www.ivoa.net/documents/VOUnits/index.html).
+    Where units are not explicitly tagged, they are assumed to be in VOUnit syntax.
