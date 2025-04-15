@@ -31,7 +31,7 @@ custom schemas (see `extending-asdf`).
 
 .. asdf-autoschemas::
 
-   asdf-schema-1.1.0
+   asdf-schema-1.2.0
 
 .. _manifest:
 
