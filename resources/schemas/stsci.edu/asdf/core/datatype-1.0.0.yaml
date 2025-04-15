@@ -78,7 +78,7 @@ anyOf:
               pattern: "[A-Za-z_][A-Za-z0-9_]*"
               description: The name of the field
             datatype:
-              $ref: "#/definitions/datatype"
+              $ref: "#"
             byteorder:
               type: string
               enum: [big, little]
