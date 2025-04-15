@@ -1,14 +1,14 @@
 %YAML 1.1
 ---
 $schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
-id: "http://stsci.edu/schemas/asdf/table/table-1.1.0"
+id: "http://stsci.edu/schemas/asdf/table/table-1.2.0"
 
 title: >
   A table.
 
 description: |
   A table is represented as a list of columns, where each entry is a
-  [column](ref:table/column-1.1.0)
+  [column](ref:table/column-1.2.0)
   object, containing the data and some additional information.
 
   The data itself may be stored inline as text, or in binary in either
@@ -97,7 +97,7 @@ properties:
       A list of columns in the table.
     type: array
     items:
-      $ref: column-1.1.0
+      tag: "tag:stsci.edu:asdf/table/column-1.*"
 
   meta:
     description: |
