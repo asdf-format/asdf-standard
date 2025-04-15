@@ -4,11 +4,11 @@ $schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
 id: "http://stsci.edu/schemas/asdf/core/datatype-1.0.0"
 
 title: >
-  An *n*-dimensional array.
+  An description of array element data format.
 
 description: |
-  The data format of array elements.  May be a single scalar
-  datatype, or may be a nested list of datatypes.  When a list, each field
+  The data format of array elements. May be a single scalar
+  datatype, or may be a nested list of datatypes. When a list, each field
   may have a name.
 
 definitions:
@@ -83,7 +83,7 @@ anyOf:
               type: string
               enum: [big, little]
               description: |
-                The byteorder for the field.  If not provided, the
+                The byteorder for the field. If not provided, the
                 byteorder of the datatype as a whole will be used.
             shape:
               type: array
