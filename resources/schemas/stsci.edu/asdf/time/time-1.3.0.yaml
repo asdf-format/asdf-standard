@@ -294,11 +294,11 @@ anyOf:
         type: object
         properties:
           x:
-            $ref: "../unit/quantity-1.2.0"
+            tag: "tag:stsci.edu:asdf/unit/quantity-1.*"
           y:
-            $ref: "../unit/quantity-1.2.0"
+            tag: "tag:stsci.edu:asdf/unit/quantity-1.*"
           z:
-            $ref: "../unit/quantity-1.2.0"
+            tag: "tag:stsci.edu:asdf/unit/quantity-1.*"
         required: [x, y, z]
 
     required: [value]
