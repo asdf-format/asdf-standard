@@ -225,7 +225,7 @@ anyOf:
         anyOf:
           - $ref: "#/definitions/string_formats"
           - $ref: "#/definitions/array_of_strings"
-          - $ref: "../core/ndarray-1.1.0"
+          - tag: "tag:stsci.edu:asdf/core/ndarray-1.*"
           - type: number
 
       format:
