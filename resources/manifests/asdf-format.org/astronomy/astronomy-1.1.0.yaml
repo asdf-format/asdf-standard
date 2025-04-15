@@ -5,8 +5,8 @@ description: Astronomy related (non-core) ASDF objects
 asdf_standard_requirement:
   gte: 1.6.0
 tags:
-- tag_uri: tag:stsci.edu:asdf/table/column-1.1.0
-  schema_uri: http://stsci.edu/schemas/asdf/table/column-1.1.0
+- tag_uri: tag:stsci.edu:asdf/table/column-1.2.0
+  schema_uri: http://stsci.edu/schemas/asdf/table/column-1.2.0
   title: A column in a table.
   description: |-
     Each column contains a name and an array of data, and an optional description
@@ -22,8 +22,8 @@ tags:
     - Create a new unit name that is a equivalent to a given unit.
 
     The new unit must be defined before any unit tags that use it.
-- tag_uri: tag:stsci.edu:asdf/fits/fits-1.1.0
-  schema_uri: http://stsci.edu/schemas/asdf/fits/fits-1.1.0
+- tag_uri: tag:stsci.edu:asdf/fits/fits-1.2.0
+  schema_uri: http://stsci.edu/schemas/asdf/fits/fits-1.2.0
   title: A FITS file inside of an ASDF file.
   description: |-
     This schema is useful for distributing ASDF files that can
@@ -37,18 +37,18 @@ tags:
     be accessible in its proper form in the ASDF file.
 
     Only image and binary table extensions are supported.
-- tag_uri: tag:stsci.edu:asdf/unit/quantity-1.2.0
-  schema_uri: http://stsci.edu/schemas/asdf/unit/quantity-1.2.0
+- tag_uri: tag:stsci.edu:asdf/unit/quantity-1.3.0
+  schema_uri: http://stsci.edu/schemas/asdf/unit/quantity-1.3.0
   title: Represents a Quantity object from astropy
   description: |-
     A Quantity object represents a value that has some unit
     associated with the number.
-- tag_uri: tag:stsci.edu:asdf/table/table-1.1.0
-  schema_uri: http://stsci.edu/schemas/asdf/table/table-1.1.0
+- tag_uri: tag:stsci.edu:asdf/table/table-1.2.0
+  schema_uri: http://stsci.edu/schemas/asdf/table/table-1.2.0
   title: A table.
   description: |-
     A table is represented as a list of columns, where each entry is a
-    [column](ref:table/column-1.1.0)
+    [column](ref:table/column-1.2.0)
     object, containing the data and some additional information.
 
     The data itself may be stored inline as text, or in binary in either
