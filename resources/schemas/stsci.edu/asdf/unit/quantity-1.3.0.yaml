@@ -1,7 +1,7 @@
 %YAML 1.1
 ---
 $schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
-id: "http://stsci.edu/schemas/asdf/unit/quantity-1.2.0"
+id: "http://stsci.edu/schemas/asdf/unit/quantity-1.3.0"
 
 title: >
   Represents a Quantity object from astropy
@@ -60,7 +60,7 @@ properties:
       A vector of one or more values
     anyOf:
       - type: number
-      - $ref: "../core/ndarray-1.1.0"
+      - tag: "tag:stsci.edu:asdf/core/ndarray-1.*"
   unit:
     description: |
       The unit corresponding to the values
@@ -68,6 +68,6 @@ properties:
   datatype:
     description: |
       The datatype for scalar quantities
-    $ref: "../core/ndarray-1.1.0#/definitions/scalar-datatype"
+    $ref: "../core/datatype-1.0.0#/definitions/scalar-datatype"
 required: [value, unit]
 ...
