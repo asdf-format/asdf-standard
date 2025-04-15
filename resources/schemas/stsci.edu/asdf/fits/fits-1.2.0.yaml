@@ -1,7 +1,7 @@
 %YAML 1.1
 ---
 $schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
-id: "http://stsci.edu/schemas/asdf/fits/fits-1.1.0"
+id: "http://stsci.edu/schemas/asdf/fits/fits-1.2.0"
 title: >
   A FITS file inside of an ASDF file.
 description: |
