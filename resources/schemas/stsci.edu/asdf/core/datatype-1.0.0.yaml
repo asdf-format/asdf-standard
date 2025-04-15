@@ -1,0 +1,93 @@
+%YAML 1.1
+---
+$schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
+id: "http://stsci.edu/schemas/asdf/core/datatype-1.0.0"
+
+title: >
+  An *n*-dimensional array.
+
+description: |
+  The data format of array elements.  May be a single scalar
+  datatype, or may be a nested list of datatypes.  When a list, each field
+  may have a name.
+
+definitions:
+  scalar-datatype:
+    description: |
+      Describes the type of a single element.
+
+      There is a set of numeric types, each with a single identifier:
+
+      - `int8`, `int16`, `int32`, `int64`: Signed integer types, with
+        the given bit size.
+
+      - `uint8`, `uint16`, `uint32`, `uint64`: Unsigned integer types,
+        with the given bit size.
+
+      - `float16`: Half-precision floating-point type or "binary16",
+        as defined in IEEE 754.
+
+      - `float32`: Single-precision floating-point type or "binary32",
+        as defined in IEEE 754.
+
+      - `float64`: Double-precision floating-point type or "binary64",
+        as defined in IEEE 754.
+
+      - `complex64`: Complex number where the real and imaginary parts
+        are each single-precision floating-point ("binary32") numbers,
+        as defined in IEEE 754.
+
+      - `complex128`: Complex number where the real and imaginary
+        parts are each double-precision floating-point ("binary64")
+        numbers, as defined in IEEE 754.
+
+      There are two distinct fixed-length string types, which must
+      be indicated with a 2-element array where the first element is an
+      identifier for the string type, and the second is a length:
+
+      - `ascii`: A string containing ASCII text (all codepoints <
+        128), where each character is 1 byte.
+
+      - `ucs4`: A string containing unicode text in the UCS-4
+        encoding, where each character is always 4 bytes long.  Here
+        the number of bytes used is 4 times the given length.
+
+    anyOf:
+      - type: string
+        enum: [int8, uint8, int16, uint16, int32, uint32, int64, uint64,
+               float16, float32, float64, complex64, complex128, bool8]
+      - type: array
+        items:
+          - type: string
+            enum: [ascii, ucs4]
+          - type: integer
+            minimum: 0
+        minLength: 2
+        maxLength: 2
+
+anyOf:
+  - $ref: "#/definitions/scalar-datatype"
+  - type: array
+    items:
+      anyOf:
+        - $ref: "#/definitions/scalar-datatype"
+        - type: object
+          properties:
+            name:
+              type: string
+              pattern: "[A-Za-z_][A-Za-z0-9_]*"
+              description: The name of the field
+            datatype:
+              $ref: "#/definitions/datatype"
+            byteorder:
+              type: string
+              enum: [big, little]
+              description: |
+                The byteorder for the field.  If not provided, the
+                byteorder of the datatype as a whole will be used.
+            shape:
+              type: array
+              items:
+                type: integer
+                minimum: 0
+          required: [datatype]
