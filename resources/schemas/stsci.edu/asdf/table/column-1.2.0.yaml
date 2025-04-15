@@ -1,0 +1,49 @@
+%YAML 1.1
+---
+$schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
+id: "http://stsci.edu/schemas/asdf/table/column-1.1.0"
+
+title: >
+  A column in a table.
+
+description: |
+  Each column contains a name and an array of data, and an optional description
+  and unit.
+
+type: object
+properties:
+  name:
+    description: |
+      The name of the column.  Each name in a
+      [table](http://stsci.edu/schemas/asdf/table/table-1.1.0) must be
+      unique.
+    type: string
+    pattern: "[A-Za-z_][A-Za-z0-9_]*"
+
+  data:
+    description: |
+      The array data for the column.
+    allOf:
+      - $ref: ../core/ndarray-1.1.0
+
+  description:
+    description: |
+      An optional description of the column.
+    type: string
+    default: ''
+
+  unit:
+    description:
+      An optional unit for the column.
+    allOf:
+      - $ref: ../unit/unit-1.0.0
+
+  meta:
+    description:
+      Additional free-form metadata about the column.
+    type: object
+    default: {}
+
+required: [name, data]
+additionalProperties: false
+...
