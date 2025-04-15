@@ -10,6 +10,7 @@ asdf library.
 
    core/asdf-1.1.0
    core/complex-1.0.0
+   core/datatype-1.0.0
    core/extension_metadata-1.0.0
    core/ndarray-1.1.0
    core/constant-1.0.0
