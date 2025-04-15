@@ -105,8 +105,8 @@ items:
     data:
       description: "The data part of the HDU."
       anyOf:
-        - $ref: "../core/ndarray-1.1.0"
-        - $ref: "../table/table-1.1.0"
+        - tag: "tag:stsci.edu:asdf/core/ndarray-1.*"
+        - tag: "tag:stsci.edu:asdf/table/table-1.*"
         - type: "null"
       default: null
   required: [header]
