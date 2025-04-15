@@ -17,62 +17,6 @@ description: |
 
   Only image and binary table extensions are supported.
 
-examples:
-  -
-    - A simple FITS file with a primary header and two extensions
-    - asdf-standard-1.6.0
-    - |
-        !fits/fits-1.1.0
-            - header:
-              - [SIMPLE, true, conforms to FITS standard]
-              - [BITPIX, 8, array data type]
-              - [NAXIS, 0, number of array dimensions]
-              - [EXTEND, true]
-              - []
-              - ['', Top Level MIRI Metadata]
-              - []
-              - [DATE, '2013-08-30T10:49:55.070373', The date this file was created (UTC)]
-              - [FILENAME, MiriDarkReferenceModel_test.fits, The name of the file]
-              - [TELESCOP, JWST, The telescope used to acquire the data]
-              - []
-              - ['', Information about the observation]
-              - []
-              - [DATE-OBS, '2013-08-30T10:49:55.000000', The date the observation was made (UTC)]
-            - data: !core/ndarray-1.1.0
-                datatype: float32
-                shape: [2, 3, 3, 4]
-                source: 0
-                byteorder: big
-              header:
-              - [XTENSION, IMAGE, Image extension]
-              - [BITPIX, -32, array data type]
-              - [NAXIS, 4, number of array dimensions]
-              - [NAXIS1, 4]
-              - [NAXIS2, 3]
-              - [NAXIS3, 3]
-              - [NAXIS4, 2]
-              - [PCOUNT, 0, number of parameters]
-              - [GCOUNT, 1, number of groups]
-              - [EXTNAME, SCI, extension name]
-              - [BUNIT, DN, Units of the data array]
-            - data: !core/ndarray-1.1.0
-                datatype: float32
-                shape: [2, 3, 3, 4]
-                source: 1
-                byteorder: big
-              header:
-              - [XTENSION, IMAGE, Image extension]
-              - [BITPIX, -32, array data type]
-              - [NAXIS, 4, number of array dimensions]
-              - [NAXIS1, 4]
-              - [NAXIS2, 3]
-              - [NAXIS3, 3]
-              - [NAXIS4, 2]
-              - [PCOUNT, 0, number of parameters]
-              - [GCOUNT, 1, number of groups]
-              - [EXTNAME, ERR, extension name]
-              - [BUNIT, DN, Units of the error array]
-
 type: array
 items:
   description: >

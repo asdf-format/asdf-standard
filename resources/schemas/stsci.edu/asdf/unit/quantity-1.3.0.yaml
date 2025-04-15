@@ -9,50 +9,6 @@ description: |
   A Quantity object represents a value that has some unit
   associated with the number.
 
-examples:
-  -
-    - A quantity consisting of a scalar value and unit
-    - asdf-standard-1.6.0
-    - |
-        !unit/quantity-1.2.0
-          value: 3.14159
-          unit: km
-  -
-    - A quantity consisting of a scalar value with datatype and unit
-    - asdf-standard-1.6.0
-    - |
-        !unit/quantity-1.2.0
-          value: 3.14159
-          unit: km
-          datatype: float32
-  -
-    - A quantity consisting of a single value in an array
-    - asdf-standard-1.6.0
-    - |
-        !unit/quantity-1.2.0
-          value: !core/ndarray-1.1.0 [2.71828]
-          unit: A
-
-  -
-    - A quantity with an array of values
-    - asdf-standard-1.6.0
-    - |
-        !unit/quantity-1.2.0
-          value: !core/ndarray-1.1.0 [1, 2, 3, 4]
-          unit: s
-
-  -
-    - A quantity with an n-dimensional array of values
-    - asdf-standard-1.6.0
-    - |
-        !unit/quantity-1.2.0
-          value: !core/ndarray-1.1.0
-            datatype: float64
-            data: [[1, 2, 3],
-                   [4, 5, 6]]
-          unit: pc
-
-
 type: object
 properties:
   value:
