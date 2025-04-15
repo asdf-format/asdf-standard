@@ -1,7 +1,7 @@
 %YAML 1.1
 ---
 $schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
-id: "http://stsci.edu/schemas/asdf/table/column-1.1.0"
+id: "http://stsci.edu/schemas/asdf/table/column-1.2.0"
 
 title: >
   A column in a table.
@@ -15,7 +15,7 @@ properties:
   name:
     description: |
       The name of the column.  Each name in a
-      [table](http://stsci.edu/schemas/asdf/table/table-1.1.0) must be
+      [table](http://stsci.edu/schemas/asdf/table/table-1.2.0) must be
       unique.
     type: string
     pattern: "[A-Za-z_][A-Za-z0-9_]*"
@@ -24,7 +24,7 @@ properties:
     description: |
       The array data for the column.
     allOf:
-      - $ref: ../core/ndarray-1.1.0
+      - tag: "tag:stsci.edu:asdf/core/ndarray-1.*"
 
   description:
     description: |
