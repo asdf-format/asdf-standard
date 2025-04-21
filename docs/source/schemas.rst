@@ -239,18 +239,17 @@ So, for our example instrument metadata, the tag is::
 
 Each tag should be associated with a schema in order to validate it. Each
 schema must also have a universally unique ``id``, which is in the form of
-unique URI.
-
-Note that this URI doesn't actually have to resolve to anything.  In fact,
-visiting that URL in your web browser is likely to bring up a ``404`` error.
-All that's necessary is that it is universally unique and that the tool reading
-the ASDF file is able to map from a tag name to a schema URI, and then load the
-associated schema.
-
-Again following with our example, we will assign the following URI to refer to
-our schema::
+unique URI. We will assign the following URI to refer to our schema::
 
   http://example.org/schemas/foo/metadata-1.0.0
+
+.. note::
+
+   Note that this URI doesn't actually have to resolve to anything.  In fact,
+   visiting that URL in your web browser is likely to bring up a ``404`` error.
+   All that's necessary is that it is universally unique and that the tool reading
+   the ASDF file is able to map from a tag name to a schema URI, and then load the
+   associated schema.
 
 Therefore, in our schema file, we have the following keys, one declaring the
 name of the YAML ``tag``, and one defining the ``id`` of the schema::
@@ -287,9 +286,7 @@ The schema proper
 The rest of the schema describes the acceptable data types and their structure.
 The format used for this description comes straight out of JSON Schema, and
 rather than documenting all of the things it can do here, please refer to
-`Understanding JSON Schema
-<http://spacetelescope.github.io/understanding-json-schema/>`__, and the
-further resources available at `json-schema.org <http://json-schema.org>`__.
+the resources available at `json-schema.org <http://json-schema.org>`__.
 
 In our example, we'll define two metadata elements: the name of the
 investigator, and the exposure time, each of which also have a
