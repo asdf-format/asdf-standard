@@ -311,11 +311,13 @@ elements in your schema that are based on the custom types defined in
 the ASDF standard::
 
     exposure_time_units:
-      $ref: "http://stsci.edu/schemas/asdf/unit/unit-1.0.0"
+      allOf:
+        - $ref: "http://stsci.edu/schemas/asdf/unit/unit-1.0.0"
       description: |
         The unit of the exposure time.
-      default:
-        s
+
+In brief this requires that any value for ``exposure_time_units`` must
+comply with the `unit <unit/unit-1.0.0>` schema.
 
 Lastly, we'll declare ``exposure_time`` as being required, and allow
 extra elements to be added::
@@ -359,11 +361,10 @@ Here is our complete schema example::
         The time of the exposure, in nanoseconds.
 
     exposure_time_units:
-      $ref: "http://stsci.edu/schemas/asdf/unit/unit-1.0.0"
+      allOf:
+        - $ref: "http://stsci.edu/schemas/asdf/unit/unit-1.0.0"
       description: |
         The unit of the exposure time.
-      default:
-        s
 
   required: [exposure_time]
   additionalProperties: true
@@ -461,6 +462,8 @@ definition of a new property called ``author_email``.
 The ``allOf`` combiner means that any instance that is validated against
 ``software_extended-1.0.0`` will have to conform to both the base software schema
 and the properties specific to the extended schema.
+
+.. _default-annotation:
 
 Default annotation
 ------------------
