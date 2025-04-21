@@ -16,13 +16,12 @@ how :ref:`n-dimensional array data <core/ndarray-1.0.0>` should be
 described.  These schema are written in a language called
 :ref:`yaml-schema` which is just a thin extension of `JSON Schema,
 Draft 4
-<http://json-schema.org/latest/json-schema-validation.html>`__.  (Such
+<https://json-schema.org/draft-04/schema>`__.  (Such
 extensions are allowed and even encouraged by the JSON Schema
 standard, which defines the ``$schema`` attribute as a place to
 specify which extension is being used.) `asdf-schemas` contains an overview of
 how schemas are defined and used by ASDF. :ref:`schema` describes in detail
-all of the schemas provided by the ASDF Standard.  reference to all of schemas
-in detail.
+all of the schemas provided by the ASDF Standard.
 
 .. _yaml_subset:
 
@@ -64,7 +63,7 @@ the following scalar types:
 Tags
 ----
 
-YAML includes the ability to assign :ref:`tags` (or types) to any
+YAML includes the ability to assign tags (or types) to any
 object in the tree.  This is an important feature that sets it apart
 from other data representation languages, such as JSON.  ASDF defines
 a number of custom tags, each of which has a corresponding schema.
@@ -102,8 +101,8 @@ Following that is the "module" containing the schema (see
 name itself, for example, ``asdf`` or ``ndarray``.  Since it is
 cumbersome to type out these long prefixes for every tag, it is
 recommended that ASDF files declare a prefix at the top of the YAML
-file and use it throughout.  (Most standard YAML writing libraries
-have facilities to do this automatically.)  For example, the following
+file and use it throughout.  Most standard YAML writing libraries
+have facilities to do this automatically.  For example, the following
 example is equivalent to the above example, but is more user-friendly.
 The ``%TAG`` declaration declares that the exclamation point (``!``)
 will be replaced with the prefix ``tag:stsci.edu:asdf/``::
@@ -276,7 +275,7 @@ with the content following it.  If we were to move the content, where
 should the comment go?
 
 To provide a mechanism to add user comments without swimming upstream
-against the YAML standard, we recommend a convention for associating
+against the YAML standard, ASDF uses a convention for associating
 comments with objects (mappings) by using the reserved key name
 ``//``.  In this case, the above example would be rewritten as::
 
