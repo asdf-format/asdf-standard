@@ -4,7 +4,7 @@ Core
 ====
 
 The ``core`` module contains schema that must be implemented by every
-asdf library.
+ASDF library.
 
 .. asdf-autoschemas::
 
