@@ -62,8 +62,9 @@ so will have the following top-level attribute::
 
 Some ASDF schemas use the :ref:`ASDF metaschema <asdf-schema-1.1.0>` instead
 (e.g. `ndarray <core/ndarray-1.0.0>`).  It is also possible to create custom
-metaschemas, although these should always inherit from either YAML Schema or
-the ASDF metaschema. [#]_
+metaschemas. However this is highly discouraged. Many jsonschema libraries
+do not support custom metaschemas. If creating a custom metaschema it
+should inherit from either YAML Schema. [#]_
 
 Some ASDF implementations may choose to validate the schemas themselves (e.g.
 as part of a regression testing suite). The ``$schema`` keyword should be used
@@ -511,8 +512,7 @@ necessary to support files written by older versions of the Python implementatio
    schemas should assume that at the very least ``id`` will be required in a
    future version of the Standard.
 .. [#] For an example of how to inherit from another metaschema, look at the
-   `contents
-   <generated/stsci.edu/asdf/asdf-schema-1.0.0.html#Original%20Schema>`__
+   :ref:`contents <asdf-schema-1.1.0>`
    of the ASDF metaschema and see how there is a reference to the YAML schema
    in the top-level ``allOf``.
 
