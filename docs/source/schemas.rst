@@ -90,15 +90,8 @@ between schemas. Relative references within a schema are resolved against the
 that schema. See `schema-references` below for additional information.
 
 Each ASDF implementation must define how to resolve a schema ``id`` to a real
-resource that contains the schema itself. This could be done in a variety of
-ways, but the following seem like the most likely possibilities:
-
-* Resolve the ``id`` to a real network location (assuming the schema is
-  actually hosted at that location)
-* Map the ``id`` to a file location on disk that contains the schema
-
-Other mappings are possible in theory. For example, a schema could be stored
-in a string literal as part of a program.
+resource that contains the schema itself. This resource will often be a local
+file but this detail is left up to the implementation.
 
 tag
 ^^^
