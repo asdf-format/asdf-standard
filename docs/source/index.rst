@@ -24,7 +24,6 @@ Documentation for the `asdf` python implementation can be found :ref:`here <asdf
    known_limits.rst
    changes.rst
 
-   asdf_in_fits.rst
    dev_api.rst
 
 
