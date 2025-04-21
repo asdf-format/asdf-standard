@@ -3,7 +3,7 @@
 Astronomy
 =========
 
-The ASDF-standard contains a few astronomy-specific tags that
+The ASDF standard contains a few astronomy-specific tags that
 are optional but maintained as part of the standard (for historical
 reasons). These include:
 

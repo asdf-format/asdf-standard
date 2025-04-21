@@ -3,7 +3,7 @@
 Legacy schemas
 ==============
 
-The following legacy schemas and not part of the most recent ASDF standard version:
+The following legacy schemas are not part of the most recent ASDF standard version:
 
 .. asdf-autoschemas::
 
