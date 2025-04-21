@@ -62,9 +62,13 @@ so will have the following top-level attribute::
 
 Some ASDF schemas use the :ref:`ASDF metaschema <asdf-schema-1.1.0>` instead
 (e.g. `ndarray <core/ndarray-1.0.0>`).  It is also possible to create custom
-metaschemas. However this is highly discouraged. Many jsonschema libraries
-do not support custom metaschemas. If creating a custom metaschema it
-should inherit from either YAML Schema. [#]_
+metaschemas.
+
+.. warning::
+
+   Creating a new custom metaschema is highly discouraged. Many JSON schema
+   libraries do not support custom metaschemas. If creating a custom metaschema it
+   should inherit from YAML Schema. [#]_
 
 Some ASDF implementations may choose to validate the schemas themselves (e.g.
 as part of a regression testing suite). The ``$schema`` keyword should be used
