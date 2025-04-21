@@ -468,6 +468,12 @@ and the properties specific to the extended schema.
 Default annotation
 ------------------
 
+.. warning::
+
+   It is recommended that ``default`` is no longer used  in new schema.
+   As noted below newer versions of the standard will ignore these values.
+
+
 The JSON Schema spec includes a schema annotation attribute called ``default`` that
 can be used to describe the default value of a data attribute when that attribute
 is missing.  Recent versions of the spec `point out <http://json-schema.org/draft/2019-09/json-schema-core.html#rfc.section.7.7.1.1>`__
