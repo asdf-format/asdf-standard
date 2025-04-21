@@ -27,7 +27,7 @@ within the ``int64`` range.  In other words, number must be no greater than
 
 
 As of version **1.3.0** of the standard, arbitrary precision integers are
-supported using :ref:`integer <core/integer-1.0.0>`.  Like all tags, use of
+supported using :ref:`integer <core/integer-1.1.0>`.  Like all tags, use of
 this type requires library support.
 
 Blocks
