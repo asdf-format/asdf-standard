@@ -79,7 +79,7 @@ Relationship of version numbers
 The major number in the **standard version** is incremented whenever
 the major number in the **file format version** is incremented.
 
-**Schema versions** are created and adjusted independently of the **standad
+**Schema versions** are created and adjusted independently of the **standard
 version** and the **file format version**. New schemas are created with version
 ``1.0.0`` and are updated according to the Semantic Versioning conventions
 discussed above.
