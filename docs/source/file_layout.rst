@@ -30,11 +30,6 @@ stored in the block header (except for, optionally, the last block).
 Note also that, by design, an ASDF file containing no binary blocks is
 also a completely standard and valid YAML file.
 
-Additionally, the spec allows for extra unallocated space after the
-tree and between blocks.  This allows libraries to more easily update
-the files in place, since it allows expansion of certain areas without
-rewriting of the entire file.
-
 .. _header:
 
 Header
@@ -129,7 +124,7 @@ expression may be used to find the end of the tree::
 
    \r?\n...\r?\n
 
-Though not required, the tree should be followed by some unused space
+Though not required, the tree may be followed by some unused space
 to allow for the tree to be updated and increased in size without
 performing an insertion operation in the file.  It also may be
 desirable to align the start of the first block to a filesystem block
@@ -155,12 +150,8 @@ flexible type system on top of a very simple approach to memory management
 within the file.  It also allows for new extensions to ASDF that might
 interpret the raw binary data in ways that are yet to be defined.
 
-There may be an arbitrary amount of unused space between the end of
-the tree and the first block.  To find the beginning of the first
-block, ASDF parsers should search from the end of the tree for the
-first occurrence of the ``block_magic_token``.  If the file contains
-no tree, the first block must begin immediately after the header with
-no padding.
+If the file contains no tree, the first block must begin immediately
+after the header with no padding.
 
 .. _block-header:
 
