@@ -12,7 +12,7 @@ numbers, booleans, etc.).  All of this comes "for free" by using `YAML
 Since these core data structures on their own are so flexible, the
 ASDF standard includes a number of schema that define the structure of
 higher-level content.  For instance, there is a schema that defines
-how :ref:`n-dimensional array data <core/ndarray-1.0.0>` should be
+how :ref:`n-dimensional array data <core/ndarray-1.1.0>` should be
 described.  These schema are written in a language called
 :ref:`yaml-schema` which is just a thin extension of `JSON Schema,
 Draft 4
@@ -80,7 +80,7 @@ For example::
 
      %YAML 1.1
      --- !<tag:stsci.edu:asdf/core/asdf-1.1.0>
-     data: !<tag:stsci.edu:asdf/core/ndarray-1.0.0>
+     data: !<tag:stsci.edu:asdf/core/ndarray-1.1.0>
        source: 0
        datatype: float64
        shape: [1024, 1024]
@@ -110,7 +110,7 @@ will be replaced with the prefix ``tag:stsci.edu:asdf/``::
       %YAML 1.1
       %TAG ! tag:stsci.edu:asdf/
       --- !core/asdf-1.1.0
-      data: !core/ndarray-1.0.0
+      data: !core/ndarray-1.1.0
         source: 0
         datatype: float64
         shape: [1024, 1024]
@@ -122,7 +122,7 @@ ship as part of the ASDF standard.
 
 An ASDF parser may also use the tag information to convert the element
 to a native data type.  For example, in Python, an ASDF parser may
-convert a :ref:`ndarray <core/ndarray-1.0.0>` tag to a `Numpy
+convert a :ref:`ndarray <core/ndarray-1.1.0>` tag to a `Numpy
 <http://www.numpy.org>`__ array instance, providing a convenient and familiar
 interface to the user to access *n*-dimensional data.
 
