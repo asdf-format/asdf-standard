@@ -42,11 +42,10 @@ Accordingly, all schemas begin with the following YAML header::
   %YAML 1.1
   ---
 
-The following top-level attributes are required for all ASDF schemas: [#]_
+The following top-level attributes are required for all ASDF schemas:
 
 * ``$schema``: Indicates the metaschema definition used to validate this schema
 * ``id``: A name that uniquely identifies the schema
-* ``tag``: The YAML tag corresponding to the type described by this schema
 
 Each of these attributes is described in more detail below.
 
@@ -97,31 +96,6 @@ that schema. See `schema-references` below for additional information.
 Each ASDF implementation must define how to resolve a schema ``id`` to a real
 resource that contains the schema itself. This resource will often be a local
 file but this detail is left up to the implementation.
-
-tag
-^^^
-
-The ``tag`` attribute is used by ASDF to associate an instance of a data type
-in an ASDF file with the appropriate schema to be used for validation. It is a
-concept from YAML (see the `documentation
-<https://yaml.org/spec/1.1/#tag/information%20model>`__).
-
-Libraries that provide custom schemas must ensure that the YAML tag that is
-written for a particular data type must match the ``tag`` attribute in the
-schema that corresponds to the data type. Tags must conform to the tag URI
-scheme which is defined in `RFC 4151`_, but are otherwise perfectly arbitrary.
-However, certain `naming-conventions` are recommended in order to facilitate a
-mapping between ``tag`` and ``id`` attributes.
-
-ASDF implementations must be able to map ``tag`` attributes to the
-corresponding schema ``id``. The way that this mapping is defined is up to
-individual implementations. However, if the `naming-conventions` are followed,
-most implementations will be able to perform prefix matching and replacement.
-
-While the ``id`` attribute will almost certainly become required in a future
-version of the ASDF Standard, the ``tag`` attribute may remain optional. This
-is because schemas can be referenced by ``id`` without necessarily referring to
-a particular tagged type in the YAML representation.
 
 .. _descriptive-info:
 
@@ -206,19 +180,6 @@ URL. This motivates the choice of the organization's web address as the
 **organization** component. However, this is not a requirement. The primary
 objective is to create a globally unique id.
 
-Given the components defined above, the ``tag`` definition follows in a
-straightforward manner. The generic tag URI template is::
-
-   tag:<organization>:<standard>/<name>-<version>
-
-Considering `ndarray <core/ndarray-1.1.0>` once again, we have::
-
-   tag: "tag:stsci.edu:asdf/core/ndarray-1.1.0"
-
-Following the naming convention for both ``id`` and ``tag`` attributes enables
-a simple mapping from ``tag`` to ``id``. In this case, simply take the prefix
-``tag:stsci.edu:`` and replace it with ``http://stsci.edu/schemas/``.
-
 .. _extending-asdf:
 
 Designing a new tag and schema
@@ -230,7 +191,7 @@ found on the world wide web at ``example.org``.  We're developing a new
 instrument, ``foo``, and we need a way to define the specialized metadata to
 describe the exposures that it will be generating.
 
-According to the `naming-conventions`, our ``tag`` and ``id`` attributes will
+According to the `naming-conventions`, our ``tag`` and ``id`` will
 consist of the following components:
 
 * **organization**: ``example.org``
@@ -256,11 +217,9 @@ unique URI. We will assign the following URI to refer to our schema::
    the ASDF file is able to map from a tag name to a schema URI, and then load the
    associated schema.
 
-Therefore, in our schema file, we have the following keys, one declaring the
-name of the YAML ``tag``, and one defining the ``id`` of the schema::
+Therefore, in our schema file, we have the following defining the ``id`` of the schema::
 
   id: "http://example.org/schemas/foo/metadata-1.0.0"
-  tag: "tag:example.org:foo/metadata-1.0.0"
 
 
 Since our schema is just a basic ASDF schema, we will declare that it conforms
@@ -339,7 +298,6 @@ Here is our complete schema example::
   ---
   $schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
   id: "http://example.org/schemas/foo/metadata-1.0.0"
-  tag: "tag:example.org:foo/metadata-1.0.0"
 
   title: |
     Metadata for the foo instrument.
@@ -407,7 +365,6 @@ schema defined by the ASDF Standard.  Here's the original schema, for reference:
   description: |
     General-purpose description of a software package.
 
-  tag: "tag:stsci.edu:asdf/core/software-1.0.0"
   type: object
   properties:
     name:
@@ -511,10 +468,6 @@ necessary to support files written by older versions of the Python implementatio
 .. [#] Implementations may expose the control of validation on reading to the
    user (e.g. to disable it on demand). However, validation on reading should
    be the default behavior.
-.. [#] The presence of ``id`` and ``tag`` is not currently enforced by the YAML
-   Schema but may be in a future version of the ASDF Standard. Authors of new
-   schemas should assume that at the very least ``id`` will be required in a
-   future version of the Standard.
 .. [#] For an example of how to inherit from another metaschema, look at the
    :ref:`contents <asdf-schema-1.1.0>`
    of the ASDF metaschema and see how there is a reference to the YAML schema
