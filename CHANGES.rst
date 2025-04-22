@@ -7,6 +7,13 @@
 - Adds global navigation in docs top bar [#448]
 - Adds reference files for v1.6.0 [#439]
 - Adds anchor, endian, structured and scalar reference files [#439]
+- Update documentation to improve readability [#456]
+- Discourage creation of new custom metaschemas [#456]
+- Clarify that schema refs cannot contain tags [#456]
+- Describe implementation handling of block compression identifiers [#456]
+- Update description of how tag version mismatches should be handled [#456]
+- Remove outdated schema top level tag attribute description [#456]
+- Clarify post-tree pre-block padding allowed bytes [#456]
 
 1.1.1 (2024-03-06)
 ------------------
