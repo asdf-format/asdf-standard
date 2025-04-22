@@ -7,7 +7,7 @@ This document describes the `Advanced Scientific Data Format <https://www.asdf-f
 
 The ASDF Standard prescribes the specification and implementation standards for creating, editing and reading ASDF files.
 
-Documentation for the `asdf` python implementation can be found :ref:`here <asdf:asdf>`.
+Documentation for the `asdf` python implementation can be found at the :ref:`asdf repository <asdf:asdf>`.
 
 .. only:: html
 
