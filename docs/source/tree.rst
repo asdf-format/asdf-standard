@@ -15,11 +15,7 @@ higher-level content.  For instance, there is a schema that defines
 how :ref:`n-dimensional array data <core/ndarray-1.1.0>` should be
 described.  These schema are written in a language called
 :ref:`yaml-schema` which is just a thin extension of `JSON Schema,
-Draft 4
-<https://json-schema.org/draft-04/schema>`__.  (Such
-extensions are allowed and even encouraged by the JSON Schema
-standard, which defines the ``$schema`` attribute as a place to
-specify which extension is being used.) `asdf-schemas` contains an overview of
+Draft 4 <https://json-schema.org/draft-04/schema>`__.  `asdf-schemas` contains an overview of
 how schemas are defined and used by ASDF. :ref:`schema` describes in detail
 all of the schemas provided by the ASDF Standard.
 
