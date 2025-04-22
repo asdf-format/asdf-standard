@@ -8,7 +8,7 @@ The following is a catalogue of known limits in ASDF |version|.
 Tree
 ----
 
-While there is no hard limit on the size of the Tree, in most
+While there is no hard limit on the size of the tree, in most
 practical implementations it will need to be read entirely into main
 memory in order to interpret it, particularly to support forward
 references.  This imposes a practical limit on its size relative to
@@ -18,10 +18,10 @@ blocks.
 
 .. _literal_integers:
 
-Literal integer values in the Tree
+Literal integer values in the tree
 ----------------------------------
 
-For practical reasons, integer literals in the Tree must be at most 64-bits
+For practical reasons, integer literals in the tree must be at most 64-bits
 within the ``int64`` range.  In other words, number must be no greater than
 9,223,372,036,854,775,807 or no less than -9,223,372,036,854,775,806.
 
