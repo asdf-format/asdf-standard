@@ -104,25 +104,18 @@ of ASDF libraries.  ASDF libraries should, but are not required, to
 support as many existing versions of the file format and schemas as
 possible, and use the version numbers in the file to act accordingly.
 
-For future-proofing, the library should gracefully handle version
-numbers that are greater than those understood by the library.  The
-following applies to both kinds of version numbers that appear in the
-file: the **file format version** and **schema versions**.
+If while reading a file an unknown version number is encountered
+the library should warn the user and return a structure that
+preserves the version information but does not deserialize the
+versioned object.
 
-- When encountering a **major version** that is greater than the
-  understood version, by default, an exception should be raised.  This
-  behavior may be overridden through explicit user interaction, in
-  which case the library will attempt to handle the element using the
-  conventions of the most recent understood version.
-
-- When encountering a **minor version** that is greater than the
-  understood version, a warning should be emitted, and the library
-  should attempt to handle the element using the conventions of the
-  most recent understood version.
-
-- When encountering a **patch version** that is greater than the
-  understood version, silently ignore the difference and handle the
-  element using the conventions of the most recent understood version.
+For example if the ``foo-1.1.0`` tag is known and
+a file contains a ``foo-1.0.0`` tag the unknown ``1.0.0`` version
+should not be handled like a ``foo-1.1.0`` object. The same
+is true if the file contains a newer but still unknown version
+(for example ``foo-2.0.0``). This behavior applies to tags
+that differ by any element (major, minor or patch) of the version
+number.
 
 When writing ASDF files, it is recommended that libraries provide both
 of the following modes of operation:
