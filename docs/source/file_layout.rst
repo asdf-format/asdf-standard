@@ -65,11 +65,11 @@ The header in `EBNF <https://en.wikipedia.org/wiki/Extended_Backus%E2%80%93Naur_
 Comments
 --------
 
-Additional comment lines may appear between the Header and the Tree.
+Additional comment lines may appear between the header and the tree.
 
 The use of comments here is intended for information for the ASDF
 parser, and not information of general interest to the end user.  All
-data of interest to the end user should be in the Tree.
+data of interest to the end user should be in the tree.
 
 Each line must begin with a ``#`` character.
 
@@ -139,8 +139,8 @@ file.
 Blocks
 ------
 
-Following the tree and some empty space, or immediately following the
-header, there are zero or more binary blocks.
+Files can contain zero or more binary blocks. These must be after
+the header and tree (if the file contains one).
 
 Blocks represent a contiguous chunk of binary data and nothing more.
 Information about how to interpret the block, such as the data type or
