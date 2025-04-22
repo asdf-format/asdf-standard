@@ -61,7 +61,7 @@ so will have the following top-level attribute::
    $schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
 
 Some ASDF schemas use the :ref:`ASDF metaschema <asdf-schema-1.1.0>` instead
-(e.g. `ndarray <core/ndarray-1.0.0>`).  It is also possible to create custom
+(e.g. `ndarray <core/ndarray-1.1.0>`).  It is also possible to create custom
 metaschemas.
 
 .. warning::
@@ -186,19 +186,19 @@ Consider the schemas from the ASDF Standard as an example. In this case, the
 **organization** is ``stsci.edu``, which is the web address of the organization
 that created the schemas. The **standard** is ``asdf``. Each individual schema
 in the ASDF Standard has a different **name** field. In the case of the
-:ref:`ndarray <core/ndarray-1.0.0>` data type, for example, the name is
-``core/ndarray``. The version of `ndarray <core/ndarray-1.0.0>` is ``1.0.0``.
+:ref:`ndarray <core/ndarray-1.1.0>` data type, for example, the name is
+``core/ndarray``. The version of `ndarray <core/ndarray-1.1.0>` is ``1.1.0``.
 Some other types in the ASDF Standard have multiple versions, such as
-``quantity-1.0.0`` and :ref:`quantity-1.1.0 <unit/quantity-1.1.0>`.
+``quantity-1.1.0`` and :ref:`quantity-1.2.0 <unit/quantity-1.2.0>`.
 
 While schema ids can be any valid URI, under this convention they always begin
 with ``http://``. The general format of the id attribute becomes::
 
    http://<organization>/schemas/<standard>/<name>-<version>
 
-Continuing with the example of :ref:`ndarray <core/ndarray-1.0.0>`, we have::
+Continuing with the example of :ref:`ndarray <core/ndarray-1.1.0>`, we have::
 
-   id: "http://stsci.edu/schemas/asdf/core/ndarray-1.0.0"
+   id: "http://stsci.edu/schemas/asdf/core/ndarray-1.1.0"
 
 The idea behind the convention for ``id`` is that it should be possible (in
 principle if not in practice) for schemas to be hosted at the corresponding
@@ -211,9 +211,9 @@ straightforward manner. The generic tag URI template is::
 
    tag:<organization>:<standard>/<name>-<version>
 
-Considering `ndarray <core/ndarray-1.0.0>` once again, we have::
+Considering `ndarray <core/ndarray-1.1.0>` once again, we have::
 
-   tag: "tag:stsci.edu:asdf/core/ndarray-1.0.0"
+   tag: "tag:stsci.edu:asdf/core/ndarray-1.1.0"
 
 Following the naming convention for both ``id`` and ``tag`` attributes enables
 a simple mapping from ``tag`` to ``id``. In this case, simply take the prefix

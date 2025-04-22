@@ -150,7 +150,7 @@ header, there are zero or more binary blocks.
 Blocks represent a contiguous chunk of binary data and nothing more.
 Information about how to interpret the block, such as the data type or
 array shape, is stored entirely in ``ndarray`` structures in the tree,
-as described in :ref:`ndarray <core/ndarray-1.1.0>`.  This allows for a very
+as described in :ref:`ndarray <core/ndarray-1.2.0>`.  This allows for a very
 flexible type system on top of a very simple approach to memory management
 within the file.  It also allows for new extensions to ASDF that might
 interpret the raw binary data in ways that are yet to be defined.
@@ -369,5 +369,5 @@ exploded form, other than the fact that some or all of its blocks come
 from external files.  The exact way in which a file is exploded is up
 to the library and tools implementing the standard.  In the simplest
 scenario, to explode a file, each :ref:`ndarray source property
-<core/ndarray-1.1.0>` in the tree is converted from a local block reference
+<core/ndarray-1.2.0>` in the tree is converted from a local block reference
 into a relative URI.
