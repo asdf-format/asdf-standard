@@ -121,29 +121,18 @@ by, for example, `sphinx-asdf
 References
 ^^^^^^^^^^
 
-A particular ASDF schema can contain references to other ASDF schemas.
-References are encoded by using the ``$ref`` attribute anywhere in the tree.
-While `JSON Schema`_ references are purely based on ``id``, ASDF
-implementations must be able to resolve references using both ``id`` and
-``tag`` attributes.
-
-The resolution of ``id`` or ``tag`` references to actual schema files is up to
-individual implementations. It is recommended for ASDF implementations to
-use a two-phase mapping: one from ``tag`` to ``id``, and another from ``id`` to
-an actual schema resource. In most cases, the ``id`` will be resolved to a
-location on disk (e.g. to a schema file that is installed in a known location).
-However, other scenarios might involve schemas that are hosted on a network, or
-schemas that are embedded in source files as string literals.
+`JSON Schema`_ allows rerencing other schemas by including
+a mapping containing a single key ``$ref`` and value containing the ``uri``
+of the referenced schema.
 
 .. _naming-conventions:
 
 Naming Conventions
 ^^^^^^^^^^^^^^^^^^
 
-Schema ``id`` attributes must be valid URIs. Schema ``tag`` attributes must be
-valid URIs that conform to the tag URI scheme defined in `RFC 4151`_ Aside from
-these requirements, assignment of these attributes is perfectly arbitrary.
-However, certain conventions are **strongly** recommended in order to ensure
+Schema ``id`` attributes must be valid URIs. Furthermore ``tag`` uris must be
+valid URIs that conform to the tag URI scheme defined in `RFC 4151`_.
+Certain conventions are **strongly** recommended in order to ensure
 uniqueness and to enable a simple correspondence between the ``id`` and ``tag``
 attributes. These conventions are described below.
 
