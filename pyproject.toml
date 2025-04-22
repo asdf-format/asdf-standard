@@ -50,15 +50,14 @@ build-backend = "setuptools.build_meta"
 [tool.setuptools_scm]
 write_to = "src/asdf_standard/_version.py"
 
-[tool.setuptools]
-packages = ["asdf_standard", "asdf_standard.resources"]
+[tool.setuptools.packages.find]
+where = ["src"]
 
 [tool.setuptools.package-data]
-"asdf_standard.resources" = ["resources/**/*.yaml"]
-
-[tool.setuptools.package-dir]
-"" = "src"
-"asdf_standard.resources" = "resources"
+"asdf_standard.resources" = [
+    "manifests/**/*.yaml",
+    "schemas/**/*.yaml",
+]
 
 [tool.pytest.ini_options]
 asdf_schema_root = 'resources/schemas'
