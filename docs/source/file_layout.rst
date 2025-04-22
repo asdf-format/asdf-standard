@@ -204,6 +204,13 @@ Each block begins with the following header:
   data in the block.  The special value of all zeros indicates that no
   checksum verification should be performed.
 
+
+.. warning::
+
+   The ``block_magic_token`` is invalid UTF-8. As the block contains
+   arbitrary bytes it is likely other portions of the block will also
+   not be valid UTF-8.
+
 Flags
 ^^^^^
 
