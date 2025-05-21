@@ -1,0 +1,29 @@
+%YAML 1.1
+---
+$schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
+id: "http://stsci.edu/schemas/asdf/unit/quantity-1.3.0"
+
+title: >
+  Represents a Quantity object from astropy
+description: |
+  A Quantity object represents a value that has some unit
+  associated with the number.
+
+type: object
+properties:
+  value:
+    description: |
+      A vector of one or more values
+    anyOf:
+      - type: number
+      - tag: "tag:stsci.edu:asdf/core/ndarray-1.*"
+  unit:
+    description: |
+      The unit corresponding to the values
+    $ref: unit-1.0.0
+  datatype:
+    description: |
+      The datatype for scalar quantities
+    $ref: "../core/datatype-1.0.0#/definitions/scalar-datatype"
+required: [value, unit]
+...
