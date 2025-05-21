@@ -1,4 +1,4 @@
-1.1.2 (unreleased)
+1.2.0 (2024-05-21)
 ------------------
 
 - Update reference files [#409]
