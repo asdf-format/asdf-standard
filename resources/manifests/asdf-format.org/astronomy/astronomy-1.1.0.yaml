@@ -1,6 +1,6 @@
-id: asdf://asdf-format.org/astronomy/manifests/astronomy-1.0.0
-extension_uri: asdf://asdf-format.org/astronomy/extensions/astronomy-1.0.0
-title: ASDF astronomy extension 1.0.0
+id: asdf://asdf-format.org/astronomy/manifests/astronomy-1.1.0
+extension_uri: asdf://asdf-format.org/astronomy/extensions/astronomy-1.1.0
+title: ASDF astronomy extension
 description: Astronomy related (non-core) ASDF objects
 asdf_standard_requirement:
   gte: 1.6.0
