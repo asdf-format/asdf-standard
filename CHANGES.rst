@@ -1,4 +1,4 @@
-1.3.0 (unreleased)
+1.3.0 (2025-06-11)
 ------------------
 
 - Add utime and tai_seconds formats to new time-1.3.0 [#461]
