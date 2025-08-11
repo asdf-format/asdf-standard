@@ -1,11 +1,11 @@
 .. _asdf-standard:
 
-ASDF Standard
-=============
+ASDF Specification and core schemas
+===================================
 
-This document describes the `Advanced Scientific Data Format <https://www.asdf-format.org/en/latest/overview.html>`__ (ASDF) Standard.
+This document describes the `Advanced Scientific Data Format <https://www.asdf-format.org/en/latest/overview.html>`__ (ASDF) specification and documents the core schemas.
 
-The ASDF Standard prescribes the specification and implementation standards for creating, editing and reading ASDF files.
+The ASDF specification prescribes the file-format and implementation requirements for creating, editing and reading ASDF files.
 
 Documentation for the `asdf` python implementation can be found at the :ref:`asdf repository <asdf:asdf>`.
 

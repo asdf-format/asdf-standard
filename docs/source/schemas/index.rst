@@ -1,14 +1,14 @@
 .. _resources:
 
-ASDF Standard Resources
-=======================
+ASDF Specification Resources
+============================
 
-The included schema and manifest resources made available by the ASDF-standard are described below.
+The included schema and manifest resources made available by the ASDF are described below.
 
 .. _schema:
 
-ASDF Standard Schema Definitions
---------------------------------
+ASDF Specification Schema Definitions
+-------------------------------------
 
 ASDF schemas are arranged into "modules".  All ASDF implementations
 must support the "core" module, but the other modules are optional.
@@ -20,7 +20,7 @@ must support the "core" module, but the other modules are optional.
    astronomy.rst
    legacy.rst
 
-The ASDF Standard also defines two meta-schemas that are used for validating
+The ASDF Specification also defines two meta-schemas that are used for validating
 the ASDF schemas themselves. These schemas are useful references when creating
 custom schemas (see `extending-asdf`).
 

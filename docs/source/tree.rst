@@ -10,14 +10,14 @@ numbers, booleans, etc.).  All of this comes "for free" by using `YAML
 <http://yaml.org/spec/1.1/>`__.
 
 Since these core data structures on their own are so flexible, the
-ASDF standard includes a number of schema that define the structure of
+ASDF core schemas includes a number of schema that define the structure of
 higher-level content.  For instance, there is a schema that defines
 how :ref:`n-dimensional array data <core/ndarray-1.1.0>` should be
 described.  These schema are written in a language called
 :ref:`yaml-schema` which is just a thin extension of `JSON Schema,
 Draft 4 <https://json-schema.org/draft-04/schema>`__.  `asdf-schemas` contains an overview of
 how schemas are defined and used by ASDF. :ref:`schema` describes in detail
-all of the schemas provided by the ASDF Standard.
+all of the schemas provided by the ASDF core schemas.
 
 .. _yaml_subset:
 
@@ -83,10 +83,10 @@ For example::
        byteorder: little
      ...
 
-All tags defined in the ASDF standard itself begin with the prefix
+All tags defined in the ASDF core schemas itself begin with the prefix
 ``tag:stsci.edu:asdf/``.  This can be broken down as:
 
-- ``tag:`` The standard prefix used for all YAML tags.
+- ``tag:`` The prefix used for all YAML tags.
 
 - ``stsci.edu`` The owner of the tag.
 
@@ -113,8 +113,8 @@ will be replaced with the prefix ``tag:stsci.edu:asdf/``::
         byteorder: little
 
 An ASDF parser may use the tag to look up the corresponding schema in
-the ASDF standard and validate the element.  The schema definitions
-ship as part of the ASDF standard.
+and validate the element.  The schema definitions
+ship as part of the ASDF core schemas or extensions.
 
 An ASDF parser may also use the tag information to convert the element
 to a native data type.  For example, in Python, an ASDF parser may
@@ -122,7 +122,7 @@ convert a :ref:`ndarray <core/ndarray-1.1.0>` tag to a `Numpy
 <http://www.numpy.org>`__ array instance, providing a convenient and familiar
 interface to the user to access *n*-dimensional data.
 
-The ASDF standard does not require parser implementations to validate
+The ASDF specification does not require parser implementations to validate
 or perform native type conversion, however.  A parser may simply leave
 the tree represented in the low-level basic data structures.  When
 writing an ASDF file, however, the elements in the tree must be
@@ -132,7 +132,7 @@ ASDF parsers must not fail when encountering an unknown tag, but must
 simply retain the low-level data structure and the presence of the
 tag.  This is important, as end users will likely want to store their
 own custom tags in ASDF files alongside the tags defined in the ASDF
-standard itself, and the file must still be readable by ASDF parsers
+core schemas, and the file must still be readable by ASDF parsers
 that do not understand those tags.
 
 .. _references:
@@ -290,11 +290,11 @@ YAML permits serialization of null values using the ``null`` literal::
 
     some_key: null
 
-Previous versions of the ASDF Standard were vague as to how nulls should
+Previous versions of the ASDF specification were vague as to how nulls should
 be handled, and the Python reference implementation did not distinguish
 between keys with null values and keys that were missing altogether (and
 in fact, removed any keys assigned ``None`` from the tree on read or
-write).  Beginning with ASDF Standard 1.6.0, ASDF implementations
+write).  Beginning with ASDF specification 1.6.0, ASDF implementations
 are required to preserve keys even if assigned null values.  This
 requirement does not extend back into previous versions, and users
 of the Python implementation should be advised that the YAML portion

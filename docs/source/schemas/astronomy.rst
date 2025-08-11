@@ -3,8 +3,8 @@
 Astronomy
 =========
 
-The ASDF standard contains a few astronomy-specific tags that
-are optional but maintained as part of the standard (for historical
+The ASDF specification contains a few astronomy-specific tags that
+are optional but maintained as part of the specification (for historical
 reasons). These include:
 
 .. asdf-autoschemas::

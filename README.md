@@ -1,5 +1,5 @@
-ASDF standard 1.6.0
-===================
+ASDF specification and core schemas
+===================================
 ![CI](https://github.com/asdf-format/asdf-standard/actions/workflows/ci.yml/badge.svg)
 ![Downstream](https://github.com/asdf-format/asdf-standard/actions/workflows/downstream.yml/badge.svg)
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://github.com/pre-commit/pre-commit)
