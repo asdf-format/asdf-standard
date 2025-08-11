@@ -26,7 +26,7 @@ within the ``int64`` range.  In other words, number must be no greater than
 9,223,372,036,854,775,807 or no less than -9,223,372,036,854,775,806.
 
 
-As of version **1.3.0** of the standard, arbitrary precision integers are
+As of version **1.3.0** of the core schemas, arbitrary precision integers are
 supported using :ref:`integer <core/integer-1.1.0>`.  Like all tags, use of
 this type requires library support.
 

@@ -6,8 +6,7 @@ ASDF Schemas
 ASDF uses `JSON Schema`_ to perform validation of ASDF files. Schema validation
 of ASDF files serves the following purposes:
 
-* Ensures conformity with core data types defined by the ASDF Standard. ASDF
-  readers can detect whether an ASDF file has been modified in a way that would
+* ASDF readers can detect whether an ASDF file has been modified in a way that would
   render it unreadable or unrecognizable.
 * Enables interoperability between ASDF implementations. Implementations that
   recognize the same schema definitions should be able to interpret files
@@ -19,12 +18,12 @@ of ASDF files serves the following purposes:
 
 All ASDF implementations must implement the types defined by the `core schemas
 <core-schema>` and validate against them when reading files. [#]_ The ASDF
-Standard also defines other schemas, which are optional for ASDF implementations
-and maintained as part of the standard (mainly for historical reasons):
+specification also defines other schemas, which are optional for ASDF implementations
+and maintained as part of the specification (mainly for historical reasons):
 
 * :ref:`astronomy <astronomy-schema>`
 
-The ASDF Standard also defines two metaschemas which are used to validate the
+The ASDF specification also defines two metaschemas which are used to validate the
 ASDF schemas themselves:
 
 * :ref:`yaml-schema`
@@ -54,8 +53,8 @@ $schema
 
 ASDF schemas use the top-level ``$schema`` attribute to declare the metaschema
 that is used to validate the schema itself. Most custom ASDF schemas will
-conform to :ref:`YAML Schema <yaml-schema>` defined by the ASDF Standard, and
-so will have the following top-level attribute::
+conform to :ref:`YAML Schema <yaml-schema>` and so will have the following
+top-level attribute::
 
    $schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
 
@@ -84,7 +83,7 @@ conventions to ensure global uniqueness.
 
 While the ``id`` must be a valid URI, it does not have to describe a real
 location on disk or on a network. For example, the ``id`` values for all
-schemas in the ASDF Standard begin with the prefix
+schemas in the ASDF core schemas begin with the prefix
 ``http://stsci.edu/schemas/asdf/``.  However, as of this writing, none of the
 schemas are actually hosted at that location.
 
@@ -145,14 +144,14 @@ All schema ids should encode the following information:
 * **version**: The version of the schema. See `versioning-conventions` for more
   details.
 
-Consider the schemas from the ASDF Standard as an example. In this case, the
+Consider ASDF core schemas as an example. In this case, the
 **organization** is ``stsci.edu``, which is the web address of the organization
 that created the schemas. The **standard** is ``asdf``. Each individual schema
-in the ASDF Standard has a different **name** field. In the case of the
+in the core schemas has a different **name** field. In the case of the
 :ref:`ndarray <core/ndarray-1.1.0>` data type, for example, the name is
 ``core/ndarray``. The version of `ndarray <core/ndarray-1.1.0>` is ``1.1.0``.
-Some other types in the ASDF Standard have multiple versions, such as
-``quantity-1.1.0`` and :ref:`quantity-1.2.0 <unit/quantity-1.2.0>`.
+Some types in the core schemas have multiple versions, such as
+``ndarray-1.0.0`` and :ref:`ndarray-1.1.0 <core/ndarray-1.1.0>`.
 
 While schema ids can be any valid URI, under this convention they always begin
 with ``http://``. The general format of the id attribute becomes::
@@ -212,7 +211,7 @@ Therefore, in our schema file, we have the following defining the ``id`` of the 
 
 
 Since our schema is just a basic ASDF schema, we will declare that it conforms
-to `yaml-schema` defined by the ASDF Standard::
+to `yaml-schema` defined by the ASDF specification::
 
    $schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
 
@@ -261,7 +260,7 @@ description::
 We'll also define an optional element for the exposure time unit.
 This is a somewhat contrived example to demonstrate how to include
 elements in your schema that are based on the custom types defined in
-the ASDF standard::
+the ASDF core schemas::
 
     exposure_time_units:
       allOf:
@@ -329,7 +328,7 @@ Extending an existing schema
 `JSON Schema`_ does not support the concept of inheritance, which makes it
 somewhat awkward to express type hierarchies. However, it is possible to create
 a custom schema that adds attributes to an existing schema (e.g. one defined in
-the ASDF Standard). It is important to remember that it is not possible to
+the ASDF core schemas). It is important to remember that it is not possible to
 override or remove any of the attributes from the existing schema.
 
 The following important caveats apply when extending an existing schema:
@@ -343,7 +342,7 @@ The following important caveats apply when extending an existing schema:
   there is no concept of polymorphism).
 
 Here's an example of extending a schema using the `software <core/software-1.0.0>`
-schema defined by the ASDF Standard.  Here's the original schema, for reference::
+schema defined in the ASDF core schemas.  Here's the original schema, for reference::
 
   %YAML 1.1
   ---
@@ -422,7 +421,7 @@ Default annotation
 .. warning::
 
    It is recommended that ``default`` is no longer used  in new schema.
-   As noted below newer versions of the standard will ignore these values.
+   As noted below newer versions of the ASDF specification will ignore these values.
 
 
 The JSON Schema spec includes a schema annotation attribute called ``default`` that
@@ -433,7 +432,7 @@ are available due to references and combiners.  This presents a problem when
 trying to fill in missing data in a file based on the schema ``default``: if
 multiple conflicting values are available, the software does not know how to choose.
 
-Previous versions of the ASDF Standard did not offer guidance on how
+Previous versions of the ASDF specification did not offer guidance on how
 to use ``default``.  The Python reference implementation read the first default
 that it encountered as a literal value and inserted that value into the tree when
 the corresponding attribute was otherwise missing.  Until version 2.8, it also
@@ -442,14 +441,14 @@ resulting files would appear to the casual viewer to be missing data, and may in
 fact be invalid against their schemas if the any of the removed attributes were required.
 
 Implementations **must not** remove attributes with default values from the tree.
-Beginning with ASDF Standard 1.6.0, implementations also must not fill default values
+Beginning with ASDF specification 1.6.0, implementations also must not fill default values
 directly from the schema.  This will avoid ambiguity when multiple schema defaults
 are present, and also permit the ``default`` attribute to contain a description
 that is not appropriate to use as a literal default value.  For example::
 
     default: An array of zeros matching the dimensions of the data array.
 
-For ASDF Standard < 1.6.0, filling default values from the schema is required.  This is
+For ASDF specification < 1.6.0, filling default values from the schema is required.  This is
 necessary to support files written by older versions of the Python implementation.
 
 .. rubric:: Footnotes

@@ -172,7 +172,7 @@ Each block begins with the following header:
   size of the remainder of the header (not including the length of the
   ``header_size`` entry itself or the ``block_magic_token``), in bytes.
   It is stored explicitly in the header itself so that the header may be
-  enlarged in a future version of the ASDF standard while retaining
+  enlarged in a future version of the ASDF specification while retaining
   backward compatibility.  Importantly, ASDF parsers should not assume
   a fixed size of the header, but should obey the ``header_size``
   defined in the file.  In ASDF version 0.1, this should be at least
@@ -227,7 +227,7 @@ The following bit flags are understood in the ``flags`` field:
 Compression
 ^^^^^^^^^^^
 
-Currently, two block compression types are defined in the standard
+Currently, two block compression types are defined in the specification
 and all implementations should strive to support these:
 
 - ``zlib``: The zlib lossless compression algorithm.  It is widely
@@ -239,7 +239,7 @@ and all implementations should strive to support these:
   released under a permissive license in the `bzip2 library
   <http://www.bzip.org/>`__.
 
-The standard does not currently specify how additional 4-byte compression
+The specification does not currently specify how additional 4-byte compression
 type identifiers should be agreed upon. It is currently up to
 implementations to define how other identifiers are mapped to compression
 algorithms.
@@ -371,7 +371,7 @@ multiple files, but it does not require any additions to the file
 format itself.  There is nothing indicating that an ASDF file is in
 exploded form, other than the fact that some or all of its blocks come
 from external files.  The exact way in which a file is exploded is up
-to the library and tools implementing the standard.  In the simplest
+to the library and tools implementing the specification.  In the simplest
 scenario, to explode a file, each :ref:`ndarray source property
 <core/ndarray-1.2.0>` in the tree is converted from a local block reference
 into a relative URI.

@@ -1,9 +1,9 @@
 
-ASDF Standard Manifests
------------------------
+ASDF Core Schema Manifests
+--------------------------
 
-The ASDF tags (described by schemas) available under each ASDF standard version are all described
-by a single manifest document for that ASDF standard version.
+The ASDF tags (described by schemas) available under each ASDF core schemas version are all described
+by a single manifest document for that ASDF specification version.
 
 .. asdf-autoschemas::
    :schema_root: ../../resources/manifests
