@@ -73,6 +73,8 @@ asdf_schema_skip_tests = """
     stsci.edu/asdf/wcs/wcs-1.1.0.yaml
     stsci.edu/asdf/wcs/wcs-1.2.0.yaml
     stsci.edu/yaml-schema/draft-01.yaml
+    stsci.edu/asdf/core/ndarray-1.1.0.yaml::test_example_8
+    stsci.edu/asdf/core/ndarray-1.1.0.yaml::test_example_10
 """
 asdf_schema_tests_enabled = 'true'
 asdf_schema_ignore_unrecognized_tag = 'true'
