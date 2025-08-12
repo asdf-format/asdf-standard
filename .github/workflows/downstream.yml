@@ -82,13 +82,13 @@ jobs:
             test_command: pytest
     steps:
       - name: Checkout asdf-standard
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           fetch-depth: 0
           submodules: true
           path: asdf-standard
       - name: Checkout ${{ matrix.package_name }}
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           fetch-depth: 0
           repository: ${{ matrix.repository }}
