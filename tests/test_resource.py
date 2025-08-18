@@ -3,10 +3,10 @@ import sys
 from collections.abc import Mapping
 from pathlib import Path
 
-if sys.version_info < (3, 9):
-    import importlib_resources as importlib
+if sys.version_info < (3, 11):
+    from importlib.abc import Traversable
 else:
-    import importlib
+    from importlib.resources.abc import Traversable
 
 from asdf_standard import DirectoryResourceMapping
 
@@ -80,7 +80,7 @@ def test_directory_resource_mapping_with_traversable():
     methods outside of the Traversable interface.
     """
 
-    class MockTraversable(importlib.resources.abc.Traversable):
+    class MockTraversable(Traversable):
         def __init__(self, name, value):
             self._name = name
             self._value = value
