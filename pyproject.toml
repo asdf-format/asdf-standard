@@ -26,6 +26,7 @@ docs = [
 ]
 test = [
     'pytest',
+    'pytest-asdf-plugin',
     'pyyaml',
     'asdf >= 3.0.0',
     'packaging>=16.0',
