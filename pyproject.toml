@@ -78,6 +78,9 @@ asdf_schema_skip_tests = """
 asdf_schema_tests_enabled = 'true'
 asdf_schema_ignore_unrecognized_tag = 'true'
 addopts = '--color=yes'
+filterwarnings = [
+    "error",
+]
 
 [tool.black]
 line-length = 120
