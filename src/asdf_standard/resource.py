@@ -13,7 +13,7 @@ class DirectoryResourceMapping(Mapping):
 
     Parameters
     ----------
-    root : str or importlib.abc.Traversable
+    root : str or importlib.resources.abc.Traversable
         Root directory (or directory-like Traversable) of the resource
         files.  ``str`` will be interpreted as a filesystem path.
     uri_prefix : str
