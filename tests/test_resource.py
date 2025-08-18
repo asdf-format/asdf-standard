@@ -80,7 +80,7 @@ def test_directory_resource_mapping_with_traversable():
     methods outside of the Traversable interface.
     """
 
-    class MockTraversable(importlib.abc.Traversable):
+    class MockTraversable(importlib.resources.abc.Traversable):
         def __init__(self, name, value):
             self._name = name
             self._value = value
