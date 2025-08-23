@@ -24,7 +24,7 @@ properties:
       # This is to support backwards compatibility with older history formats
       - type: array
         items:
-          - $ref: "history_entry-1.0.0"
+          $ref: "history_entry-1.0.0"
       # This is the new, richer history implementation that includes
       # extension metadata.
       - $ref: "#/definitions/history-1.1.0"
@@ -43,9 +43,9 @@ definitions:
       extensions:
         type: array
         items:
-          - $ref: "extension_metadata-1.0.0"
+          $ref: "extension_metadata-1.0.0"
       entries:
         type: array
         items:
-          - $ref: "history_entry-1.0.0"
+          $ref: "history_entry-1.0.0"
 ...
