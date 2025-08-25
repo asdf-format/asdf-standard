@@ -16,6 +16,7 @@ EXCEPTIONS = {
     "http://stsci.edu/schemas/asdf/unit/defunit-1.0.0",
     "http://stsci.edu/schemas/asdf/unit/quantity-1.2.0",
     "http://stsci.edu/schemas/asdf/unit/unit-1.0.0",
+    "http://stsci.edu/schemas/asdf/asdf-schema-1.1.0",
 }
 
 
