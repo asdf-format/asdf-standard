@@ -20,7 +20,7 @@ must support the "core" module, but the other modules are optional.
    astronomy.rst
    legacy.rst
 
-The ASDF Specification also defines two meta-schemas that are used for validating
+The ASDF Specification also defines a meta-schema that is useful for validating
 the ASDF schemas themselves. These schemas are useful references when creating
 custom schemas (see `extending-asdf`).
 
@@ -28,10 +28,6 @@ custom schemas (see `extending-asdf`).
    :maxdepth: 0
 
    yaml_schema.rst
-
-.. asdf-autoschemas::
-
-   asdf-schema-1.2.0
 
 .. _manifest:
 
