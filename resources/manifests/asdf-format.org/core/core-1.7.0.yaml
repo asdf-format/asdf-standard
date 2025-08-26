@@ -57,12 +57,12 @@ tags:
   description: |-
     A record of an operation that has been performed
     upon a file.
-- tag_uri: tag:stsci.edu:asdf/core/integer-1.1.0
-  schema_uri: http://stsci.edu/schemas/asdf/core/integer-1.1.0
+- tag_uri: tag:stsci.edu:asdf/core/integer-1.2.0
+  schema_uri: http://stsci.edu/schemas/asdf/core/integer-1.2.0
   title: Arbitrary precision integer value.
   description: Represents an arbitrarily large integer value.
-- tag_uri: tag:stsci.edu:asdf/core/ndarray-1.1.0
-  schema_uri: http://stsci.edu/schemas/asdf/core/ndarray-1.1.0
+- tag_uri: tag:stsci.edu:asdf/core/ndarray-1.2.0
+  schema_uri: http://stsci.edu/schemas/asdf/core/ndarray-1.2.0
   title: An *n*-dimensional array.
   description: |-
     There are two ways to store the data in an ndarray.
