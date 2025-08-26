@@ -12,9 +12,9 @@ ASDF library.
    core/complex-1.0.0
    core/datatype-1.0.0
    core/extension_metadata-1.0.0
-   core/ndarray-1.1.0
+   core/ndarray-1.2.0
    core/constant-1.0.0
    core/software-1.0.0
    core/history_entry-1.0.0
-   core/integer-1.1.0
+   core/integer-1.2.0
    core/externalarray-1.0.0
