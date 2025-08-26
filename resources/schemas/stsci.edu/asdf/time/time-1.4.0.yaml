@@ -175,17 +175,15 @@ definitions:
       - `tai_seconds`: SI seconds from 1958-01-01 00:00:00, which includes UTC leap seconds.
 
     enum:
-      - byear
-      - cxcsec
-      - decimalyear
-      - gps
       - iso
-      - jd
-      - jyear
-      - mjd
-      - unix
-      - unix_tai
       - yday
+      - byear
+      - jyear
+      - decimalyear
+      - jd
+      - mjd
+      - gps
+      - unix
       - utime
       - tai_seconds
 
@@ -203,6 +201,9 @@ definitions:
       - plot_date
       - ymdhms
       - datetime64
+      - cxcsec
+      - galexsec
+      - unix_tai
 
 anyOf:
   - $ref: "#/definitions/string_formats"
