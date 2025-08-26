@@ -5,6 +5,7 @@
   ASDF specification refers to the description of the file
   format whereas the ASDF core schemas refers to the versioned
   collection of schemas for core objects (ndarray, software, etc) [#473]
+- Add datatype-1.0.0 schema [#455]
 
 1.3.0 (2025-06-11)
 ------------------
