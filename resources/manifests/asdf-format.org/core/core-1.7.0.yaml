@@ -1,0 +1,84 @@
+id: asdf://asdf-format.org/core/manifests/core-1.7.0
+extension_uri: asdf://asdf-format.org/core/extensions/core-1.7.0
+title: Core extension 1.7.0
+description: Tags for ASDF core objects.
+asdf_standard_requirement: 1.7.0
+tags:
+- tag_uri: tag:stsci.edu:asdf/core/asdf-1.1.0
+  schema_uri: http://stsci.edu/schemas/asdf/core/asdf-1.1.0
+  title: Top-level schema for every ASDF file.
+  description: This schema contains the top-level attributes for every ASDF file.
+- tag_uri: tag:stsci.edu:asdf/core/complex-1.0.0
+  schema_uri: http://stsci.edu/schemas/asdf/core/complex-1.0.0
+  title: Complex number value.
+  description: |-
+    Represents a complex number matching the following EBNF grammar
+
+    ```
+      dot           = "."
+      plus-or-minus = "+" | "-"
+      digit         = "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9"
+      sign          = "" | plus-or-minus
+      suffix        = "J" | "j" | "I" | "i"
+      inf           = "inf" | "INF"
+      nan           = "nan" | "NAN"
+      number        = digits | dot digits | digits dot digits
+      sci-suffix    = "e" | "E"
+      scientific    = number sci-suffix sign digits
+      real          = sign number | sign scientific
+      imag          = number suffix | scientific suffix
+      complex       = real | sign imag | real plus-or-minus imag
+    ```
+
+    Though `J`, `j`, `I` and `i` must be supported on reading, it is
+    recommended to use `i` on writing.
+
+    For historical reasons, it is necessary to accept as valid complex numbers
+    that are surrounded by parenthesis.
+- tag_uri: tag:stsci.edu:asdf/core/constant-1.0.0
+  schema_uri: http://stsci.edu/schemas/asdf/core/constant-1.0.0
+  title: Specify that a value is a constant.
+  description: Used as a utility to indicate that value is a literal constant.
+- tag_uri: tag:stsci.edu:asdf/core/extension_metadata-1.0.0
+  schema_uri: http://stsci.edu/schemas/asdf/core/extension_metadata-1.0.0
+  title: Metadata about specific ASDF extensions that were used to create this file.
+  description: Metadata about specific ASDF extensions that were used to create this
+    file.
+- tag_uri: tag:stsci.edu:asdf/core/externalarray-1.0.0
+  schema_uri: http://stsci.edu/schemas/asdf/core/externalarray-1.0.0
+  title: Point to an array-like object in an external file.
+  description: |-
+    Allow referencing of array-like objects in external files. These files can be
+    any type of file and in any absolute or relative location to the asdf file.
+    Loading of these files into arrays is not handled by asdf.
+- tag_uri: tag:stsci.edu:asdf/core/history_entry-1.0.0
+  schema_uri: http://stsci.edu/schemas/asdf/core/history_entry-1.0.0
+  title: An entry in the file history.
+  description: |-
+    A record of an operation that has been performed
+    upon a file.
+- tag_uri: tag:stsci.edu:asdf/core/integer-1.2.0
+  schema_uri: http://stsci.edu/schemas/asdf/core/integer-1.2.0
+  title: Arbitrary precision integer value.
+  description: Represents an arbitrarily large integer value.
+- tag_uri: tag:stsci.edu:asdf/core/ndarray-1.2.0
+  schema_uri: http://stsci.edu/schemas/asdf/core/ndarray-1.2.0
+  title: An *n*-dimensional array.
+  description: |-
+    There are two ways to store the data in an ndarray.
+
+    - Inline in the tree: This is recommended only for small arrays.  In
+      this case, the entire ``ndarray`` tag may be a nested list, in
+      which case the type of the array is inferred from the content.
+      (See the rules for type inference in the ``inline-data``
+      definition below.)  The inline data may also be given in the
+      ``data`` property, in which case it is possible to explicitly
+      specify the ``datatype`` and other properties.
+
+    - External to the tree: The data comes from a [block](ref:block)
+      within the same ASDF file or an external ASDF file referenced by a
+      URI.
+- tag_uri: tag:stsci.edu:asdf/core/software-1.0.0
+  schema_uri: http://stsci.edu/schemas/asdf/core/software-1.0.0
+  title: Describes a software package.
+  description: General-purpose description of a software package.

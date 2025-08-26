@@ -28,7 +28,8 @@ test = [
     'pytest',
     'pytest-asdf-plugin',
     'pyyaml',
-    'asdf >= 3.0.0',
+    #'asdf >= 3.0.0',
+    'asdf @ git+https://github.com/braingram/asdf.git@standard_1p7p0',
     'packaging>=16.0',
 ]
 
