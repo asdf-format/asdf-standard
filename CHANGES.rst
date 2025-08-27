@@ -1,3 +1,11 @@
+1.5.0 (unreleased)
+------------------
+
+- Add missing transform-1.0.0 and domain-1.0.0 schemas.
+  These are only used by legacy schemas and are not to be
+  used for new schemas. See asdf-transform-schemas for
+  newer versions of these schemas [#485]
+
 1.4.0 (2025-08-27)
 ------------------
 
