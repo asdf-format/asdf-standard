@@ -186,6 +186,9 @@ definitions:
       - unix
       - utime
       - tai_seconds
+      - cxcsec
+      - galexsec
+      - unix_tai
 
   other_format:
     description: |
@@ -201,9 +204,6 @@ definitions:
       - plot_date
       - ymdhms
       - datetime64
-      - cxcsec
-      - galexsec
-      - unix_tai
 
 anyOf:
   - $ref: "#/definitions/string_formats"
