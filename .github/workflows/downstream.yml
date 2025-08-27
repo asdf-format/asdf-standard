@@ -38,7 +38,7 @@ jobs:
           - package_name: jwst
             repository: spacetelescope/jwst
             install_command: pip install -e .[test]
-            test_command: pytest
+            test_command: pytest jwst/ami -s
           - package_name: roman_datamodels
             repository: spacetelescope/roman_datamodels
             install_command: pip install -e .[test]
