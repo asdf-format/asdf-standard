@@ -1,4 +1,4 @@
-1.4.0 (unreleased)
+1.4.0 (2025-08-27)
 ------------------
 
 - Update documentation to use new terminology. The
