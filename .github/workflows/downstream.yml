@@ -20,7 +20,7 @@ on:
 env:
   CRDS_CONTEXT: jwst-latest
   CRDS_SERVER_URL: https://jwst-crds.stsci.edu
-  CRDS_PATH: ${{ runner.temp}}/crds_cache
+  CRDS_PATH: ~/crds_cache
 
 jobs:
   common:
