@@ -62,22 +62,9 @@ where = ["src"]
 
 [tool.pytest.ini_options]
 asdf_schema_root = 'resources/schemas'
-asdf_schema_skip_tests = """
-    stsci.edu/asdf/asdf-schema-1.0.0.yaml
-    stsci.edu/asdf/wcs/celestial_frame-1.0.0.yaml
-    stsci.edu/asdf/wcs/celestial_frame-1.1.0.yaml
-    stsci.edu/asdf/wcs/frame-1.0.0.yaml
-    stsci.edu/asdf/wcs/frame-1.1.0.yaml
-    stsci.edu/asdf/wcs/spectral_frame-1.1.0.yaml
-    stsci.edu/asdf/wcs/step-1.1.0.yaml
-    stsci.edu/asdf/wcs/step-1.2.0.yaml
-    stsci.edu/asdf/wcs/wcs-1.1.0.yaml
-    stsci.edu/asdf/wcs/wcs-1.2.0.yaml
-    stsci.edu/yaml-schema/draft-01.yaml
-"""
 asdf_schema_tests_enabled = 'true'
 asdf_schema_ignore_unrecognized_tag = 'true'
-addopts = '--color=yes'
+addopts = '--color=yes -r a'
 filterwarnings = [
     "error",
 ]
