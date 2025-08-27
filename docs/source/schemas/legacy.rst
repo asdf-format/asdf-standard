@@ -18,3 +18,5 @@ The following legacy schemas are not part of the most recent ASDF core schemas:
    time/time-1.1.0
    unit/quantity-1.1.0
    asdf-schema-1.1.0
+   transform/transform-1.0.0
+   transform/domain-1.0.0
