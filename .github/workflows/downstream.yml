@@ -18,6 +18,7 @@ on:
       - '*'
 
 env:
+  CRDS_CONTEXT: jwst-latest
   CRDS_SERVER_URL: https://jwst-crds.stsci.edu
   CRDS_PATH: ~/crds_cache
   CRDS_CLIENT_RETRY_COUNT: 3
