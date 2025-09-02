@@ -13,17 +13,17 @@ def get_resource_mappings():
 
     return [
         asdf_standard.DirectoryResourceMapping(
-            resources_root / "schemas" / "stsci.edu", "http://stsci.edu/schemas/", recursive=True
+            resources_root / "stable" / "schemas" / "stsci.edu", "http://stsci.edu/schemas/", recursive=True
         ),
         asdf_standard.DirectoryResourceMapping(
-            resources_root / "schemas" / "asdf-format.org" / "core", "asdf://asdf-format.org/core/schemas/"
+            resources_root / "stable" / "schemas" / "asdf-format.org" / "core", "asdf://asdf-format.org/core/schemas/"
         ),
         asdf_standard.DirectoryResourceMapping(
-            resources_root / "manifests" / "asdf-format.org" / "core",
+            resources_root / "stable" / "manifests" / "asdf-format.org" / "core",
             "asdf://asdf-format.org/core/manifests/",
         ),
         asdf_standard.DirectoryResourceMapping(
-            resources_root / "manifests" / "asdf-format.org" / "astronomy",
+            resources_root / "stable" / "manifests" / "asdf-format.org" / "astronomy",
             "asdf://asdf-format.org/astronomy/manifests/",
         ),
     ]
