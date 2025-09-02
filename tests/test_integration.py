@@ -29,7 +29,7 @@ def test_resource(resource):
 
 
 def get_manifests():
-    manifests_root = Path(__file__).parent.parent / "resources" / "manifests" / "asdf-format.org"
+    manifests_root = Path(__file__).parent.parent / "resources" / "stable" / "manifests" / "asdf-format.org"
 
     return {str(path.relative_to(manifests_root)): path for path in manifests_root.glob("**/*.yaml")}
 
