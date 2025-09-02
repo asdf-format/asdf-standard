@@ -56,8 +56,7 @@ where = ["src"]
 
 [tool.setuptools.package-data]
 "asdf_standard.resources" = [
-    "manifests/**/*.yaml",
-    "schemas/**/*.yaml",
+    "**/*.yaml",
 ]
 
 [tool.pytest.ini_options]
