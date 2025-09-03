@@ -7,7 +7,7 @@ from packaging.version import Version
 
 ROOT_PATH = Path(__file__).parent.parent
 
-RESOURCES_PATH = ROOT_PATH / "resources"
+RESOURCES_PATH = ROOT_PATH / "resources" / "stable"
 
 SCHEMAS_PATH = RESOURCES_PATH / "schemas" / "stsci.edu" / "asdf"
 DOCS_PATH = ROOT_PATH / "docs" / "source"
