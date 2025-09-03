@@ -67,6 +67,8 @@ asdf_schema_skip_tests = """
     stsci.edu/asdf/wcs/step-1.2.0.yaml
     stsci.edu/asdf/wcs/wcs-1.1.0.yaml
     stsci.edu/asdf/wcs/wcs-1.2.0.yaml
+    stsci.edu/asdf/core/integer-1.2.0.yaml
+    stsci.edu/asdf/core/ndarray-1.2.0.yaml
 """
 asdf_schema_ignore_unrecognized_tag = 'true'
 addopts = '--color=yes -r a'
