@@ -6,7 +6,7 @@ The ASDF tags (described by schemas) available under each ASDF core schemas vers
 by a single manifest document for that ASDF specification version.
 
 .. asdf-autoschemas::
-   :schema_root: ../../resources/manifests
+   :schema_root: ../../resources/stable/manifests
    :standard_prefix: asdf-format.org/core
 
    core-1.0.0
@@ -20,7 +20,7 @@ by a single manifest document for that ASDF specification version.
 The non-core (astronomy) tags are described separately:
 
 .. asdf-autoschemas::
-   :schema_root: ../../resources/manifests
+   :schema_root: ../../resources/stable/manifests
    :standard_prefix: asdf-format.org/astronomy
 
    astronomy-1.0.0

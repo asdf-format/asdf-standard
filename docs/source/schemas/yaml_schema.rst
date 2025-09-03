@@ -31,7 +31,7 @@ Writing a new schema is described in :ref:`extending-asdf`.
 .. _yaml-schema-draft-01:
 
 .. asdf-schema::
-   :schema_root: ../../resources/schemas/stsci.edu
+   :schema_root: ../../resources/stable/schemas/stsci.edu
    :standard_prefix:
 
    yaml-schema/draft-01
