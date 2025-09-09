@@ -5,6 +5,11 @@
   These are only used by legacy schemas and are not to be
   used for new schemas. See asdf-transform-schemas for
   newer versions of these schemas [#485]
+- Support setting ASDF_DEV_CORE_SCHEMAS environment variable
+  to enable support for upcoming (development) versions of
+  core schemas. Be warned that writing files with development
+  versions of core schemas is not recommended as these schemas
+  may change during development [#479]
 
 1.4.0 (2025-08-27)
 ------------------
