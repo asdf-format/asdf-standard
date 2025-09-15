@@ -2,7 +2,7 @@ exclude: "reference_files/.*"
 repos:
 
 - repo: https://github.com/pre-commit/pre-commit-hooks
-  rev: v4.5.0
+  rev: v6.0.0
   hooks:
     - id: check-added-large-files
     - id: check-ast
@@ -27,7 +27,7 @@ repos:
     - id: text-unicode-replacement-char
 
 - repo: https://github.com/codespell-project/codespell
-  rev: v2.2.6
+  rev: v2.4.1
   hooks:
     - id: codespell
       args: ["--write-changes"]
@@ -35,17 +35,17 @@ repos:
         - tomli
 
 - repo: https://github.com/astral-sh/ruff-pre-commit
-  rev: 'v0.1.4'
+  rev: 'v0.13.0'
   hooks:
     - id: ruff
       args: ["--fix"]
 
 - repo: https://github.com/psf/black
-  rev: 23.10.1
+  rev: 25.1.0
   hooks:
     - id: black
 
 - repo: https://github.com/asottile/blacken-docs
-  rev: 1.16.0
+  rev: 1.20.0
   hooks:
     - id: blacken-docs
