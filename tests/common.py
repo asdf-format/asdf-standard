@@ -74,7 +74,7 @@ def yaml_tag_to_id(yaml_tag):
 
 
 def _relative_stem(path):
-    return f"{str((path.parent).relative_to(SCHEMAS_PATH))}/{str(path.stem)}"
+    return f"{(path.parent).relative_to(SCHEMAS_PATH)!s}/{path.stem!s}"
 
 
 def path_to_tag(path):

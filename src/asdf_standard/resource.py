@@ -74,11 +74,9 @@ class DirectoryResourceMapping(Mapping):
         yield from self._uri_to_file
 
     def __repr__(self):
-        return "{}({!r}, {!r}, recursive={!r}, filename_pattern={!r}, stem_filename={!r})".format(
-            self.__class__.__name__,
-            self._root,
-            self._uri_prefix,
-            self._recursive,
-            self._filename_pattern,
-            self._stem_filename,
+        return (
+            f"{self.__class__.__name__}({self._root!r}, {self._uri_prefix!r}, "
+            f"recursive={self._recursive!r}, "
+            f"filename_pattern={self._filename_pattern!r}, "
+            f"stem_filename={self._stem_filename!r})"
         )

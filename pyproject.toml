@@ -104,6 +104,14 @@ select = [
     "UP", # pyupgrade
     "RUF",  # ruff specific, includes yesqa
 ]
+extend-ignore = [
+    "RUF005",
+]
+
+[tool.ruff.lint.per-file-ignores]
+"test_*.py" = ["S101"]
+"tests/*" = ["S101"]
+"scripts/*" = ["S603"]
 
 [tool.codespell]
 skip="*.pdf,*.fits,*.asdf,.tox,build,./tags,.git,docs/build"
