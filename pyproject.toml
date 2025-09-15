@@ -95,7 +95,7 @@ force-exclude = '''
 [tool.ruff]
 line-length = 120
 
-[too.ruff.lint]
+[tool.ruff.lint]
 select = [
     "E", # pycodestyle
     "F", # pyflakes, autoflake
