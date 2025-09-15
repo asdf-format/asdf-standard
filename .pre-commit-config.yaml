@@ -26,12 +26,6 @@ repos:
     - id: rst-inline-touching-normal
     - id: text-unicode-replacement-char
 
-- repo: https://github.com/asottile/pyupgrade
-  rev: v3.15.0
-  hooks:
-    - id: pyupgrade
-      args: ["--py38-plus"]
-
 - repo: https://github.com/codespell-project/codespell
   rev: v2.2.6
   hooks:
@@ -46,11 +40,6 @@ repos:
     - id: ruff
       args: ["--fix"]
 
-- repo: https://github.com/pycqa/isort
-  rev: 5.12.0
-  hooks:
-    - id: isort
-
 - repo: https://github.com/psf/black
   rev: 23.10.1
   hooks:
@@ -60,9 +49,3 @@ repos:
   rev: 1.16.0
   hooks:
     - id: blacken-docs
-
-- repo: https://github.com/PyCQA/bandit
-  rev: 1.7.5
-  hooks:
-    - id: bandit
-      args: ["-c", "bandit.yaml"]

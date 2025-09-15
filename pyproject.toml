@@ -92,13 +92,18 @@ force-exclude = '''
 )
 '''
 
-[tool.isort]
-profile = "black"
-filter_files = true
-line_length = 120
-
 [tool.ruff]
 line-length = 120
+
+[too.ruff.link]
+select = [
+    "E", # pycodestyle
+    "F", # pyflakes, autoflake
+    "I", # isort
+    "S", # bandit
+    "UP", # pyupgrade
+    "RUF",  # ruff specific, includes yesqa
+]
 
 [tool.codespell]
 skip="*.pdf,*.fits,*.asdf,.tox,build,./tags,.git,docs/build"
