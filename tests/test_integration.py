@@ -4,13 +4,13 @@ import asdf
 import pytest
 import yaml
 
-from asdf_standard._versioning import get_dev_supported
+from asdf_standard._versioning import get_unstable_supported
 
 
 def get_resources():
     resources_root = Path(__file__).parent.parent / "resources"
 
-    if not get_dev_supported():
+    if not get_unstable_supported():
         resources_root /= "stable"
 
     return {str(path.relative_to(resources_root)): path for path in resources_root.glob("**/*.yaml")}
@@ -38,13 +38,13 @@ def get_manifests():
 
     stable_manifests = {str(path.relative_to(manifests_root)): path for path in manifests_root.glob("**/*.yaml")}
 
-    if not get_dev_supported():
+    if not get_unstable_supported():
         return stable_manifests
 
-    dev_manifests_root = Path(__file__).parent.parent / "resources" / "dev" / "manifests" / "asdf-format.org"
+    unstable_manifests_root = Path(__file__).parent.parent / "resources" / "unstable" / "manifests" / "asdf-format.org"
 
     return stable_manifests | {
-        str(path.relative_to(dev_manifests_root)): path for path in dev_manifests_root.glob("**/*.yaml")
+        str(path.relative_to(unstable_manifests_root)): path for path in unstable_manifests_root.glob("**/*.yaml")
     }
 
 
