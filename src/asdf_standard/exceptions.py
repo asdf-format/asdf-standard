@@ -1,7 +1,7 @@
-class DevCoreSchemasWarning(UserWarning):
+class UnstableCoreSchemasWarning(UserWarning):
     """
-    Warning issued when development versions of core schemas
-    are supported. Writing files with development versions is
+    Warning issued when unstable versions of core schemas
+    are supported. Writing files with unstable versions is
     highly discouraged and can result in producing files that
-    can later be made invalid as development schemas evolve.
+    can later be made invalid as schemas evolve.
     """

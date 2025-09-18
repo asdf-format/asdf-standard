@@ -32,6 +32,7 @@ jobs:
         - linux: py311
         - linux: py312
         - linux: py313
+        - linux: py313-unstable
 
   test:
     needs: [core]
