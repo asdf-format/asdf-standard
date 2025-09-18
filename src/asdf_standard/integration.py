@@ -25,7 +25,6 @@ def get_resource_mappings():
     ]
 
     if get_unstable_supported():
-        # TODO register dev resources and warn?
         resources.extend(
             [
                 asdf_standard.DirectoryResourceMapping(
