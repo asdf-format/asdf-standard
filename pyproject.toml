@@ -4,7 +4,7 @@ description = 'The ASDF Standard schemas'
 readme = 'README.md'
 requires-python = '>=3.9'
 license-files = ['LICENSE']
-authors = [{ name = 'The ASDF Developers', email = 'help@stsci.edu' }]
+authors = [{ name = 'The ASDF Developers' }]
 classifiers = [
     'Programming Language :: Python',
     'Programming Language :: Python :: 3',
