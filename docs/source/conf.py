@@ -20,7 +20,7 @@ with open(Path(__file__).parent.parent.parent / "pyproject.toml", "rb") as confi
 configuration = conf["project"]
 
 project = configuration["name"]
-author = f"{configuration['authors'][0]['name']} <{configuration['authors'][0]['email']}>"
+author = configuration["authors"][0]["name"]
 copyright = f"{datetime.datetime.now().year}, {author}"
 
 # The short X.Y version
