@@ -27,12 +27,12 @@ jobs:
     with:
       submodules: false
       envs: |
-        - linux: py39
         - linux: py310
         - linux: py311
         - linux: py312
         - linux: py313
-        - linux: py313-unstable
+        - linux: py314
+        - linux: py314-unstable
 
   test:
     needs: [core]
@@ -40,10 +40,10 @@ jobs:
     with:
       submodules: false
       # Any env name which does not start with `pyXY` will use this Python version.
-      default_python: '3.11'
+      default_python: '3.13'
       envs: |
-        - macos: py39
-        - windows: py39
+        - macos: py313
+        - windows: py313
 
   package:
     needs: [core]
@@ -68,10 +68,10 @@ jobs:
           fetch-depth: 0
           repository: asdf-format/asdf
           path: asdf
-      - name: Set up Python 3.11
+      - name: Set up Python 3.13
         uses: actions/setup-python@v6
         with:
-          python-version: 3.11
+          python-version: 3.13
       - name: Install asdf-standard
         run: cd asdf-standard && pip install .
       - name: Install asdf
