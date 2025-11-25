@@ -10,6 +10,7 @@
   core schemas. Be warned that writing files with unstable/development
   versions of core schemas is not recommended as these schemas
   may change during development [#479]
+- Drop support for Python 3.9 [#498]
 
 1.4.0 (2025-08-27)
 ------------------
