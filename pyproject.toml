@@ -16,11 +16,10 @@ dynamic = ['version']
 
 [project.optional-dependencies]
 docs = [
-    'tomli',
+    'tomli; python_version < "3.11"',
     'sphinx >= 4.0',
     'sphinx-asdf >= 0.1.3',
     'graphviz',
-    'matplotlib',
     'docutils',
     'furo',
 ]
