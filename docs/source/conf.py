@@ -8,15 +8,19 @@
 import datetime
 import importlib.metadata
 import os
+import sys
 from pathlib import Path
 
-import tomli
+if sys.version_info < (3, 11):
+    import tomli as tomllib
+else:
+    import tomllib
 
 # -- Project information -----------------------------------------------------
 
 # Get configuration information from `pyproject.toml`
 with open(Path(__file__).parent.parent.parent / "pyproject.toml", "rb") as configuration_file:
-    conf = tomli.load(configuration_file)
+    conf = tomllib.load(configuration_file)
 configuration = conf["project"]
 
 project = configuration["name"]
@@ -67,8 +71,6 @@ for text, link in globalnavlinks.items():
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
-    # TODO clean these up, do we need them all?
-    "sphinx_inline_tabs",
     "sphinx.ext.intersphinx",
     "sphinx.ext.extlinks",
     "sphinx_asdf",
@@ -79,7 +81,6 @@ extensions = [
     "sphinx.ext.inheritance_diagram",
     "sphinx.ext.intersphinx",
     "sphinx.ext.mathjax",
-    "sphinx.ext.todo",
     "sphinx.ext.viewcode",
     "sphinxcontrib.jquery",
     "numpydoc",
@@ -97,7 +98,7 @@ templates_path = ["_templates"]
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
-exclude_patterns = ["_build"]
+exclude_patterns = ["build"]
 
 # The suffix(es) of source filenames.
 # You can specify multiple suffix as a list of string:
