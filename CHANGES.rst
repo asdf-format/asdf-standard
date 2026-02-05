@@ -1,4 +1,4 @@
-1.5.0 (unreleased)
+1.5.0 (2026-02-05)
 ------------------
 
 - Add missing transform-1.0.0 and domain-1.0.0 schemas.
