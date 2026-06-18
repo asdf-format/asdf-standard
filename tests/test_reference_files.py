@@ -116,7 +116,7 @@ def test_reference_files_exist():
     assert list(collect_reference_files())
 
 
-@pytest.mark.parametrize("reference_file", collect_reference_files(), ids=get_test_id)
+@pytest.mark.parametrize("reference_file", list(collect_reference_files()), ids=get_test_id)
 def test_reference_file(reference_file):
     name_without_ext, _ = os.path.splitext(reference_file)
     _compare_trees(name_without_ext)

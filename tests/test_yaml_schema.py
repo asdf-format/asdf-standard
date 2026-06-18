@@ -12,7 +12,7 @@ def test_yaml_schema(path):
     load_yaml(path)
 
 
-@pytest.mark.parametrize("path", YAML_SCHEMA_PATH.glob("*.yaml"))
+@pytest.mark.parametrize("path", list(YAML_SCHEMA_PATH.glob("*.yaml")))
 def test_nested_object_validation(path):
     """
     Test that the validations are applied to nested objects.

@@ -3,8 +3,10 @@ import pytest
 from asdf.exceptions import ValidationError
 from common import SCHEMAS_PATH, assert_yaml_header_and_footer, load_yaml
 
+SCHEMA_FILES = list(SCHEMAS_PATH.glob("asdf-schema-*.yaml"))
 
-@pytest.mark.parametrize("path", SCHEMAS_PATH.glob("asdf-schema-*.yaml"))
+
+@pytest.mark.parametrize("path", SCHEMA_FILES)
 def test_asdf_schema(path):
     assert_yaml_header_and_footer(path)
 
@@ -12,7 +14,7 @@ def test_asdf_schema(path):
     load_yaml(path)
 
 
-@pytest.mark.parametrize("path", SCHEMAS_PATH.glob("asdf-schema-*.yaml"))
+@pytest.mark.parametrize("path", SCHEMA_FILES)
 def test_nested_object_validation(path):
     """
     Test that the validations are applied to nested objects.
