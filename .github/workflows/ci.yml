@@ -47,7 +47,7 @@ jobs:
 
   package:
     needs: [core]
-    uses: OpenAstronomy/github-actions-workflows/.github/workflows/publish_pure_python.yml@v2
+    uses: OpenAstronomy/github-actions-workflows/.github/workflows/publish_pure_python.yml@v3
     with:
       upload_to_pypi: false
       upload_to_anaconda: false
