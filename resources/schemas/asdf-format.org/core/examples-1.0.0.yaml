@@ -1,0 +1,66 @@
+%YAML 1.1
+---
+$schema: "http://json-schema.org/draft-04/schema"
+id: "asdf://asdf-format.org/core/schemas/examples-1.0.0"
+title: Examples file schema
+description: |
+  A collection of examples that illustrate validation provided by a schema.
+definitions:
+  description:
+    description: Description of the example.
+    type: string
+
+  requirement:
+    description: Version requirement to test the example.
+    type: string
+
+  body:
+    description: The example in ASDF/YAML formatted text.
+    type: string
+
+  example_v1:
+    description: Old example format without any version requirement.
+    type: array
+    minLength: 2
+    maxLength: 2
+    items:
+      - $ref: "#/definitions/description"
+      - $ref: "#/definitions/body"
+
+  example_v2:
+    description: Old example format with a version requirement.
+    type: array
+    minLength: 3
+    maxLength: 3
+    items:
+      - $ref: "#/definitions/description"
+      - $ref: "#/definitions/requirement"
+      - $ref: "#/definitions/body"
+
+  example_v3:
+    description: Object with example information.
+    type: object
+    properties:
+      description:
+        $ref: "#/definitions/description"
+      example:
+        $ref: "#/definitions/body"
+      requirement:
+        $ref: "#/definitions/requirement"
+      valid:
+        description: Indicates if this example passes validation.
+        type: boolean
+
+type: object
+properties:
+  examples:
+    type: array
+    items:
+      anyOf:
+        - $ref: "#/definitions/example_v1"
+        - $ref: "#/definitions/example_v2"
+        - $ref: "#/definitions/example_v3"
+  id:
+    type: string
+required: [examples, id]
+...
